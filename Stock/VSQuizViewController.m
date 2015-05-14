@@ -28,7 +28,7 @@
 
 - (void) setupSidebar
 {
-    [self setTitle:@"Learning Tracks"];
+    [self setTitle:@"Quiz"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
     if (revealViewController)

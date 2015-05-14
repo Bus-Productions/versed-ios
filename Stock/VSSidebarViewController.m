@@ -8,7 +8,13 @@
 
 #import "VSSidebarViewController.h"
 #import "VSTracksViewController.h"
+#import "VSQuizViewController.h"
+#import "VSMainViewController.h"
 #import "SWRevealViewController.h"
+
+#define ALL_TRACKS_IDENTIFIER @"allTracks"
+#define MY_TRACKS_IDENTIFIER @"myTracks"
+#define QUIZ_IDENTIFIER @"quiz"
 
 @interface VSSidebarViewController ()
 
@@ -20,8 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.menuOptions = [[NSMutableArray alloc] initWithObjects:@"Quiz", @"My Tracks", nil];
-    self.menuIdentifiers = [[NSMutableArray alloc] initWithObjects:@"quizCell", @"myTracksCell", nil];
+    [self setupMenu];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,46 +36,52 @@
 }
 
 
-
+- (void) setupMenu
+{
+    self.menuOptions = [[NSMutableArray alloc] init];
+    [self.menuOptions addObject:ALL_TRACKS_IDENTIFIER];
+    [self.menuOptions addObject:MY_TRACKS_IDENTIFIER];
+    [self.menuOptions addObject:QUIZ_IDENTIFIER];
+}
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return self.menuOptions.count + 1;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.menuOptions.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *identifier;
-    NSString *textToSet;
-    if (indexPath.row == 0) {
-        identifier = @"titleCell";
-        textToSet = @"Versed";
-    } else {
-        identifier = [self.menuIdentifiers objectAtIndex:indexPath.row - 1];
-        textToSet = [self.menuOptions objectAtIndex:indexPath.row - 1];
-    }
-    
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    
-    UILabel *lbl = (UILabel*)[cell.contentView viewWithTag:1];
-    [lbl setText:textToSet];
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[self.menuOptions objectAtIndex:indexPath.row] forIndexPath:indexPath];
+
     return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SWRevealViewController *revealViewController = self.revealViewController;
-
+    UIViewController *vc;
+    UINavigationController *nc;
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    VSTracksViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"tracksViewController"];\
-    UINavigationController *nc = [storyboard instantiateViewControllerWithIdentifier:@"mainViewNavigationController"];
+    if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:ALL_TRACKS_IDENTIFIER]) {
+        vc = (VSMainViewController*)[storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"mainNavigationController"];
+    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:MY_TRACKS_IDENTIFIER]) {
+        vc = (VSTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"myTracksViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"myTracksNavigationController"];
+    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:QUIZ_IDENTIFIER]) {
+        vc = (VSQuizViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"quizNavigationController"];
+    }
+
+
     [nc setViewControllers:@[vc] animated:NO];
     
     [revealViewController setFrontViewController:nc];
