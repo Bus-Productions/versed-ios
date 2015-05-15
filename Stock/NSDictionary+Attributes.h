@@ -15,9 +15,13 @@
 
 - (NSMutableDictionary*) cleanDictionary;
 
-# pragma mark - Status
+# pragma mark - Added Getters
 - (NSString*) status; 
 - (BOOL) live;
 - (BOOL) unconfirmed;
-- (NSMutableDictionary*) addAttributesFromDictionary:(NSMutableDictionary*)dict; 
+- (NSString*) headline;
+- (NSString*) keyForTrack;
+- (NSMutableArray*) resources;
+- (NSString*) url;
+
 @end

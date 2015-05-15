@@ -22,5 +22,6 @@
 #import "LXString+NSString.h"
 #import "LXDate+RailsTimeConverter.h"
 #import "LXAddressBook.h"
+#import "LXArrayObjects.h"
 
 #endif

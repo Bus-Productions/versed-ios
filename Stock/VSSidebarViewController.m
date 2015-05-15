@@ -7,9 +7,9 @@
 //
 
 #import "VSSidebarViewController.h"
-#import "VSTracksViewController.h"
+#import "VSMyTracksViewController.h"
 #import "VSQuizViewController.h"
-#import "VSMainViewController.h"
+#import "VSAllTracksViewController.h"
 #import "SWRevealViewController.h"
 
 #define ALL_TRACKS_IDENTIFIER @"allTracks"
@@ -43,6 +43,8 @@
     [self.menuOptions addObject:MY_TRACKS_IDENTIFIER];
     [self.menuOptions addObject:QUIZ_IDENTIFIER];
 }
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -71,10 +73,10 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:ALL_TRACKS_IDENTIFIER]) {
-        vc = (VSMainViewController*)[storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+        vc = (VSAllTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"mainNavigationController"];
     } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:MY_TRACKS_IDENTIFIER]) {
-        vc = (VSTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"myTracksViewController"];
+        vc = (VSMyTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"myTracksViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"myTracksNavigationController"];
     } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:QUIZ_IDENTIFIER]) {
         vc = (VSQuizViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizViewController"];

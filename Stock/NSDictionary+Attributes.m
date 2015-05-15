@@ -46,9 +46,20 @@
 }
 
 
+# pragma mark - Added getters
 - (NSString*) status
 {
-    return [self objectForKey:@"status"]; 
+    return [self objectForKey:@"status"];
+}
+
+- (NSString*) ID
+{
+    return [self objectForKey:@"id"];
+}
+
+- (NSString*) url
+{
+    return [self objectForKey:@"url"];
 }
 
 - (BOOL) live
@@ -61,14 +72,20 @@
     return [[self status] isEqualToString:@"unconfirmed"];
 }
 
-- (NSMutableDictionary*) addAttributesFromDictionary:(NSMutableDictionary*)dict
+- (NSString*) headline
 {
-    NSMutableDictionary *returnDictionary = [[NSMutableDictionary alloc] init];
-    for (int i=0; i<[[dict allKeys] count]; i++) {
-        NSString *key = [[dict allKeys] objectAtIndex:i];
-        [returnDictionary setObject:[dict objectForKey:key] forKey:key];
-    }
-    return returnDictionary; 
+    return [self objectForKey:@"headline"];
 }
+
+- (NSString*) keyForTrack
+{
+    return [NSString stringWithFormat:@"track_%@", [self ID]];
+}
+
+- (NSMutableArray*) resources
+{
+    return [[self objectForKey:@"resources"] mutableCopy];
+}
+
 
 @end

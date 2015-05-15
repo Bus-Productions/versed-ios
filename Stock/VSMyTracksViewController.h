@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSTracksViewController : UIViewController
+@interface VSMyTracksViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 

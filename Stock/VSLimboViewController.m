@@ -7,7 +7,7 @@
 //
 
 #import "VSLimboViewController.h"
-#import "VSMainViewController.h"
+#import "VSAllTracksViewController.h"
 
 @interface VSLimboViewController ()
 
@@ -50,7 +50,7 @@
     NSMutableDictionary *u = [[LXSession thisSession] userFromDefaults];
     if (u && [u live]) {
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        VSMainViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+        VSAllTracksViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
         [self.navigationController presentViewController:vc animated:YES completion:nil];
     } else {
         NSLog(@"user = %@", u);
@@ -61,7 +61,7 @@
                                        if ([responseObject objectForKey:@"user"] && [[responseObject objectForKey:@"user"] live]) {
                                            [[responseObject objectForKey:@"user"] saveLocal];
                                            UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                                           VSMainViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+                                           VSAllTracksViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
                                            [self.navigationController presentViewController:vc animated:YES completion:nil];
                                        }
                                    }failure:^(NSError* error) {

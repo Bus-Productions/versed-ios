@@ -8,7 +8,7 @@
 
 #import "VSLoginViewController.h"
 #import "VSSignupViewController.h"
-#import "VSMainViewController.h"
+#import "VSAllTracksViewController.h"
 #import "VSLimboViewController.h"
 
 @interface VSLoginViewController ()
@@ -63,7 +63,7 @@
                                   NSLog(@"***local = %@", [LXServer objectWithLocalKey:[u localKey]]);
                                   if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
                                       UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                                      VSMainViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+                                      VSAllTracksViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
                                       [self.navigationController presentViewController:vc animated:YES completion:nil];
                                   } else {
                                       UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];

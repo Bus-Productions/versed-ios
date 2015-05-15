@@ -29,6 +29,8 @@
 - (void) saveBoth:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
 - (void) saveLocal;
 - (void) saveLocal:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
+- (void) saveLocalWithKey:(NSString*)key;
+- (void) saveLocalWithKey:(NSString*)key success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
 - (void) saveRemote;
 - (void) saveRemote:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
 
@@ -36,6 +38,8 @@
 - (void) destroyBoth:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
 - (void) destroyLocal;
 - (void) destroyLocal:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
+- (void) destroyLocalWithKey:(NSString*)key;
+- (void) destroyLocalWithKey:(NSString*)key success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
 - (void) destroyRemote;
 - (void) destroyRemote:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
 

@@ -42,7 +42,16 @@
     
     NSMutableDictionary* params = [[NSMutableDictionary alloc] initWithDictionary:p];
     if ([authType isEqualToString:@"none"]) {
-        [params setObject:@{ @"auth_type":authType } forKey:@"auth"];
+        NSMutableDictionary *aType = [[NSMutableDictionary alloc] initWithObjectsAndKeys:authType, @"auth_type", nil];
+        [params setObject:aType forKey:@"auth"];
+    }
+    if ([[LXSession thisSession] user]) {
+        if ([params objectForKey:@"auth"]) {
+            [[params objectForKey:@"auth"] setObject:[[[LXSession thisSession] user] ID] forKey:@"uid"];
+        }else {
+            NSMutableDictionary *uid = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[[[LXSession thisSession] user] ID], @"uid", nil];
+            [params setObject:uid forKey:@"auth"];
+        }
     }
     
     if ([method.uppercaseString isEqualToString:@"GET"]) {

@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SWRevealViewController.h"
 
-@interface VSMainViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface VSAllTracksViewController : UIViewController <UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *categoriesWithTracks;
 
 @end
