@@ -11,5 +11,7 @@
 @interface VSMyTracksViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *myTracks;
 
 @end

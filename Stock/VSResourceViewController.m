@@ -19,6 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:[self.resource headline]];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self setupWebView];
 }
 
@@ -29,7 +34,25 @@
 
 - (void) setupWebView
 {
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: [self.resource url]] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 20.0];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: [self.resource url]] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 15.0];
     [self.webView loadRequest: request];
+}
+
+
+#pragma mark - Optional UIWebViewDelegate delegate methods
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 @end

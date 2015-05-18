@@ -35,6 +35,9 @@
     [self reloadScreen];
 }
 
+
+# pragma mark - Setup
+
 - (void) setupSidebar
 {
     [self setTitle:@"All Learning Tracks"];
@@ -53,14 +56,20 @@
     self.categoriesWithTracks = [[NSUserDefaults standardUserDefaults] objectForKey:@"categories"] ? [[[NSUserDefaults standardUserDefaults] objectForKey:@"categories"] mutableCopy] : [[NSMutableArray alloc] init];
 }
 
+
+# pragma mark - Request/Reload
 - (void) reloadScreen
 {
     [[LXServer shared] requestPath:@"/categories.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.categoriesWithTracks = [[[responseObject cleanDictionary] objectForKey:@"categories"] mutableCopy];
-        [self.categoriesWithTracks saveLocalWithKey:@"categories"];
-        [self.tableView reloadData];
+        [self.categoriesWithTracks saveLocalWithKey:@"categories" success:^(id responseObject){
+            [self.tableView reloadData];
+        }failure:nil];
     }failure:nil];
 }
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

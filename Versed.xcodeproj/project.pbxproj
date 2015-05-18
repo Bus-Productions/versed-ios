@@ -31,6 +31,7 @@
 		7666FC331B0693CC00051C93 /* VSTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC321B0693CC00051C93 /* VSTrackViewController.m */; };
 		7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC351B0697B000051C93 /* VSResourceTableViewCell.m */; };
 		7666FC391B069D1D00051C93 /* VSResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC381B069D1D00051C93 /* VSResourceViewController.m */; };
+		7666FC3C1B0A8EA700051C93 /* VSDailyArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC3B1B0A8EA700051C93 /* VSDailyArticlesViewController.m */; };
 		768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0701B025A9800E1E2E6 /* VSSignupViewController.m */; };
 		768CE0741B02600600E1E2E6 /* VSLimboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0731B02600600E1E2E6 /* VSLimboViewController.m */; };
 		768CE0771B026E1300E1E2E6 /* VSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0761B026E1300E1E2E6 /* VSLoginViewController.m */; };
@@ -100,6 +101,8 @@
 		7666FC351B0697B000051C93 /* VSResourceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSResourceTableViewCell.m; sourceTree = "<group>"; };
 		7666FC371B069D1D00051C93 /* VSResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSResourceViewController.h; sourceTree = "<group>"; };
 		7666FC381B069D1D00051C93 /* VSResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSResourceViewController.m; sourceTree = "<group>"; };
+		7666FC3A1B0A8EA700051C93 /* VSDailyArticlesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSDailyArticlesViewController.h; sourceTree = "<group>"; };
+		7666FC3B1B0A8EA700051C93 /* VSDailyArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDailyArticlesViewController.m; sourceTree = "<group>"; };
 		768CE06F1B025A9800E1E2E6 /* VSSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSignupViewController.h; sourceTree = "<group>"; };
 		768CE0701B025A9800E1E2E6 /* VSSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSignupViewController.m; sourceTree = "<group>"; };
 		768CE0721B02600600E1E2E6 /* VSLimboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSLimboViewController.h; sourceTree = "<group>"; };
@@ -164,7 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				28A5340D1AD0A6CC0049B3F7 /* MobileLogin */,
-				768CE07E1B03BADC00E1E2E6 /* Tracks */,
+				768CE07E1B03BADC00E1E2E6 /* Menu Options */,
 				28A533E31ACF69400049B3F7 /* LXV */,
 				7666FC2D1B06335E00051C93 /* TableViewCells */,
 				768CE09C1B03F06300E1E2E6 /* SWRevealViewController */,
@@ -279,7 +282,7 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
-		768CE07E1B03BADC00E1E2E6 /* Tracks */ = {
+		768CE07E1B03BADC00E1E2E6 /* Menu Options */ = {
 			isa = PBXGroup;
 			children = (
 				768CE08B1B03EED500E1E2E6 /* VSSidebarViewController.h */,
@@ -294,8 +297,10 @@
 				7666FC321B0693CC00051C93 /* VSTrackViewController.m */,
 				7666FC371B069D1D00051C93 /* VSResourceViewController.h */,
 				7666FC381B069D1D00051C93 /* VSResourceViewController.m */,
+				7666FC3A1B0A8EA700051C93 /* VSDailyArticlesViewController.h */,
+				7666FC3B1B0A8EA700051C93 /* VSDailyArticlesViewController.m */,
 			);
-			name = Tracks;
+			name = "Menu Options";
 			sourceTree = "<group>";
 		};
 		768CE09C1B03F06300E1E2E6 /* SWRevealViewController */ = {
@@ -452,6 +457,7 @@
 				7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */,
 				768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */,
 				768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */,
+				7666FC3C1B0A8EA700051C93 /* VSDailyArticlesViewController.m in Sources */,
 				28A534011ACF69AF0049B3F7 /* UILabel+Bold.m in Sources */,
 				768CE08D1B03EED500E1E2E6 /* VSSidebarViewController.m in Sources */,
 				28A533FA1ACF699A0049B3F7 /* NSDictionary+Attributes.m in Sources */,

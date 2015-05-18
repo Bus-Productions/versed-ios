@@ -11,10 +11,13 @@
 #import "VSQuizViewController.h"
 #import "VSAllTracksViewController.h"
 #import "SWRevealViewController.h"
+#import "VSDailyArticlesViewController.h"
 
 #define ALL_TRACKS_IDENTIFIER @"allTracks"
 #define MY_TRACKS_IDENTIFIER @"myTracks"
 #define QUIZ_IDENTIFIER @"quiz"
+#define DAILY_ARTICLES_IDENTIFIER @"dailyArticles"
+
 
 @interface VSSidebarViewController ()
 
@@ -42,6 +45,7 @@
     [self.menuOptions addObject:ALL_TRACKS_IDENTIFIER];
     [self.menuOptions addObject:MY_TRACKS_IDENTIFIER];
     [self.menuOptions addObject:QUIZ_IDENTIFIER];
+    [self.menuOptions addObject:DAILY_ARTICLES_IDENTIFIER];
 }
 
 
@@ -81,6 +85,9 @@
     } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:QUIZ_IDENTIFIER]) {
         vc = (VSQuizViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"quizNavigationController"];
+    }else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:DAILY_ARTICLES_IDENTIFIER]) {
+        vc = (VSDailyArticlesViewController*)[storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesNavigationController"];
     }
 
 

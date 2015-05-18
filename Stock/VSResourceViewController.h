@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSResourceViewController : UIViewController
+@interface VSResourceViewController : UIViewController <UIWebViewDelegate>
 
 @property (strong, nonatomic) NSMutableDictionary *resource;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+- (void) setupWebView;
 
 @end

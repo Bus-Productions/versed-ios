@@ -8,7 +8,6 @@
 
 #import "VSTrackViewController.h"
 #import "VSResourceTableViewCell.h"
-#import "VSResourceViewController.h"
 
 @interface VSTrackViewController ()
 
