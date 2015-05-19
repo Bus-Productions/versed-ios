@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *articles; 
+@property (strong, nonatomic) NSMutableArray *sections;
 
 @end

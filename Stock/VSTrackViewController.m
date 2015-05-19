@@ -34,6 +34,9 @@
     [self reloadScreen];
 }
 
+
+# pragma mark - Setup
+
 - (void) setupNavigationBar
 {
     [self.navigationItem setTitle:[self.track headline]];
@@ -45,6 +48,9 @@
         self.track = [[[NSUserDefaults standardUserDefaults] objectForKey:[self.track keyForTrack]] mutableCopy];
     }
 }
+
+
+# pragma mark - Reload/Request
 
 - (void) reloadScreen
 {
@@ -58,6 +64,8 @@
                              failure:nil];
     }failure:nil];
 }
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -88,6 +96,7 @@
     [vc setResource:[self resourceAtIndexPath:indexPath]];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 
 #pragma mark - Helpers
 

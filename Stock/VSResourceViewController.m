@@ -32,6 +32,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+# pragma mark - Setup
+
 - (void) setupWebView
 {
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: [self.resource url]] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 15.0];

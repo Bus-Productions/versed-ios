@@ -13,6 +13,4 @@
 @property (strong, nonatomic) NSMutableDictionary *resource;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
-- (void) setupWebView;
-
 @end

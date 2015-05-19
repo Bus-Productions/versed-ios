@@ -10,6 +10,9 @@
 #import "SWRevealViewController.h"
 #import "VSTrackTableViewCell.h"
 #import "VSTrackViewController.h"
+#import "VSEmptyTableViewCell.h"
+
+#define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
 @interface VSMyTracksViewController ()
 
@@ -17,7 +20,7 @@
 
 @implementation VSMyTracksViewController
 
-@synthesize tableView, slideButton, myTracks;
+@synthesize tableView, slideButton, myTracks, sections;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,13 +62,20 @@
 
 
 # pragma mark - Request/Reload
+
 - (void) reloadScreen
 {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.myTracks = [[[responseObject cleanDictionary] objectForKey:@"my_tracks"] mutableCopy];
-        [self.myTracks saveLocalWithKey:@"myTracks" success:^(id responseObject){
-            [self.tableView reloadData];
-        }failure:nil];
+        if (NULL_TO_NIL(self.myTracks)) {
+            [self.myTracks saveLocalWithKey:@"myTracks" success:^(id responseObject){
+                [self.tableView reloadData];
+            }failure:nil];
+        } else {
+            [[[NSMutableArray alloc] init] destroyLocalWithKey:@"myTracks" success:^(id responseObject){
+                [self.tableView reloadData];
+            }failure:nil];
+        }
     }failure:nil];
 }
 
@@ -74,16 +84,39 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    self.sections = [[NSMutableArray alloc] init];
+
+    if (self.myTracks.count < 1) {
+        [self.sections addObject:@"empty"];
+    } else {
+        [self.sections addObject:@"tracks"];
+    }
+    return self.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.myTracks.count;
+    if ([[self.sections objectAtIndex:section] isEqualToString:@"tracks"]) {
+        return self.myTracks.count;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
+        return 1;
+    }
+    return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"tracks"]) {
+        return [self tableView:self.tableView tracksCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+        return [self tableView:self.tableView emptyCellForRowAtIndexPath:indexPath]; 
+    }
+
+    return nil;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView tracksCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableDictionary *track = [[self.myTracks objectAtIndex:indexPath.row] mutableCopy];
     VSTrackTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
@@ -93,12 +126,24 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView emptyCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
+    
+    [cell configureWithText:@"You can save learning tracks that you want to reference and they will show up here!"];
+    
+    return cell;
+}
+
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    VSTrackViewController *vc = (VSTrackViewController*)[storyboard instantiateViewControllerWithIdentifier:@"trackViewController"];
-    [vc setTrack:[self.myTracks objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"tracks"]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        VSTrackViewController *vc = (VSTrackViewController*)[storyboard instantiateViewControllerWithIdentifier:@"trackViewController"];
+        [vc setTrack:[self.myTracks objectAtIndex:indexPath.row]];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

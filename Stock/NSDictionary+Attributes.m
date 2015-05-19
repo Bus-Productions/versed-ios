@@ -87,5 +87,34 @@
     return [[self objectForKey:@"resources"] mutableCopy];
 }
 
+- (NSMutableArray*) questionAnswers
+{
+    return [[self objectForKey:@"quiz_answers"] mutableCopy];
+}
+
+- (NSMutableArray*) quizQuestions
+{
+    return [[self objectForKey:@"quiz_questions"] mutableCopy];
+}
+
+- (NSMutableDictionary*) quiz
+{
+    return [[self objectForKey:@"quiz"] mutableCopy];
+}
+
+- (NSString*) answerText
+{
+    return [self objectForKey:@"answer_text"];
+}
+
+- (NSString*) questionText
+{
+    return [self objectForKey:@"question_text"];
+}
+
+- (NSString*) correctAnswerID
+{
+    return [self objectForKey:@"quiz_answer_id"];
+}
 
 @end

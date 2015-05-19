@@ -16,6 +16,7 @@
 - (NSMutableDictionary*) cleanDictionary;
 
 # pragma mark - Added Getters
+// tracks/resources
 - (NSString*) status; 
 - (BOOL) live;
 - (BOOL) unconfirmed;
@@ -24,4 +25,11 @@
 - (NSMutableArray*) resources;
 - (NSString*) url;
 
+// quizzes
+- (NSMutableDictionary*) quiz;
+- (NSMutableArray*) quizQuestions;
+- (NSString*) questionText;
+- (NSString*) correctAnswerID;
+- (NSMutableArray*) questionAnswers;
+- (NSString*) answerText;
 @end

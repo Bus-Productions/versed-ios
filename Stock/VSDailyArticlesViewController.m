@@ -10,6 +10,9 @@
 #import "VSResourceTableViewCell.h"
 #import "VSResourceViewController.h"
 #import "SWRevealViewController.h"
+#import "VSEmptyTableViewCell.h"
+
+#define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
 @interface VSDailyArticlesViewController ()
 
@@ -17,7 +20,7 @@
 
 @implementation VSDailyArticlesViewController
 
-@synthesize tableView, slideButton, articles;
+@synthesize tableView, slideButton, articles, sections;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,11 +62,15 @@
 {
     [[LXServer shared] requestPath:@"/resources/daily.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.articles = [[[responseObject cleanDictionary] objectForKey:@"resources"] mutableCopy];
-        [self.articles saveLocalWithKey:@"dailyArticles"
-                             success:^(id responseObject) {
-                                 [self.tableView reloadData];
-                             }
-                             failure:nil];
+        if (NULL_TO_NIL(self.articles)) {
+            [self.articles saveLocalWithKey:@"dailyArticles" success:^(id responseObject){
+                [self.tableView reloadData];
+            }failure:nil];
+        } else {
+            [[[NSMutableArray alloc] init] destroyLocalWithKey:@"dailyArticles" success:^(id responseObject){
+                [self.tableView reloadData];
+            }failure:nil];
+        }
     }failure:nil];
 }
 
@@ -72,16 +79,39 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    self.sections = [[NSMutableArray alloc] init];
+    
+    if (self.articles.count < 1) {
+        [self.sections addObject:@"empty"];
+    } else {
+        [self.sections addObject:@"articles"];
+    }
+    
+    return self.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.articles.count;
+    if ([[self.sections objectAtIndex:section] isEqualToString:@"articles"]) {
+        return self.articles.count;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
+        return 1; 
+    }
+    return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
+        return [self tableView:self.tableView articlesCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+        return [self tableView:self.tableView emptyCellForRowAtIndexPath:indexPath];
+    }
+    return nil;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView articlesCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSResourceTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
     
@@ -90,12 +120,23 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView emptyCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
+    
+    [cell configureWithText:@"Sorry there are no daily articles at this time!"];
+    
+    return cell;
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    VSResourceViewController *vc = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
-    [vc setResource:[self.articles objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        VSResourceViewController *vc = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
+        [vc setResource:[self.articles objectAtIndex:indexPath.row]];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

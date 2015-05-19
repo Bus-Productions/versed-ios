@@ -58,6 +58,7 @@
 
 
 # pragma mark - Request/Reload
+
 - (void) reloadScreen
 {
     [[LXServer shared] requestPath:@"/categories.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
