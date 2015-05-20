@@ -23,10 +23,10 @@
 
 - (void) configureWithText:(NSString*)text andColor:(UIColor*)color
 {
-    UIButton *btn = (UIButton*)[self.contentView viewWithTag:1];
-    [btn setBackgroundColor:color];
-    [btn setTitle:text forState:UIControlStateNormal];
-    btn.layer.cornerRadius = 10;
-    btn.clipsToBounds = YES;
+    UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
+    [lbl setBackgroundColor:color];
+    [lbl setText:text];
+    lbl.layer.cornerRadius = 10;
+    lbl.clipsToBounds = YES;
 }
 @end

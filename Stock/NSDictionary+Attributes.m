@@ -114,7 +114,7 @@
 
 - (NSString*) correctAnswerID
 {
-    return [self objectForKey:@"quiz_answer_id"];
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"quiz_answer_id"]];
 }
 
 @end

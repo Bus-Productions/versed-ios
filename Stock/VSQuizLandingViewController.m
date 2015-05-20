@@ -9,6 +9,7 @@
 #import "VSQuizLandingViewController.h"
 #import "SWRevealViewController.h"
 #import "VSQuizQuestionViewController.h"
+#import "VSButtonTableViewCell.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -18,7 +19,7 @@
 
 @implementation VSQuizLandingViewController
 
-@synthesize slideButton, quizQuestions;
+@synthesize slideButton, quizQuestions, sections, tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,18 +63,58 @@
 {
     [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.quizQuestions = [[responseObject quiz] quizQuestions];
+        [self.tableView reloadData];
     }failure:nil];
 }
 
 
-# pragma mark - Actions
+#pragma mark - Table view data source
 
-- (IBAction)startQuiz:(id)sender {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    self.sections = [[NSMutableArray alloc] init];
+    
     if (self.quizQuestions.count > 0) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        VSQuizQuestionViewController *vc = (VSQuizQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizQuestionViewController"];
-        [vc setQuestion:[self.quizQuestions objectAtIndex:questionIndex]];
-        [self.navigationController pushViewController:vc animated:NO];
+        [self.sections addObject:@"startQuiz"];
+    }
+    return self.sections.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if ([[self.sections objectAtIndex:section] isEqualToString:@"startQuiz"]) {
+        return 1;
+    }
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
+        return [self tableView:self.tableView startQuizCellForRowAtIndexPath:indexPath];
+    }
+    return nil;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView startQuizCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"startQuizCell" forIndexPath:indexPath];
+    [cell configureWithText:@"Start Quiz" andColor:[UIColor blueColor]];
+    return cell;
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
+        if (self.quizQuestions.count > 0) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            VSQuizQuestionViewController *vc = (VSQuizQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizQuestionViewController"];
+            [vc setQuestion:[self.quizQuestions objectAtIndex:questionIndex]];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
+
+
 @end

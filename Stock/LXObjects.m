@@ -21,7 +21,7 @@
 
 - (NSString*) ID
 {
-    return [self objectForKey:@"id"];
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"id"]];
 }
 
 - (NSString*) localID

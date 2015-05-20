@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,6 +32,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+# pragma mark - Setup
+
+- (void) setupNavigationBar
+{
+    [self.navigationItem setTitle:[NSString stringWithFormat:@"Question %d of %d", 1, 10]];
+    [self.navigationItem setLeftBarButtonItem:nil];
+}
 
 #pragma mark - Table view data source
 
@@ -73,33 +82,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView questionCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        NSLog(@"1");
-    VSQuizQuestionTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
-            NSLog(@"2");
+    VSQuizQuestionTableViewCell *cell = (VSQuizQuestionTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
     [cell configureWithQuestion:self.question];
-            NSLog(@"3");
-    NSLog(@"cell = %@", cell);
-        NSLog(@"cell class = %@", [cell class]);
     return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView answerCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-            NSLog(@"4");
-    VSQuizAnswerTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"answerCell" forIndexPath:indexPath];
-            NSLog(@"5");
+    VSQuizAnswerTableViewCell *cell = (VSQuizAnswerTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"answerCell" forIndexPath:indexPath];
     [cell configureWithAnswer:[[self.question questionAnswers] objectAtIndex:indexPath.row]];
-            NSLog(@"6");
     return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView nextCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-            NSLog(@"7");
-    VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"nextCell" forIndexPath:indexPath];
-            NSLog(@"8");
+    VSButtonTableViewCell *cell = (VSButtonTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"nextCell" forIndexPath:indexPath];
     [cell configureWithText:@"Next" andColor:[UIColor blueColor]];
-            NSLog(@"9");
     return cell;
 }
 
@@ -117,27 +115,36 @@
         [self updateViewWithAnswerAtIndexPath:indexPath success:^(id responseObject){
             [self.tableView reloadData];
         }failure:nil];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
+        alreadyAnswered = NO;
+        [self.tableView reloadData];
     }
 }
 
 
 # pragma mark - Helpers
 
-- (BOOL) answerAtIndexPathIsCorrect:(NSIndexPath*)indexPath
+- (NSIndexPath*) indexPathOfCorrectAnswer
 {
-    return [[self.question correctAnswerID] isEqualToString:[[[self.question questionAnswers] objectAtIndex:indexPath.row] ID]];
+    for (NSMutableDictionary *answer in [self.question questionAnswers]) {
+        if ([[answer ID] isEqualToString:[self.question correctAnswerID]]) {
+            return [NSIndexPath indexPathForRow:[[self.question questionAnswers] indexOfObject:answer] inSection:[self.sections indexOfObject:@"answer"]];
+        }
+    }
+    return nil;
 }
+
 
 - (void) updateViewWithAnswerAtIndexPath:(NSIndexPath*)indexPath success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback
 {
     alreadyAnswered = YES;
-    for (int i=0; i < [[self.question questionAnswers] count]; i++) {
-        if ([self answerAtIndexPathIsCorrect:indexPath]) {
-            NSLog(@"correct was = %ld", (long)indexPath.row);
-        } else if (indexPath.row == i) {
-            NSLog(@"missed it");
-        }
+    UITableViewCell *correctCell = [self.tableView cellForRowAtIndexPath:[self indexPathOfCorrectAnswer]];
+    UITableViewCell *chosenCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [correctCell setBackgroundColor:[UIColor greenColor]];
+    if (![chosenCell isEqual:correctCell]) {
+        [chosenCell setBackgroundColor:[UIColor grayColor]];
     }
+
     successCallback(nil);
 }
 

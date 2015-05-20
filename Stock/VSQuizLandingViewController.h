@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSQuizLandingViewController : UIViewController
+@interface VSQuizLandingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     int questionIndex;
 }
 
 @property (strong, nonatomic) NSMutableArray *quizQuestions;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
-
-- (IBAction)startQuiz:(id)sender;
+@property (strong, nonatomic) NSMutableArray *sections;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

@@ -12,7 +12,6 @@
 #import "VSAllTracksViewController.h"
 #import "SWRevealViewController.h"
 #import "VSDailyArticlesViewController.h"
-#import "VSQuizQuestionsNavigationViewController.h"
 #import "VSQuizLandingViewController.h"
 
 #define ALL_TRACKS_IDENTIFIER @"allTracks"
@@ -86,12 +85,11 @@
         nc = [storyboard instantiateViewControllerWithIdentifier:@"myTracksNavigationController"];
     } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:QUIZ_IDENTIFIER]) {
         vc = (VSQuizLandingViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizLandingViewController"];
-        nc = (VSQuizQuestionsNavigationViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizQuestionsNavigationViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"quizQuestionsNavigationViewController"];
     }else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:DAILY_ARTICLES_IDENTIFIER]) {
         vc = (VSDailyArticlesViewController*)[storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesNavigationController"];
     }
-
 
     [nc setViewControllers:@[vc] animated:NO];
     

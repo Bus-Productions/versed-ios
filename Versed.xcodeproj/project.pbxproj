@@ -30,7 +30,6 @@
 		760F5D531B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D521B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m */; };
 		760F5D561B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D551B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m */; };
 		760F5D5C1B0BB30D0038FF1A /* VSButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D5B1B0BB30D0038FF1A /* VSButtonTableViewCell.m */; };
-		760F5D601B0BB6D90038FF1A /* VSQuizQuestionsNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D5F1B0BB6D90038FF1A /* VSQuizQuestionsNavigationViewController.m */; };
 		760F5D661B0BCF4A0038FF1A /* VSQuizLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D651B0BCF4A0038FF1A /* VSQuizLandingViewController.m */; };
 		7666FC2C1B06335600051C93 /* VSTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC2B1B06335600051C93 /* VSTrackTableViewCell.m */; };
 		7666FC301B068B2300051C93 /* LXArrayObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC2F1B068B2300051C93 /* LXArrayObjects.m */; };
@@ -105,8 +104,6 @@
 		760F5D551B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizAnswerTableViewCell.m; sourceTree = "<group>"; };
 		760F5D5A1B0BB30D0038FF1A /* VSButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSButtonTableViewCell.h; sourceTree = "<group>"; };
 		760F5D5B1B0BB30D0038FF1A /* VSButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSButtonTableViewCell.m; sourceTree = "<group>"; };
-		760F5D5E1B0BB6D90038FF1A /* VSQuizQuestionsNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizQuestionsNavigationViewController.h; sourceTree = "<group>"; };
-		760F5D5F1B0BB6D90038FF1A /* VSQuizQuestionsNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizQuestionsNavigationViewController.m; sourceTree = "<group>"; };
 		760F5D641B0BCF4A0038FF1A /* VSQuizLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizLandingViewController.h; sourceTree = "<group>"; };
 		760F5D651B0BCF4A0038FF1A /* VSQuizLandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizLandingViewController.m; sourceTree = "<group>"; };
 		7666FC2A1B06335600051C93 /* VSTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTrackTableViewCell.h; sourceTree = "<group>"; };
@@ -327,8 +324,6 @@
 		760F5D5D1B0BB6980038FF1A /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
-				760F5D5E1B0BB6D90038FF1A /* VSQuizQuestionsNavigationViewController.h */,
-				760F5D5F1B0BB6D90038FF1A /* VSQuizQuestionsNavigationViewController.m */,
 				768CE0941B03EF7E00E1E2E6 /* VSQuizQuestionViewController.h */,
 				768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */,
 				760F5D641B0BCF4A0038FF1A /* VSQuizLandingViewController.h */,
@@ -536,7 +531,6 @@
 				760F5D661B0BCF4A0038FF1A /* VSQuizLandingViewController.m in Sources */,
 				768CE09B1B03F05D00E1E2E6 /* SWRevealViewController.m in Sources */,
 				28A533F21ACF698F0049B3F7 /* LXString+NSString.m in Sources */,
-				760F5D601B0BB6D90038FF1A /* VSQuizQuestionsNavigationViewController.m in Sources */,
 				28A534001ACF69AF0049B3F7 /* UIImage+Helpers.m in Sources */,
 				760F5D531B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m in Sources */,
 				768CE0901B03EF1900E1E2E6 /* VSAllTracksViewController.m in Sources */,
