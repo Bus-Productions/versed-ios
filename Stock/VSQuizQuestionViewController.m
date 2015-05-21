@@ -20,7 +20,7 @@
 
 @implementation VSQuizQuestionViewController
 
-@synthesize sections, tableView, question;
+@synthesize sections, tableView, question, delegate, totalQuestions, questionsCompleted;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +37,7 @@
 
 - (void) setupNavigationBar
 {
-    [self.navigationItem setTitle:[NSString stringWithFormat:@"Question %d of %d", 1, 10]];
+    [self.navigationItem setTitle:[NSString stringWithFormat:@"Question %lu of %lu", (unsigned long)questionsCompleted, (unsigned long)totalQuestions]];
     [self.navigationItem setLeftBarButtonItem:nil];
 }
 
@@ -115,9 +115,9 @@
         [self updateViewWithAnswerAtIndexPath:indexPath success:^(id responseObject){
             [self.tableView reloadData];
         }failure:nil];
+        [self.delegate createQuizResultWithQuestion:self.question andAnswer:[[self.question questionAnswers] objectAtIndex:indexPath.row]];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
-        alreadyAnswered = NO;
-        [self.tableView reloadData];
+        [self.delegate updateQuizQuestions]; 
     }
 }
 
@@ -127,7 +127,7 @@
 - (NSIndexPath*) indexPathOfCorrectAnswer
 {
     for (NSMutableDictionary *answer in [self.question questionAnswers]) {
-        if ([[answer ID] isEqualToString:[self.question correctAnswerID]]) {
+        if ([[NSString stringWithFormat:@"%@", [answer ID]] isEqualToString:[self.question quizAnswerID]]) {
             return [NSIndexPath indexPathForRow:[[self.question questionAnswers] indexOfObject:answer] inSection:[self.sections indexOfObject:@"answer"]];
         }
     }
@@ -147,5 +147,4 @@
 
     successCallback(nil);
 }
-
 @end

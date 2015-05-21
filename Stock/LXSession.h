@@ -15,6 +15,7 @@
 +(LXSession*) thisSession;
 - (NSMutableDictionary*) user;
 - (NSMutableDictionary*) userFromDefaults;
+- (void) setUser:(NSMutableDictionary*)u;
 
 //users
 @property (strong, nonatomic) NSMutableDictionary *cachedUser;

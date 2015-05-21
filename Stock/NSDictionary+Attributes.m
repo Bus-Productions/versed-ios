@@ -54,7 +54,7 @@
 
 - (NSString*) ID
 {
-    return [self objectForKey:@"id"];
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"id"]];
 }
 
 - (NSString*) url
@@ -112,9 +112,51 @@
     return [self objectForKey:@"question_text"];
 }
 
-- (NSString*) correctAnswerID
+- (NSString*) quizAnswerID
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"quiz_answer_id"]];
 }
 
+- (NSString*) quizQuestionID
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"quiz_question_id"]];
+}
+
+- (NSString*) quizID
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"quiz_id"]];
+}
+
+- (NSMutableArray*) quizResults
+{
+    return [[self objectForKey:@"quiz_results"] mutableCopy];
+}
+
+- (NSString*) correctAnswerID
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"correct_answer_id"]];
+}
+
+- (BOOL) quizResultIsCorrect
+{
+    return [[self correctAnswerID] isEqualToString:[self quizAnswerID]];
+}
+
+- (NSNumber *) quizQuestionsCorrect
+{
+    return (NSNumber*)[self objectForKey:@"quiz_questions_correct"];
+}
+
+- (NSNumber *) quizQuestionsTotal
+{
+    return (NSNumber*)[self objectForKey:@"quiz_questions_total"];
+}
+
+- (NSString*) overallQuizPercentage
+{
+    NSNumber* c = [self quizQuestionsCorrect];
+    NSNumber* t = [self quizQuestionsTotal];
+    float avg = ([c floatValue]/[t floatValue])*100.0;
+    return [NSString stringWithFormat:@"%f%%", avg];
+}
 @end

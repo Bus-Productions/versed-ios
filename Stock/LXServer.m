@@ -108,7 +108,10 @@
 
 + (NSMutableDictionary*) objectWithLocalKey:(NSString*)key
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (key && key.length > 0) {
+        return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    }
+    return nil; 
 }
 
 @end

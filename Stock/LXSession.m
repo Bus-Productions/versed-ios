@@ -60,6 +60,14 @@ static LXSession* thisSession = nil;
     }
 }
 
+- (void) setUser:(NSMutableDictionary*)u
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [u saveLocalWithKey:[defaults objectForKey:@"localUserKey"]];
+    [defaults synchronize];
+    [self setCachedUser:u];
+}
+
 - (NSMutableDictionary*) userFromDefaults
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

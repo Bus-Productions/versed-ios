@@ -15,6 +15,7 @@
 #import "LXServer.h"
 #import "LXObjects.h"
 #import "NSDictionary+Attributes.h"
+#import "NSMutableArray+Attributes.h"
 #import "UIImage+Helpers.h"
 #import "UILabel+Bold.h"
 #import "NSArray+Alphabet.h"

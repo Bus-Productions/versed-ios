@@ -30,6 +30,14 @@
 - (NSMutableArray*) quizQuestions;
 - (NSString*) questionText;
 - (NSString*) correctAnswerID;
+- (NSString*) quizQuestionID;
+- (NSString*) quizAnswerID;
 - (NSMutableArray*) questionAnswers;
 - (NSString*) answerText;
+- (NSString*) quizID;
+- (NSMutableArray*) quizResults;
+- (BOOL) quizResultIsCorrect;
+- (NSNumber*) quizQuestionsCorrect;
+- (NSNumber*) quizQuestionsTotal;
+- (NSString*) overallQuizPercentage; 
 @end
