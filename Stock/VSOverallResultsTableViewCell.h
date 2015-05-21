@@ -10,6 +10,6 @@
 
 @interface VSOverallResultsTableViewCell : UITableViewCell
 
-- (void) configureWithQuizResult:(NSMutableArray*)quizResults;
+- (void) configureWithQuizResults:(NSMutableArray*)quizResults;
 
 @end

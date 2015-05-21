@@ -82,6 +82,11 @@
     return [NSString stringWithFormat:@"track_%@", [self ID]];
 }
 
+- (NSMutableDictionary*) track
+{
+    return [[self objectForKey:@"track"] mutableCopy];
+}
+
 - (NSMutableArray*) resources
 {
     return [[self objectForKey:@"resources"] mutableCopy];
@@ -90,6 +95,11 @@
 - (NSMutableArray*) questionAnswers
 {
     return [[self objectForKey:@"quiz_answers"] mutableCopy];
+}
+
+- (NSMutableDictionary*) quizQuestion
+{
+    return [[self objectForKey:@"quiz_question"] mutableCopy];   
 }
 
 - (NSMutableArray*) quizQuestions

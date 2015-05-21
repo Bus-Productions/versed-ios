@@ -28,6 +28,7 @@
 // quizzes
 - (NSMutableDictionary*) quiz;
 - (NSMutableArray*) quizQuestions;
+- (NSMutableDictionary*) quizQuestion;
 - (NSString*) questionText;
 - (NSString*) correctAnswerID;
 - (NSString*) quizQuestionID;
@@ -39,5 +40,7 @@
 - (BOOL) quizResultIsCorrect;
 - (NSNumber*) quizQuestionsCorrect;
 - (NSNumber*) quizQuestionsTotal;
-- (NSString*) overallQuizPercentage; 
+- (NSString*) overallQuizPercentage;
+- (NSMutableDictionary*) track;
+
 @end

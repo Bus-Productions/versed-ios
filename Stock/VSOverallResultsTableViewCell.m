@@ -21,7 +21,7 @@
     // Configure the view for the selected state
 }
 
-- (void) configureWithQuizResult:(NSMutableArray*)quizResults
+- (void) configureWithQuizResults:(NSMutableArray*)quizResults
 {
     UILabel *recentQuizResultLabel = (UILabel*)[self viewWithTag:1];
     [recentQuizResultLabel setText:[NSString stringWithFormat:@"%d of %lu correct", [quizResults numberQuizResultsCorrect], (unsigned long)[quizResults count]]];

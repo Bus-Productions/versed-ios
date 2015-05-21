@@ -38,7 +38,6 @@
 - (void) setupNavigationBar
 {
     [self.navigationItem setTitle:[NSString stringWithFormat:@"Question %lu of %lu", (unsigned long)questionsCompleted, (unsigned long)totalQuestions]];
-    [self.navigationItem setLeftBarButtonItem:nil];
 }
 
 #pragma mark - Table view data source

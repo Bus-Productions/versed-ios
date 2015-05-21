@@ -8,6 +8,9 @@
 
 #import "VSQuizResultsViewController.h"
 #import "VSOverallResultsTableViewCell.h"
+#import "VSMissedQuestionTableViewCell.h"
+#import "VSNoMissesQuizTableViewCell.h"
+#import "VSTrackViewController.h"
 
 @interface VSQuizResultsViewController ()
 
@@ -15,11 +18,12 @@
 
 @implementation VSQuizResultsViewController
 
-@synthesize quizResults, tableView, sections, totalQuestions, questionsCompleted;
+@synthesize quizResults, tableView, sections, missedQuestions;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupNavigationBar];
+    [self setupData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,6 +31,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self reloadScreen];
+}
+
+
+# pragma mark - Setup
+- (void) setupData
+{
+    self.missedQuestions = [[NSMutableArray alloc] init];
+}
+
+- (void) setupNavigationBar
+{
+    [self.navigationItem setTitle:@"Quiz Results"];
+}
+
+# pragma mark - Request/Reload
+- (void) reloadScreen
+{
+    [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
+        self.quizResults = [responseObject quizResults];
+        [self setupMissedQuestions];
+        [self.tableView reloadData];
+    }failure:nil];
+}
 
 
 #pragma mark - Table view data source
@@ -34,9 +64,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     self.sections = [[NSMutableArray alloc] init];
-    
-    if (self.quizResults.count > 0) {
-        [self.sections addObject:@"showResults"];
+    [self.sections addObject:@"showResults"];
+    if (self.missedQuestions.count > 0) {
+        [self.sections addObject:@"missedQuestions"];
+    } else {
+        [self.sections addObject:@"noMisses"];
     }
     return self.sections.count;
 }
@@ -44,6 +76,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([[self.sections objectAtIndex:section] isEqualToString:@"showResults"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"missedQuestions"]) {
+        return self.missedQuestions.count;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"noMisses"]) {
         return 1;
     }
     return 0;
@@ -53,24 +89,57 @@
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         return [self tableView:self.tableView showResultsCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
+        return [self tableView:self.tableView missedQuestionsCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"noMisses"]) {
+        return [self tableView:self.tableView noMissesCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView showResultsCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSOverallResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"overallResultsCell" forIndexPath:indexPath];
-    [cell configureWithQuizResult:self.quizResults];
+    [cell configureWithQuizResults:self.quizResults];
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView missedQuestionsCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSMissedQuestionTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"missedQuestionCell" forIndexPath:indexPath];
+    [cell configureWithQuizResult:[self.missedQuestions objectAtIndex:indexPath.row]];
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView noMissesCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSNoMissesQuizTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"noMissesCell" forIndexPath:indexPath];
+    [cell configure];
+    return cell;
+}
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        VSTrackViewController *vc = (VSTrackViewController*)[storyboard instantiateViewControllerWithIdentifier:@"trackViewController"];
+        [vc setTrack:[[[[self.missedQuestions objectAtIndex:indexPath.row] quizQuestion] track] mutableCopy]];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 
+# pragma mark - Helpers
+
+
+- (void) setupMissedQuestions
+{
+    [self.missedQuestions removeAllObjects]; 
+    for (NSMutableDictionary *qr in self.quizResults) {
+        if (![qr quizResultIsCorrect]) {
+            [self.missedQuestions addObject:qr];
+        }
+    }
+}
 
 @end

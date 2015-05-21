@@ -11,9 +11,8 @@
 @interface VSQuizResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *quizResults;
+@property (strong, nonatomic) NSMutableArray *missedQuestions;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *sections;
-@property (nonatomic) NSUInteger totalQuestions;
-@property (nonatomic) NSUInteger questionsCompleted;
 
 @end
