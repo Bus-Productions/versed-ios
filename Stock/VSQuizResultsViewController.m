@@ -11,6 +11,7 @@
 #import "VSMissedQuestionTableViewCell.h"
 #import "VSNoMissesQuizTableViewCell.h"
 #import "VSTrackViewController.h"
+#import "VSEmptyTableViewCell.h"
 
 @interface VSQuizResultsViewController ()
 
@@ -65,10 +66,12 @@
 {
     self.sections = [[NSMutableArray alloc] init];
     [self.sections addObject:@"showResults"];
-    if (self.missedQuestions.count > 0) {
+    if (self.missedQuestions.count > 0 && self.quizResults.count > 0) {
         [self.sections addObject:@"missedQuestions"];
-    } else {
+    } else if (self.quizResults.count > 0) {
         [self.sections addObject:@"noMisses"];
+    } else {
+        [self.sections addObject:@"empty"];
     }
     return self.sections.count;
 }
@@ -80,6 +83,8 @@
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"missedQuestions"]) {
         return self.missedQuestions.count;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"noMisses"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
         return 1;
     }
     return 0;
@@ -93,6 +98,8 @@
         return [self tableView:self.tableView missedQuestionsCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"noMisses"]) {
         return [self tableView:self.tableView noMissesCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+        return [self tableView:self.tableView emptyCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -118,6 +125,14 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView emptyCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
+    [cell configureWithText:@"No results to show at this time!"];
+    return cell;
+}
+
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
@@ -134,7 +149,7 @@
 
 - (void) setupMissedQuestions
 {
-    [self.missedQuestions removeAllObjects]; 
+    [self.missedQuestions removeAllObjects];
     for (NSMutableDictionary *qr in self.quizResults) {
         if (![qr quizResultIsCorrect]) {
             [self.missedQuestions addObject:qr];

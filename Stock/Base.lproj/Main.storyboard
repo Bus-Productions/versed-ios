@@ -562,6 +562,26 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="emptyCell" id="6bg-oz-cBb" customClass="VSEmptyTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6bg-oz-cBb" id="6IZ-0E-X8v">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cZ-20-Pd8">
+                                                    <rect key="frame" x="18" y="11" width="565" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4cZ-20-Pd8" firstAttribute="leading" secondItem="6IZ-0E-X8v" secondAttribute="leadingMargin" constant="10" id="8yF-CE-csp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="4cZ-20-Pd8" secondAttribute="trailing" constant="9" id="V49-F8-1Sc"/>
+                                                <constraint firstItem="4cZ-20-Pd8" firstAttribute="top" secondItem="6IZ-0E-X8v" secondAttribute="topMargin" constant="3" id="rup-xE-dGP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="DpA-r5-h7v" id="5cq-Yq-nJl"/>

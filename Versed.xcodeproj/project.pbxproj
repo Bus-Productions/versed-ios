@@ -309,13 +309,10 @@
 		760F5D4B1B0B71280038FF1A /* Menu Options */ = {
 			isa = PBXGroup;
 			children = (
-				768CE08E1B03EF1900E1E2E6 /* VSAllTracksViewController.h */,
-				768CE08F1B03EF1900E1E2E6 /* VSAllTracksViewController.m */,
-				768CE0911B03EF5000E1E2E6 /* VSMyTracksViewController.h */,
-				768CE0921B03EF5000E1E2E6 /* VSMyTracksViewController.m */,
+				7636ED911B0E7DD600BD4E1A /* All Tracks */,
+				7636ED901B0E7DCD00BD4E1A /* My Tracks */,
 				760F5D5D1B0BB6980038FF1A /* Quiz */,
-				7666FC3A1B0A8EA700051C93 /* VSDailyArticlesViewController.h */,
-				7666FC3B1B0A8EA700051C93 /* VSDailyArticlesViewController.m */,
+				7636ED921B0E7DDE00BD4E1A /* Daily Articles */,
 			);
 			name = "Menu Options";
 			sourceTree = "<group>";
@@ -349,6 +346,33 @@
 				76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */,
 			);
 			name = Quiz;
+			sourceTree = "<group>";
+		};
+		7636ED901B0E7DCD00BD4E1A /* My Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				768CE0911B03EF5000E1E2E6 /* VSMyTracksViewController.h */,
+				768CE0921B03EF5000E1E2E6 /* VSMyTracksViewController.m */,
+			);
+			name = "My Tracks";
+			sourceTree = "<group>";
+		};
+		7636ED911B0E7DD600BD4E1A /* All Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				768CE08E1B03EF1900E1E2E6 /* VSAllTracksViewController.h */,
+				768CE08F1B03EF1900E1E2E6 /* VSAllTracksViewController.m */,
+			);
+			name = "All Tracks";
+			sourceTree = "<group>";
+		};
+		7636ED921B0E7DDE00BD4E1A /* Daily Articles */ = {
+			isa = PBXGroup;
+			children = (
+				7666FC3A1B0A8EA700051C93 /* VSDailyArticlesViewController.h */,
+				7666FC3B1B0A8EA700051C93 /* VSDailyArticlesViewController.m */,
+			);
+			name = "Daily Articles";
 			sourceTree = "<group>";
 		};
 		7666FC2D1B06335E00051C93 /* TableViewCells */ = {
