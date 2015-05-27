@@ -104,6 +104,8 @@
 {
     if (alreadyAnswered && [[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answer"]){
         return nil;
+    } else if (!alreadyAnswered && [[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
+        return nil;
     }
     return indexPath;
 }

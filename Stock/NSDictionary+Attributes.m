@@ -112,6 +112,16 @@
     return [[self objectForKey:@"quiz"] mutableCopy];
 }
 
+- (NSString*) quizName
+{
+    return [self objectForKey:@"quiz_name"];
+}
+
+- (NSString*) email
+{
+    return [self objectForKey:@"email"];
+}
+
 - (NSString*) answerText
 {
     return [self objectForKey:@"answer_text"];

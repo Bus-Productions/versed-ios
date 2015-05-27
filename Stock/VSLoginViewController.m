@@ -9,7 +9,9 @@
 #import "VSLoginViewController.h"
 #import "VSSignupViewController.h"
 #import "VSAllTracksViewController.h"
-#import "VSLimboViewController.h"
+#import "VSTokenViewController.h"
+#import "AppDelegate.h"
+
 
 @interface VSLoginViewController ()
 
@@ -21,12 +23,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+# pragma mark - Gestures
+
+- (void) setupGestureRecognizer
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+}
+
+- (void) dismissKeyboard
+{
+    [self.emailField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
 }
 
 # pragma mark - Helpers
@@ -60,14 +79,12 @@
                               [LXSession storeLocalUserKey:[u localKey]];
 
                               [u saveLocal:^(id responseObject){
-                                  NSLog(@"***local = %@", [LXServer objectWithLocalKey:[u localKey]]);
                                   if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
-                                      UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-                                      VSAllTracksViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
-                                      [self.navigationController presentViewController:vc animated:YES completion:nil];
+                                      AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                                      [appDelegate setRootStoryboard:@"Main"];
                                   } else {
                                       UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-                                      VSLimboViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"limboViewController"];
+                                      VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
                                       [self.navigationController presentViewController:vc animated:YES completion:nil];
                                   }
                               }failure:^(NSError *error) {
@@ -79,7 +96,7 @@
                       }
          ];
     } else {
-        NSLog(@"error = %@", [self errorMessage]);
+        [self showAlertWithText:[self errorMessage]];
     }
 }
 
@@ -88,5 +105,13 @@
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
     VSSignupViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"signupViewController"];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+# pragma mark - Alert
+- (void) showAlertWithText:(NSString*)text
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [av show];
 }
 @end

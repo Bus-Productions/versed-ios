@@ -42,5 +42,9 @@
 - (NSNumber*) quizQuestionsTotal;
 - (NSString*) overallQuizPercentage;
 - (NSMutableDictionary*) track;
+- (NSString*) quizName;
+
+// users
+- (NSString*) email;
 
 @end

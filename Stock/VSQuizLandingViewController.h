@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface VSQuizLandingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    BOOL isRequesting;
+}
 
 @property (strong, nonatomic) NSMutableArray *quizQuestions;
 @property (strong, nonatomic) NSMutableArray *quizResults;
 @property (strong, nonatomic) NSMutableArray *questionsToAsk;
+@property (strong, nonatomic) NSMutableDictionary *quiz; 
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (strong, nonatomic) NSMutableArray *sections;

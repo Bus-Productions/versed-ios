@@ -12,6 +12,8 @@
 #import "VSButtonTableViewCell.h"
 #import "VSQuizResultsViewController.h"
 #import "VSOverallResultsTableViewCell.h"
+#import "VSQuizPreviewViewController.h"
+#import "VSEmptyTableViewCell.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -21,7 +23,7 @@
 
 @implementation VSQuizLandingViewController
 
-@synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk;
+@synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk, quiz;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,17 +64,21 @@
     self.quizQuestions = [[NSMutableArray alloc] init];
     self.questionsToAsk = [[NSMutableArray alloc] init];
     self.quizResults = [[NSMutableArray alloc] init];
+    self.quiz = [[NSMutableDictionary alloc] init];
 }
 
 
 # pragma mark - Request/Reload
 - (void) reloadScreen
 {
+    isRequesting = YES;
     [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.quizQuestions = [[responseObject quiz] quizQuestions];
         self.quizResults = [responseObject quizResults];
         self.questionsToAsk = [self.quizQuestions mutableCopy];
+        self.quiz = [responseObject quiz];
         [self removeAnsweredQuestionsFromQuestionsToAsk];
+        isRequesting = NO;
         [self.tableView reloadData];
     }failure:nil];
 }
@@ -84,7 +90,9 @@
 {
     self.sections = [[NSMutableArray alloc] init];
     
-    if (self.questionsToAsk.count > 0) {
+    if (isRequesting){
+        [self.sections addObject:@"requesting"];
+    } else if (self.questionsToAsk.count > 0) {
         [self.sections addObject:@"startQuiz"];
     } else {
         [self.sections addObject:@"showResults"];
@@ -98,6 +106,8 @@
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"showResults"]) {
         return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"requesting"]) {
+        return 1;
     }
     return 0;
 }
@@ -108,6 +118,8 @@
         return [self tableView:self.tableView startQuizCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         return [self tableView:self.tableView showResultsCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"requesting"]) {
+        return [self tableView:self.tableView requestingCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -127,10 +139,17 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView requestingCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"requestingCell" forIndexPath:indexPath];
+    [cell configureWithText:@"Requesting quiz data"];
+    return cell;
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
-        [self pushQuestionOnStack];
+        [self showQuizPreview];
     }else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         [self pushResultsOnStack];
     }
@@ -164,6 +183,15 @@
     } else {
         [self pushResultsOnStack];
     }
+}
+
+- (void) showQuizPreview
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSQuizPreviewViewController *vc = (VSQuizPreviewViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizPreviewViewController"];
+    [vc setDelegate:self];
+    [vc setQuiz:self.quiz];
+    [self.navigationController presentViewController:vc animated:YES completion:nil]; 
 }
 
 - (void) pushQuestionOnStack

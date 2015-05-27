@@ -125,10 +125,10 @@
             </objects>
             <point key="canvasLocation" x="653" y="555"/>
         </scene>
-        <!--Limbo View Controller-->
+        <!--Token View Controller-->
         <scene sceneID="GXq-72-0DM">
             <objects>
-                <viewController storyboardIdentifier="limboViewController" id="1Wi-np-zzd" customClass="VSLimboViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tokenViewController" id="1Wi-np-zzd" customClass="VSTokenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LiP-6z-HRN"/>
                         <viewControllerLayoutGuide type="bottom" id="BGI-oS-aCf"/>
@@ -143,24 +143,59 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We sent you an email. When you click the link, you'll be able to access Versed." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="616-GM-XVL">
-                                <rect key="frame" x="16" y="114" width="568" height="61"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We sent you an email with a token. Enter it below. " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="616-GM-XVL">
+                                <rect key="frame" x="16" y="114" width="568" height="41"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter token" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vuq-uu-xud">
+                                <rect key="frame" x="16" y="180" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsd-dh-5KA">
+                                <rect key="frame" x="16" y="231" width="568" height="30"/>
+                                <state key="normal" title="Verify">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="verifyAction:" destination="1Wi-np-zzd" eventType="touchUpInside" id="wNI-kn-DxN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0a-8L-E8Q">
+                                <rect key="frame" x="16" y="288" width="568" height="30"/>
+                                <state key="normal" title="Send another token">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resendAction:" destination="1Wi-np-zzd" eventType="touchUpInside" id="BG0-wL-VgX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="616-GM-XVL" firstAttribute="top" secondItem="1IZ-Pa-uTB" secondAttribute="bottom" constant="3" id="250-AM-fwL"/>
                             <constraint firstItem="1IZ-Pa-uTB" firstAttribute="leading" secondItem="OoO-bi-Is8" secondAttribute="leadingMargin" id="34d-EM-XHD"/>
                             <constraint firstItem="616-GM-XVL" firstAttribute="trailing" secondItem="OoO-bi-Is8" secondAttribute="trailingMargin" id="9S9-ds-qmJ"/>
+                            <constraint firstItem="zsd-dh-5KA" firstAttribute="top" secondItem="vuq-uu-xud" secondAttribute="bottom" constant="21" id="EpH-1B-QsJ"/>
+                            <constraint firstItem="zsd-dh-5KA" firstAttribute="trailing" secondItem="OoO-bi-Is8" secondAttribute="trailingMargin" id="FbA-mO-KU7"/>
+                            <constraint firstItem="y0a-8L-E8Q" firstAttribute="trailing" secondItem="OoO-bi-Is8" secondAttribute="trailingMargin" id="KLb-ST-xog"/>
+                            <constraint firstItem="zsd-dh-5KA" firstAttribute="leading" secondItem="OoO-bi-Is8" secondAttribute="leadingMargin" id="Olf-Sk-L7f"/>
+                            <constraint firstItem="vuq-uu-xud" firstAttribute="trailing" secondItem="OoO-bi-Is8" secondAttribute="trailingMargin" id="TER-dJ-e6u"/>
+                            <constraint firstItem="y0a-8L-E8Q" firstAttribute="leading" secondItem="OoO-bi-Is8" secondAttribute="leadingMargin" id="USH-op-aMQ"/>
                             <constraint firstItem="616-GM-XVL" firstAttribute="leading" secondItem="OoO-bi-Is8" secondAttribute="leadingMargin" id="V5p-hn-wZ2"/>
                             <constraint firstItem="1IZ-Pa-uTB" firstAttribute="top" secondItem="LiP-6z-HRN" secondAttribute="bottom" constant="70" id="bSi-gL-yfa"/>
+                            <constraint firstItem="y0a-8L-E8Q" firstAttribute="top" secondItem="zsd-dh-5KA" secondAttribute="bottom" constant="27" id="hHd-vA-KhV"/>
+                            <constraint firstItem="vuq-uu-xud" firstAttribute="top" secondItem="616-GM-XVL" secondAttribute="bottom" constant="25" id="vZd-28-Lcr"/>
+                            <constraint firstItem="vuq-uu-xud" firstAttribute="leading" secondItem="OoO-bi-Is8" secondAttribute="leadingMargin" id="wZv-y8-AQg"/>
                             <constraint firstItem="1IZ-Pa-uTB" firstAttribute="trailing" secondItem="OoO-bi-Is8" secondAttribute="trailingMargin" id="wr9-RT-3Gb"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="tokenField" destination="vuq-uu-xud" id="EMO-CE-jz1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7DW-kO-T4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

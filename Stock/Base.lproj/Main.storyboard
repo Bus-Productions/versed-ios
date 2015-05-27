@@ -342,6 +342,26 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="requestingCell" id="AbG-JG-uvw" customClass="VSEmptyTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AbG-JG-uvw" id="Fv7-7K-eeQ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHA-3l-VSN">
+                                                    <rect key="frame" x="17" y="13" width="566" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="JHA-3l-VSN" secondAttribute="trailing" constant="9" id="7h4-N7-Cyn"/>
+                                                <constraint firstItem="JHA-3l-VSN" firstAttribute="leading" secondItem="Fv7-7K-eeQ" secondAttribute="leadingMargin" constant="9" id="JN5-Z1-Tvq"/>
+                                                <constraint firstItem="JHA-3l-VSN" firstAttribute="top" secondItem="Fv7-7K-eeQ" secondAttribute="topMargin" constant="5" id="Yqa-Bs-tuL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Phq-QJ-Fze" id="sb7-XY-8a9"/>
@@ -368,6 +388,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQd-cP-sNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3425" y="-578"/>
+        </scene>
+        <!--Quiz Preview View Controller-->
+        <scene sceneID="SyK-yN-G2c">
+            <objects>
+                <viewController storyboardIdentifier="quizPreviewViewController" id="vEi-XH-pZH" customClass="VSQuizPreviewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hXd-rX-fmP"/>
+                        <viewControllerLayoutGuide type="bottom" id="xwy-gl-ooO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i37-Cl-J14">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mm9-MZ-HY6">
+                                <rect key="frame" x="16" y="67" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This quiz will be about a range of issues shaping business today, including ones you may not have studied.  " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kk8-Tw-wc3">
+                                <rect key="frame" x="46" y="137" width="509" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why? To make sure you're up to speed on all of the major trends and identify potential knowledge gaps. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYd-xE-gzk">
+                                <rect key="frame" x="46" y="186" width="509" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIa-DW-ORJ">
+                                <rect key="frame" x="46" y="235" width="509" height="30"/>
+                                <state key="normal" title="Take the quiz">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takeQuizAction:" destination="vEi-XH-pZH" eventType="touchUpInside" id="xIO-D9-Wak"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aIa-DW-ORJ" firstAttribute="top" secondItem="VYd-xE-gzk" secondAttribute="bottom" constant="8" id="4IN-dR-0Ei"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aIa-DW-ORJ" secondAttribute="trailing" constant="29" id="5il-hg-v40"/>
+                            <constraint firstItem="Mm9-MZ-HY6" firstAttribute="leading" secondItem="i37-Cl-J14" secondAttribute="leadingMargin" id="Nmr-6B-89i"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VYd-xE-gzk" secondAttribute="trailing" constant="29" id="UpN-rh-of5"/>
+                            <constraint firstItem="VYd-xE-gzk" firstAttribute="leading" secondItem="i37-Cl-J14" secondAttribute="leadingMargin" constant="30" id="XcO-wT-TGo"/>
+                            <constraint firstItem="kk8-Tw-wc3" firstAttribute="top" secondItem="Mm9-MZ-HY6" secondAttribute="bottom" constant="49" id="h5I-f5-f95"/>
+                            <constraint firstItem="Mm9-MZ-HY6" firstAttribute="top" secondItem="hXd-rX-fmP" secondAttribute="bottom" constant="47" id="ouu-vJ-nqJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kk8-Tw-wc3" secondAttribute="trailing" constant="29" id="pW7-Af-Nhb"/>
+                            <constraint firstItem="aIa-DW-ORJ" firstAttribute="leading" secondItem="i37-Cl-J14" secondAttribute="leadingMargin" constant="30" id="pkU-Yb-cNX"/>
+                            <constraint firstItem="VYd-xE-gzk" firstAttribute="top" secondItem="kk8-Tw-wc3" secondAttribute="bottom" constant="8" id="qra-zM-cFV"/>
+                            <constraint firstItem="Mm9-MZ-HY6" firstAttribute="trailing" secondItem="i37-Cl-J14" secondAttribute="trailingMargin" id="rQW-ht-nui"/>
+                            <constraint firstItem="kk8-Tw-wc3" firstAttribute="leading" secondItem="i37-Cl-J14" secondAttribute="leadingMargin" constant="30" id="vwx-KD-gCK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="Mm9-MZ-HY6" id="uwm-UA-I6i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zZ6-s0-Uhk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4141" y="-578"/>
         </scene>
         <!--Quiz Question View Controller-->
         <scene sceneID="rZ4-eH-m69">
@@ -466,7 +550,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZI-eF-aAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4189" y="-578"/>
+            <point key="canvasLocation" x="4841" y="-578"/>
         </scene>
         <!--Quiz Results View Controller-->
         <scene sceneID="QYt-6L-xfM">
@@ -603,7 +687,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3v-Wz-moY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4864" y="-578"/>
+            <point key="canvasLocation" x="5516" y="-578"/>
         </scene>
         <!--My Tracks View Controller-->
         <scene sceneID="LOW-n0-m4m">

@@ -26,6 +26,8 @@
 		28A534061ACF6F4E0049B3F7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 28A534051ACF6F4E0049B3F7 /* Podfile */; };
 		28A534091ACF75C70049B3F7 /* LXAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A534071ACF75C70049B3F7 /* LXAddressBook.m */; };
 		28A5340C1AD0A64F0049B3F7 /* MobileLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A5340B1AD0A64F0049B3F7 /* MobileLogin.storyboard */; };
+		760829631B14B3790053E29F /* VSQuizPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829621B14B3790053E29F /* VSQuizPreviewViewController.m */; };
+		760829661B14C2920053E29F /* VSTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829651B14C2920053E29F /* VSTokenViewController.m */; };
 		760F5D501B0B78E50038FF1A /* VSEmptyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D4F1B0B78E50038FF1A /* VSEmptyTableViewCell.m */; };
 		760F5D531B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D521B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m */; };
 		760F5D561B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D551B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m */; };
@@ -40,7 +42,6 @@
 		7666FC391B069D1D00051C93 /* VSResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC381B069D1D00051C93 /* VSResourceViewController.m */; };
 		7666FC3C1B0A8EA700051C93 /* VSDailyArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC3B1B0A8EA700051C93 /* VSDailyArticlesViewController.m */; };
 		768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0701B025A9800E1E2E6 /* VSSignupViewController.m */; };
-		768CE0741B02600600E1E2E6 /* VSLimboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0731B02600600E1E2E6 /* VSLimboViewController.m */; };
 		768CE0771B026E1300E1E2E6 /* VSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0761B026E1300E1E2E6 /* VSLoginViewController.m */; };
 		768CE08D1B03EED500E1E2E6 /* VSSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE08C1B03EED500E1E2E6 /* VSSidebarViewController.m */; };
 		768CE0901B03EF1900E1E2E6 /* VSAllTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE08F1B03EF1900E1E2E6 /* VSAllTracksViewController.m */; };
@@ -101,6 +102,10 @@
 		28A5340A1ACF76890049B3F7 /* App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		28A5340B1AD0A64F0049B3F7 /* MobileLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MobileLogin.storyboard; sourceTree = "<group>"; };
 		482B486F1AD55514B9E2B5F0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		760829611B14B3790053E29F /* VSQuizPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizPreviewViewController.h; sourceTree = "<group>"; };
+		760829621B14B3790053E29F /* VSQuizPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizPreviewViewController.m; sourceTree = "<group>"; };
+		760829641B14C2920053E29F /* VSTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTokenViewController.h; sourceTree = "<group>"; };
+		760829651B14C2920053E29F /* VSTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTokenViewController.m; sourceTree = "<group>"; };
 		760F5D4E1B0B78E50038FF1A /* VSEmptyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSEmptyTableViewCell.h; sourceTree = "<group>"; };
 		760F5D4F1B0B78E50038FF1A /* VSEmptyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSEmptyTableViewCell.m; sourceTree = "<group>"; };
 		760F5D511B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizQuestionTableViewCell.h; sourceTree = "<group>"; };
@@ -129,8 +134,6 @@
 		7666FC3B1B0A8EA700051C93 /* VSDailyArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDailyArticlesViewController.m; sourceTree = "<group>"; };
 		768CE06F1B025A9800E1E2E6 /* VSSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSignupViewController.h; sourceTree = "<group>"; };
 		768CE0701B025A9800E1E2E6 /* VSSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSignupViewController.m; sourceTree = "<group>"; };
-		768CE0721B02600600E1E2E6 /* VSLimboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSLimboViewController.h; sourceTree = "<group>"; };
-		768CE0731B02600600E1E2E6 /* VSLimboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSLimboViewController.m; sourceTree = "<group>"; };
 		768CE0751B026E1300E1E2E6 /* VSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSLoginViewController.h; sourceTree = "<group>"; };
 		768CE0761B026E1300E1E2E6 /* VSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSLoginViewController.m; sourceTree = "<group>"; };
 		768CE08B1B03EED500E1E2E6 /* VSSidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSidebarViewController.h; sourceTree = "<group>"; };
@@ -196,7 +199,7 @@
 		28A533BC1ACF688A0049B3F7 /* Versed */ = {
 			isa = PBXGroup;
 			children = (
-				28A5340D1AD0A6CC0049B3F7 /* MobileLogin */,
+				28A5340D1AD0A6CC0049B3F7 /* Login/Signup */,
 				760F5D4C1B0B715A0038FF1A /* Track */,
 				760F5D4D1B0B71FD0038FF1A /* Resource */,
 				760F5D4B1B0B71280038FF1A /* Menu Options */,
@@ -276,17 +279,17 @@
 			name = LXV;
 			sourceTree = "<group>";
 		};
-		28A5340D1AD0A6CC0049B3F7 /* MobileLogin */ = {
+		28A5340D1AD0A6CC0049B3F7 /* Login/Signup */ = {
 			isa = PBXGroup;
 			children = (
 				768CE06F1B025A9800E1E2E6 /* VSSignupViewController.h */,
 				768CE0701B025A9800E1E2E6 /* VSSignupViewController.m */,
-				768CE0721B02600600E1E2E6 /* VSLimboViewController.h */,
-				768CE0731B02600600E1E2E6 /* VSLimboViewController.m */,
 				768CE0751B026E1300E1E2E6 /* VSLoginViewController.h */,
 				768CE0761B026E1300E1E2E6 /* VSLoginViewController.m */,
+				760829641B14C2920053E29F /* VSTokenViewController.h */,
+				760829651B14C2920053E29F /* VSTokenViewController.m */,
 			);
-			name = MobileLogin;
+			name = Login/Signup;
 			sourceTree = "<group>";
 		};
 		3BD7EADEBCAD2B0EA301051B /* Frameworks */ = {
@@ -342,6 +345,8 @@
 				768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */,
 				760F5D641B0BCF4A0038FF1A /* VSQuizLandingViewController.h */,
 				760F5D651B0BCF4A0038FF1A /* VSQuizLandingViewController.m */,
+				760829611B14B3790053E29F /* VSQuizPreviewViewController.h */,
+				760829621B14B3790053E29F /* VSQuizPreviewViewController.m */,
 				76DB3F251B0D2428004EE88A /* VSQuizResultsViewController.h */,
 				76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */,
 			);
@@ -560,11 +565,11 @@
 				76DB3F301B0D4058004EE88A /* NSMutableArray+Attributes.m in Sources */,
 				28A533F91ACF699A0049B3F7 /* NSArray+Alphabet.m in Sources */,
 				768CE0771B026E1300E1E2E6 /* VSLoginViewController.m in Sources */,
-				768CE0741B02600600E1E2E6 /* VSLimboViewController.m in Sources */,
 				7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */,
 				768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */,
 				768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */,
 				7666FC3C1B0A8EA700051C93 /* VSDailyArticlesViewController.m in Sources */,
+				760829661B14C2920053E29F /* VSTokenViewController.m in Sources */,
 				7636ED891B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m in Sources */,
 				28A534011ACF69AF0049B3F7 /* UILabel+Bold.m in Sources */,
 				768CE08D1B03EED500E1E2E6 /* VSSidebarViewController.m in Sources */,
@@ -588,6 +593,7 @@
 				28A534001ACF69AF0049B3F7 /* UIImage+Helpers.m in Sources */,
 				760F5D531B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m in Sources */,
 				768CE0901B03EF1900E1E2E6 /* VSAllTracksViewController.m in Sources */,
+				760829631B14B3790053E29F /* VSQuizPreviewViewController.m in Sources */,
 				28A533EF1ACF69850049B3F7 /* LXSession.m in Sources */,
 				7666FC391B069D1D00051C93 /* VSResourceViewController.m in Sources */,
 				28A533FB1ACF699A0049B3F7 /* NSNumber+Helpers.m in Sources */,
