@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface VSQuizResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+{
+    BOOL isRequesting; 
+}
 @property (strong, nonatomic) NSMutableArray *quizResults;
 @property (strong, nonatomic) NSMutableArray *missedQuestions;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

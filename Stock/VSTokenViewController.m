@@ -20,12 +20,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupGestureRecognizer];
+    [self setupNavigationBar]; 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+# pragma mark - Setup
+
+- (void) setupNavigationBar
+{
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
 
 # pragma mark - Gestures
 
@@ -61,6 +71,11 @@
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/resend_token.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:nil authType:@"none" success:^(id responseObject){
         [self showAlertWithText:[NSString stringWithFormat:@"Your token was sent to %@", [[[LXSession thisSession] user] email]]];
     }failure:nil];
+}
+
+- (IBAction)backToSignupAction:(id)sender {
+    [self dismissKeyboard];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 # pragma mark - Alert

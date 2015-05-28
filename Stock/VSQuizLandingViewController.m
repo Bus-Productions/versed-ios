@@ -14,6 +14,7 @@
 #import "VSOverallResultsTableViewCell.h"
 #import "VSQuizPreviewViewController.h"
 #import "VSEmptyTableViewCell.h"
+#import "VSDashboardViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -97,6 +98,7 @@
     } else {
         [self.sections addObject:@"showResults"];
     }
+    [self.sections addObject:@"dashboard"];
     return self.sections.count;
 }
 
@@ -107,6 +109,8 @@
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"showResults"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"requesting"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"dashboard"]) {
         return 1;
     }
     return 0;
@@ -120,6 +124,8 @@
         return [self tableView:self.tableView showResultsCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"requesting"]) {
         return [self tableView:self.tableView requestingCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
+        return [self tableView:self.tableView dashboardCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -146,12 +152,22 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView dashboardCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"dashboardCell" forIndexPath:indexPath];
+    [cell configureWithText:@"See Dashboard" andColor:[UIColor greenColor]];
+    return cell;
+}
+
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
         [self showQuizPreview];
-    }else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         [self pushResultsOnStack];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
+        [self pushDashboardOnStack];
     }
 }
 
@@ -215,6 +231,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void) pushDashboardOnStack
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSDashboardViewController *vc = (VSDashboardViewController*)[storyboard instantiateViewControllerWithIdentifier:@"dashboardViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 # pragma mark - Helpers
 

@@ -172,12 +172,23 @@
                                     <action selector="resendAction:" destination="1Wi-np-zzd" eventType="touchUpInside" id="BG0-wL-VgX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM2-kr-Lgv">
+                                <rect key="frame" x="33" y="326" width="534" height="30"/>
+                                <state key="normal" title="Back to signup">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToSignupAction:" destination="1Wi-np-zzd" eventType="touchUpInside" id="VR0-RE-zgy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="616-GM-XVL" firstAttribute="top" secondItem="1IZ-Pa-uTB" secondAttribute="bottom" constant="3" id="250-AM-fwL"/>
                             <constraint firstItem="1IZ-Pa-uTB" firstAttribute="leading" secondItem="OoO-bi-Is8" secondAttribute="leadingMargin" id="34d-EM-XHD"/>
                             <constraint firstItem="616-GM-XVL" firstAttribute="trailing" secondItem="OoO-bi-Is8" secondAttribute="trailingMargin" id="9S9-ds-qmJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IM2-kr-Lgv" secondAttribute="trailing" constant="17" id="Aqs-zz-dvP"/>
+                            <constraint firstItem="IM2-kr-Lgv" firstAttribute="leading" secondItem="OoO-bi-Is8" secondAttribute="leadingMargin" constant="17" id="Czp-Xy-Wmt"/>
                             <constraint firstItem="zsd-dh-5KA" firstAttribute="top" secondItem="vuq-uu-xud" secondAttribute="bottom" constant="21" id="EpH-1B-QsJ"/>
                             <constraint firstItem="zsd-dh-5KA" firstAttribute="trailing" secondItem="OoO-bi-Is8" secondAttribute="trailingMargin" id="FbA-mO-KU7"/>
                             <constraint firstItem="y0a-8L-E8Q" firstAttribute="trailing" secondItem="OoO-bi-Is8" secondAttribute="trailingMargin" id="KLb-ST-xog"/>
@@ -187,6 +198,7 @@
                             <constraint firstItem="616-GM-XVL" firstAttribute="leading" secondItem="OoO-bi-Is8" secondAttribute="leadingMargin" id="V5p-hn-wZ2"/>
                             <constraint firstItem="1IZ-Pa-uTB" firstAttribute="top" secondItem="LiP-6z-HRN" secondAttribute="bottom" constant="70" id="bSi-gL-yfa"/>
                             <constraint firstItem="y0a-8L-E8Q" firstAttribute="top" secondItem="zsd-dh-5KA" secondAttribute="bottom" constant="27" id="hHd-vA-KhV"/>
+                            <constraint firstItem="IM2-kr-Lgv" firstAttribute="top" secondItem="y0a-8L-E8Q" secondAttribute="bottom" constant="8" id="qIC-uV-5cC"/>
                             <constraint firstItem="vuq-uu-xud" firstAttribute="top" secondItem="616-GM-XVL" secondAttribute="bottom" constant="25" id="vZd-28-Lcr"/>
                             <constraint firstItem="vuq-uu-xud" firstAttribute="leading" secondItem="OoO-bi-Is8" secondAttribute="leadingMargin" id="wZv-y8-AQg"/>
                             <constraint firstItem="1IZ-Pa-uTB" firstAttribute="trailing" secondItem="OoO-bi-Is8" secondAttribute="trailingMargin" id="wr9-RT-3Gb"/>
@@ -258,6 +270,9 @@
                                 <state key="normal" title="Forgot Password?">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="forgotPassword:" destination="xPS-Mr-ZMB" eventType="touchUpInside" id="X7t-YU-PlZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -293,6 +308,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0V9-Dk-n3m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1367" y="1257"/>
+        </scene>
+        <!--Forgot Password View Controller-->
+        <scene sceneID="uDh-zb-hyW">
+            <objects>
+                <viewController storyboardIdentifier="forgotPasswordViewController" id="0l6-LT-z8W" customClass="VSForgotPasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tKC-cI-0mO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zfv-2U-YzO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6aH-tM-Vjg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Versed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZH-U9-pW4">
+                                <rect key="frame" x="57" y="88" width="487" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your company email address and we will send you a new password! " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7D-7w-4cP">
+                                <rect key="frame" x="33" y="123" width="534" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBf-pN-Qnt">
+                                <rect key="frame" x="57" y="245" width="487" height="46"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="1Uu-hg-UYJ"/>
+                                </constraints>
+                                <state key="normal" title="Reset Password">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetPasswordAction:" destination="0l6-LT-z8W" eventType="touchUpInside" id="thg-ta-gzx"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pW7-xl-tIz">
+                                <rect key="frame" x="57" y="198" width="487" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="olY-gs-CkC"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUW-V1-5I1">
+                                <rect key="frame" x="57" y="320" width="487" height="30"/>
+                                <state key="normal" title="Back to login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToLoginAction:" destination="0l6-LT-z8W" eventType="touchUpInside" id="Cnz-r8-59D"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.73943398989999998" green="0.79732082199999998" blue="0.4746701129" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="QBf-pN-Qnt" secondAttribute="trailing" constant="40" id="1wB-qg-1kf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="i7D-7w-4cP" secondAttribute="trailing" constant="17" id="Aqc-N7-Sz0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TUW-V1-5I1" secondAttribute="trailing" constant="40" id="DW1-LW-0zm"/>
+                            <constraint firstItem="i7D-7w-4cP" firstAttribute="leading" secondItem="6aH-tM-Vjg" secondAttribute="leadingMargin" constant="17" id="ER9-MJ-ibh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pW7-xl-tIz" secondAttribute="trailing" constant="40" id="Grk-ML-v2A"/>
+                            <constraint firstItem="gZH-U9-pW4" firstAttribute="leading" secondItem="6aH-tM-Vjg" secondAttribute="leadingMargin" constant="41" id="HEV-Ya-LIG"/>
+                            <constraint firstItem="TUW-V1-5I1" firstAttribute="top" secondItem="QBf-pN-Qnt" secondAttribute="bottom" constant="29" id="Hui-iV-u9s"/>
+                            <constraint firstItem="pW7-xl-tIz" firstAttribute="top" secondItem="i7D-7w-4cP" secondAttribute="bottom" constant="34" id="Kpj-NG-2Bm"/>
+                            <constraint firstItem="QBf-pN-Qnt" firstAttribute="leading" secondItem="6aH-tM-Vjg" secondAttribute="leadingMargin" constant="41" id="Sjc-Kk-OoK"/>
+                            <constraint firstItem="gZH-U9-pW4" firstAttribute="top" secondItem="tKC-cI-0mO" secondAttribute="bottom" constant="68" id="Szc-pk-7Yh"/>
+                            <constraint firstItem="pW7-xl-tIz" firstAttribute="leading" secondItem="6aH-tM-Vjg" secondAttribute="leadingMargin" constant="41" id="a0f-ye-OEc"/>
+                            <constraint firstItem="TUW-V1-5I1" firstAttribute="leading" secondItem="6aH-tM-Vjg" secondAttribute="leadingMargin" constant="41" id="ch0-AR-qbW"/>
+                            <constraint firstItem="i7D-7w-4cP" firstAttribute="top" secondItem="gZH-U9-pW4" secondAttribute="bottom" constant="8" id="fYc-q5-YS5"/>
+                            <constraint firstItem="QBf-pN-Qnt" firstAttribute="top" secondItem="pW7-xl-tIz" secondAttribute="bottom" constant="18" id="yh6-Qp-Cuw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gZH-U9-pW4" secondAttribute="trailing" constant="40" id="yuR-lh-wUW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="forgotPasswordTextField" destination="pW7-xl-tIz" id="8qi-Pv-kw1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v6P-Ok-bT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2048" y="1257"/>
         </scene>
     </scenes>
 </document>

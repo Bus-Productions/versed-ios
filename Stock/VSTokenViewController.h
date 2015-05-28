@@ -14,5 +14,6 @@
 
 - (IBAction)verifyAction:(id)sender;
 - (IBAction)resendAction:(id)sender;
+- (IBAction)backToSignupAction:(id)sender;
 
 @end

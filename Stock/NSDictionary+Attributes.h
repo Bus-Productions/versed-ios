@@ -46,5 +46,8 @@
 
 // users
 - (NSString*) email;
+- (NSString*) name;
+- (NSString*) totalQuizzes;
+- (NSString*) companyID;
 
 @end

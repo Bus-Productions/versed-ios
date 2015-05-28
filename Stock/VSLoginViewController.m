@@ -11,7 +11,7 @@
 #import "VSAllTracksViewController.h"
 #import "VSTokenViewController.h"
 #import "AppDelegate.h"
-
+#import "VSForgotPasswordViewController.h"
 
 @interface VSLoginViewController ()
 
@@ -24,12 +24,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupGestureRecognizer];
+    [self setupNavigationBar]; 
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+# pragma mark - Setup
+
+- (void) setupNavigationBar
+{
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
 
 # pragma mark - Gestures
 
@@ -73,11 +83,9 @@
     if ([self inputsVerified]) {
         [[LXServer shared] requestPath:@"/login.json" withMethod:@"POST" withParamaters:@{@"user": @{@"email": self.emailField.text, @"password": self.passwordField.text} } authType:@"user"
                       success:^(id responseObject){
-                          NSLog(@"loginAction response = %@", responseObject);
                           NSMutableDictionary *u = [[responseObject objectForKey:@"user"] mutableCopy];
                           if (u) {
                               [LXSession storeLocalUserKey:[u localKey]];
-
                               [u saveLocal:^(id responseObject){
                                   if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
                                       AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -87,12 +95,10 @@
                                       VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
                                       [self.navigationController presentViewController:vc animated:YES completion:nil];
                                   }
-                              }failure:^(NSError *error) {
-                                  
-                              }];
+                              }failure:nil];
                           }
                       }failure:^(NSError* error) {
-                          NSLog(@"damn %@", error);
+                          [self showAlertWithText:@"Sorry your login information is incorrect!"];
                       }
          ];
     } else {
@@ -105,6 +111,13 @@
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
     VSSignupViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"signupViewController"];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)forgotPassword:(id)sender
+{
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
+    VSForgotPasswordViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"forgotPasswordViewController"];
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
 }
 
 

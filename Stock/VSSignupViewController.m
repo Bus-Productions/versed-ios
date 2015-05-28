@@ -31,12 +31,21 @@
         self.signingUpUser = [NSMutableDictionary create:@"user"];
         [LXSession storeLocalUserKey:[self.signingUpUser localKey]];
     }
-    [self setupGestureRecognizer]; 
+    [self setupGestureRecognizer];
+    [self setupNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+# pragma mark - Setup
+
+- (void) setupNavigationBar
+{
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 # pragma mark - Gestures
@@ -111,7 +120,7 @@
                 [self.navigationController presentViewController:vc animated:YES completion:nil];
             }
         }failure:^(NSError *error) {
-            NSLog(@"whoops %@", error);
+            [self showAlertWithText:@"Only certain companies are able to use Versed at this time. Contact your system administrator for more details." andTitle:@"Sorry, your company isn't using Versed."];
         }];
     } else {
         [self showAlertWithText:[self errorMessage]];
@@ -125,16 +134,16 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)forgotAction:(id)sender
-{
-    
-}
-
 
 # pragma mark - Alert
 - (void) showAlertWithText:(NSString*)text
 {
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [self showAlertWithText:text andTitle:@"Whoops!"];
+}
+
+- (void) showAlertWithText:(NSString*)text andTitle:(NSString*)title
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:title message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [av show];
 }
 @end

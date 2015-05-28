@@ -52,9 +52,11 @@
 # pragma mark - Request/Reload
 - (void) reloadScreen
 {
+    isRequesting = YES;
     [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.quizResults = [responseObject quizResults];
         [self setupMissedQuestions];
+        isRequesting = NO;
         [self.tableView reloadData];
     }failure:nil];
 }
@@ -68,10 +70,10 @@
     [self.sections addObject:@"showResults"];
     if (self.missedQuestions.count > 0 && self.quizResults.count > 0) {
         [self.sections addObject:@"missedQuestions"];
+    } else if (isRequesting) {
+        [self.sections addObject:@"empty"];
     } else if (self.quizResults.count > 0) {
         [self.sections addObject:@"noMisses"];
-    } else {
-        [self.sections addObject:@"empty"];
     }
     return self.sections.count;
 }
@@ -128,7 +130,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView emptyCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
-    [cell configureWithText:@"No results to show at this time!"];
+    [cell configureWithText:@"Fetching results"];
     return cell;
 }
 

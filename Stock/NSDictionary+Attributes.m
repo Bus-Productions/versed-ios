@@ -7,6 +7,7 @@
 //
 
 #import "NSDictionary+Attributes.h"
+#import "Math.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -122,6 +123,21 @@
     return [self objectForKey:@"email"];
 }
 
+- (NSString*) name
+{
+    return [self objectForKey:@"name"];
+}
+
+- (NSString*) totalQuizzes
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"total_quizzes"]];
+}
+
+- (NSString*) companyID
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"company_id"]];
+}
+
 - (NSString*) answerText
 {
     return [self objectForKey:@"answer_text"];
@@ -177,6 +193,6 @@
     NSNumber* c = [self quizQuestionsCorrect];
     NSNumber* t = [self quizQuestionsTotal];
     float avg = ([c floatValue]/[t floatValue])*100.0;
-    return [NSString stringWithFormat:@"%f%%", avg];
+    return [NSString stringWithFormat:@"%d%%", (int)roundf(avg)];
 }
 @end

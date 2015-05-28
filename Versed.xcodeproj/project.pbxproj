@@ -28,6 +28,9 @@
 		28A5340C1AD0A64F0049B3F7 /* MobileLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A5340B1AD0A64F0049B3F7 /* MobileLogin.storyboard */; };
 		760829631B14B3790053E29F /* VSQuizPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829621B14B3790053E29F /* VSQuizPreviewViewController.m */; };
 		760829661B14C2920053E29F /* VSTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829651B14C2920053E29F /* VSTokenViewController.m */; };
+		760829691B1641EB0053E29F /* VSDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829681B1641EA0053E29F /* VSDashboardViewController.m */; };
+		7608296C1B16466F0053E29F /* VSLeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7608296B1B16466F0053E29F /* VSLeaderTableViewCell.m */; };
+		760829721B1791EC0053E29F /* VSForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829711B1791EC0053E29F /* VSForgotPasswordViewController.m */; };
 		760F5D501B0B78E50038FF1A /* VSEmptyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D4F1B0B78E50038FF1A /* VSEmptyTableViewCell.m */; };
 		760F5D531B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D521B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m */; };
 		760F5D561B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D551B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m */; };
@@ -106,6 +109,12 @@
 		760829621B14B3790053E29F /* VSQuizPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizPreviewViewController.m; sourceTree = "<group>"; };
 		760829641B14C2920053E29F /* VSTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTokenViewController.h; sourceTree = "<group>"; };
 		760829651B14C2920053E29F /* VSTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTokenViewController.m; sourceTree = "<group>"; };
+		760829671B1641EA0053E29F /* VSDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSDashboardViewController.h; sourceTree = "<group>"; };
+		760829681B1641EA0053E29F /* VSDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDashboardViewController.m; sourceTree = "<group>"; };
+		7608296A1B16466F0053E29F /* VSLeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSLeaderTableViewCell.h; sourceTree = "<group>"; };
+		7608296B1B16466F0053E29F /* VSLeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSLeaderTableViewCell.m; sourceTree = "<group>"; };
+		760829701B1791EC0053E29F /* VSForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSForgotPasswordViewController.h; sourceTree = "<group>"; };
+		760829711B1791EC0053E29F /* VSForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSForgotPasswordViewController.m; sourceTree = "<group>"; };
 		760F5D4E1B0B78E50038FF1A /* VSEmptyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSEmptyTableViewCell.h; sourceTree = "<group>"; };
 		760F5D4F1B0B78E50038FF1A /* VSEmptyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSEmptyTableViewCell.m; sourceTree = "<group>"; };
 		760F5D511B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizQuestionTableViewCell.h; sourceTree = "<group>"; };
@@ -288,6 +297,8 @@
 				768CE0761B026E1300E1E2E6 /* VSLoginViewController.m */,
 				760829641B14C2920053E29F /* VSTokenViewController.h */,
 				760829651B14C2920053E29F /* VSTokenViewController.m */,
+				760829701B1791EC0053E29F /* VSForgotPasswordViewController.h */,
+				760829711B1791EC0053E29F /* VSForgotPasswordViewController.m */,
 			);
 			name = Login/Signup;
 			sourceTree = "<group>";
@@ -349,6 +360,8 @@
 				760829621B14B3790053E29F /* VSQuizPreviewViewController.m */,
 				76DB3F251B0D2428004EE88A /* VSQuizResultsViewController.h */,
 				76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */,
+				760829671B1641EA0053E29F /* VSDashboardViewController.h */,
+				760829681B1641EA0053E29F /* VSDashboardViewController.m */,
 			);
 			name = Quiz;
 			sourceTree = "<group>";
@@ -401,6 +414,8 @@
 				7636ED881B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m */,
 				7636ED8D1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.h */,
 				7636ED8E1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m */,
+				7608296A1B16466F0053E29F /* VSLeaderTableViewCell.h */,
+				7608296B1B16466F0053E29F /* VSLeaderTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -564,6 +579,7 @@
 				28A534091ACF75C70049B3F7 /* LXAddressBook.m in Sources */,
 				76DB3F301B0D4058004EE88A /* NSMutableArray+Attributes.m in Sources */,
 				28A533F91ACF699A0049B3F7 /* NSArray+Alphabet.m in Sources */,
+				760829721B1791EC0053E29F /* VSForgotPasswordViewController.m in Sources */,
 				768CE0771B026E1300E1E2E6 /* VSLoginViewController.m in Sources */,
 				7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */,
 				768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */,
@@ -595,7 +611,9 @@
 				768CE0901B03EF1900E1E2E6 /* VSAllTracksViewController.m in Sources */,
 				760829631B14B3790053E29F /* VSQuizPreviewViewController.m in Sources */,
 				28A533EF1ACF69850049B3F7 /* LXSession.m in Sources */,
+				7608296C1B16466F0053E29F /* VSLeaderTableViewCell.m in Sources */,
 				7666FC391B069D1D00051C93 /* VSResourceViewController.m in Sources */,
+				760829691B1641EB0053E29F /* VSDashboardViewController.m in Sources */,
 				28A533FB1ACF699A0049B3F7 /* NSNumber+Helpers.m in Sources */,
 				28A533C01ACF688A0049B3F7 /* main.m in Sources */,
 			);
