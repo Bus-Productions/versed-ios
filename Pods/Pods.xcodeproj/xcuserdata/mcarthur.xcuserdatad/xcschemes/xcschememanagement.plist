@@ -6,73 +6,93 @@
 	<dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-DZNWebViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-MBProgressHUD.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-MGEvents.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NJKWebViewProgress.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-PromiseKit.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-SGHTTPRequest.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-SGImageCache.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2B04F9935BCA081DB8218A84</key>
+		<key>43AA23417DC34C6F2F38D7F1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>60E35C0FE9239D8796EA0A7A</key>
+		<key>584E518EAB69D30E2DFF42C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>73C12F20BADCED23365F6ADB</key>
+		<key>6ECA544353E306B0B4783C19</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>74F2B27E5B4A18F1D7B4E75F</key>
+		<key>8B67D576D9D901B998B18C68</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A49329CAFD38ABA6319FCA1E</key>
+		<key>ABA8BD4108B6AC0EE16731C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DDD01D3ECBC5EBD98E074204</key>
+		<key>BBCD431FFBC4538FF8B80D6F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0D4A6570919B3E1A6A1D655</key>
+		<key>D62C1E175E332B08DF4D9FB1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E43F4A9040C44296611D25FF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0616D2D5BEEF2ABC4F10B77</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -8,6 +8,7 @@
 
 #import "VSTrackViewController.h"
 #import "VSResourceTableViewCell.h"
+#import "DZNWebViewController.h"
 
 @interface VSTrackViewController ()
 
@@ -32,6 +33,14 @@
 {
     [super viewWillAppear:animated];
     [self reloadScreen];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    self.navigationController.hidesBarsOnSwipe = NO;
+    self.navigationController.hidesBarsWhenKeyboardAppears = NO;
+    self.navigationController.hidesBarsWhenVerticallyCompact = NO;
+    [self.navigationController setToolbarHidden:YES];
 }
 
 
@@ -91,9 +100,14 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    VSResourceViewController *vc = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
-    [vc setResource:[self resourceAtIndexPath:indexPath]];
+    NSURL *URL = [NSURL URLWithString:(NSString*)[[self resourceAtIndexPath:indexPath] url]];
+    
+    DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
+    [vc setToolbarBackgroundColor:[UIColor whiteColor]];
+    [vc setToolbarTintColor:[UIColor blackColor]];
+    self.navigationController.hidesBarsOnSwipe = YES;
+    self.navigationController.hidesBarsWhenKeyboardAppears = YES;
+    self.navigationController.hidesBarsWhenVerticallyCompact = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

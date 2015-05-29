@@ -8,9 +8,10 @@
 
 #import "VSDailyArticlesViewController.h"
 #import "VSResourceTableViewCell.h"
-#import "VSResourceViewController.h"
 #import "SWRevealViewController.h"
 #import "VSEmptyTableViewCell.h"
+#import "DZNWebViewController.h"
+
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -34,6 +35,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    self.navigationController.hidesBarsOnSwipe = NO;
+    self.navigationController.hidesBarsWhenKeyboardAppears = NO;
+    self.navigationController.hidesBarsWhenVerticallyCompact = NO;
+    [self.navigationController setToolbarHidden:YES];
+}
 
 # pragma mark - Setup
 
@@ -55,6 +63,10 @@
     }
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    
+}
 
 # pragma mark - Request/Reload
 
@@ -63,10 +75,13 @@
     [[LXServer shared] requestPath:@"/resources/daily.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.articles = [[[responseObject cleanDictionary] objectForKey:@"resources"] mutableCopy];
         if (NULL_TO_NIL(self.articles)) {
+            NSLog(@"saving");
             [self.articles saveLocalWithKey:@"dailyArticles" success:^(id responseObject){
+                NSLog(@"saved");
                 [self.tableView reloadData];
             }failure:nil];
         } else {
+            NSLog(@"not going to save");
             [[[NSMutableArray alloc] init] destroyLocalWithKey:@"dailyArticles" success:^(id responseObject){
                 [self.tableView reloadData];
             }failure:nil];
@@ -132,12 +147,16 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        VSResourceViewController *vc = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
-        [vc setResource:[self.articles objectAtIndex:indexPath.row]];
+        NSURL *URL = [NSURL URLWithString:(NSString*)[[self.articles objectAtIndex:indexPath.row] url]];
+        
+        DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
+        [vc setToolbarBackgroundColor:[UIColor whiteColor]];
+        [vc setToolbarTintColor:[UIColor blackColor]];
+        self.navigationController.hidesBarsOnSwipe = YES;
+        self.navigationController.hidesBarsWhenKeyboardAppears = YES;
+        self.navigationController.hidesBarsWhenVerticallyCompact = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-
 
 @end

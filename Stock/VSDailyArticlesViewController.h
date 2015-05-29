@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface VSDailyArticlesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+{
+    BOOL firstTime; 
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *articles; 

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VSResourceViewController.h"
 
 @interface VSTrackViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 

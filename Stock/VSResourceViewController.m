@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:[self.resource headline]];
+  
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -43,8 +44,7 @@
 
 - (void) setupWebView
 {
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: [self.resource url]] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 15.0];
-    [self.webView loadRequest: request];
+
 }
 
 
@@ -64,4 +64,7 @@
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
+
+
+
 @end
