@@ -8,7 +8,12 @@
 
 #import "VSTrackTableViewCell.h"
 
+#define SAVE_TO_MY_TRACKS_TEXT @"Save To My Tracks"
+#define REMOVE_FROM_MY_TRACKS_TEXT @"Remove From My Tracks"
+
 @implementation VSTrackTableViewCell
+
+@synthesize saveButton;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -20,9 +25,23 @@
     // Configure the view for the selected state
 }
 
-- (void) configureWithTrack:(NSMutableDictionary*)track
+- (void) configureWithTrack:(NSMutableDictionary*)track andIndexPath:(NSIndexPath*)indexPath
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:[track objectForKey:@"headline"]];
+    
+    self.saveButton = (UIButton*)[self.contentView viewWithTag:2];
+    [self.saveButton setTitle:[self saveToMyTracksButtonTitleWithTrack:track] forState:UIControlStateNormal];
 }
+
+- (NSString*) saveToMyTracksButtonTitleWithTrack:(NSMutableDictionary*)track
+{
+    NSMutableArray *myTracksIDs = [[NSMutableArray alloc] init];
+    [myTracksIDs addObjectsFromArray:[[[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] pluckIDs]];
+    if (myTracksIDs && myTracksIDs.count > 0 && [myTracksIDs containsObject:[track ID]]) {
+        return REMOVE_FROM_MY_TRACKS_TEXT;
+    }
+    return SAVE_TO_MY_TRACKS_TEXT;
+}
+
 @end

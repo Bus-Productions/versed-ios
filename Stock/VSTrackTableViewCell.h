@@ -10,6 +10,7 @@
 
 @interface VSTrackTableViewCell : UITableViewCell
 
-- (void) configureWithTrack:(NSMutableDictionary*)track;
+- (void) configureWithTrack:(NSMutableDictionary*)track andIndexPath:(NSIndexPath*)indexPath;
+@property (strong, nonatomic) UIButton *saveButton;
 
 @end
