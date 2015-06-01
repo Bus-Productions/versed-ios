@@ -26,4 +26,6 @@
 
 - (id) randomArrayItem;
 
+- (NSMutableArray*) pluckIDs;
+
 @end

@@ -13,4 +13,6 @@
 # pragma mark other array helpers
 - (int) numberQuizResultsCorrect;
 
+- (NSMutableArray*) cleanArray;
+
 @end

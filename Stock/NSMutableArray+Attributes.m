@@ -23,4 +23,20 @@
     return count; 
 }
 
+- (NSMutableArray*) cleanArray
+{
+    NSMutableArray *enumeratingArray = [self copy];
+    for (id k in enumeratingArray) {
+        if (!NULL_TO_NIL(k)) {
+            [self removeObject:k];
+        } else if ([k isKindOfClass:[NSDictionary class]] || [k isKindOfClass:[NSMutableDictionary class]]) {
+            NSUInteger index = [self indexOfObject:k];
+            [self removeObjectAtIndex:index];
+            [self insertObject:[k cleanDictionary] atIndex:index];
+        }
+    }
+    return self;
+}
+
+
 @end

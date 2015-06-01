@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface VSTrackViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+{
+    NSMutableArray *myTracksIDs;
+    UIButton *saveToMyTracksButton; 
+}
 @property (strong, nonatomic) NSMutableDictionary *track;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

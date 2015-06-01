@@ -56,4 +56,12 @@
     return nil;
 }
 
+- (NSMutableArray*) pluckIDs
+{
+    NSMutableArray *ids = [[NSMutableArray alloc] init];
+    for (NSMutableDictionary *dict in self) {
+        [ids addObject:[dict ID]];
+    }
+    return ids; 
+}
 @end

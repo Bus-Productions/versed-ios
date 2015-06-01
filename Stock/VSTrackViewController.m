@@ -9,6 +9,10 @@
 #import "VSTrackViewController.h"
 #import "VSResourceTableViewCell.h"
 #import "DZNWebViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
+#define SAVE_TO_MY_TRACKS_TEXT @"Save To My Tracks"
+#define REMOVE_FROM_MY_TRACKS_TEXT @"Remove From My Tracks"
 
 @interface VSTrackViewController ()
 
@@ -20,8 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupNavigationBar];
     [self setupData];
+    [self setupNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +52,12 @@
 
 - (void) setupNavigationBar
 {
-    [self.navigationItem setTitle:[self.track headline]];
+    saveToMyTracksButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [saveToMyTracksButton addTarget:self
+               action:@selector(updateMyTracks)
+     forControlEvents:UIControlEventTouchUpInside];
+    [saveToMyTracksButton setTitle:[self saveToMyTracksButtonTitle] forState:UIControlStateNormal];
+    [self.navigationItem setTitleView:saveToMyTracksButton];
 }
 
 - (void) setupData
@@ -56,6 +65,7 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:[track keyForTrack]]) {
         self.track = [[[NSUserDefaults standardUserDefaults] objectForKey:[self.track keyForTrack]] mutableCopy];
     }
+    myTracksIDs = [[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] ? [[[[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] mutableCopy] pluckIDs] : [[NSMutableArray alloc] init];
 }
 
 
@@ -63,7 +73,7 @@
 
 - (void) reloadScreen
 {
-    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/tracks/%@/resources_for_user", [self.track ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
+    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/tracks/%@/resources_for_user.json", [self.track ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.track = [[responseObject objectForKey:@"track"] mutableCopy];
         [self.track setObject:[responseObject resources] forKey:@"resources"];
         [[self.track cleanDictionary] saveLocalWithKey:[self.track keyForTrack]
@@ -71,6 +81,9 @@
                                  [self.tableView reloadData];
                              }
                              failure:nil];
+        
+        NSMutableArray *myTracks = [[responseObject objectForKey:@"my_tracks"] mutableCopy];
+        [[myTracks cleanArray] saveLocalWithKey:@"myTracks"];
     }failure:nil];
 }
 
@@ -117,6 +130,35 @@
 - (NSMutableDictionary*) resourceAtIndexPath:(NSIndexPath*)indexPath
 {
     return [[[self.track resources] objectAtIndex:indexPath.row] mutableCopy];
+}
+
+- (NSString*) saveToMyTracksButtonTitle
+{
+    if ([myTracksIDs containsObject:[self.track ID]]) {
+        return REMOVE_FROM_MY_TRACKS_TEXT;
+    }
+    return SAVE_TO_MY_TRACKS_TEXT;
+}
+
+- (void) switchSaveTracksText
+{
+    if ([saveToMyTracksButton.currentTitle isEqualToString:SAVE_TO_MY_TRACKS_TEXT]) {
+        [saveToMyTracksButton setTitle:REMOVE_FROM_MY_TRACKS_TEXT forState:UIControlStateNormal];
+    } else {
+        [saveToMyTracksButton setTitle:SAVE_TO_MY_TRACKS_TEXT forState:UIControlStateNormal];
+    }
+}
+
+
+# pragma mark - Actions
+
+- (void) updateMyTracks
+{
+    [self switchSaveTracksText];
+    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track": self.track} authType:@"none" success:^(id responseObject){
+        NSMutableArray *myTracks = [[responseObject objectForKey:@"my_tracks"] mutableCopy];
+        [[myTracks cleanArray] saveLocalWithKey:@"myTracks"];
+    }failure:nil];
 }
 
 @end
