@@ -188,6 +188,19 @@
     return (NSNumber*)[self objectForKey:@"quiz_questions_total"];
 }
 
+- (NSMutableArray *) trackUserPairs
+{
+    return [[self objectForKey:@"track_user_pairs"] mutableCopy];
+}
+
+- (NSString*) completionDate
+{
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate dateFromString:[self objectForKey:@"completion_date"]]
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterNoStyle];
+    return dateString;
+}
+
 - (NSString*) overallQuizPercentage
 {
     NSNumber* c = [self quizQuestionsCorrect];

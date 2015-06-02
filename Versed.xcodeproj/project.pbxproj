@@ -38,6 +38,9 @@
 		760F5D661B0BCF4A0038FF1A /* VSQuizLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D651B0BCF4A0038FF1A /* VSQuizLandingViewController.m */; };
 		7636ED891B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636ED881B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m */; };
 		7636ED8F1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636ED8E1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m */; };
+		7664081E1B1E1383006272E8 /* VSCompletedTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */; };
+		766408211B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */; };
+		766408241B1E1AE0006272E8 /* VSSaveToMyTracksButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */; };
 		7666FC2C1B06335600051C93 /* VSTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC2B1B06335600051C93 /* VSTrackTableViewCell.m */; };
 		7666FC301B068B2300051C93 /* LXArrayObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC2F1B068B2300051C93 /* LXArrayObjects.m */; };
 		7666FC331B0693CC00051C93 /* VSTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC321B0693CC00051C93 /* VSTrackViewController.m */; };
@@ -128,6 +131,12 @@
 		7636ED881B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSNoMissesQuizTableViewCell.m; sourceTree = "<group>"; };
 		7636ED8D1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSMissedQuestionTableViewCell.h; sourceTree = "<group>"; };
 		7636ED8E1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSMissedQuestionTableViewCell.m; sourceTree = "<group>"; };
+		7664081C1B1E1383006272E8 /* VSCompletedTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCompletedTrackViewController.h; sourceTree = "<group>"; };
+		7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCompletedTrackViewController.m; sourceTree = "<group>"; };
+		7664081F1B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUsersCompletedTrackTableViewCell.h; sourceTree = "<group>"; };
+		766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUsersCompletedTrackTableViewCell.m; sourceTree = "<group>"; };
+		766408221B1E1AE0006272E8 /* VSSaveToMyTracksButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSaveToMyTracksButton.h; sourceTree = "<group>"; };
+		766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSaveToMyTracksButton.m; sourceTree = "<group>"; };
 		7666FC2A1B06335600051C93 /* VSTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTrackTableViewCell.h; sourceTree = "<group>"; };
 		7666FC2B1B06335600051C93 /* VSTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTrackTableViewCell.m; sourceTree = "<group>"; };
 		7666FC2E1B068B2300051C93 /* LXArrayObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXArrayObjects.h; sourceTree = "<group>"; };
@@ -332,6 +341,10 @@
 			children = (
 				7666FC311B0693CC00051C93 /* VSTrackViewController.h */,
 				7666FC321B0693CC00051C93 /* VSTrackViewController.m */,
+				7664081C1B1E1383006272E8 /* VSCompletedTrackViewController.h */,
+				7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */,
+				766408221B1E1AE0006272E8 /* VSSaveToMyTracksButton.h */,
+				766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */,
 			);
 			name = Track;
 			sourceTree = "<group>";
@@ -403,6 +416,8 @@
 				7636ED8E1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m */,
 				7608296A1B16466F0053E29F /* VSLeaderTableViewCell.h */,
 				7608296B1B16466F0053E29F /* VSLeaderTableViewCell.m */,
+				7664081F1B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.h */,
+				766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -578,12 +593,14 @@
 				768CE08D1B03EED500E1E2E6 /* VSSidebarViewController.m in Sources */,
 				76DB3F2D1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.m in Sources */,
 				760F5D5C1B0BB30D0038FF1A /* VSButtonTableViewCell.m in Sources */,
+				7664081E1B1E1383006272E8 /* VSCompletedTrackViewController.m in Sources */,
 				28A533FA1ACF699A0049B3F7 /* NSDictionary+Attributes.m in Sources */,
 				760F5D501B0B78E50038FF1A /* VSEmptyTableViewCell.m in Sources */,
 				760F5D561B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m in Sources */,
 				7636ED8F1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m in Sources */,
 				768CE0961B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m in Sources */,
 				7666FC301B068B2300051C93 /* LXArrayObjects.m in Sources */,
+				766408241B1E1AE0006272E8 /* VSSaveToMyTracksButton.m in Sources */,
 				28A533EE1ACF69850049B3F7 /* LXServer.m in Sources */,
 				28A534041ACF6A440049B3F7 /* LXObjects.m in Sources */,
 				28A533C31ACF688A0049B3F7 /* AppDelegate.m in Sources */,
@@ -602,6 +619,7 @@
 				760829691B1641EB0053E29F /* VSDashboardViewController.m in Sources */,
 				28A533FB1ACF699A0049B3F7 /* NSNumber+Helpers.m in Sources */,
 				28A533C01ACF688A0049B3F7 /* main.m in Sources */,
+				766408211B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,8 @@
 
 + (NSDate*) dateFromString:(NSString*)string;
 
++ (NSDate*) dateFromString:(NSString*)string withFormat:(NSString*)formatString;
+
 - (NSString*) formattedDateStringWithFormat:(NSString*)string;
 
 + (NSString*) timeAgoInWords:(double)relativeTimestamp;

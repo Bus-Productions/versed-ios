@@ -50,4 +50,8 @@
 - (NSString*) totalQuizzes;
 - (NSString*) companyID;
 
+// track user pairs
+- (NSMutableArray *) trackUserPairs;
+- (NSString*) completionDate;
+
 @end

@@ -10,6 +10,7 @@
 #import "VSResourceTableViewCell.h"
 #import "DZNWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "VSCompletedTrackViewController.h"
 
 #define SAVE_TO_MY_TRACKS_TEXT @"Save To My Tracks"
 #define REMOVE_FROM_MY_TRACKS_TEXT @"Remove From My Tracks"
@@ -53,12 +54,9 @@
 
 - (void) setupNavigationBar
 {
-    saveToMyTracksButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [saveToMyTracksButton addTarget:self
-               action:@selector(updateMyTracks)
-     forControlEvents:UIControlEventTouchUpInside];
-    [saveToMyTracksButton setTitle:[self saveToMyTracksButtonTitle] forState:UIControlStateNormal];
-    [self.navigationItem setTitleView:saveToMyTracksButton];
+    saveToMyTracksButton = [VSSaveToMyTracksButton initWithTrack:self.track andMyTrackIDs:myTracksIDs];
+    [saveToMyTracksButton addTarget:self action:@selector(saveMyTrackButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationItem setTitleView:saveToMyTracksButton]; 
 }
 
 - (void) setupData
@@ -82,8 +80,8 @@
 - (void) reloadScreen
 {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/tracks/%@/resources_for_user.json", [self.track ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
-        completedPeople = [responseObject objectForKey:@"completed_in_company"];
-        discussionPeople = [responseObject objectForKey:@"discussing_track"];
+        completedPeople = [[responseObject objectForKey:@"completed_in_company"] mutableCopy];
+        discussionPeople = [[responseObject objectForKey:@"discussing_track"] mutableCopy];
         [self setupBottomView];
         self.track = [[responseObject objectForKey:@"track"] mutableCopy];
         [self.track setObject:[responseObject resources] forKey:@"resources"];
@@ -164,40 +162,22 @@
     return nil;
 }
 
-- (NSString*) saveToMyTracksButtonTitle
-{
-    if ([myTracksIDs containsObject:[self.track ID]]) {
-        return REMOVE_FROM_MY_TRACKS_TEXT;
-    }
-    return SAVE_TO_MY_TRACKS_TEXT;
-}
-
-- (void) switchSaveTracksText
-{
-    if ([saveToMyTracksButton.currentTitle isEqualToString:SAVE_TO_MY_TRACKS_TEXT]) {
-        [saveToMyTracksButton setTitle:REMOVE_FROM_MY_TRACKS_TEXT forState:UIControlStateNormal];
-    } else {
-        [saveToMyTracksButton setTitle:SAVE_TO_MY_TRACKS_TEXT forState:UIControlStateNormal];
-    }
-}
-
 
 # pragma mark - Actions
 
-- (void) updateMyTracks
-{
-    [self switchSaveTracksText];
-    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [self.track ID]} authType:@"none" success:^(id responseObject){
-        NSMutableArray *myTracks = [[responseObject objectForKey:@"my_tracks"] mutableCopy];
-        [[myTracks cleanArray] saveLocalWithKey:@"myTracks"];
-    }failure:nil];
-}
-
 - (IBAction)seeCompletedAction:(id)sender {
-    NSLog(@"completed");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSCompletedTrackViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"completedTrackViewController"];
+    [vc setUsersCompleted:completedPeople];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)joinDiscussionAction:(id)sender {
         NSLog(@"join discussion");
+}
+
+- (void) saveMyTrackButtonPressed
+{
+    [saveToMyTracksButton updateMyTracks]; 
 }
 @end
