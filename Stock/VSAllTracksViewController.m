@@ -128,8 +128,7 @@
 
 - (void) updateMyTracks:(NSMutableDictionary*)t
 {
-    NSLog(@"update = %@", t);
-    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track": t} authType:@"none" success:^(id responseObject){
+    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [t ID]} authType:@"none" success:^(id responseObject){
         [[[[responseObject objectForKey:@"my_tracks"] mutableCopy] cleanArray] saveLocalWithKey:@"myTracks"];
     }failure:nil];
 }

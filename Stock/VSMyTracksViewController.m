@@ -22,7 +22,7 @@
 
 @implementation VSMyTracksViewController
 
-@synthesize tableView, slideButton, myTracks, sections;
+@synthesize tableView, slideButton, myTracks, sections, bottomView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -164,7 +164,7 @@
 
 - (void) updateMyTracks:(NSMutableDictionary*)t
 {
-    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track": t} authType:@"none" success:^(id responseObject){
+    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [t ID]} authType:@"none" success:^(id responseObject){
         self.myTracks = [[responseObject objectForKey:@"my_tracks"] mutableCopy];
         [[self.myTracks cleanArray] saveLocalWithKey:@"myTracks"];
         [self.tableView reloadData];

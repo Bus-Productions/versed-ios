@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *myTracks;
 @property (strong, nonatomic) NSMutableArray *sections; 
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+
 @end
