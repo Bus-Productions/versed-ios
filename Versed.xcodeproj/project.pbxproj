@@ -41,6 +41,7 @@
 		7664081E1B1E1383006272E8 /* VSCompletedTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */; };
 		766408211B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */; };
 		766408241B1E1AE0006272E8 /* VSSaveToMyTracksButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */; };
+		766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408261B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m */; };
 		7666FC2C1B06335600051C93 /* VSTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC2B1B06335600051C93 /* VSTrackTableViewCell.m */; };
 		7666FC301B068B2300051C93 /* LXArrayObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC2F1B068B2300051C93 /* LXArrayObjects.m */; };
 		7666FC331B0693CC00051C93 /* VSTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC321B0693CC00051C93 /* VSTrackViewController.m */; };
@@ -137,6 +138,8 @@
 		766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUsersCompletedTrackTableViewCell.m; sourceTree = "<group>"; };
 		766408221B1E1AE0006272E8 /* VSSaveToMyTracksButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSaveToMyTracksButton.h; sourceTree = "<group>"; };
 		766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSaveToMyTracksButton.m; sourceTree = "<group>"; };
+		766408251B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCompletedTrackTitleTableViewCell.h; sourceTree = "<group>"; };
+		766408261B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCompletedTrackTitleTableViewCell.m; sourceTree = "<group>"; };
 		7666FC2A1B06335600051C93 /* VSTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTrackTableViewCell.h; sourceTree = "<group>"; };
 		7666FC2B1B06335600051C93 /* VSTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTrackTableViewCell.m; sourceTree = "<group>"; };
 		7666FC2E1B068B2300051C93 /* LXArrayObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXArrayObjects.h; sourceTree = "<group>"; };
@@ -418,6 +421,8 @@
 				7608296B1B16466F0053E29F /* VSLeaderTableViewCell.m */,
 				7664081F1B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.h */,
 				766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */,
+				766408251B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.h */,
+				766408261B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -584,6 +589,7 @@
 				760829721B1791EC0053E29F /* VSForgotPasswordViewController.m in Sources */,
 				768CE0771B026E1300E1E2E6 /* VSLoginViewController.m in Sources */,
 				7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */,
+				766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */,
 				768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */,
 				768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */,
 				7666FC3C1B0A8EA700051C93 /* VSDailyArticlesViewController.m in Sources */,

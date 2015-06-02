@@ -9,6 +9,7 @@
 #import "VSCompletedTrackViewController.h"
 #import "VSUsersCompletedTrackTableViewCell.h"
 #import "VSEmptyTableViewCell.h"
+#import "VSCompletedTrackTitleTableViewCell.h"
 
 #define SAVE_TO_MY_TRACKS_TEXT @"Save To My Tracks"
 #define REMOVE_FROM_MY_TRACKS_TEXT @"Remove From My Tracks"
@@ -45,6 +46,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     self.sections = [[NSMutableArray alloc] init];
+    [self.sections addObject:@"title"];
     if (usersCompleted.count > 0) {
         [self.sections addObject:@"usersCompleted"];
     } else {
@@ -55,7 +57,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([[self.sections objectAtIndex:section] isEqualToString:@"usersCompleted"]) {
+    if ([[self.sections objectAtIndex:section] isEqualToString:@"title"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"usersCompleted"]) {
         return self.usersCompleted.count;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
         return 1;
@@ -66,13 +70,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"usersCompleted"]) {
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"title"]) {
+        return [self tableView:self.tableView titleCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"usersCompleted"]) {
         return [self tableView:self.tableView usersCompletedCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         return [self tableView:self.tableView emptyCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView titleCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSCompletedTrackTitleTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"completedTrackTitleCell" forIndexPath:indexPath];
+    
+    [cell configureWithTrack:self.track andUsers:self.usersCompleted];
+    
+    return cell;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView usersCompletedCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

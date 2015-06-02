@@ -169,6 +169,8 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSCompletedTrackViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"completedTrackViewController"];
     [vc setUsersCompleted:completedPeople];
+    [vc setTrack:self.track];
+    [vc setMyTracksIDs:myTracksIDs]; 
     [self.navigationController pushViewController:vc animated:YES];
 }
 
