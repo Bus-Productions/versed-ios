@@ -11,10 +11,18 @@
 @interface VSTrackViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray *myTracksIDs;
-    UIButton *saveToMyTracksButton; 
+    UIButton *saveToMyTracksButton;
+    NSMutableArray *completedPeople;
+    NSMutableArray *discussionPeople;
 }
+
 @property (strong, nonatomic) NSMutableDictionary *track;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *sections;
+@property (weak, nonatomic) IBOutlet UIButton *seeCompletedButton;
+@property (weak, nonatomic) IBOutlet UIButton *joinDiscussionButton;
+
+- (IBAction)seeCompletedAction:(id)sender;
+- (IBAction)joinDiscussionAction:(id)sender;
 
 @end

@@ -26,7 +26,7 @@
     [super viewDidLoad];
     [self setupData];
     [self setupNavigationBar];
-    [self setupFooter];
+    [self setupBottomView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,47 +61,30 @@
     [self.navigationItem setTitleView:saveToMyTracksButton];
 }
 
-- (void) setupFooter
-{
-//    UIView *footerView = [[UIView alloc] init];
-//    [footerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    footerView.backgroundColor = [UIColor greenColor];
-//    [self.view addSubview:footerView];
-//    
-//    // Width constraint, half of parent view width
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:footerView
-//                                                          attribute:NSLayoutAttributeWidth
-//                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:self.view
-//                                                          attribute:NSLayoutAttributeWidth
-//                                                         multiplier:1
-//                                                           constant:0]];
-//    
-//    // Height constraint, half of parent view height
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:footerView
-//                                                          attribute:NSLayoutAttributeHeight
-//                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:self.view
-//                                                          attribute:NSLayoutAttributeHeight
-//                                                         multiplier:0.5
-//                                                           constant:0]];
-}
-
 - (void) setupData
 {
+    completedPeople = [[NSMutableArray alloc] init];
+    discussionPeople = [[NSMutableArray alloc] init];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:[track keyForTrack]]) {
         self.track = [[[NSUserDefaults standardUserDefaults] objectForKey:[self.track keyForTrack]] mutableCopy];
     }
     myTracksIDs = [[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] ? [[[[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] mutableCopy] pluckIDs] : [[NSMutableArray alloc] init];
 }
 
+- (void) setupBottomView
+{
+    [self.joinDiscussionButton setTitle:[NSString stringWithFormat:@"%@ are discussing", [discussionPeople formattedPluralizationForSingular:@"person" orPlural:@"people"]] forState:UIControlStateNormal];
+    [self.seeCompletedButton setTitle:[NSString stringWithFormat:@"%@ completed", [completedPeople formattedPluralizationForSingular:@"person" orPlural:@"people"]] forState:UIControlStateNormal];
+}
 
 # pragma mark - Reload/Request
 
 - (void) reloadScreen
 {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/tracks/%@/resources_for_user.json", [self.track ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
-        NSLog(@"completed_in_company = %@", [responseObject objectForKey:@"completed_in_company"]);
+        completedPeople = [responseObject objectForKey:@"completed_in_company"];
+        discussionPeople = [responseObject objectForKey:@"discussing_track"];
+        [self setupBottomView];
         self.track = [[responseObject objectForKey:@"track"] mutableCopy];
         [self.track setObject:[responseObject resources] forKey:@"resources"];
         [[self.track cleanDictionary] saveLocalWithKey:[self.track keyForTrack]
@@ -163,6 +146,9 @@
         self.navigationController.hidesBarsOnSwipe = YES;
         self.navigationController.hidesBarsWhenKeyboardAppears = YES;
         self.navigationController.hidesBarsWhenVerticallyCompact = YES;
+        if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+        }
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -207,4 +193,11 @@
     }failure:nil];
 }
 
+- (IBAction)seeCompletedAction:(id)sender {
+    NSLog(@"completed");
+}
+
+- (IBAction)joinDiscussionAction:(id)sender {
+        NSLog(@"join discussion");
+}
 @end

@@ -38,5 +38,12 @@
     return self;
 }
 
+- (NSString*)formattedPluralizationForSingular:(NSString*)sing orPlural:(NSString*)plural
+{
+    if (self.count == 1) {
+        return [NSString stringWithFormat:@"%lu %@", (unsigned long)self.count, sing];
+    }
+    return [NSString stringWithFormat:@"%lu %@", (unsigned long)self.count, plural];
+}
 
 @end

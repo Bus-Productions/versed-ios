@@ -15,4 +15,6 @@
 
 - (NSMutableArray*) cleanArray;
 
+- (NSString*)formattedPluralizationForSingular:(NSString*)sing orPlural:(NSString*)plural;
+
 @end
