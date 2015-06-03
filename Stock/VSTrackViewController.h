@@ -15,6 +15,7 @@
     VSSaveToMyTracksButton *saveToMyTracksButton;
     NSMutableArray *completedPeople;
     NSMutableArray *discussionPeople;
+    BOOL requesting; 
 }
 
 @property (strong, nonatomic) NSMutableDictionary *track;
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) NSMutableArray *sections;
 @property (weak, nonatomic) IBOutlet UIButton *seeCompletedButton;
 @property (weak, nonatomic) IBOutlet UIButton *joinDiscussionButton;
+@property (strong, nonatomic) NSMutableArray *polls;
 
 - (IBAction)seeCompletedAction:(id)sender;
 - (IBAction)joinDiscussionAction:(id)sender;

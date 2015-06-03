@@ -26,6 +26,7 @@
     UILabel *name = (UILabel*)[self.contentView viewWithTag:1];
     [name setText:[[dict objectForKey:@"user"] name]];
     UILabel *completedDate = (UILabel*)[self.contentView viewWithTag:2];
+    NSLog(@"%@", [[dict trackUserPairs] firstObject]);
     [completedDate setText:[[[dict trackUserPairs] firstObject] completionDate]];
 }
 @end

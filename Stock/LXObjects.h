@@ -13,6 +13,7 @@
 + (NSMutableDictionary*) create:(NSString*)oT;
 
 - (NSString*) ID;
+- (NSString*) stringID;
 - (NSString*) localID;
 - (NSString*) localKey;
 - (NSString*) createdAt;

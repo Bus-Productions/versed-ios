@@ -11,9 +11,6 @@
 #import "VSEmptyTableViewCell.h"
 #import "VSCompletedTrackTitleTableViewCell.h"
 
-#define SAVE_TO_MY_TRACKS_TEXT @"Save To My Tracks"
-#define REMOVE_FROM_MY_TRACKS_TEXT @"Remove From My Tracks"
-
 @interface VSCompletedTrackViewController ()
 
 @end

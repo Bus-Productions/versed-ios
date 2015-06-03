@@ -11,9 +11,11 @@
 #import "DZNWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "VSCompletedTrackViewController.h"
+#import "VSPollsTableViewCell.h"
+#import "VSPollQuestionViewController.h"
+#import "VSPollResultsViewController.h"
 
-#define SAVE_TO_MY_TRACKS_TEXT @"Save To My Tracks"
-#define REMOVE_FROM_MY_TRACKS_TEXT @"Remove From My Tracks"
+#define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
 @interface VSTrackViewController ()
 
@@ -21,7 +23,7 @@
 
 @implementation VSTrackViewController
 
-@synthesize track, tableView, sections;
+@synthesize track, tableView, sections, polls;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,6 +65,7 @@
 {
     completedPeople = [[NSMutableArray alloc] init];
     discussionPeople = [[NSMutableArray alloc] init];
+    self.polls = [[NSMutableArray alloc] init];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:[track keyForTrack]]) {
         self.track = [[[NSUserDefaults standardUserDefaults] objectForKey:[self.track keyForTrack]] mutableCopy];
     }
@@ -79,12 +82,15 @@
 
 - (void) reloadScreen
 {
+    requesting = YES;
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/tracks/%@/resources_for_user.json", [self.track ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         completedPeople = [[responseObject objectForKey:@"completed_in_company"] mutableCopy];
         discussionPeople = [[responseObject objectForKey:@"discussing_track"] mutableCopy];
         [self setupBottomView];
+        self.polls = [[responseObject objectForKey:@"polls"] mutableCopy];
         self.track = [[responseObject objectForKey:@"track"] mutableCopy];
         [self.track setObject:[responseObject resources] forKey:@"resources"];
+        requesting = NO;
         [[self.track cleanDictionary] saveLocalWithKey:[self.track keyForTrack]
                              success:^(id responseObject) {
                                  [self.tableView reloadData];
@@ -93,7 +99,9 @@
         
         NSMutableArray *myTracks = [[responseObject objectForKey:@"my_tracks"] mutableCopy];
         [[myTracks cleanArray] saveLocalWithKey:@"myTracks"];
-    }failure:nil];
+    }failure:^(NSError *error){
+        requesting = NO;
+    }];
 }
 
 
@@ -103,6 +111,9 @@
 {
     self.sections = [[NSMutableArray alloc] init];
     [self.sections addObject:@"resources"];
+    if (!requesting && self.polls.count > 0) {
+        [self.sections addObject:@"polls"];
+    }
     return self.sections.count;
 }
 
@@ -110,6 +121,8 @@
 {
     if ([[self.sections objectAtIndex:section] isEqualToString:@"resources"]) {
         return [[self.track resources] count];
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"polls"]) {
+        return self.polls.count;
     }
     return 0;
 }
@@ -119,6 +132,8 @@
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
         return [self tableView:self.tableView resourcesCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
+        return [self tableView:self.tableView pollCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -129,6 +144,16 @@
     VSResourceTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
     
     [cell configureWithResource:resource];
+    
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView pollCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableDictionary *poll = [[self.polls objectAtIndex:indexPath.row] mutableCopy];
+    VSPollsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"pollCell" forIndexPath:indexPath];
+    
+    [cell configureWithPoll:poll];
     
     return cell;
 }
@@ -148,6 +173,19 @@
             self.navigationController.interactivePopGestureRecognizer.enabled = NO;
         }
         [self.navigationController pushViewController:vc animated:YES];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        NSMutableDictionary *p = [self.polls objectAtIndex:indexPath.row];
+        if (!NULL_TO_NIL([p objectForKey:@"user_answer"])) {
+            VSPollQuestionViewController *vc = (VSPollQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollQuestionViewController"];
+            [vc setPoll:p];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            VSPollResultsViewController *vc = (VSPollQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollResultsViewController"];
+            [vc setPoll:p];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+
     }
 }
 

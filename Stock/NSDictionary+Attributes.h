@@ -54,4 +54,11 @@
 - (NSMutableArray *) trackUserPairs;
 - (NSString*) completionDate;
 
+// polls
+- (NSString *) pollQuestion;
+- (NSMutableArray *) pollAnswers;
+- (NSMutableDictionary *) poll;
+- (NSString *) percentage;
+- (NSString*) pollAnswerID;
+
 @end

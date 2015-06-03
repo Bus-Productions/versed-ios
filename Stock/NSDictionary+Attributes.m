@@ -193,6 +193,31 @@
     return [[self objectForKey:@"track_user_pairs"] mutableCopy];
 }
 
+- (NSString *) pollQuestion
+{
+    return [self objectForKey:@"poll_question"];
+}
+
+- (NSMutableArray *) pollAnswers
+{
+    return [[self objectForKey:@"poll_answers"] mutableCopy];
+}
+
+- (NSMutableDictionary *) poll
+{
+    return [self objectForKey:@"poll"];
+}
+
+- (NSString*) percentage
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"percentage"]];
+}
+
+- (NSString*) pollAnswerID
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"poll_answer_id"]];
+}
+
 - (NSString*) completionDate
 {
     NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate dateFromString:[self objectForKey:@"completion_date"]]
