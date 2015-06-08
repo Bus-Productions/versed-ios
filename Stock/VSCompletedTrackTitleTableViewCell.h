@@ -11,5 +11,6 @@
 @interface VSCompletedTrackTitleTableViewCell : UITableViewCell
 
 - (void) configureWithTrack:(NSMutableDictionary*)track andUsers:(NSMutableArray*)users;
+- (void) configureForDiscussionWithTrack:(NSMutableDictionary*)track;
 
 @end

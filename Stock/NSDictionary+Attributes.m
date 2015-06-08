@@ -148,6 +148,11 @@
     return [self objectForKey:@"question_text"];
 }
 
+- (NSString*) message
+{
+    return [self objectForKey:@"message_text"];
+}
+
 - (NSString*) quizAnswerID
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"quiz_answer_id"]];
@@ -210,7 +215,7 @@
 
 - (NSString*) percentage
 {
-    return [NSString stringWithFormat:@"%@", [self objectForKey:@"percentage"]];
+    return [NSString stringWithFormat:@"%@%%", [self objectForKey:@"percentage"]];
 }
 
 - (NSString*) pollAnswerID

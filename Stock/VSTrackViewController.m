@@ -14,6 +14,7 @@
 #import "VSPollsTableViewCell.h"
 #import "VSPollQuestionViewController.h"
 #import "VSPollResultsViewController.h"
+#import "VSMessagesViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -181,11 +182,10 @@
             [vc setPoll:p];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            VSPollResultsViewController *vc = (VSPollQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollResultsViewController"];
+            VSPollResultsViewController *vc = (VSPollResultsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollResultsViewController"];
             [vc setPoll:p];
             [self.navigationController pushViewController:vc animated:YES];
         }
-
     }
 }
 
@@ -213,7 +213,11 @@
 }
 
 - (IBAction)joinDiscussionAction:(id)sender {
-        NSLog(@"join discussion");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSMessagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"messagesViewController"];
+    [vc setTrack:self.track];
+    [vc setMyTracksIDs:myTracksIDs];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) saveMyTrackButtonPressed

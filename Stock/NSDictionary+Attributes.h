@@ -61,4 +61,6 @@
 - (NSString *) percentage;
 - (NSString*) pollAnswerID;
 
+// messages
+- (NSString*) message;
 @end
