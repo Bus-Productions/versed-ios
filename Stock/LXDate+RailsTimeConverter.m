@@ -17,7 +17,11 @@
     NSDate* d = [dateFormat dateFromString:string];
     if (!d) {
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        return [dateFormat dateFromString:string];
+        d = [dateFormat dateFromString:string];
+    }
+    if (!d){
+        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+        d = [dateFormat dateFromString:string];
     }
     return d;
 }

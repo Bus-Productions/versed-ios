@@ -10,7 +10,8 @@
 
 @interface VSDailyArticlesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
-    BOOL firstTime; 
+    BOOL firstTime;
+    NSMutableArray *completedResources; 
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

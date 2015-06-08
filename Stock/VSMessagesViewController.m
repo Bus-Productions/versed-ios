@@ -48,6 +48,12 @@
     [self.composeTextView resignFirstResponder];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self toggleSaveButton];
+    [self setTableScrollToIndex:self.allMessages.count animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -93,6 +99,16 @@
 - (void) saveMyTrackButtonPressed
 {
     [saveToMyTracksButton updateMyTracks];
+}
+
+
+- (void) toggleSaveButton
+{
+    if (self.composeTextView.text && self.composeTextView.text.length > 0 && [self.composeTextView.textColor isEqual:[UIColor blackColor]]) {
+        [self.saveButton setEnabled:YES];
+    } else {
+        [self.saveButton setEnabled:NO];
+    }
 }
 
 
@@ -182,10 +198,8 @@
 
 - (void) keyboardWillShow:(NSNotification *)sender
 {
-    NSIndexPath *ipath = [NSIndexPath indexPathForRow:self.allMessages.count inSection:0];
-
-    [self.tableView scrollToRowAtIndexPath:ipath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-
+    [self setTableScrollToIndex:self.allMessages.count animated:YES];
+    
     NSDictionary *info = [sender userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGRect frame = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -245,6 +259,7 @@
 
 - (void) textViewDidChange:(UITextView *)textView
 {
+    [self toggleSaveButton];
     if (textView.text.length == 0) {
         [textView setText:@""];
         [textView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f]];
@@ -305,8 +320,9 @@
 
 - (void) setTableScrollToIndex:(NSInteger)index animated:(BOOL)animated
 {
+    index = index - 1;
     if (self.allMessages.count > 0 && index < self.allMessages.count) {
-        NSIndexPath *ipath = [NSIndexPath indexPathForRow:index inSection: 0];
+        NSIndexPath *ipath = [NSIndexPath indexPathForRow:index inSection:[self.sections indexOfObject:@"messages"]];
         [self.tableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionBottom animated: animated];
     }
 }
@@ -315,6 +331,28 @@
 
 - (void) addAction:(id)sender
 {
-    NSLog(@"**%@", self.composeTextView.text);
+    NSMutableDictionary *mess = [NSMutableDictionary create:@"message"];
+    [mess setObject:self.composeTextView.text forKey:@"message_text"];
+    [mess setObject:[self.track ID] forKey:@"track_id"];
+    [mess setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
+    [self.allMessages addObject:mess];
+    [self.tableView reloadData];
+    [self updateConstraintsForTextView:self.composeTextView];
+    [self clearTextField:YES];
+    [mess saveRemote:^(id responseObject){
+        self.allMessages = [[responseObject objectForKey:@"messages"] mutableCopy];
+        [self.tableView reloadData];
+        [self updateConstraintsForTextView:self.composeTextView];
+    }failure:^(NSError *error){
+        [self showAlertWithText:@"Your message did not get sent!"];
+    }];
+}
+
+# pragma mark - Alert
+
+- (void) showAlertWithText:(NSString*)text
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [av show];
 }
 @end

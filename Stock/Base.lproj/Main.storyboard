@@ -1629,9 +1629,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Hippocampus" id="P1U-Jn-eqJ">
-                        <barButtonItem key="rightBarButtonItem" title="Details" id="mha-JK-gST"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Hippocampus" id="P1U-Jn-eqJ"/>
                     <connections>
                         <outlet property="composeTextView" destination="fZf-VG-55f" id="zxg-wY-xQG"/>
                         <outlet property="composeView" destination="jEA-lU-m3U" id="NXu-cA-Jux"/>

@@ -30,7 +30,7 @@
     [mess setText:[message message]];
     
     UILabel *date = (UILabel*)[self.contentView viewWithTag:3];
-    [date setText:[message completionDate]];
+    [date setText:[message creationDate]];
 }
 
 @end

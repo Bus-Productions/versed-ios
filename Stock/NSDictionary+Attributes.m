@@ -231,6 +231,14 @@
     return dateString;
 }
 
+- (NSString*) creationDate
+{
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:[NSDate dateFromString:[self objectForKey:@"created_at"]]
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterNoStyle];
+    return dateString;
+}
+
 - (NSString*) overallQuizPercentage
 {
     NSNumber* c = [self quizQuestionsCorrect];

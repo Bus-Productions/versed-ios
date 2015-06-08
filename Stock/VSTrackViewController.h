@@ -14,7 +14,9 @@
     NSMutableArray *myTracksIDs;
     VSSaveToMyTracksButton *saveToMyTracksButton;
     NSMutableArray *completedPeople;
-    NSMutableArray *discussionPeople;
+    NSMutableArray *usersDiscussing;
+    NSMutableArray *completedResources; 
+    NSMutableArray *messages;
     BOOL requesting; 
 }
 

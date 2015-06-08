@@ -29,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupData];
-    [self setupNavigationBar];
     [self setupBottomView];
 }
 
@@ -41,6 +40,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self setupNavigationBar];
     [self reloadScreen];
 }
 
@@ -65,7 +65,9 @@
 - (void) setupData
 {
     completedPeople = [[NSMutableArray alloc] init];
-    discussionPeople = [[NSMutableArray alloc] init];
+    completedResources = [[NSMutableArray alloc] init];
+    messages = [[NSMutableArray alloc] init];
+    usersDiscussing = [[NSMutableArray alloc] init];
     self.polls = [[NSMutableArray alloc] init];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:[track keyForTrack]]) {
         self.track = [[[NSUserDefaults standardUserDefaults] objectForKey:[self.track keyForTrack]] mutableCopy];
@@ -75,7 +77,7 @@
 
 - (void) setupBottomView
 {
-    [self.joinDiscussionButton setTitle:[NSString stringWithFormat:@"%@ are discussing", [discussionPeople formattedPluralizationForSingular:@"person" orPlural:@"people"]] forState:UIControlStateNormal];
+    [self.joinDiscussionButton setTitle:[NSString stringWithFormat:@"%@ %@ discussing", [usersDiscussing formattedPluralizationForSingular:@"person" orPlural:@"people"], usersDiscussing.count == 1 ? @"is" : @"are"] forState:UIControlStateNormal];
     [self.seeCompletedButton setTitle:[NSString stringWithFormat:@"%@ completed", [completedPeople formattedPluralizationForSingular:@"person" orPlural:@"people"]] forState:UIControlStateNormal];
 }
 
@@ -86,7 +88,9 @@
     requesting = YES;
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/tracks/%@/resources_for_user.json", [self.track ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         completedPeople = [[responseObject objectForKey:@"completed_in_company"] mutableCopy];
-        discussionPeople = [[responseObject objectForKey:@"discussing_track"] mutableCopy];
+        messages = [[responseObject objectForKey:@"messages"] mutableCopy];
+        usersDiscussing = [[responseObject objectForKey:@"people_discussing"] mutableCopy];
+        completedResources = [[responseObject objectForKey:@"completed_resources"] mutableCopy];
         [self setupBottomView];
         self.polls = [[responseObject objectForKey:@"polls"] mutableCopy];
         self.track = [[responseObject objectForKey:@"track"] mutableCopy];
@@ -144,7 +148,7 @@
     NSMutableDictionary *resource = [self resourceAtIndexPath:indexPath];
     VSResourceTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
     
-    [cell configureWithResource:resource];
+    [cell configureWithResource:resource andCompletedResources:completedResources];
     
     return cell;
 }
@@ -162,8 +166,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
-        NSURL *URL = [NSURL URLWithString:(NSString*)[[self resourceAtIndexPath:indexPath] url]];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [self createResourceUserPairAtIndexPath:indexPath];
+        });
         
+        NSURL *URL = [NSURL URLWithString:(NSString*)[[self resourceAtIndexPath:indexPath] url]];
         DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
         [vc setToolbarBackgroundColor:[UIColor whiteColor]];
         [vc setToolbarTintColor:[UIColor blackColor]];
@@ -189,6 +196,18 @@
     }
 }
 
+
+- (void) createResourceUserPairAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSMutableDictionary *rup = [NSMutableDictionary create:@"resource_user_pair"];
+    [rup setObject:[[self resourceAtIndexPath:indexPath] ID] forKey:@"resource_id"];
+    [rup setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
+    [rup setObject:@"completed" forKey:@"status"];
+
+    [rup saveRemote:^(id responseObject){
+        [self reloadScreen];
+    }failure:nil];
+}
 
 #pragma mark - Helpers
 
@@ -216,6 +235,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSMessagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"messagesViewController"];
     [vc setTrack:self.track];
+    [vc setAllMessages:messages]; 
     [vc setMyTracksIDs:myTracksIDs];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -223,5 +243,14 @@
 - (void) saveMyTrackButtonPressed
 {
     [saveToMyTracksButton updateMyTracks]; 
+}
+
+
+# pragma mark - Alert
+
+- (void) showAlertWithText:(NSString*)text
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [av show];
 }
 @end

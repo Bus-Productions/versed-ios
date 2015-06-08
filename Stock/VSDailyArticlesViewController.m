@@ -48,6 +48,7 @@
 - (void) setupData
 {
     self.articles = [[NSUserDefaults standardUserDefaults] objectForKey:@"dailyArticles"] ? [[[NSUserDefaults standardUserDefaults] objectForKey:@"dailyArticles"] mutableCopy] : [[NSMutableArray alloc] init];
+    completedResources = [[NSMutableArray alloc] init];
 }
 
 - (void) setupSidebar
@@ -74,10 +75,9 @@
 {
     [[LXServer shared] requestPath:@"/resources/daily.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.articles = [[[responseObject cleanDictionary] objectForKey:@"resources"] mutableCopy];
+        completedResources = [[responseObject objectForKey:@"completed_resources"] pluckIDs];
         if (NULL_TO_NIL(self.articles)) {
-            NSLog(@"saving");
             [self.articles saveLocalWithKey:@"dailyArticles" success:^(id responseObject){
-                NSLog(@"saved");
                 [self.tableView reloadData];
             }failure:nil];
         } else {
@@ -130,7 +130,7 @@
 {
     VSResourceTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
     
-    [cell configureWithResource:[self.articles objectAtIndex:indexPath.row]];
+    [cell configureWithResource:[self.articles objectAtIndex:indexPath.row] andCompletedResources:completedResources];
     
     return cell;
 }
@@ -147,8 +147,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
-        NSURL *URL = [NSURL URLWithString:(NSString*)[[self.articles objectAtIndex:indexPath.row] url]];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [self createResourceUserPairAtIndexPath:indexPath];
+        });
         
+        NSURL *URL = [NSURL URLWithString:(NSString*)[[self.articles objectAtIndex:indexPath.row] url]];
         DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
         [vc setToolbarBackgroundColor:[UIColor whiteColor]];
         [vc setToolbarTintColor:[UIColor blackColor]];
@@ -157,6 +160,19 @@
         self.navigationController.hidesBarsWhenVerticallyCompact = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+
+- (void) createResourceUserPairAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSMutableDictionary *rup = [NSMutableDictionary create:@"resource_user_pair"];
+    [rup setObject:[[self.articles objectAtIndex:indexPath.row] ID] forKey:@"resource_id"];
+    [rup setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
+    [rup setObject:@"completed" forKey:@"status"];
+    
+    [rup saveRemote:^(id responseObject){
+        [self reloadScreen];
+    }failure:nil];
 }
 
 @end

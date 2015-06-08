@@ -10,6 +10,5 @@
 
 @interface VSResourceTableViewCell : UITableViewCell
 
-- (void) configureWithResource:(NSMutableDictionary*)resource;
-
+- (void) configureWithResource:resource andCompletedResources:completedResources;
 @end

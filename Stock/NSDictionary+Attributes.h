@@ -63,4 +63,6 @@
 
 // messages
 - (NSString*) message;
+- (NSString*) creationDate;
+
 @end

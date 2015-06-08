@@ -20,9 +20,13 @@
     // Configure the view for the selected state
 }
 
-- (void) configureWithResource:(NSMutableDictionary *)resource
+- (void) configureWithResource:resource andCompletedResources:completedResources
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
-    [lbl setText:[resource objectForKey:@"headline"]];
+    if ([completedResources containsObject:resource] || [completedResources containsObject:[resource ID]]) {
+        [lbl setText:[NSString stringWithFormat:@"%@ %@", [resource objectForKey:@"headline"], @"(completed)"]];
+    } else {
+        [lbl setText:[resource objectForKey:@"headline"]];
+    }
 }
 @end
