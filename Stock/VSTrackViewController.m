@@ -198,7 +198,7 @@
     [rup setObject:@"completed" forKey:@"status"];
 
     [rup saveRemote:^(id responseObject){
-        [[LXSession thisSession] setUser:[responseObject objectForKey:@"user"]];
+        [[LXSession thisSession] setUser:[[responseObject objectForKey:@"user"] cleanDictionary]];
         [self reloadScreen];
     }failure:nil];
 }

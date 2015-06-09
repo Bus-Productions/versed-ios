@@ -159,6 +159,7 @@
 
 - (void) saveLocalWithKey:(NSString*)key success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback
 {
+    NSLog(@"self = %@", self);
     [[NSUserDefaults standardUserDefaults] setObject:self forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
     if (successCallback) {

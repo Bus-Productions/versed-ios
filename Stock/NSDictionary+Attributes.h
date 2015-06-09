@@ -49,6 +49,9 @@
 - (NSString*) name;
 - (NSString*) totalQuizzes;
 - (NSString*) companyID;
+- (NSString*) level;
+- (NSString*) numberTracksToNextLevel;
+- (NSString*) completedTracksCount;
 
 // track user pairs
 - (NSMutableArray *) trackUserPairs;

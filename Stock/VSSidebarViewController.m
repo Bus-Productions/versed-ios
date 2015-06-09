@@ -13,10 +13,13 @@
 #import "SWRevealViewController.h"
 #import "VSDailyArticlesViewController.h"
 #import "VSQuizLandingViewController.h"
+#import "VSProfileViewController.h"
+#import "VSProfileTableViewCell.h"
 
 #define ALL_TRACKS_IDENTIFIER @"allTracks"
 #define MY_TRACKS_IDENTIFIER @"myTracks"
 #define QUIZ_IDENTIFIER @"quiz"
+#define PROFILE_IDENTIFIER @"profile"
 #define DAILY_ARTICLES_IDENTIFIER @"dailyArticles"
 
 
@@ -43,6 +46,7 @@
 - (void) setupMenu
 {
     self.menuOptions = [[NSMutableArray alloc] init];
+    [self.menuOptions addObject:PROFILE_IDENTIFIER];
     [self.menuOptions addObject:ALL_TRACKS_IDENTIFIER];
     [self.menuOptions addObject:MY_TRACKS_IDENTIFIER];
     [self.menuOptions addObject:QUIZ_IDENTIFIER];
@@ -65,8 +69,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[self.menuOptions objectAtIndex:indexPath.row] forIndexPath:indexPath];
+    if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
+        return [self tableView:self.tableView profileCellForRowAtIndexPath:indexPath];
+    } else {
+        return [self tableView:self.tableView basicMenuCellForRowAtIndexPath:indexPath];
+    }
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView profileCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSProfileTableViewCell *profileCell = [self.tableView dequeueReusableCellWithIdentifier:PROFILE_IDENTIFIER forIndexPath:indexPath];
+    [profileCell configure];
+    return profileCell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView basicMenuCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[self.menuOptions objectAtIndex:indexPath.row] forIndexPath:indexPath];
     return cell;
 }
 
@@ -86,9 +105,12 @@
     } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:QUIZ_IDENTIFIER]) {
         vc = (VSQuizLandingViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizLandingViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"quizQuestionsNavigationViewController"];
-    }else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:DAILY_ARTICLES_IDENTIFIER]) {
+    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:DAILY_ARTICLES_IDENTIFIER]) {
         vc = (VSDailyArticlesViewController*)[storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesNavigationController"];
+    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
+        vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"profileNavigationController"];
     }
 
     [nc setViewControllers:@[vc] animated:NO];

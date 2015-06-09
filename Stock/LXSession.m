@@ -68,6 +68,14 @@ static LXSession* thisSession = nil;
     [self setCachedUser:u];
 }
 
+- (void) setUser:(NSMutableDictionary*)u success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback
+{
+    [self setUser:u];
+    if (successCallback) {
+        successCallback(@{});
+    }
+}
+
 - (NSMutableDictionary*) userFromDefaults
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

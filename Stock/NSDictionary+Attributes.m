@@ -53,6 +53,22 @@
     return [self objectForKey:@"status"];
 }
 
+- (NSString*) level
+{
+    return [self objectForKey:@"level"];
+}
+
+- (NSString*) numberTracksToNextLevel
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"number_tracks_to_next_level"]];
+}
+
+- (NSString*) completedTracksCount
+{
+    return [NSString stringWithFormat:@"%lu", (unsigned long)[[self objectForKey:@"completed_tracks"] count]];
+}
+
+
 - (NSString*) ID
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"id"]];

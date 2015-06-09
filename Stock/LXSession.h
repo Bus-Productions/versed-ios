@@ -16,6 +16,7 @@
 - (NSMutableDictionary*) user;
 - (NSMutableDictionary*) userFromDefaults;
 - (void) setUser:(NSMutableDictionary*)u;
+- (void) setUser:(NSMutableDictionary*)u success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
 
 //users
 @property (strong, nonatomic) NSMutableDictionary *cachedUser;
