@@ -165,12 +165,15 @@
 
 - (void) createResourceUserPairAtIndexPath:(NSIndexPath*)indexPath
 {
+    NSLog(@"id = %@", [[self.articles objectAtIndex:indexPath.row] ID]);
+        NSLog(@"rup = %@", [self.articles objectAtIndex:indexPath.row]);
     NSMutableDictionary *rup = [NSMutableDictionary create:@"resource_user_pair"];
     [rup setObject:[[self.articles objectAtIndex:indexPath.row] ID] forKey:@"resource_id"];
     [rup setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
     [rup setObject:@"completed" forKey:@"status"];
     
     [rup saveRemote:^(id responseObject){
+        [[LXSession thisSession] setUser:[responseObject objectForKey:@"user"]];
         [self reloadScreen];
     }failure:nil];
 }

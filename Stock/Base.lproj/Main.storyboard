@@ -56,7 +56,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ytp-i0-Xud">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ytp-i0-Xud">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -100,7 +100,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myTracks" rowHeight="64" id="eIz-Je-V2O">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myTracks" rowHeight="54" id="eIz-Je-V2O">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eIz-Je-V2O" id="eqE-H6-u0k">
@@ -120,7 +120,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allTracks" id="IPQ-n5-Sa2">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allTracks" rowHeight="56" id="IPQ-n5-Sa2">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IPQ-n5-Sa2" id="jKg-o9-ilP">
@@ -1533,9 +1533,9 @@
                                 </prototypes>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="48C-qU-IgO"/>
                                         <exclude reference="gN6-h5-y9o"/>
                                         <exclude reference="yh8-ZP-PQq"/>
-                                        <exclude reference="48C-qU-IgO"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -1620,10 +1620,10 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Nip-q0-pB4"/>
-                                <exclude reference="qfp-zc-Y31"/>
-                                <exclude reference="naA-HT-ZGi"/>
-                                <exclude reference="xDN-X5-ClG"/>
                                 <exclude reference="18n-HT-wzW"/>
+                                <exclude reference="naA-HT-ZGi"/>
+                                <exclude reference="qfp-zc-Y31"/>
+                                <exclude reference="xDN-X5-ClG"/>
                                 <exclude reference="woV-57-1Gq"/>
                                 <exclude reference="DO5-Qd-8EA"/>
                             </mask>

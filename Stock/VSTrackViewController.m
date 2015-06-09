@@ -46,9 +46,7 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    self.navigationController.hidesBarsOnSwipe = NO;
-    self.navigationController.hidesBarsWhenKeyboardAppears = NO;
-    self.navigationController.hidesBarsWhenVerticallyCompact = NO;
+    [self setupSwipeAndNavBar:NO];
     [self.navigationController setToolbarHidden:YES];
 }
 
@@ -174,12 +172,7 @@
         DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
         [vc setToolbarBackgroundColor:[UIColor whiteColor]];
         [vc setToolbarTintColor:[UIColor blackColor]];
-        self.navigationController.hidesBarsOnSwipe = YES;
-        self.navigationController.hidesBarsWhenKeyboardAppears = YES;
-        self.navigationController.hidesBarsWhenVerticallyCompact = YES;
-        if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-        }
+        [self setupSwipeAndNavBar:YES];
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
@@ -205,6 +198,7 @@
     [rup setObject:@"completed" forKey:@"status"];
 
     [rup saveRemote:^(id responseObject){
+        [[LXSession thisSession] setUser:[responseObject objectForKey:@"user"]];
         [self reloadScreen];
     }failure:nil];
 }
@@ -217,6 +211,16 @@
         return [[[self.track resources] objectAtIndex:indexPath.row] mutableCopy];
     }
     return nil;
+}
+
+- (void) setupSwipeAndNavBar:(BOOL)hide
+{
+    self.navigationController.hidesBarsOnSwipe = hide;
+    self.navigationController.hidesBarsWhenKeyboardAppears = hide;
+    self.navigationController.hidesBarsWhenVerticallyCompact = hide;
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
 }
 
 
