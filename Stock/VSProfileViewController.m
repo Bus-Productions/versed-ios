@@ -7,10 +7,10 @@
 //
 
 #import "VSProfileViewController.h"
-#import "SWRevealViewController.h"
 #import "VSProfileProgressTableViewCell.h"
 #import "VSProfileTopicsTableViewCell.h"
 #import "VSProfileSettingsTableViewCell.h"
+#import "SWRevealViewController.h"
 
 @interface VSProfileViewController ()
 
@@ -32,6 +32,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.view endEditing:YES];
+}
+
 # pragma mark - Setup
 
 - (void) setupSidebar
@@ -50,6 +55,7 @@
 - (void) setupKeyboard
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
@@ -139,7 +145,20 @@
 # pragma mark - Actions
 
 - (IBAction)updateSettingsAction:(id)sender {
-    
+    NSString *name = [((UITextField*)[[sender superview] viewWithTag:4]) text];
+    NSString *email = [((UITextField*)[[sender superview] viewWithTag:5]) text];
+    NSString *password = [((UITextField*)[[sender superview] viewWithTag:6]) text];
+    [self showHUDWithMessage:@"Saving"];
+    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@.json", [[[LXSession thisSession] user] ID]] withMethod:@"PUT" withParamaters:@{@"user": @{@"name": name, @"email": email, @"password": password}} authType:@"none" success:^(id responseObject){
+        [self hideHUD]; 
+        [self showHUDWithMessage:@"Saved!"];
+        [hud hide:YES afterDelay:1.0];
+        [self reloadScreen];
+    }failure:^(NSError *error){
+        [self hideHUD];
+        [self showHUDWithMessage:@"Didn't save!"];
+        [hud hide:YES afterDelay:1.0];
+    }];
 }
 
 
@@ -150,29 +169,58 @@
     NSDictionary *info = [notification userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGRect frame = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    NSLog(@"table = %f", self.tableHeight.constant);
-//    self.tableHeight.constant = self.tableHeight.constant-frame.size.height;
-    self.tableHeight.constant = -10000.0;
-    [self.tableView setNeedsUpdateConstraints];
-
+    CGFloat height = CGRectGetHeight(self.view.frame) - frame.origin.y;
+    self.tableViewBottomConstraint.constant = height;
     [UIView animateWithDuration:animationDuration animations:^{
-//        [self.tableView setContentInset:UIEdgeInsetsMake(0.f, 0.f, frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, 0.f)];
         [self.view layoutIfNeeded];
+        [self scrollToBottom];
     }];
+}
+
+- (void) keyboardDidShow:(NSNotification*)notification
+{
+    [self scrollToBottom];
 }
 
 - (void) keyboardWillHide:(NSNotification *)notification
 {
     NSDictionary *info = [notification userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    self.tableViewBottomConstraint.constant = 0;
     
-    self.tableHeight.constant = self.view.frame.size.height;
-    [self.tableView setNeedsUpdateConstraints];
-
     [UIView animateWithDuration:animationDuration animations:^{
-//        [self.tableView setContentInset:UIEdgeInsetsZero];
         [self.view layoutIfNeeded];
     }];
 }
+
+
+# pragma mark - Scrolling
+
+- (NSIndexPath*) lastIndexPath
+{
+    NSInteger lastSectionIndex = [self.tableView numberOfSections] - 1;
+    NSInteger lastRowIndex = [self.tableView numberOfRowsInSection:lastSectionIndex] - 1;
+    return [NSIndexPath indexPathForRow:lastRowIndex inSection:lastSectionIndex];
+}
+
+- (void) scrollToBottom
+{
+    [self.tableView scrollToRowAtIndexPath:[self lastIndexPath] atScrollPosition: UITableViewScrollPositionBottom animated: YES];
+}
+
+
+# pragma mark - HUDs
+
+- (void) showHUDWithMessage:(NSString*) message
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = message;
+}
+
+- (void) hideHUD
+{
+    [hud hide:YES];
+}
+
 
 @end

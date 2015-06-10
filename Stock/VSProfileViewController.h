@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface VSProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+{
+    MBProgressHUD *hud;
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *sections;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
 
 - (IBAction)updateSettingsAction:(id)sender;
 

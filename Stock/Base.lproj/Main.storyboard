@@ -276,12 +276,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XHr-Pa-foz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XHr-Pa-foz">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="600" id="CZO-vA-aN7"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="progressCell" rowHeight="160" id="3P5-o7-HCd" customClass="VSProfileProgressTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -360,7 +357,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VyT-yV-M60">
                                                     <rect key="frame" x="136" y="82" width="456" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvH-tj-ihy">
                                                     <rect key="frame" x="8" y="12" width="120" height="26"/>
@@ -433,7 +430,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="XHr-Pa-foz" firstAttribute="top" secondItem="KNr-Yz-BoZ" secondAttribute="top" id="Mo6-FG-32L"/>
-                            <constraint firstItem="XHr-Pa-foz" firstAttribute="bottom" secondItem="uHk-D1-2d0" secondAttribute="top" id="U5P-Mh-Wae"/>
+                            <constraint firstItem="uHk-D1-2d0" firstAttribute="top" secondItem="XHr-Pa-foz" secondAttribute="bottom" id="PGO-7y-Kjc"/>
                             <constraint firstItem="XHr-Pa-foz" firstAttribute="leading" secondItem="KNr-Yz-BoZ" secondAttribute="leading" id="j1z-QY-wn2"/>
                             <constraint firstAttribute="trailing" secondItem="XHr-Pa-foz" secondAttribute="trailing" id="lNS-GA-Yfa"/>
                         </constraints>
@@ -443,8 +440,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="slideButton" destination="Hjr-jj-G0o" id="Mef-bX-pcF"/>
-                        <outlet property="tableHeight" destination="CZO-vA-aN7" id="J9m-Mq-bNZ"/>
                         <outlet property="tableView" destination="XHr-Pa-foz" id="6VR-Gs-WCE"/>
+                        <outlet property="tableViewBottomConstraint" destination="PGO-7y-Kjc" id="uxF-HD-Org"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mmc-wh-XEO" userLabel="First Responder" sceneMemberID="firstResponder"/>

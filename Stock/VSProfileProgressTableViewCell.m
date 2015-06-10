@@ -7,6 +7,7 @@
 //
 
 #import "VSProfileProgressTableViewCell.h"
+#define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
 @implementation VSProfileProgressTableViewCell
 
@@ -30,7 +31,7 @@
     
     UILabel *tracks = (UILabel*)[self viewWithTag:3];
     NSString *trackCount = [[[LXSession thisSession] user] numberTracksToNextLevel];
-    [tracks setText:[NSString stringWithFormat:@"%@ %@ until you reach the next level", trackCount, [trackCount isEqualToString:@"1"] ? @"track" : @"tracks"]];
+    [tracks setText:[NSString stringWithFormat:@"%@ %@ until you reach the next level", !NULL_TO_NIL(trackCount) ? @"0" : trackCount, [trackCount isEqualToString:@"1"] ? @"track" : @"tracks"]];
 }
 
 @end

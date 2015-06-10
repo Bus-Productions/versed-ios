@@ -28,6 +28,7 @@
     NSMutableDictionary *user = [[LXSession thisSession] user];
     [name setText:[user name]];
     [email setText:[user email]];
+    [password setText:@""]; 
     [password setPlaceholder:@"Change Password"];
 }
 

@@ -38,10 +38,8 @@
 - (void) reloadScreen
 {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/companies/%@/leaderboard.json", [[[LXSession thisSession] user] companyID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
-        NSLog(@"response = %@", responseObject);
         self.leaders = [[responseObject cleanDictionary] objectForKey:@"leaders"];
         [self.leaders saveLocalWithKey:@"leaders"];
-        NSLog(@"self.leaders = %@", self.leaders);
         [self.tableView reloadData];
     }failure:nil];
 }

@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock/VSDailyArticlesViewController.m"
-            timestampString = "455486770.905219"
+            timestampString = "455657279.79176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-reloadScreen"
             landmarkType = "5">
             <Locations>

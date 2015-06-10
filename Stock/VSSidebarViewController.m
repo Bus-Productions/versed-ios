@@ -97,10 +97,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SWRevealViewController *revealViewController = self.revealViewController;
+
     UIViewController *vc;
-    UINavigationController *nc;
-    
+    UINavigationController *nc = [[UINavigationController alloc] init];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
     if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:ALL_TRACKS_IDENTIFIER]) {
         vc = (VSAllTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"mainNavigationController"];
@@ -117,9 +118,9 @@
         vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"profileNavigationController"];
     }
-
-    [nc setViewControllers:@[vc] animated:NO];
     
+    [nc setViewControllers:@[vc] animated:NO];
+
     [revealViewController setFrontViewController:nc];
     [revealViewController revealToggleAnimated:YES];
 }

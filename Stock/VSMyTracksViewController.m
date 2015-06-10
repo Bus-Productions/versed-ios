@@ -13,8 +13,6 @@
 #import "VSEmptyTableViewCell.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
-#define SAVE_TO_MY_TRACKS_TEXT @"Save To My Tracks"
-#define REMOVE_FROM_MY_TRACKS_TEXT @"Remove From My Tracks"
 
 @interface VSMyTracksViewController ()
 
@@ -68,16 +66,7 @@
 - (void) reloadScreen
 {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
-        self.myTracks = [[[responseObject cleanDictionary] objectForKey:@"my_tracks"] mutableCopy];
-        if (NULL_TO_NIL(self.myTracks)) {
-            [self.myTracks saveLocalWithKey:@"myTracks" success:^(id responseObject){
-                [self.tableView reloadData];
-            }failure:nil];
-        } else {
-            [[[NSMutableArray alloc] init] destroyLocalWithKey:@"myTracks" success:^(id responseObject){
-                [self.tableView reloadData];
-            }failure:nil];
-        }
+        [self handleResponse:responseObject];
     }failure:nil];
 }
 
@@ -157,7 +146,6 @@
     
     if (selectedCell) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
-        [self switchSaveToTracksText:(UIButton*)sender];
         [self updateMyTracks:[self.myTracks objectAtIndex:indexPath.row]];
     }
 }
@@ -165,20 +153,23 @@
 - (void) updateMyTracks:(NSMutableDictionary*)t
 {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [t ID]} authType:@"none" success:^(id responseObject){
-        self.myTracks = [[responseObject objectForKey:@"my_tracks"] mutableCopy];
-        [[self.myTracks cleanArray] saveLocalWithKey:@"myTracks"];
-        [self.tableView reloadData];
+        [self handleResponse:responseObject];
     }failure:nil];
 }
 
-- (void) switchSaveToTracksText:(UIButton*)btn
+
+- (void) handleResponse:(id)responseObject
 {
-    if ([btn.currentTitle isEqualToString:SAVE_TO_MY_TRACKS_TEXT]) {
-        [btn setTitle:REMOVE_FROM_MY_TRACKS_TEXT forState:UIControlStateNormal];
+    self.myTracks = [[[responseObject cleanDictionary] objectForKey:@"my_tracks"] mutableCopy];
+    if (NULL_TO_NIL(self.myTracks)) {
+        [self.myTracks saveLocalWithKey:@"myTracks" success:^(id responseObject){
+            [self.tableView reloadData];
+        }failure:nil];
     } else {
-        [btn setTitle:SAVE_TO_MY_TRACKS_TEXT forState:UIControlStateNormal];
+        [[[NSMutableArray alloc] init] destroyLocalWithKey:@"myTracks" success:^(id responseObject){
+            [self.tableView reloadData];
+        }failure:nil];
     }
 }
-
 
 @end

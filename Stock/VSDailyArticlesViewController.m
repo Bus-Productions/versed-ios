@@ -10,7 +10,7 @@
 #import "VSResourceTableViewCell.h"
 #import "SWRevealViewController.h"
 #import "VSEmptyTableViewCell.h"
-#import "DZNWebViewController.h"
+#import "SVWebViewController.h"
 
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
@@ -37,10 +37,7 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    self.navigationController.hidesBarsOnSwipe = NO;
-    self.navigationController.hidesBarsWhenKeyboardAppears = NO;
-    self.navigationController.hidesBarsWhenVerticallyCompact = NO;
-    [self.navigationController setToolbarHidden:YES];
+    [self hideNavBarOnSwipe:NO];
 }
 
 # pragma mark - Setup
@@ -75,7 +72,7 @@
 {
     [[LXServer shared] requestPath:@"/resources/daily.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.articles = [[[responseObject cleanDictionary] objectForKey:@"resources"] mutableCopy];
-        completedResources = [[responseObject objectForKey:@"completed_resources"] pluckIDs];
+        completedResources = [[responseObject objectForKey:@"completed_resources"] pluckIDs] ;
         if (NULL_TO_NIL(self.articles)) {
             [self.articles saveLocalWithKey:@"dailyArticles" success:^(id responseObject){
                 [self.tableView reloadData];
@@ -151,29 +148,27 @@
             [self createResourceUserPairAtIndexPath:indexPath];
         });
         
-        NSURL *URL = [NSURL URLWithString:(NSString*)[[self.articles objectAtIndex:indexPath.row] url]];
-        DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
-        [vc setToolbarBackgroundColor:[UIColor whiteColor]];
-        [vc setToolbarTintColor:[UIColor blackColor]];
-        self.navigationController.hidesBarsOnSwipe = YES;
-        self.navigationController.hidesBarsWhenKeyboardAppears = YES;
-        self.navigationController.hidesBarsWhenVerticallyCompact = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:(NSString*)[[self.articles objectAtIndex:indexPath.row] url]];
+        [self hideNavBarOnSwipe:YES];
+        [self.navigationController pushViewController:webViewController animated:YES];
     }
+}
+
+- (void) hideNavBarOnSwipe:(BOOL)hide
+{
+    self.navigationController.hidesBarsOnSwipe = hide;
 }
 
 
 - (void) createResourceUserPairAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSLog(@"id = %@", [[self.articles objectAtIndex:indexPath.row] ID]);
-        NSLog(@"rup = %@", [self.articles objectAtIndex:indexPath.row]);
     NSMutableDictionary *rup = [NSMutableDictionary create:@"resource_user_pair"];
     [rup setObject:[[self.articles objectAtIndex:indexPath.row] ID] forKey:@"resource_id"];
     [rup setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
     [rup setObject:@"completed" forKey:@"status"];
     
     [rup saveRemote:^(id responseObject){
-        [[LXSession thisSession] setUser:[responseObject objectForKey:@"user"]];
+        [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
         [self reloadScreen];
     }failure:nil];
 }

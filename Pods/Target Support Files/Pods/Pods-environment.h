@@ -48,12 +48,6 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 4
 
-// DZNWebViewController
-#define COCOAPODS_POD_AVAILABLE_DZNWebViewController
-#define COCOAPODS_VERSION_MAJOR_DZNWebViewController 2
-#define COCOAPODS_VERSION_MINOR_DZNWebViewController 0
-#define COCOAPODS_VERSION_PATCH_DZNWebViewController 0
-
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
 #define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
@@ -65,24 +59,6 @@
 #define COCOAPODS_VERSION_MAJOR_MGEvents 1
 #define COCOAPODS_VERSION_MINOR_MGEvents 0
 #define COCOAPODS_VERSION_PATCH_MGEvents 3
-
-// NJKWebViewProgress
-#define COCOAPODS_POD_AVAILABLE_NJKWebViewProgress
-#define COCOAPODS_VERSION_MAJOR_NJKWebViewProgress 0
-#define COCOAPODS_VERSION_MINOR_NJKWebViewProgress 2
-#define COCOAPODS_VERSION_PATCH_NJKWebViewProgress 3
-
-// NJKWebViewProgress/Core
-#define COCOAPODS_POD_AVAILABLE_NJKWebViewProgress_Core
-#define COCOAPODS_VERSION_MAJOR_NJKWebViewProgress_Core 0
-#define COCOAPODS_VERSION_MINOR_NJKWebViewProgress_Core 2
-#define COCOAPODS_VERSION_PATCH_NJKWebViewProgress_Core 3
-
-// NJKWebViewProgress/ProgressView
-#define COCOAPODS_POD_AVAILABLE_NJKWebViewProgress_ProgressView
-#define COCOAPODS_VERSION_MAJOR_NJKWebViewProgress_ProgressView 0
-#define COCOAPODS_VERSION_MINOR_NJKWebViewProgress_ProgressView 2
-#define COCOAPODS_VERSION_PATCH_NJKWebViewProgress_ProgressView 3
 
 // PromiseKit/Promise
 #define COCOAPODS_POD_AVAILABLE_PromiseKit_Promise
@@ -117,6 +93,18 @@
 // SGImageCache
 #define COCOAPODS_POD_AVAILABLE_SGImageCache
 #define COCOAPODS_VERSION_MAJOR_SGImageCache 2
-#define COCOAPODS_VERSION_MINOR_SGImageCache 1
-#define COCOAPODS_VERSION_PATCH_SGImageCache 1
+#define COCOAPODS_VERSION_MINOR_SGImageCache 2
+#define COCOAPODS_VERSION_PATCH_SGImageCache 0
+
+// SVWebViewController
+#define COCOAPODS_POD_AVAILABLE_SVWebViewController
+#define COCOAPODS_VERSION_MAJOR_SVWebViewController 1
+#define COCOAPODS_VERSION_MINOR_SVWebViewController 0
+#define COCOAPODS_VERSION_PATCH_SVWebViewController 0
+
+// SWRevealViewController
+#define COCOAPODS_POD_AVAILABLE_SWRevealViewController
+#define COCOAPODS_VERSION_MAJOR_SWRevealViewController 2
+#define COCOAPODS_VERSION_MINOR_SWRevealViewController 3
+#define COCOAPODS_VERSION_PATCH_SWRevealViewController 0
 

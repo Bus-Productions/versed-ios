@@ -8,7 +8,7 @@
 
 #import "VSTrackViewController.h"
 #import "VSResourceTableViewCell.h"
-#import "DZNWebViewController.h"
+#import "SVWebViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "VSCompletedTrackViewController.h"
 #import "VSPollsTableViewCell.h"
@@ -46,8 +46,7 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [self setupSwipeAndNavBar:NO];
-    [self.navigationController setToolbarHidden:YES];
+    [self hideNavBarOnSwipe:NO];
 }
 
 
@@ -168,12 +167,9 @@
             [self createResourceUserPairAtIndexPath:indexPath];
         });
         
-        NSURL *URL = [NSURL URLWithString:(NSString*)[[self resourceAtIndexPath:indexPath] url]];
-        DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
-        [vc setToolbarBackgroundColor:[UIColor whiteColor]];
-        [vc setToolbarTintColor:[UIColor blackColor]];
-        [self setupSwipeAndNavBar:YES];
-        [self.navigationController pushViewController:vc animated:YES];
+        SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:(NSString*)[[self resourceAtIndexPath:indexPath] url]];
+        [self hideNavBarOnSwipe:YES];
+        [self.navigationController pushViewController:webViewController animated:YES];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         NSMutableDictionary *p = [self.polls objectAtIndex:indexPath.row];
@@ -213,14 +209,9 @@
     return nil;
 }
 
-- (void) setupSwipeAndNavBar:(BOOL)hide
+- (void) hideNavBarOnSwipe:(BOOL)hide
 {
     self.navigationController.hidesBarsOnSwipe = hide;
-    self.navigationController.hidesBarsWhenKeyboardAppears = hide;
-    self.navigationController.hidesBarsWhenVerticallyCompact = hide;
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    }
 }
 
 
