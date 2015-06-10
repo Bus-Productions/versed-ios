@@ -23,13 +23,6 @@
     return count; 
 }
 
-- (NSMutableArray*) cleanArray
-{
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:self forKey:@"array"];
-    return [[[dict cleanDictionary] objectForKey:@"array"] mutableCopy];
-}
-
 - (NSString*)formattedPluralizationForSingular:(NSString*)sing orPlural:(NSString*)plural
 {
     if (self.count == 1) {

@@ -96,9 +96,6 @@
         self.polls = [[responseObject objectForKey:@"polls"] mutableCopy];
         self.track = [[responseObject objectForKey:@"track"] mutableCopy];
         [self.track setObject:[responseObject resources] forKey:@"resources"];
-        
-        NSLog(@"completed = %lu", (unsigned long)[completedResources count]);
-                NSLog(@"total = %lu", (unsigned long)[[self.track resources] count]);
         requesting = NO;
         [[self.track cleanDictionary] saveLocalWithKey:[self.track keyForTrack]
                              success:^(id responseObject) {
@@ -106,8 +103,8 @@
                              }
                              failure:nil];
         
-        NSMutableArray *myTracks = [[responseObject objectForKey:@"my_tracks"] mutableCopy];
-        [[myTracks cleanArray] saveLocalWithKey:@"myTracks"];
+        NSMutableArray *myTracks = [[(NSArray*)[responseObject objectForKey:@"my_tracks"] cleanArray] mutableCopy];
+        [myTracks saveLocalWithKey:@"myTracks"];
     }failure:^(NSError *error){
         requesting = NO;
     }];
@@ -224,7 +221,7 @@
 
 - (void) showCongratsScreen
 {
-    showCongrats = NO; 
+    showCongrats = NO;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSCongratsViewController *vc = (VSCongratsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"congratsViewController"];
     [vc setTrack:self.track];

@@ -43,7 +43,7 @@
 
 - (void) setupSidebar
 {
-    [self setTitle:@"All Learning Tracks"];
+    [self setTitle:@"All Tracks"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
     if (revealViewController)
@@ -83,13 +83,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[self.categoriesWithTracks objectAtIndex:section] objectForKey:@"tracks"] count];
+    return [[[[self.categoriesWithTracks objectAtIndex:section] objectForKey:@"category"] objectForKey:@"tracks"] count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableDictionary *track = [[[[self.categoriesWithTracks objectAtIndex:indexPath.section] objectForKey:@"tracks"] objectAtIndex:indexPath.row] mutableCopy];
+    NSMutableDictionary *track = [[[[[self.categoriesWithTracks objectAtIndex:indexPath.section] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row] mutableCopy];
     VSTrackTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
     [cell.saveButton addTarget:self action:@selector(saveButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cell configureWithTrack:track andIndexPath:indexPath];
@@ -100,7 +100,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (self.categoriesWithTracks.count > 0) {
-        return [[self.categoriesWithTracks objectAtIndex:section] objectForKey:@"category_name"];
+        return [[[self.categoriesWithTracks objectAtIndex:section] objectForKey:@"category"] objectForKey:@"category_name"];
     }
     return nil;
 }
@@ -109,7 +109,7 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSTrackViewController *vc = (VSTrackViewController*)[storyboard instantiateViewControllerWithIdentifier:@"trackViewController"];
-    [vc setTrack:[[[self.categoriesWithTracks objectAtIndex:indexPath.section] objectForKey:@"tracks"] objectAtIndex:indexPath.row]];
+    [vc setTrack:[[[[self.categoriesWithTracks objectAtIndex:indexPath.section] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row]];
     [self.navigationController pushViewController:vc animated:YES]; 
 }
 
@@ -122,14 +122,14 @@
     if (selectedCell) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
         [self switchSaveToTracksText:(UIButton*)sender];
-        [self updateMyTracks:[[[self.categoriesWithTracks objectAtIndex:indexPath.section] objectForKey:@"tracks"] objectAtIndex:indexPath.row]];
+        [self updateMyTracks:[[[[self.categoriesWithTracks objectAtIndex:indexPath.section] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row]];
     }
 }
 
 - (void) updateMyTracks:(NSMutableDictionary*)t
 {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [t ID]} authType:@"none" success:^(id responseObject){
-        [[[[responseObject objectForKey:@"my_tracks"] mutableCopy] cleanArray] saveLocalWithKey:@"myTracks"];
+        [[[(NSArray*)[responseObject objectForKey:@"my_tracks"] cleanArray] mutableCopy] saveLocalWithKey:@"myTracks"];
     }failure:nil];
 }
 
