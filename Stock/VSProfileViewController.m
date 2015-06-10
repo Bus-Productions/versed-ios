@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "VSProfileProgressTableViewCell.h"
 #import "VSProfileTopicsTableViewCell.h"
+#import "VSProfileSettingsTableViewCell.h"
 
 @interface VSProfileViewController ()
 
@@ -23,6 +24,7 @@
     [super viewDidLoad];
     [self setupSidebar];
     [self reloadScreen];
+    [self setupKeyboard];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,6 +45,12 @@
         [self.slideButton setAction: @selector(revealToggle:)];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
+}
+
+- (void) setupKeyboard
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void) reloadScreen
@@ -74,7 +82,7 @@
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"topics"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"settings"]) {
-        return 0;
+        return 1;
     }
     return 0;
 }
@@ -112,12 +120,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView settingsCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
-//    
-//    [cell configureWithText:@"Sorry there are no daily articles at this time!"];
-//    
-//    return cell;
-    return [[UITableViewCell alloc] init];
+    VSProfileSettingsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"settingsCell" forIndexPath:indexPath];
+    
+    [cell configure];
+    
+    return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,7 +133,46 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80.0f;
+    return 160.0f;
+}
+
+# pragma mark - Actions
+
+- (IBAction)updateSettingsAction:(id)sender {
+    
+}
+
+
+# pragma mark - Keyboard
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    NSDictionary *info = [notification userInfo];
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    CGRect frame = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSLog(@"table = %f", self.tableHeight.constant);
+//    self.tableHeight.constant = self.tableHeight.constant-frame.size.height;
+    self.tableHeight.constant = -10000.0;
+    [self.tableView setNeedsUpdateConstraints];
+
+    [UIView animateWithDuration:animationDuration animations:^{
+//        [self.tableView setContentInset:UIEdgeInsetsMake(0.f, 0.f, frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, 0.f)];
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void) keyboardWillHide:(NSNotification *)notification
+{
+    NSDictionary *info = [notification userInfo];
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    self.tableHeight.constant = self.view.frame.size.height;
+    [self.tableView setNeedsUpdateConstraints];
+
+    [UIView animateWithDuration:animationDuration animations:^{
+//        [self.tableView setContentInset:UIEdgeInsetsZero];
+        [self.view layoutIfNeeded];
+    }];
 }
 
 @end

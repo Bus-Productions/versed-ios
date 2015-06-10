@@ -13,5 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *sections;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableHeight;
+
+- (IBAction)updateSettingsAction:(id)sender;
 
 @end

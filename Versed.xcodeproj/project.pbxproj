@@ -44,6 +44,7 @@
 		764060D41B2745D0004FA5CC /* VSProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060D31B2745D0004FA5CC /* VSProfileViewController.m */; };
 		764060D81B274BFC004FA5CC /* VSProfileProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060D71B274BFC004FA5CC /* VSProfileProgressTableViewCell.m */; };
 		764060DB1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060DA1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m */; };
+		764060DE1B279472004FA5CC /* VSProfileSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060DD1B279472004FA5CC /* VSProfileSettingsTableViewCell.m */; };
 		7664081E1B1E1383006272E8 /* VSCompletedTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */; };
 		766408211B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */; };
 		766408241B1E1AE0006272E8 /* VSSaveToMyTracksButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */; };
@@ -156,6 +157,8 @@
 		764060D71B274BFC004FA5CC /* VSProfileProgressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSProfileProgressTableViewCell.m; sourceTree = "<group>"; };
 		764060D91B2773D7004FA5CC /* VSProfileTopicsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSProfileTopicsTableViewCell.h; sourceTree = "<group>"; };
 		764060DA1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSProfileTopicsTableViewCell.m; sourceTree = "<group>"; };
+		764060DC1B279472004FA5CC /* VSProfileSettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSProfileSettingsTableViewCell.h; sourceTree = "<group>"; };
+		764060DD1B279472004FA5CC /* VSProfileSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSProfileSettingsTableViewCell.m; sourceTree = "<group>"; };
 		7664081C1B1E1383006272E8 /* VSCompletedTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCompletedTrackViewController.h; sourceTree = "<group>"; };
 		7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCompletedTrackViewController.m; sourceTree = "<group>"; };
 		7664081F1B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUsersCompletedTrackTableViewCell.h; sourceTree = "<group>"; };
@@ -507,6 +510,8 @@
 				764060D71B274BFC004FA5CC /* VSProfileProgressTableViewCell.m */,
 				764060D91B2773D7004FA5CC /* VSProfileTopicsTableViewCell.h */,
 				764060DA1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m */,
+				764060DC1B279472004FA5CC /* VSProfileSettingsTableViewCell.h */,
+				764060DD1B279472004FA5CC /* VSProfileSettingsTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -673,6 +678,7 @@
 				760829721B1791EC0053E29F /* VSForgotPasswordViewController.m in Sources */,
 				768CE0771B026E1300E1E2E6 /* VSLoginViewController.m in Sources */,
 				7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */,
+				764060DE1B279472004FA5CC /* VSProfileSettingsTableViewCell.m in Sources */,
 				766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */,
 				768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */,
 				768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */,
