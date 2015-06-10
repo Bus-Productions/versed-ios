@@ -224,8 +224,9 @@
     showCongrats = NO;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSCongratsViewController *vc = (VSCongratsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"congratsViewController"];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [vc setTrack:self.track];
-    [self.navigationController presentViewController:vc animated:YES completion:nil];
+    [self.navigationController presentViewController:nc animated:YES completion:nil];
 }
 
 # pragma mark - Actions

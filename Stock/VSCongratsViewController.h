@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSCongratsViewController : UIViewController
+@interface VSCongratsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) NSMutableDictionary *track;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *sections;
 
 - (IBAction)notNowAction:(id)sender;
-
-@property (strong, nonatomic) NSMutableDictionary *track; 
+- (IBAction)submitFeedbackAction:(id)sender;
 
 @end
