@@ -75,7 +75,7 @@
 {
     [[LXServer shared] requestPath:@"/resources/daily.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.articles = [[[responseObject cleanDictionary] objectForKey:@"resources"] mutableCopy];
-        completedResources = [[responseObject objectForKey:@"completed_resources"] pluckIDs];
+        completedResources = [[responseObject objectForKey:@"completed_resources"] pluckIDs] ;
         if (NULL_TO_NIL(self.articles)) {
             [self.articles saveLocalWithKey:@"dailyArticles" success:^(id responseObject){
                 [self.tableView reloadData];
@@ -165,15 +165,13 @@
 
 - (void) createResourceUserPairAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSLog(@"id = %@", [[self.articles objectAtIndex:indexPath.row] ID]);
-        NSLog(@"rup = %@", [self.articles objectAtIndex:indexPath.row]);
     NSMutableDictionary *rup = [NSMutableDictionary create:@"resource_user_pair"];
     [rup setObject:[[self.articles objectAtIndex:indexPath.row] ID] forKey:@"resource_id"];
     [rup setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
     [rup setObject:@"completed" forKey:@"status"];
     
     [rup saveRemote:^(id responseObject){
-        [[LXSession thisSession] setUser:[responseObject objectForKey:@"user"]];
+        [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
         [self reloadScreen];
     }failure:nil];
 }

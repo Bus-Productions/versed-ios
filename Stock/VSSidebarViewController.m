@@ -98,7 +98,7 @@
 {
     SWRevealViewController *revealViewController = self.revealViewController;
     UIViewController *vc;
-    UINavigationController *nc;
+    UINavigationController *nc = [[UINavigationController alloc] init];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:ALL_TRACKS_IDENTIFIER]) {
@@ -117,7 +117,7 @@
         vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"profileNavigationController"];
     }
-
+    
     [nc setViewControllers:@[vc] animated:NO];
     
     [revealViewController setFrontViewController:nc];
