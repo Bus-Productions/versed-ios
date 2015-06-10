@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSSignupViewController : UIViewController
+@interface VSSignupViewController : UIViewController <UITextFieldDelegate>
+{
+    MBProgressHUD* hud;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmationField;
+
+@property (strong, nonatomic) IBOutlet UIButton *signUpButton;
+@property (strong, nonatomic) IBOutlet UIButton *hasAccountButton;
 
 @property (strong, nonatomic) NSMutableDictionary *signingUpUser;
 
