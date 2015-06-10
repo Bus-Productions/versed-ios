@@ -807,6 +807,49 @@
             </objects>
             <point key="canvasLocation" x="4841" y="-578"/>
         </scene>
+        <!--Congrats View Controller-->
+        <scene sceneID="8zW-RA-UJb">
+            <objects>
+                <viewController storyboardIdentifier="congratsViewController" id="QDL-zj-h0O" customClass="VSCongratsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XVC-jK-FsC"/>
+                        <viewControllerLayoutGuide type="bottom" id="fIR-JL-4V8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K6d-SD-ng0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Congrats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFN-Zd-mqB">
+                                <rect key="frame" x="16" y="86" width="568" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPk-mO-aVv">
+                                <rect key="frame" x="27" y="206" width="547" height="34"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="notNowAction:" destination="QDL-zj-h0O" eventType="touchUpInside" id="b3a-FH-eFR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DFN-Zd-mqB" firstAttribute="trailing" secondItem="K6d-SD-ng0" secondAttribute="trailingMargin" id="0pX-m6-Oeh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nPk-mO-aVv" secondAttribute="trailing" constant="10" id="F3O-QZ-Kqm"/>
+                            <constraint firstItem="DFN-Zd-mqB" firstAttribute="top" secondItem="XVC-jK-FsC" secondAttribute="bottom" constant="66" id="GM2-Ry-veN"/>
+                            <constraint firstItem="nPk-mO-aVv" firstAttribute="leading" secondItem="K6d-SD-ng0" secondAttribute="leadingMargin" constant="11" id="JAg-v0-Ij0"/>
+                            <constraint firstItem="nPk-mO-aVv" firstAttribute="top" secondItem="DFN-Zd-mqB" secondAttribute="bottom" constant="92" id="dD1-gU-E8w"/>
+                            <constraint firstItem="DFN-Zd-mqB" firstAttribute="leading" secondItem="K6d-SD-ng0" secondAttribute="leadingMargin" id="kN3-Sk-KYB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hx3-pg-zFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4860" y="123"/>
+        </scene>
         <!--Quiz Results View Controller-->
         <scene sceneID="QYt-6L-xfM">
             <objects>
@@ -1490,7 +1533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5VU-HM-Jn1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4841" y="481"/>
+            <point key="canvasLocation" x="4860" y="812"/>
         </scene>
         <!--Poll Question View Controller-->
         <scene sceneID="HPK-hR-UIB">
@@ -1589,7 +1632,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzv-0N-cdk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5516" y="481"/>
+            <point key="canvasLocation" x="5535" y="812"/>
         </scene>
         <!--Poll Results View Controller-->
         <scene sceneID="V53-7x-QHy">
@@ -1657,7 +1700,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G9c-bn-iZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6177" y="481"/>
+            <point key="canvasLocation" x="6196" y="812"/>
         </scene>
         <!--Messages View Controller-->
         <scene sceneID="61h-Xw-SgA">
@@ -1872,7 +1915,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qkw-8D-AhS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4841" y="1150"/>
+            <point key="canvasLocation" x="4860" y="1481"/>
         </scene>
     </scenes>
 </document>

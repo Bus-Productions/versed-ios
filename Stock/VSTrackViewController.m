@@ -15,6 +15,7 @@
 #import "VSPollQuestionViewController.h"
 #import "VSPollResultsViewController.h"
 #import "VSMessagesViewController.h"
+#import "VSCongratsViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -41,6 +42,9 @@
 {
     [super viewWillAppear:animated];
     [self setupNavigationBar];
+    if (showCongrats) {
+        [self showCongratsScreen];
+    }
     [self reloadScreen];
 }
 
@@ -92,6 +96,9 @@
         self.polls = [[responseObject objectForKey:@"polls"] mutableCopy];
         self.track = [[responseObject objectForKey:@"track"] mutableCopy];
         [self.track setObject:[responseObject resources] forKey:@"resources"];
+        
+        NSLog(@"completed = %lu", (unsigned long)[completedResources count]);
+                NSLog(@"total = %lu", (unsigned long)[[self.track resources] count]);
         requesting = NO;
         [[self.track cleanDictionary] saveLocalWithKey:[self.track keyForTrack]
                              success:^(id responseObject) {
@@ -192,10 +199,11 @@
     [rup setObject:[[self resourceAtIndexPath:indexPath] ID] forKey:@"resource_id"];
     [rup setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
     [rup setObject:@"completed" forKey:@"status"];
-
+    showCongrats = completedResources.count == [[self.track resources] count] - 1; //just completed last resource
     [rup saveRemote:^(id responseObject){
-        [[LXSession thisSession] setUser:[[responseObject objectForKey:@"user"] cleanDictionary]];
-        [self reloadScreen];
+        [[LXSession thisSession] setUser:[[responseObject objectForKey:@"user"] cleanDictionary] success:^(id responseObject){
+            [self reloadScreen];
+        }failure:nil];
     }failure:nil];
 }
 
@@ -214,6 +222,14 @@
     self.navigationController.hidesBarsOnSwipe = hide;
 }
 
+- (void) showCongratsScreen
+{
+    showCongrats = NO; 
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSCongratsViewController *vc = (VSCongratsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"congratsViewController"];
+    [vc setTrack:self.track];
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
 
 # pragma mark - Actions
 
