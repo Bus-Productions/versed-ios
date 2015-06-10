@@ -7,6 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VSMyTracksViewController.h"
+#import "VSQuizQuestionViewController.h"
+#import "VSAllTracksViewController.h"
+#import "SWRevealViewController.h"
+#import "VSDailyArticlesViewController.h"
+#import "VSQuizLandingViewController.h"
+#import "VSProfileViewController.h"
+#import "VSProfileTableViewCell.h"
+
 
 @interface VSSidebarViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

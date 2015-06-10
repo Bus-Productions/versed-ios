@@ -7,10 +7,10 @@
 //
 
 #import "VSProfileViewController.h"
-#import "SWRevealViewController.h"
 #import "VSProfileProgressTableViewCell.h"
 #import "VSProfileTopicsTableViewCell.h"
 #import "VSProfileSettingsTableViewCell.h"
+#import "SWRevealViewController.h"
 
 @interface VSProfileViewController ()
 

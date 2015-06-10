@@ -10,7 +10,7 @@
 #import "VSResourceTableViewCell.h"
 #import "SWRevealViewController.h"
 #import "VSEmptyTableViewCell.h"
-#import "DZNWebViewController.h"
+#import "SVWebViewController.h"
 
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
@@ -37,10 +37,7 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    self.navigationController.hidesBarsOnSwipe = NO;
-    self.navigationController.hidesBarsWhenKeyboardAppears = NO;
-    self.navigationController.hidesBarsWhenVerticallyCompact = NO;
-    [self.navigationController setToolbarHidden:YES];
+    [self hideNavBarOnSwipe:NO];
 }
 
 # pragma mark - Setup
@@ -151,15 +148,15 @@
             [self createResourceUserPairAtIndexPath:indexPath];
         });
         
-        NSURL *URL = [NSURL URLWithString:(NSString*)[[self.articles objectAtIndex:indexPath.row] url]];
-        DZNWebViewController *vc = [[DZNWebViewController alloc] initWithURL:URL];
-        [vc setToolbarBackgroundColor:[UIColor whiteColor]];
-        [vc setToolbarTintColor:[UIColor blackColor]];
-        self.navigationController.hidesBarsOnSwipe = YES;
-        self.navigationController.hidesBarsWhenKeyboardAppears = YES;
-        self.navigationController.hidesBarsWhenVerticallyCompact = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:(NSString*)[[self.articles objectAtIndex:indexPath.row] url]];
+        [self hideNavBarOnSwipe:YES];
+        [self.navigationController pushViewController:webViewController animated:YES];
     }
+}
+
+- (void) hideNavBarOnSwipe:(BOOL)hide
+{
+    self.navigationController.hidesBarsOnSwipe = hide;
 }
 
 

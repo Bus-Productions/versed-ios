@@ -66,7 +66,6 @@
 		768CE0901B03EF1900E1E2E6 /* VSAllTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE08F1B03EF1900E1E2E6 /* VSAllTracksViewController.m */; };
 		768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0921B03EF5000E1E2E6 /* VSMyTracksViewController.m */; };
 		768CE0961B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */; };
-		768CE09B1B03F05D00E1E2E6 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE09A1B03F05D00E1E2E6 /* SWRevealViewController.m */; };
 		76DB3F271B0D2428004EE88A /* VSQuizResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */; };
 		76DB3F2D1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2C1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.m */; };
 		76DB3F301B0D4058004EE88A /* NSMutableArray+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2F1B0D4058004EE88A /* NSMutableArray+Attributes.m */; };
@@ -201,8 +200,6 @@
 		768CE0921B03EF5000E1E2E6 /* VSMyTracksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSMyTracksViewController.m; sourceTree = "<group>"; };
 		768CE0941B03EF7E00E1E2E6 /* VSQuizQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizQuestionViewController.h; sourceTree = "<group>"; };
 		768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizQuestionViewController.m; sourceTree = "<group>"; };
-		768CE0991B03F05D00E1E2E6 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		768CE09A1B03F05D00E1E2E6 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		76DB3F251B0D2428004EE88A /* VSQuizResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizResultsViewController.h; sourceTree = "<group>"; };
 		76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizResultsViewController.m; sourceTree = "<group>"; };
 		76DB3F2B1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSOverallResultsTableViewCell.h; sourceTree = "<group>"; };
@@ -262,7 +259,6 @@
 				768CE07E1B03BADC00E1E2E6 /* Sidebar */,
 				28A533E31ACF69400049B3F7 /* LXV */,
 				7666FC2D1B06335E00051C93 /* TableViewCells */,
-				768CE09C1B03F06300E1E2E6 /* SWRevealViewController */,
 				28A533C11ACF688A0049B3F7 /* AppDelegate.h */,
 				28A533C21ACF688A0049B3F7 /* AppDelegate.m */,
 				28A5340B1AD0A64F0049B3F7 /* MobileLogin.storyboard */,
@@ -525,15 +521,6 @@
 			name = Sidebar;
 			sourceTree = "<group>";
 		};
-		768CE09C1B03F06300E1E2E6 /* SWRevealViewController */ = {
-			isa = PBXGroup;
-			children = (
-				768CE0991B03F05D00E1E2E6 /* SWRevealViewController.h */,
-				768CE09A1B03F05D00E1E2E6 /* SWRevealViewController.m */,
-			);
-			name = SWRevealViewController;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -709,7 +696,6 @@
 				7666FC2C1B06335600051C93 /* VSTrackTableViewCell.m in Sources */,
 				76DB3F271B0D2428004EE88A /* VSQuizResultsViewController.m in Sources */,
 				760F5D661B0BCF4A0038FF1A /* VSQuizLandingViewController.m in Sources */,
-				768CE09B1B03F05D00E1E2E6 /* SWRevealViewController.m in Sources */,
 				760CFD401B25D5BC00A9C875 /* VSMessageTableViewCell.m in Sources */,
 				28A533F21ACF698F0049B3F7 /* LXString+NSString.m in Sources */,
 				764060DB1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m in Sources */,
