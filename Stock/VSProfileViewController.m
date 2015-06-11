@@ -169,7 +169,7 @@
     NSDictionary *info = [notification userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGRect frame = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat height = CGRectGetHeight(self.view.frame) - frame.origin.y;
+    CGFloat height = CGRectGetHeight(self.view.frame) + self.navigationController.navigationBar.frame.size.height - frame.origin.y + 20.0;
     self.tableViewBottomConstraint.constant = height;
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];

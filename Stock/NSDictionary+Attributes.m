@@ -266,6 +266,16 @@
     return [[self objectForKey:@"faqs"] mutableCopy];
 }
 
+- (NSMutableArray*) strengths
+{
+    return [[self objectForKey:@"strengths"] mutableCopy];
+}
+
+- (NSMutableArray*) weaknesses
+{
+    return [[self objectForKey:@"weaknesses"] mutableCopy];
+}
+
 - (NSString*) pollAnswerID
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"poll_answer_id"]];

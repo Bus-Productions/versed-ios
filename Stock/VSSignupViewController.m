@@ -164,7 +164,7 @@
         
         [self.signingUpUser saveRemote:^(id responseObject){
             if ([responseObject objectForKey:@"user"]) {
-                self.signingUpUser = [[responseObject cleanDictionary] objectForKey:@"user"];
+                self.signingUpUser = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
                 [[LXSession thisSession] setUser:self.signingUpUser];
                 [self.signingUpUser saveLocal];
             }
@@ -179,7 +179,7 @@
             [self hideHUD];
         }failure:^(NSError *error) {
             [self hideHUD];
-            [self showAlertWithText:@"Only certain companies are able to use Versed at this time. Contact your system administrator for more details." andTitle:@"Sorry, your company isn't using Versed."];
+            [self showAlertWithText:[error localizedDescription] andTitle:@"Sorry!"];
         }];
         
     } else {
