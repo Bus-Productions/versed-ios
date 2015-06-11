@@ -185,7 +185,7 @@
         [qr setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
         [self.quizResults addObject:qr];
         [qr saveRemote:^(id responseObject){
-            [[LXSession thisSession] setUser:[[responseObject objectForKey:@"user"] mutableCopy]];
+            [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
             [self.tableView reloadData];
         }failure:nil];
     });
