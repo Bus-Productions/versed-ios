@@ -53,6 +53,8 @@
 - (NSString*) level;
 - (NSString*) numberTracksToNextLevel;
 - (NSString*) completedTracksCount;
+- (NSMutableArray*) strengths;
+- (NSMutableArray*) weaknesses;
 
 // track user pairs
 - (NSMutableArray *) trackUserPairs;

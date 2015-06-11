@@ -33,6 +33,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [timer invalidate];
+}
 
 # pragma mark - Setup
 
