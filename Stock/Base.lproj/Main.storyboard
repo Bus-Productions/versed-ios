@@ -2224,17 +2224,11 @@
                                         <rect key="frame" x="8" y="4" width="530" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="201" id="YCP-1b-Wxv"/>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="yBH-AS-IBh"/>
                                         </constraints>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="YCP-1b-Wxv"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
                                             <outlet property="delegate" destination="bYK-A3-QIn" id="Y2f-kl-ddM"/>
                                         </connections>
@@ -2258,50 +2252,22 @@
                                     <constraint firstAttribute="bottom" secondItem="fZf-VG-55f" secondAttribute="bottom" constant="4" id="5FM-hK-YME"/>
                                     <constraint firstAttribute="trailing" secondItem="nkT-Id-hKN" secondAttribute="trailing" id="ETr-1s-dmV"/>
                                     <constraint firstItem="nkT-Id-hKN" firstAttribute="leading" secondItem="fZf-VG-55f" secondAttribute="trailing" constant="2" id="Hnd-rn-kLl"/>
-                                    <constraint firstItem="nkT-Id-hKN" firstAttribute="leading" secondItem="fZf-VG-55f" secondAttribute="trailing" constant="-4" id="Vtr-hG-WVu"/>
                                     <constraint firstItem="fZf-VG-55f" firstAttribute="top" secondItem="jEA-lU-m3U" secondAttribute="top" constant="4" id="gd7-ey-arN"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="mig-7z-SFf"/>
                                     <constraint firstItem="fZf-VG-55f" firstAttribute="leading" secondItem="jEA-lU-m3U" secondAttribute="leading" constant="8" id="msM-YL-u2J"/>
                                     <constraint firstAttribute="bottom" secondItem="nkT-Id-hKN" secondAttribute="bottom" constant="3" id="rfe-xZ-3Q5"/>
-                                    <constraint firstItem="fZf-VG-55f" firstAttribute="leading" secondItem="jEA-lU-m3U" secondAttribute="leading" constant="36" id="saj-Yr-5Kg"/>
-                                    <constraint firstAttribute="trailing" secondItem="fZf-VG-55f" secondAttribute="trailing" constant="60" id="xgx-5T-FHG"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="saj-Yr-5Kg"/>
-                                        <exclude reference="xgx-5T-FHG"/>
-                                        <exclude reference="Vtr-hG-WVu"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jEA-lU-m3U" firstAttribute="leading" secondItem="kSk-zu-VAK" secondAttribute="leading" id="18n-HT-wzW"/>
                             <constraint firstItem="kSk-zu-VAK" firstAttribute="leading" secondItem="jEA-lU-m3U" secondAttribute="leading" id="5yD-xp-QgW"/>
-                            <constraint firstItem="nkT-Id-hKN" firstAttribute="top" secondItem="kSk-zu-VAK" secondAttribute="bottom" id="DO5-Qd-8EA"/>
                             <constraint firstItem="kSk-zu-VAK" firstAttribute="top" secondItem="kiL-9x-0Nh" secondAttribute="top" id="G6l-K9-j83"/>
-                            <constraint firstItem="kSk-zu-VAK" firstAttribute="leading" secondItem="jEA-lU-m3U" secondAttribute="leading" id="Nip-q0-pB4"/>
                             <constraint firstItem="jEA-lU-m3U" firstAttribute="top" secondItem="kSk-zu-VAK" secondAttribute="bottom" id="f89-C4-2EV"/>
                             <constraint firstItem="kSk-zu-VAK" firstAttribute="trailing" secondItem="jEA-lU-m3U" secondAttribute="trailing" id="kNO-LI-4qN"/>
-                            <constraint firstAttribute="width" secondItem="jEA-lU-m3U" secondAttribute="width" id="naA-HT-ZGi"/>
-                            <constraint firstItem="jEA-lU-m3U" firstAttribute="leading" secondItem="kSk-zu-VAK" secondAttribute="leading" id="qfp-zc-Y31"/>
                             <constraint firstItem="kSk-zu-VAK" firstAttribute="leading" secondItem="kiL-9x-0Nh" secondAttribute="leading" priority="900" id="tOA-1Y-cLO"/>
                             <constraint firstAttribute="trailing" secondItem="kSk-zu-VAK" secondAttribute="trailing" priority="900" id="v9h-xT-6SG"/>
-                            <constraint firstItem="ebb-f8-pim" firstAttribute="top" secondItem="jEA-lU-m3U" secondAttribute="bottom" constant="32" id="woV-57-1Gq"/>
-                            <constraint firstItem="jEA-lU-m3U" firstAttribute="bottom" secondItem="ebb-f8-pim" secondAttribute="top" priority="900" id="xDN-X5-ClG"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Nip-q0-pB4"/>
-                                <exclude reference="18n-HT-wzW"/>
-                                <exclude reference="naA-HT-ZGi"/>
-                                <exclude reference="qfp-zc-Y31"/>
-                                <exclude reference="xDN-X5-ClG"/>
-                                <exclude reference="woV-57-1Gq"/>
-                                <exclude reference="DO5-Qd-8EA"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Hippocampus" id="P1U-Jn-eqJ"/>
                     <connections>

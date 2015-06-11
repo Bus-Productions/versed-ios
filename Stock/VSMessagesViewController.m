@@ -203,7 +203,7 @@
     NSDictionary *info = [sender userInfo];
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGRect frame = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    self.bottomConstraint.constant = frame.origin.y - CGRectGetHeight(self.view.frame)-([UIApplication sharedApplication].statusBarFrame.size.height-20.0);
+    self.bottomConstraint.constant = frame.origin.y - (CGRectGetHeight(self.view.frame) + self.navigationController.navigationBar.frame.size.height)-([UIApplication sharedApplication].statusBarFrame.size.height);
     
     self.tableviewHeightConstraint.constant = self.tableviewHeightConstraint.constant - frame.size.height;
     
