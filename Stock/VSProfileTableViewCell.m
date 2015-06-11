@@ -24,9 +24,13 @@
 {
     UILabel *name = (UILabel*)[self viewWithTag:1];
     [name setText:[[[LXSession thisSession] user] name]];
+    [name setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:20.0f]];
+    [name setTextColor:[UIColor whiteColor]];
     
     UILabel *level = (UILabel*)[self viewWithTag:2];
-    [level setText:[[[LXSession thisSession] user] level]];
+    [level setText:[NSString stringWithFormat:@"Level: %@", [[[[LXSession thisSession] user] level] uppercaseString]]];
+    [level setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
+    [level setTextColor:[UIColor whiteColor]];
 }
 
 @end

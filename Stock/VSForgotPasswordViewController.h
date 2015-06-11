@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSForgotPasswordViewController : UIViewController
+@interface VSForgotPasswordViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *forgotPasswordTextField;
+
+@property (strong, nonatomic) IBOutlet UIButton *resetPasswordButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+
+@property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 - (IBAction)resetPasswordAction:(id)sender;
 - (IBAction)backToLoginAction:(id)sender;

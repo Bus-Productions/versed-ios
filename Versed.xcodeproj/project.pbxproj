@@ -23,6 +23,10 @@
 		28793F261B2898E200E2998F /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28793F1A1B2898C800E2998F /* SourceSansPro-Regular.otf */; };
 		28793F271B2898E200E2998F /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28793F1B1B2898C800E2998F /* SourceSansPro-Semibold.otf */; };
 		28793F281B2898E200E2998F /* SourceSansPro-SemiboldIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28793F1C1B2898C800E2998F /* SourceSansPro-SemiboldIt.otf */; };
+		28793F2B1B29E52C00E2998F /* settingsbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 28793F2A1B29E52C00E2998F /* settingsbutton.png */; };
+		28793F311B29E9D900E2998F /* burgermenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 28793F2E1B29E9D900E2998F /* burgermenu.png */; };
+		28793F321B29E9D900E2998F /* burgermenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28793F2F1B29E9D900E2998F /* burgermenu@2x.png */; };
+		28793F331B29E9D900E2998F /* burgermenu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28793F301B29E9D900E2998F /* burgermenu@3x.png */; };
 		28A533C01ACF688A0049B3F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A533BF1ACF688A0049B3F7 /* main.m */; };
 		28A533C31ACF688A0049B3F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A533C21ACF688A0049B3F7 /* AppDelegate.m */; };
 		28A533C91ACF688A0049B3F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A533C71ACF688A0049B3F7 /* Main.storyboard */; };
@@ -127,6 +131,10 @@
 		28793F1A1B2898C800E2998F /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		28793F1B1B2898C800E2998F /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		28793F1C1B2898C800E2998F /* SourceSansPro-SemiboldIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-SemiboldIt.otf"; sourceTree = "<group>"; };
+		28793F2A1B29E52C00E2998F /* settingsbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsbutton.png; sourceTree = "<group>"; };
+		28793F2E1B29E9D900E2998F /* burgermenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burgermenu.png; sourceTree = "<group>"; };
+		28793F2F1B29E9D900E2998F /* burgermenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burgermenu@2x.png"; sourceTree = "<group>"; };
+		28793F301B29E9D900E2998F /* burgermenu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burgermenu@3x.png"; sourceTree = "<group>"; };
 		28A533BA1ACF688A0049B3F7 /* Versed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Versed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A533BE1ACF688A0049B3F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28A533BF1ACF688A0049B3F7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -298,6 +306,7 @@
 		28793F051B288E0300E2998F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				28793F291B29E52000E2998F /* Buttons */,
 				28793F101B2898BD00E2998F /* Fonts */,
 				28793F0D1B28907900E2998F /* Backgrounds */,
 				28793F061B288E0900E2998F /* Logos */,
@@ -339,6 +348,17 @@
 				28793F1C1B2898C800E2998F /* SourceSansPro-SemiboldIt.otf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		28793F291B29E52000E2998F /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				28793F2E1B29E9D900E2998F /* burgermenu.png */,
+				28793F2F1B29E9D900E2998F /* burgermenu@2x.png */,
+				28793F301B29E9D900E2998F /* burgermenu@3x.png */,
+				28793F2A1B29E52C00E2998F /* settingsbutton.png */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 		28A533B11ACF688A0049B3F7 = {
@@ -749,6 +769,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28A533C91ACF688A0049B3F7 /* Main.storyboard in Resources */,
+				28793F321B29E9D900E2998F /* burgermenu@2x.png in Resources */,
 				28A533CE1ACF688A0049B3F7 /* LaunchScreen.xib in Resources */,
 				28793F261B2898E200E2998F /* SourceSansPro-Regular.otf in Resources */,
 				28793F0F1B28908D00E2998F /* login_warm_background.png in Resources */,
@@ -763,8 +784,11 @@
 				28793F241B2898E200E2998F /* SourceSansPro-Light.otf in Resources */,
 				28793F231B2898E200E2998F /* SourceSansPro-It.otf in Resources */,
 				28A534061ACF6F4E0049B3F7 /* Podfile in Resources */,
+				28793F311B29E9D900E2998F /* burgermenu.png in Resources */,
 				28793F211B2898E200E2998F /* SourceSansPro-ExtraLight.otf in Resources */,
 				28A533CB1ACF688A0049B3F7 /* Images.xcassets in Resources */,
+				28793F331B29E9D900E2998F /* burgermenu@3x.png in Resources */,
+				28793F2B1B29E52C00E2998F /* settingsbutton.png in Resources */,
 				28793F271B2898E200E2998F /* SourceSansPro-Semibold.otf in Resources */,
 				28793F0C1B288FEA00E2998F /* white_logo_sans.png in Resources */,
 				28793F281B2898E200E2998F /* SourceSansPro-SemiboldIt.otf in Resources */,

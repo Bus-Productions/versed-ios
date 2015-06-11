@@ -12,6 +12,7 @@
 #import "VSTokenViewController.h"
 #import "AppDelegate.h"
 #import "VSForgotPasswordViewController.h"
+@import QuartzCore;
 
 @interface VSLoginViewController ()
 
@@ -20,14 +21,21 @@
 @implementation VSLoginViewController
 
 @synthesize emailField, passwordField;
+@synthesize signInButton;
+@synthesize forgotPasswordButton;
+@synthesize createAccountButton;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupGestureRecognizer];
-    [self setupNavigationBar]; 
+    [self setupNavigationBar];
+    [self setupButtonAppearances];
+    [self setupTextFieldAppearances];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -38,6 +46,51 @@
 - (void) setupNavigationBar
 {
     [self.navigationController setNavigationBarHidden:YES];
+}
+
+
+- (void) setupButtonAppearances
+{
+    [[self.signInButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:20.0f]];
+    self.signInButton.layer.cornerRadius = 4;
+    self.signInButton.clipsToBounds = YES;
+    [self.signInButton setBackgroundColor:[UIColor whiteColor]];
+    [[self.signInButton titleLabel] setTextColor:[UIColor blackColor]];
+    
+    [[self.forgotPasswordButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
+    [[self.forgotPasswordButton titleLabel] setTextColor:[UIColor whiteColor]];
+    
+    [[self.createAccountButton layer] setBorderWidth:1.0f];
+    [[self.createAccountButton layer] setBorderColor:[UIColor whiteColor].CGColor];
+    [[self.createAccountButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:20.0f]];
+    [[self.createAccountButton titleLabel] setTextColor:[UIColor whiteColor]];
+}
+
+- (void) setupTextFieldAppearances
+{
+    [self addBottomBorderToField:self.emailField];
+    [self addBottomBorderToField:self.passwordField];
+    
+    [self setTintForField:self.emailField withPlaceholder:@"Company Email"];
+    [self setTintForField:self.passwordField withPlaceholder:@"Password"];
+}
+
+- (void) addBottomBorderToField:(UITextField*)field
+{
+    CGFloat borderHeight = 1.0f;
+    
+    CALayer *bottomBorder1 = [CALayer layer];
+    bottomBorder1.frame = CGRectMake(0, field.frame.size.height-borderHeight, field.frame.size.width, 1.0f);
+    bottomBorder1.backgroundColor = [UIColor whiteColor].CGColor;
+    
+    [field.layer addSublayer:bottomBorder1];
+}
+
+- (void) setTintForField:(UITextField*)field withPlaceholder:(NSString*)placeholderText
+{
+    [field setTintColor:[UIColor whiteColor]];
+    field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholderText attributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5], NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]}];
+    [field setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.5f]];
 }
 
 
@@ -81,6 +134,9 @@
 - (IBAction)loginAction:(id)sender
 {
     if ([self inputsVerified]) {
+        
+        [self showHUDWithMessage:@"Logging in..."];
+        
         [[LXServer shared] requestPath:@"/login.json" withMethod:@"POST" withParamaters:@{@"user": @{@"email": self.emailField.text, @"password": self.passwordField.text} } authType:@"user"
                       success:^(id responseObject){
                           NSMutableDictionary *u = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
@@ -97,7 +153,9 @@
                                   }
                               }failure:nil];
                           }
+                          [self hideHUD];
                       }failure:^(NSError* error) {
+                          [self hideHUD];
                           [self showAlertWithText:@"Sorry your login information is incorrect!"];
                       }
          ];
@@ -121,10 +179,51 @@
 }
 
 
+
 # pragma mark - Alert
+
 - (void) showAlertWithText:(NSString*)text
 {
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [av show];
 }
+
+
+
+# pragma mark text field delegate
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField.tag < 2) {
+        NSInteger nextTag = textField.tag + 1;
+        for (UITextField* field in [self.view subviews]) {
+            if ([field isKindOfClass:[UITextField class]] && [field tag] == nextTag) {
+                [field becomeFirstResponder];
+            }
+        }
+    } else {
+        [self loginAction:textField];
+    }
+    return NO;
+}
+
+
+# pragma mark hud delegate
+
+- (void) showHUDWithMessage:(NSString*) message
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = message;
+    [hud setColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:0.8]];
+    [hud setLabelFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+}
+
+- (void) hideHUD
+{
+    if (hud) {
+        [hud hide:YES];
+    }
+}
+
+
 @end
