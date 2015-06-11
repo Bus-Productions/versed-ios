@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupNavigationBar];
+    [self setupTimer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,6 +39,15 @@
 - (void) setupNavigationBar
 {
     [self.navigationItem setTitle:[NSString stringWithFormat:@"Question %lu of %lu", (unsigned long)questionsCompleted, (unsigned long)totalQuestions]];
+}
+
+- (void) setupTimer
+{
+    timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                                  target: self
+                                                selector:@selector(onTick:)
+                                                userInfo: nil repeats:YES];
+    remainingTime = 20;
 }
 
 #pragma mark - Table view data source
@@ -140,12 +150,60 @@
 {
     alreadyAnswered = YES;
     UITableViewCell *correctCell = [self.tableView cellForRowAtIndexPath:[self indexPathOfCorrectAnswer]];
-    UITableViewCell *chosenCell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [correctCell setBackgroundColor:[UIColor greenColor]];
-    if (![chosenCell isEqual:correctCell]) {
-        [chosenCell setBackgroundColor:[UIColor grayColor]];
+    UITableViewCell *chosenCell;
+    if (NULL_TO_NIL(indexPath)) {
+        chosenCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        if (![chosenCell isEqual:correctCell]) {
+            [chosenCell setBackgroundColor:[UIColor grayColor]];
+        }
+    } else {
+
+        [self showAlertWithText:@"You ran out of time!"];
     }
+    [correctCell setBackgroundColor:[UIColor greenColor]];
 
     successCallback(nil);
 }
+
+- (NSIndexPath*) questionIndexPath
+{
+    NSInteger questionSectionIndex = [self.sections indexOfObject:@"question"];
+    NSInteger firstRowIndex = 0;
+    return [NSIndexPath indexPathForRow:firstRowIndex inSection:questionSectionIndex];
+}
+
+
+# pragma mark - Timer
+
+-(void) onTick:(id)sender
+{
+    if (alreadyAnswered) {
+        [timer invalidate];
+    } else if (remainingTime <= 0) {
+        [self updateViewWithAnswerAtIndexPath:nil success:^(id responseObject){
+            [self.tableView reloadData];
+        }failure:nil];
+        [self.delegate createQuizResultWithQuestion:self.question andAnswer:nil];
+        [timer invalidate];
+    } else {
+        remainingTime = remainingTime - 1;
+        VSQuizQuestionTableViewCell *cell = (VSQuizQuestionTableViewCell*)[self.tableView cellForRowAtIndexPath:[self questionIndexPath]];
+        [cell updateTimerLabel:remainingTime];
+    }
+}
+
+
+# pragma mark - Alert
+
+- (void) showAlertWithText:(NSString*)text
+{
+    [self showAlertWithText:text andTitle:@"Sorry!"];
+}
+
+- (void) showAlertWithText:(NSString*)text andTitle:(NSString*)title
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:title message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [av show];
+}
+
 @end

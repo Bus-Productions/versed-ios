@@ -15,6 +15,8 @@
 
 @interface VSQuizQuestionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
+    NSTimer *timer;
+    int remainingTime;
     BOOL alreadyAnswered; 
 }
 

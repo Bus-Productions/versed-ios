@@ -17,7 +17,8 @@
     NSMutableArray *usersDiscussing;
     NSMutableArray *completedResources; 
     NSMutableArray *messages;
-    BOOL requesting; 
+    BOOL requesting;
+    BOOL showCongrats; 
 }
 
 @property (strong, nonatomic) NSMutableDictionary *track;

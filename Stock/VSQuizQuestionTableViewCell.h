@@ -10,6 +10,9 @@
 
 @interface VSQuizQuestionTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
+
 - (void) configureWithQuestion:(NSMutableDictionary*)question;
+- (void) updateTimerLabel:(int)time;
 
 @end

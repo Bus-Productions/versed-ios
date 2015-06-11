@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock/VSQuizQuestionTableViewCell.m"
-            timestampString = "453762138.20589"
+            timestampString = "455684068.429023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30">
+            startingLineNumber = "38"
+            endingLineNumber = "38">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -45,7 +45,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
             endingLineNumber = "202"
-            landmarkName = "-quizQuestionsCorrect"
+            landmarkName = "-quizResultIsCorrect"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,6 +111,22 @@
                   offsetFromSymbolStart = "52">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock/VSQuizQuestionTableViewCell.m"
+            timestampString = "455683748.383296"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "-setSelected:animated:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

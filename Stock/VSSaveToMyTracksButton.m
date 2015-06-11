@@ -51,8 +51,8 @@
 {
     [self switchSaveTracksText];
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [self.track ID]} authType:@"none" success:^(id responseObject){
-        NSMutableArray *myTracks = [[responseObject objectForKey:@"my_tracks"] mutableCopy];
-        [[myTracks cleanArray] saveLocalWithKey:@"myTracks"];
+        NSMutableArray *myTracks = [[(NSArray*)[responseObject objectForKey:@"my_tracks"] cleanArray] mutableCopy];
+        [myTracks saveLocalWithKey:@"myTracks"];
     }failure:nil];
 }
 
