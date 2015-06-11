@@ -10,6 +10,8 @@
 
 @implementation VSQuizQuestionTableViewCell
 
+@synthesize timerLabel;
+
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -24,6 +26,12 @@
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:[question questionText]];
+    
+    [self.timerLabel setText:@"20s"];
 }
 
+- (void) updateTimerLabel:(int)time
+{
+    [self.timerLabel setText:[NSString stringWithFormat:@"%ds", time]];
+}
 @end

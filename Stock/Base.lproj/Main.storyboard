@@ -731,18 +731,32 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksk-3k-Yh6">
-                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                    <rect key="frame" x="121" y="11" width="471" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEs-wb-NZ5">
+                                                    <rect key="frame" x="8" y="11" width="105" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="105" id="ME5-rQ-Nhu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ksk-3k-Yh6" firstAttribute="top" secondItem="zxH-hn-jWh" secondAttribute="topMargin" constant="3" id="9Zw-yc-JPF"/>
                                                 <constraint firstItem="Ksk-3k-Yh6" firstAttribute="trailing" secondItem="zxH-hn-jWh" secondAttribute="trailingMargin" id="BNk-8s-Gfh"/>
-                                                <constraint firstItem="Ksk-3k-Yh6" firstAttribute="leading" secondItem="zxH-hn-jWh" secondAttribute="leadingMargin" id="QSb-m1-OXc"/>
+                                                <constraint firstItem="mEs-wb-NZ5" firstAttribute="leading" secondItem="zxH-hn-jWh" secondAttribute="leadingMargin" id="Uke-cF-9fH"/>
+                                                <constraint firstItem="Ksk-3k-Yh6" firstAttribute="leading" secondItem="mEs-wb-NZ5" secondAttribute="trailing" constant="8" id="eTk-xu-3nK"/>
+                                                <constraint firstItem="mEs-wb-NZ5" firstAttribute="top" secondItem="zxH-hn-jWh" secondAttribute="topMargin" constant="3" id="pWc-SQ-gTn"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="timerLabel" destination="mEs-wb-NZ5" id="hUH-9q-vqr"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="answerCell" id="xDD-KP-DEA" customClass="VSQuizAnswerTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
