@@ -14,4 +14,5 @@
 @property (strong, nonatomic) NSMutableDictionary *track;
 + (VSSaveToMyTracksButton*) initWithTrack:(NSMutableDictionary*)t andMyTrackIDs:(NSMutableArray*)ids;
 - (void) updateMyTracks;
+
 @end

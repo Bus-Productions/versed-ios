@@ -56,20 +56,24 @@
 # pragma mark - Actions
 
 - (IBAction)verifyAction:(id)sender {
-    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/confirm/%@.json", [[[LXSession thisSession] user] ID], self.tokenField.text] withMethod:@"POST" withParamaters:nil authType:@"none" success:^(id responseObject){
-        [self dismissKeyboard];
-        [[LXSession thisSession] setUser:[[responseObject cleanDictionary] objectForKey:@"user"]];
-        [[[responseObject objectForKey:@"user"] cleanDictionary] saveLocal];
-        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        [appDelegate setRootStoryboard:@"Main"];
-    }failure:^(NSError *error){
-        [self showAlertWithText:@"Your token was incorrect."];
-    }];
+    if (self.tokenField.text && self.tokenField.text.length > 0) {
+        [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/confirm/%@.json", [[[LXSession thisSession] user] ID], self.tokenField.text] withMethod:@"POST" withParamaters:nil authType:@"none" success:^(id responseObject){
+            [self dismissKeyboard];
+            [[LXSession thisSession] setUser:[[responseObject cleanDictionary] objectForKey:@"user"]];
+            [[[responseObject objectForKey:@"user"] cleanDictionary] saveLocal];
+            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [appDelegate setRootStoryboard:@"Main"];
+        }failure:^(NSError *error){
+            [self showAlertWithText:@"Your token was incorrect."];
+        }];
+    } else {
+        [self showAlertWithText:@"You must enter a token!"];
+    }
 }
 
 - (IBAction)resendAction:(id)sender {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/resend_token.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:nil authType:@"none" success:^(id responseObject){
-        [self showAlertWithText:[NSString stringWithFormat:@"Your token was sent to %@", [[[LXSession thisSession] user] email]]];
+        [self showAlertWithText:[NSString stringWithFormat:@"Your token was sent to %@", [[[LXSession thisSession] user] email]] andTitle:@"Sent!"];
     }failure:nil];
 }
 
@@ -79,9 +83,15 @@
 }
 
 # pragma mark - Alert
+
 - (void) showAlertWithText:(NSString*)text
 {
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [self showAlertWithText:text andTitle:@"Whoops!"];
+}
+
+- (void) showAlertWithText:(NSString*)text andTitle:(NSString*)title
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:title message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [av show];
 }
 @end
