@@ -21,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *signUpButton;
 @property (strong, nonatomic) IBOutlet UIButton *hasAccountButton;
 
+@property (strong, nonatomic) IBOutlet UILabel *infoLabel;
+
 @property (strong, nonatomic) NSMutableDictionary *signingUpUser;
 
 - (IBAction)signupAction:(id)sender;

@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSLoginViewController : UIViewController
+@interface VSLoginViewController : UIViewController <UITextFieldDelegate>
+{
+    MBProgressHUD* hud;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
+@property (strong, nonatomic) IBOutlet UIButton *signInButton;
+@property (strong, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+@property (strong, nonatomic) IBOutlet UIButton *createAccountButton;
 
 - (IBAction)loginAction:(id)sender;
 - (IBAction)signupAction:(id)sender;

@@ -15,11 +15,15 @@
 @implementation VSForgotPasswordViewController
 
 @synthesize forgotPasswordTextField;
+@synthesize resetPasswordButton, cancelButton;
+@synthesize descriptionLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupTextField];
     [self setupGestureRecognizer];
+    [self setupTextFieldAppearances];
+    [self setupButtonAppearances];
+    [self setupLabelAppearance];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,20 +34,48 @@
 
 # pragma mark - Setup
 
-- (void) setupTextField
+- (void) setupLabelAppearance
 {
-    CALayer *border = [CALayer layer];
-    CGFloat borderWidth = 2;
-    border.borderColor = [UIColor whiteColor].CGColor;
-    border.frame = CGRectMake(0, self.forgotPasswordTextField.frame.size.height - borderWidth, self.forgotPasswordTextField.frame.size.width, self.forgotPasswordTextField.frame.size.height);
-    border.borderWidth = borderWidth;
-    [self.forgotPasswordTextField.layer addSublayer:border];
-    self.forgotPasswordTextField.layer.masksToBounds = YES;
+    [self.descriptionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:24.0f]];
+}
+
+- (void) setupButtonAppearances
+{
+    [[self.resetPasswordButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:20.0f]];
+    self.resetPasswordButton.layer.cornerRadius = 4;
+    self.resetPasswordButton.clipsToBounds = YES;
+    [self.resetPasswordButton setBackgroundColor:[UIColor whiteColor]];
+    [[self.resetPasswordButton titleLabel] setTextColor:[UIColor blackColor]];
     
-    if ([self.forgotPasswordTextField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
-        UIColor *color = [UIColor whiteColor];
-        self.forgotPasswordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email" attributes:@{NSForegroundColorAttributeName: color}];
-    }
+    [[self.cancelButton layer] setBorderWidth:1.0f];
+    [[self.cancelButton layer] setBorderColor:[UIColor whiteColor].CGColor];
+    [[self.cancelButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:20.0f]];
+    [[self.cancelButton titleLabel] setTextColor:[UIColor whiteColor]];
+}
+
+- (void) setupTextFieldAppearances
+{
+    [self addBottomBorderToField:self.forgotPasswordTextField];
+    
+    [self setTintForField:self.forgotPasswordTextField withPlaceholder:@"Company Email"];
+}
+
+- (void) addBottomBorderToField:(UITextField*)field
+{
+    CGFloat borderHeight = 1.0f;
+    
+    CALayer *bottomBorder1 = [CALayer layer];
+    bottomBorder1.frame = CGRectMake(0, field.frame.size.height-borderHeight, field.frame.size.width, 1.0f);
+    bottomBorder1.backgroundColor = [UIColor whiteColor].CGColor;
+    
+    [field.layer addSublayer:bottomBorder1];
+}
+
+- (void) setTintForField:(UITextField*)field withPlaceholder:(NSString*)placeholderText
+{
+    [field setTintColor:[UIColor whiteColor]];
+    field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholderText attributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5], NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]}];
+    [field setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.5f]];
 }
 
 
@@ -77,7 +109,8 @@
     }
 }
 
-- (IBAction)backToLoginAction:(id)sender {
+- (IBAction)backToLoginAction:(id)sender
+{
     [self dismissKeyboard];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -89,6 +122,15 @@
 {
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [av show];
+}
+
+
+# pragma mark text field delegate
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [self resetPasswordAction:textField];
+    return NO;
 }
 
 @end

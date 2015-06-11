@@ -22,6 +22,7 @@
 @synthesize nameField, emailField, passwordField, passwordConfirmationField;
 @synthesize signUpButton, hasAccountButton;
 @synthesize signingUpUser;
+@synthesize infoLabel;
 
 
 - (void)viewDidLoad
@@ -41,6 +42,7 @@
     [self setupNavigationBar];
     [self setupTextFieldAppearances];
     [self setupButtonAppearances];
+    [self setupInfoLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,6 +57,12 @@
 - (void) setupNavigationBar
 {
     [self.navigationController setNavigationBarHidden:YES];
+}
+
+- (void) setupInfoLabel
+{
+    [self.infoLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:13.0f]];
+    [self.infoLabel setText:@"*Only certain companies are able to use Versed.\nBy tapping Create Account, you agree to the\nTerms and Conditions and Privacy Policy."];
 }
 
 - (void) setupButtonAppearances
@@ -187,9 +195,10 @@
 
 
 # pragma mark - Alert
+
 - (void) showAlertWithText:(NSString*)text
 {
-    [self showAlertWithText:text andTitle:@"Whoops!"];
+    [self showAlertWithText:text andTitle:nil];
 }
 
 - (void) showAlertWithText:(NSString*)text andTitle:(NSString*)title

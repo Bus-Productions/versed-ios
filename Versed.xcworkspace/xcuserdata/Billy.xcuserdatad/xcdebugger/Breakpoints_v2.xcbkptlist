@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock/VSSignupViewController.m"
-            timestampString = "455647840.718027"
+            timestampString = "455660598.06825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-signupAction:"
             landmarkType = "5">
          </BreakpointContent>
