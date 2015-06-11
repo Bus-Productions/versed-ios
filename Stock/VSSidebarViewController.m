@@ -15,12 +15,14 @@
 #import "VSQuizLandingViewController.h"
 #import "VSProfileViewController.h"
 #import "VSProfileTableViewCell.h"
+#import "VSFaqCategoryViewController.h"
 
 #define ALL_TRACKS_IDENTIFIER @"allTracks"
 #define MY_TRACKS_IDENTIFIER @"myTracks"
 #define QUIZ_IDENTIFIER @"quiz"
 #define PROFILE_IDENTIFIER @"profile"
 #define DAILY_ARTICLES_IDENTIFIER @"dailyArticles"
+#define FAQ_IDENTIFIER @"faq"
 
 
 @interface VSSidebarViewController ()
@@ -56,6 +58,7 @@
     [self.menuOptions addObject:MY_TRACKS_IDENTIFIER];
     [self.menuOptions addObject:QUIZ_IDENTIFIER];
     [self.menuOptions addObject:DAILY_ARTICLES_IDENTIFIER];
+    [self.menuOptions addObject:FAQ_IDENTIFIER];
 }
 
 
@@ -122,6 +125,9 @@
     } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
         vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"profileNavigationController"];
+    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:FAQ_IDENTIFIER]) {
+        vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"faqCategoryViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"faqNavigationController"];
     }
     
     [nc setViewControllers:@[vc] animated:NO];

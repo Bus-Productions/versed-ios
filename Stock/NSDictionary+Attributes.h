@@ -69,4 +69,10 @@
 - (NSString*) message;
 - (NSString*) creationDate;
 
+// faq
+- (NSString*) categoryName; 
+- (NSString*) faqQuestion;
+- (NSString*) faqResponse;
+- (NSMutableArray*) faqs;
+
 @end

@@ -89,10 +89,17 @@
 		76DB3F271B0D2428004EE88A /* VSQuizResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */; };
 		76DB3F2D1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2C1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.m */; };
 		76DB3F301B0D4058004EE88A /* NSMutableArray+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2F1B0D4058004EE88A /* NSMutableArray+Attributes.m */; };
+		76DEE71C1B29D59E00323EA0 /* VSFaqCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEE71B1B29D59E00323EA0 /* VSFaqCategoryViewController.m */; };
+		76DEE7201B29E29B00323EA0 /* VSFaqTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEE71F1B29E29B00323EA0 /* VSFaqTitleTableViewCell.m */; };
+		76DEE7231B29E61700323EA0 /* VSFaqsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEE7221B29E61700323EA0 /* VSFaqsListViewController.m */; };
+		76DEE7261B29EB2800323EA0 /* VSFaqShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEE7251B29EB2800323EA0 /* VSFaqShowViewController.m */; };
+		76DEE7291B29ED1300323EA0 /* VSFaqQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEE7281B29ED1300323EA0 /* VSFaqQuestionTableViewCell.m */; };
+		76DEE72C1B29EDE800323EA0 /* VSFaqResponseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEE72B1B29EDE800323EA0 /* VSFaqResponseTableViewCell.m */; };
 		76F0D5921B28D31500F54C56 /* VSCongratsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D5911B28D31500F54C56 /* VSCongratsViewController.m */; };
 		76F0D5951B28DDE400F54C56 /* VSCongratsStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D5941B28DDE400F54C56 /* VSCongratsStatusTableViewCell.m */; };
 		76F0D5981B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D5971B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m */; };
 		76F0D59B1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D59A1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m */; };
+		76F6370E1B29F2EF004B0A1A /* VSContactUsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F6370D1B29F2EF004B0A1A /* VSContactUsButton.m */; };
 		B9793DD86EF509AA8FD8F674 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F455122FD9049861339E9F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -251,6 +258,18 @@
 		76DB3F2C1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSOverallResultsTableViewCell.m; sourceTree = "<group>"; };
 		76DB3F2E1B0D4058004EE88A /* NSMutableArray+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Attributes.h"; sourceTree = "<group>"; };
 		76DB3F2F1B0D4058004EE88A /* NSMutableArray+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Attributes.m"; sourceTree = "<group>"; };
+		76DEE71A1B29D59E00323EA0 /* VSFaqCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFaqCategoryViewController.h; sourceTree = "<group>"; };
+		76DEE71B1B29D59E00323EA0 /* VSFaqCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFaqCategoryViewController.m; sourceTree = "<group>"; };
+		76DEE71E1B29E29B00323EA0 /* VSFaqTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFaqTitleTableViewCell.h; sourceTree = "<group>"; };
+		76DEE71F1B29E29B00323EA0 /* VSFaqTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFaqTitleTableViewCell.m; sourceTree = "<group>"; };
+		76DEE7211B29E61700323EA0 /* VSFaqsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFaqsListViewController.h; sourceTree = "<group>"; };
+		76DEE7221B29E61700323EA0 /* VSFaqsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFaqsListViewController.m; sourceTree = "<group>"; };
+		76DEE7241B29EB2800323EA0 /* VSFaqShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFaqShowViewController.h; sourceTree = "<group>"; };
+		76DEE7251B29EB2800323EA0 /* VSFaqShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFaqShowViewController.m; sourceTree = "<group>"; };
+		76DEE7271B29ED1300323EA0 /* VSFaqQuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFaqQuestionTableViewCell.h; sourceTree = "<group>"; };
+		76DEE7281B29ED1300323EA0 /* VSFaqQuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFaqQuestionTableViewCell.m; sourceTree = "<group>"; };
+		76DEE72A1B29EDE800323EA0 /* VSFaqResponseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFaqResponseTableViewCell.h; sourceTree = "<group>"; };
+		76DEE72B1B29EDE800323EA0 /* VSFaqResponseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFaqResponseTableViewCell.m; sourceTree = "<group>"; };
 		76F0D5901B28D31400F54C56 /* VSCongratsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCongratsViewController.h; sourceTree = "<group>"; };
 		76F0D5911B28D31500F54C56 /* VSCongratsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCongratsViewController.m; sourceTree = "<group>"; };
 		76F0D5931B28DDE400F54C56 /* VSCongratsStatusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCongratsStatusTableViewCell.h; sourceTree = "<group>"; };
@@ -259,6 +278,8 @@
 		76F0D5971B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCongratsTracksTableViewCell.m; sourceTree = "<group>"; };
 		76F0D5991B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCongratsFeedbackTableViewCell.h; sourceTree = "<group>"; };
 		76F0D59A1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCongratsFeedbackTableViewCell.m; sourceTree = "<group>"; };
+		76F6370C1B29F2EF004B0A1A /* VSContactUsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSContactUsButton.h; sourceTree = "<group>"; };
+		76F6370D1B29F2EF004B0A1A /* VSContactUsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSContactUsButton.m; sourceTree = "<group>"; };
 		832108382003574B881C950B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A3F455122FD9049861339E9F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -494,6 +515,7 @@
 				760F5D5D1B0BB6980038FF1A /* Quiz */,
 				7636ED921B0E7DDE00BD4E1A /* Daily Articles */,
 				764060D51B2745E3004FA5CC /* Profile */,
+				76DEE71D1B29D5B400323EA0 /* FAQ */,
 			);
 			name = "Menu Options";
 			sourceTree = "<group>";
@@ -630,6 +652,12 @@
 				76F0D5971B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m */,
 				76F0D5991B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.h */,
 				76F0D59A1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m */,
+				76DEE71E1B29E29B00323EA0 /* VSFaqTitleTableViewCell.h */,
+				76DEE71F1B29E29B00323EA0 /* VSFaqTitleTableViewCell.m */,
+				76DEE7271B29ED1300323EA0 /* VSFaqQuestionTableViewCell.h */,
+				76DEE7281B29ED1300323EA0 /* VSFaqQuestionTableViewCell.m */,
+				76DEE72A1B29EDE800323EA0 /* VSFaqResponseTableViewCell.h */,
+				76DEE72B1B29EDE800323EA0 /* VSFaqResponseTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -641,6 +669,21 @@
 				768CE08C1B03EED500E1E2E6 /* VSSidebarViewController.m */,
 			);
 			name = Sidebar;
+			sourceTree = "<group>";
+		};
+		76DEE71D1B29D5B400323EA0 /* FAQ */ = {
+			isa = PBXGroup;
+			children = (
+				76DEE71A1B29D59E00323EA0 /* VSFaqCategoryViewController.h */,
+				76DEE71B1B29D59E00323EA0 /* VSFaqCategoryViewController.m */,
+				76DEE7211B29E61700323EA0 /* VSFaqsListViewController.h */,
+				76DEE7221B29E61700323EA0 /* VSFaqsListViewController.m */,
+				76DEE7241B29EB2800323EA0 /* VSFaqShowViewController.h */,
+				76DEE7251B29EB2800323EA0 /* VSFaqShowViewController.m */,
+				76F6370C1B29F2EF004B0A1A /* VSContactUsButton.h */,
+				76F6370D1B29F2EF004B0A1A /* VSContactUsButton.m */,
+			);
+			name = FAQ;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -799,9 +842,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DEE71C1B29D59E00323EA0 /* VSFaqCategoryViewController.m in Sources */,
 				28A533E91ACF697C0049B3F7 /* LXDate+RailsTimeConverter.m in Sources */,
 				28A534091ACF75C70049B3F7 /* LXAddressBook.m in Sources */,
 				76F0D5951B28DDE400F54C56 /* VSCongratsStatusTableViewCell.m in Sources */,
+				76DEE7231B29E61700323EA0 /* VSFaqsListViewController.m in Sources */,
 				76DB3F301B0D4058004EE88A /* NSMutableArray+Attributes.m in Sources */,
 				28A533F91ACF699A0049B3F7 /* NSArray+Alphabet.m in Sources */,
 				76F0D59B1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m in Sources */,
@@ -815,9 +860,12 @@
 				768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */,
 				7664082D1B1E5CAB006272E8 /* VSPollQuestionViewController.m in Sources */,
 				764060D81B274BFC004FA5CC /* VSProfileProgressTableViewCell.m in Sources */,
+				76DEE7261B29EB2800323EA0 /* VSFaqShowViewController.m in Sources */,
+				76DEE72C1B29EDE800323EA0 /* VSFaqResponseTableViewCell.m in Sources */,
 				766408371B1E7C6A006272E8 /* VSPollResultsViewController.m in Sources */,
 				7666FC3C1B0A8EA700051C93 /* VSDailyArticlesViewController.m in Sources */,
 				760829661B14C2920053E29F /* VSTokenViewController.m in Sources */,
+				76F6370E1B29F2EF004B0A1A /* VSContactUsButton.m in Sources */,
 				7636ED891B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m in Sources */,
 				764060D41B2745D0004FA5CC /* VSProfileViewController.m in Sources */,
 				28A534011ACF69AF0049B3F7 /* UILabel+Bold.m in Sources */,
@@ -827,11 +875,13 @@
 				7664081E1B1E1383006272E8 /* VSCompletedTrackViewController.m in Sources */,
 				28A533FA1ACF699A0049B3F7 /* NSDictionary+Attributes.m in Sources */,
 				760F5D501B0B78E50038FF1A /* VSEmptyTableViewCell.m in Sources */,
+				76DEE7291B29ED1300323EA0 /* VSFaqQuestionTableViewCell.m in Sources */,
 				760F5D561B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m in Sources */,
 				7636ED8F1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m in Sources */,
 				768CE0961B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m in Sources */,
 				7666FC301B068B2300051C93 /* LXArrayObjects.m in Sources */,
 				766408241B1E1AE0006272E8 /* VSSaveToMyTracksButton.m in Sources */,
+				76DEE7201B29E29B00323EA0 /* VSFaqTitleTableViewCell.m in Sources */,
 				28A533EE1ACF69850049B3F7 /* LXServer.m in Sources */,
 				7664083A1B1E81A1006272E8 /* VSPollResultsTableViewCell.m in Sources */,
 				28A534041ACF6A440049B3F7 /* LXObjects.m in Sources */,

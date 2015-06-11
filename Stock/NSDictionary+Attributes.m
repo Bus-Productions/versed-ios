@@ -246,6 +246,26 @@
     return [NSString stringWithFormat:@"%@%%", [self objectForKey:@"percentage"]];
 }
 
+- (NSString*) categoryName
+{
+    return [self objectForKey:@"category_name"];
+}
+
+- (NSString*) faqQuestion
+{
+    return [self objectForKey:@"faq_question"];
+}
+
+- (NSString*) faqResponse
+{
+    return [self objectForKey:@"faq_response"];
+}
+
+- (NSMutableArray*) faqs
+{
+    return [[self objectForKey:@"faqs"] mutableCopy];
+}
+
 - (NSString*) pollAnswerID
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"poll_answer_id"]];
