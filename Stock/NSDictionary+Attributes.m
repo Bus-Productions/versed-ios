@@ -147,6 +147,15 @@
     return [self objectForKey:@"name"];
 }
 
+- (NSString*) firstName
+{
+    if ([self name]) {
+        NSCharacterSet *delimiterCharacterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        return [[[self name] componentsSeparatedByCharactersInSet:delimiterCharacterSet] firstObject];
+    }
+    return @"";
+}
+
 - (NSString*) totalQuizzes
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"total_quizzes"]];
