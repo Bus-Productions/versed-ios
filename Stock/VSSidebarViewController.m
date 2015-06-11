@@ -91,6 +91,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView basicMenuCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[self.menuOptions objectAtIndex:indexPath.row] forIndexPath:indexPath];
+    
+    UILabel* label = (UILabel*) [cell.contentView viewWithTag:1];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:20.0f]];
+    
     return cell;
 }
 
@@ -125,5 +130,12 @@
     [revealViewController revealToggleAnimated:YES];
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
+        return 80.0f;
+    }
+    return 52.0f;
+}
 
 @end
