@@ -123,7 +123,7 @@
 {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/confirm/%@.json", [[[LXSession thisSession] user] ID], self.tokenField.text] withMethod:@"POST" withParamaters:nil authType:@"none" success:^(id responseObject){
         [self dismissKeyboard];
-        [[LXSession thisSession] setUser:[[responseObject objectForKey:@"user"] cleanDictionary]];
+        [[LXSession thisSession] setUser:[[responseObject cleanDictionary] objectForKey:@"user"]];
         [[[responseObject objectForKey:@"user"] cleanDictionary] saveLocal];
         AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         [appDelegate setRootStoryboard:@"Main"];

@@ -164,7 +164,7 @@
         
         [self.signingUpUser saveRemote:^(id responseObject){
             if ([responseObject objectForKey:@"user"]) {
-                self.signingUpUser = [[responseObject objectForKey:@"user"] cleanDictionary];
+                self.signingUpUser = [[responseObject cleanDictionary] objectForKey:@"user"];
                 [[LXSession thisSession] setUser:self.signingUpUser];
                 [self.signingUpUser saveLocal];
             }

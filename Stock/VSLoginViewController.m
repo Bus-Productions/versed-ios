@@ -139,7 +139,7 @@
         
         [[LXServer shared] requestPath:@"/login.json" withMethod:@"POST" withParamaters:@{@"user": @{@"email": self.emailField.text, @"password": self.passwordField.text} } authType:@"user"
                       success:^(id responseObject){
-                          NSMutableDictionary *u = [[responseObject objectForKey:@"user"] mutableCopy];
+                          NSMutableDictionary *u = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
                           if (u) {
                               [LXSession storeLocalUserKey:[u localKey]];
                               [u saveLocal:^(id responseObject){
