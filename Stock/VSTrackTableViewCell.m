@@ -27,8 +27,13 @@
 
 - (void) configureWithTrack:(NSMutableDictionary*)track andIndexPath:(NSIndexPath*)indexPath
 {
-    UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
-    [lbl setText:[track objectForKey:@"headline"]];
+    UIView* baseView = (UIView*) [self.contentView viewWithTag:10];
+    
+    UIImageView* headlineImage = (UIImageView*)[baseView viewWithTag:1];
+    //NSURL* imageURL = NSURL URLWithString:[track ]
+    
+    UILabel *title = (UILabel*)[baseView viewWithTag:2];
+    [title setText:[track headline]];
     
     self.saveButton = (UIButton*)[self.contentView viewWithTag:2];
     [self.saveButton setTitle:[self saveToMyTracksButtonTitleWithTrack:track] forState:UIControlStateNormal];

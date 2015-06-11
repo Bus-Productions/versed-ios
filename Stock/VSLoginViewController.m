@@ -142,6 +142,7 @@
                           NSMutableDictionary *u = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
                           if (u) {
                               [LXSession storeLocalUserKey:[u localKey]];
+                              [[LXSession thisSession] setCachedUser:u];
                               [u saveLocal:^(id responseObject){
                                   if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
                                       AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
