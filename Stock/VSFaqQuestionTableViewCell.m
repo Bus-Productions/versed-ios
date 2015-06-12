@@ -23,6 +23,7 @@
 - (void) configureWithFaq:(NSMutableDictionary*)faq
 {
     UILabel *questionText = (UILabel*)[self.contentView viewWithTag:1];
+    [questionText setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:22.0f]];
     [questionText setText:[faq faqQuestion]];
 }
 

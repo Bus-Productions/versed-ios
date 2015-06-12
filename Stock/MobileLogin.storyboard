@@ -344,7 +344,7 @@
                         <outlet property="resendButton" destination="y0a-8L-E8Q" id="Z5A-G4-LSc"/>
                         <outlet property="scrollView" destination="YUg-gt-PbX" id="4lV-t2-DDB"/>
                         <outlet property="tokenField" destination="vuq-uu-xud" id="EMO-CE-jz1"/>
-                        <outlet property="verifyButton" destination="zsd-dh-5KA" id="30p-iQ-K6f"/>
+                        <outlet property="verifyButton" destination="zsd-dh-5KA" id="cxJ-5a-rY8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7DW-kO-T4v" userLabel="First Responder" sceneMemberID="firstResponder"/>

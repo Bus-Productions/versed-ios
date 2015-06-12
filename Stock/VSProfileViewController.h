@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *sections;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewBottomConstraint;
 
+- (IBAction)logoutAction:(id)sender;
 - (IBAction)updateSettingsAction:(id)sender;
 
 @end

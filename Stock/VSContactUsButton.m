@@ -14,7 +14,10 @@
 {
     VSContactUsButton *btn = [[VSContactUsButton alloc] init];
     [btn setTitle:@"Contact Us"];
-    [btn setTintColor:[UIColor blueColor]];
+    [btn setTintColor:[UIColor whiteColor]];
+    UIFont *font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0];
+    NSDictionary * attributes = @{NSFontAttributeName: font};
+    [btn setTitleTextAttributes:attributes forState:UIControlStateNormal];
     return btn;
 }
 
