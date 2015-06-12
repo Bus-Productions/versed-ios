@@ -132,8 +132,7 @@
     
     UILabel* percentageLabel = (UILabel*)[cell.contentView viewWithTag:2];
     float correct = [self.quizResults numberQuizResultsCorrect];
-    float total = questionsCompleted == 1 ? 2 : questionsCompleted - 1;
-    NSLog(@"questions completed = %d", questionsCompleted);
+    float total = questionsCompleted < 2 ? 1.0 : questionsCompleted - 1;
     NSString *percentage = [NSString stringWithFormat:@"%ld%%", lround((correct/total)*100.0)];
     [percentageLabel setText:percentage];
     
