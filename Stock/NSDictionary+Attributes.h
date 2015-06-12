@@ -24,6 +24,8 @@
 - (NSString*) keyForTrack;
 - (NSMutableArray*) resources;
 - (NSString*) url;
+- (NSString*) estimatedTime;
+- (NSString*) numberResources;
 
 // quizzes
 - (NSMutableDictionary*) quiz;
