@@ -179,7 +179,7 @@
             [self hideHUD];
         }failure:^(NSError *error) {
             [self hideHUD];
-            [self showAlertWithText:[error localizedDescription] andTitle:@"Sorry!"];
+            [self showAlertWithText:@"There was a problem with your sign in. Try again!" andTitle:@"Sorry!"];
         }];
         
     } else {
