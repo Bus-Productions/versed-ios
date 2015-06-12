@@ -26,11 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock/VSQuizQuestionTableViewCell.m"
-            timestampString = "455684068.429023"
+            timestampString = "455804106.808734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38">
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "@implementation VSQuizQuestionTableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -45,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
             endingLineNumber = "202"
-            landmarkName = "-quizID"
+            landmarkName = "-quizQuestionID"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

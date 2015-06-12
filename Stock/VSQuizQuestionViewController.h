@@ -20,7 +20,8 @@
     BOOL alreadyAnswered; 
 }
 
-@property (strong, nonatomic) NSMutableArray *sections; 
+@property (strong, nonatomic) NSMutableArray *sections;
+@property (strong, nonatomic) NSMutableArray *quizResults;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableDictionary *question;
 @property (nonatomic) NSUInteger totalQuestions;
