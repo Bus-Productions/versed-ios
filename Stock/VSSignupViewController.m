@@ -59,6 +59,16 @@
     [self.navigationController setNavigationBarHidden:YES];
 }
 
+- (void) setupKeyboard
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillAppear:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
 - (void) setupInfoLabel
 {
     [self.infoLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:13.0f]];
@@ -243,5 +253,6 @@
         [hud hide:YES];
     }
 }
+
 
 @end
