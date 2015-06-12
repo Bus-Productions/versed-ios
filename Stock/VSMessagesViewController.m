@@ -181,7 +181,7 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
     
-    [cell configureWithText:@"Nobody has completed this track yet. Be the first!"];
+    [cell configureWithText:@"Nobody has discussed this track yet. Be the first!"];
     
     return cell;
 }
