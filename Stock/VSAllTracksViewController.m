@@ -73,14 +73,14 @@
     if ((!self.menuButtons || [self.menuButtons count] == 0) && self.categoriesWithTracks && [self.categoriesWithTracks count] > 0) {
         
         self.menuButtons = [[NSMutableArray alloc] init];
-        UIFont* font = [UIFont fontWithName:@"SourceSansPro-Light" size:16.0f];
+        UIFont* font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
         CGFloat topMarginSpacing = 10.0f;
         CGFloat spacing = 10.0f;
         CGFloat aggregateWidth = 0.0f;
         NSInteger i = 0;
         
         for (NSDictionary* category in self.categoriesWithTracks) {
-            NSString* categoryName = [[category objectForKey:@"category"] categoryName];
+            NSString* categoryName = [[[category objectForKey:@"category"] categoryName] lowercaseString];
             
             CGSize textSize = [categoryName sizeWithAttributes:@{NSFontAttributeName:font}];
             CGFloat strikeWidth = textSize.width;
