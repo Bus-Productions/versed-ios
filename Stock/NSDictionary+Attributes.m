@@ -51,6 +51,7 @@
 
 
 # pragma mark - Added getters
+
 - (NSString*) status
 {
     return [self objectForKey:@"status"];
@@ -87,6 +88,11 @@
     return [self objectForKey:@"media_url"];
 }
 
+- (NSString*) resourceType
+{
+    return [self objectForKey:@"resource_type"] && NULL_TO_NIL([self objectForKey:@"resource_type"]) ? [self objectForKey:@"resource_type"] : @"Article";
+}
+
 - (BOOL) live
 {
     return [[self status] isEqualToString:@"live"];
@@ -114,7 +120,7 @@
 
 - (NSMutableArray*) resources
 {
-    return [[self objectForKey:@"resources"] mutableCopy];
+    return [self objectForKey:@"resources"] ? [[self objectForKey:@"resources"] mutableCopy] : [[NSMutableArray alloc] init];;
 }
 
 - (NSMutableArray*) questionAnswers

@@ -13,6 +13,7 @@
 
 @implementation VSTrackTableViewCell
 
+@synthesize track;
 @synthesize saveButton;
 
 - (void)awakeFromNib {
@@ -25,8 +26,9 @@
     // Configure the view for the selected state
 }
 
-- (void) configureWithTrack:(NSMutableDictionary*)track andIndexPath:(NSIndexPath*)indexPath
+- (void) configureWithTrack:(NSMutableDictionary*)t andIndexPath:(NSIndexPath*)indexPath
 {
+    [self setTrack:t];
     UIView* baseView = (UIView*) [self.contentView viewWithTag:10];
     
     UIImageView* headlineImage = (UIImageView*)[baseView viewWithTag:1];
@@ -74,14 +76,52 @@
     [description setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
     [description setText:[track objectForKey:@"description"]];
     
+    UILabel* numberOfPeople = (UILabel*)[baseView viewWithTag:7];
+    [numberOfPeople setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+    if ([track objectForKey:@"completed_in_company"] && [[track objectForKey:@"completed_in_company"] count] > 0) {
+        //NSLog(@"%@", [track objectForKey:@"completed_in_company"]);
+        [numberOfPeople setText:[NSString stringWithFormat:@"%lu", (unsigned long)[[track objectForKey:@"completed_in_company"] count]]];
+    } else {
+        [numberOfPeople setText:@"0"];
+    }
+    
     self.saveButton = (UIButton*)[baseView viewWithTag:5];
-    [self.saveButton setTitle:[self saveToMyTracksButtonTitleWithTrack:track] forState:UIControlStateNormal];
+    [self.saveButton setTitle:[self saveToMyTracksButtonTitle] forState:UIControlStateNormal];
     [self.saveButton setBackgroundColor:[UIColor colorWithRed:0.925f green:0.925f blue:0.925f alpha:1.0f]];
     [self.saveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [[self.saveButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
 }
 
-- (NSString*) saveToMyTracksButtonTitleWithTrack:(NSMutableDictionary*)track
+
+# pragma mark actions
+
+- (IBAction)saveTrackAction:(id)sender
+{
+    [self switchSaveToTracksText:(UIButton*)sender];
+    [self updateMyTrack];
+}
+
+- (void) updateMyTrack
+{
+    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [self.track ID]} authType:@"none"
+                           success:^(id responseObject){
+                               [[[(NSArray*)[responseObject objectForKey:@"my_tracks"] cleanArray] mutableCopy] saveLocalWithKey:@"myTracks"];
+                               [[NSNotificationCenter defaultCenter] postNotificationName:@"updatedMyTracks" object:nil userInfo:responseObject];
+                           } failure:^(NSError* error) {
+                           }
+     ];
+}
+
+- (void) switchSaveToTracksText:(UIButton*)btn
+{
+    if ([btn.currentTitle isEqualToString:SAVE_TO_MY_TRACKS_TEXT]) {
+        [btn setTitle:REMOVE_FROM_MY_TRACKS_TEXT forState:UIControlStateNormal];
+    } else {
+        [btn setTitle:SAVE_TO_MY_TRACKS_TEXT forState:UIControlStateNormal];
+    }
+}
+
+- (NSString*) saveToMyTracksButtonTitle
 {
     NSMutableArray *myTracksIDs = [[NSMutableArray alloc] init];
     [myTracksIDs addObjectsFromArray:[[[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] pluckIDs]];

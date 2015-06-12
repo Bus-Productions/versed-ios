@@ -24,6 +24,22 @@
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:text];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+}
+
+- (void) configureWithTextsInArray:(NSArray*)array
+{
+    NSInteger i = 0;
+    for (NSString* text in array) {
+        ++i;
+        UILabel* label = (UILabel*)[self.contentView viewWithTag:i];
+        if (i == 1) {
+            [label setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:25.0f]];
+        } else if (i == 2) {
+            [label setFont:[UIFont fontWithName:@"SourceSansPro-LightIt" size:16.0f]];
+        }
+        [label setText:text];
+    }
 }
 
 @end

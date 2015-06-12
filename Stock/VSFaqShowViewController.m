@@ -118,11 +118,11 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"faqQuestion"]) {
         text = [self.faq faqQuestion];
         fontName = @"SourceSansPro-Light";
-        size = 18.0;
+        size = 22.0f;
     } else {
         text = [self.faq faqResponse];
         fontName = @"SourceSansPro-Regular";
-        size = 12.0;
+        size = 14.0f;
     }
     return [self heightForText:text width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:fontName size:size]] + 40.0f;
 }

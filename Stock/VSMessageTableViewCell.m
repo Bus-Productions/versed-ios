@@ -25,12 +25,16 @@
 {
     UILabel *name = (UILabel*)[self.contentView viewWithTag:1];
     [name setText:[[message objectForKey:@"user"] name]];
+    [name setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:14.0f]];
 
     UILabel *mess = (UILabel*)[self.contentView viewWithTag:2];
     [mess setText:[message message]];
+    [mess setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
     
     UILabel *date = (UILabel*)[self.contentView viewWithTag:3];
-    [date setText:[message creationDate]];
+    [date setText:[[NSDate dateFromString:[message createdAt]] timeAgoInWords]];
+    [date setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
+    [date setTextColor:[UIColor grayColor]];
 }
 
 @end

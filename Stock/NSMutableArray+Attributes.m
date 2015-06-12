@@ -25,10 +25,7 @@
 
 - (NSString*)formattedPluralizationForSingular:(NSString*)sing orPlural:(NSString*)plural
 {
-    if (self.count == 1) {
-        return [NSString stringWithFormat:@"%lu %@", (unsigned long)self.count, sing];
-    }
-    return [NSString stringWithFormat:@"%lu %@", (unsigned long)self.count, plural];
+    return (self.count == 1) ? [NSString stringWithFormat:@"%lu %@", (unsigned long)self.count, sing] : [NSString stringWithFormat:@"%lu %@", (unsigned long)self.count, plural];
 }
 
 @end

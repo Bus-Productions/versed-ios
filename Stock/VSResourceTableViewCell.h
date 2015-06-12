@@ -10,5 +10,12 @@
 
 @interface VSResourceTableViewCell : UITableViewCell
 
-- (void) configureWithResource:resource andCompletedResources:completedResources;
+@property (strong, nonatomic) NSMutableDictionary* resource;
+
+- (void) configureWithResource:r andCompletedResources:completedResources;
+
++ (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font;
+
+- (CGFloat) heightForRow;
+
 @end

@@ -10,9 +10,11 @@
 
 @interface VSSaveToMyTracksButton : UIButton
 
++ (VSSaveToMyTracksButton*) initWithTrack:(NSMutableDictionary*)t andMyTrackIDs:(NSMutableArray*)ids;
+
 @property (strong, nonatomic) NSMutableArray *myTrackIDs;
 @property (strong, nonatomic) NSMutableDictionary *track;
-+ (VSSaveToMyTracksButton*) initWithTrack:(NSMutableDictionary*)t andMyTrackIDs:(NSMutableArray*)ids;
+
 - (void) updateMyTracks;
 
 @end

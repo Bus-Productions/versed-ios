@@ -96,7 +96,7 @@
 - (NSInteger) yearInteger
 {
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:self];
+    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self];
     
     return [components year];
 }
@@ -104,7 +104,7 @@
 - (NSInteger) monthInteger
 {
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:self];
+    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self];
     
     return [components month];
 }
@@ -112,14 +112,14 @@
 - (NSInteger) dayInteger
 {
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:self];
+    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self];
     
     return [components day];
 }
 
 - (NSInteger) yearIndex
 {
-    NSLog(@"%i - %i", [self yearInteger], [NSDate currentYearInteger]);
+    NSLog(@"%li - %li", (long)[self yearInteger], (long)[NSDate currentYearInteger]);
     return [self yearInteger] < [NSDate currentYearInteger] ? 0 : ([self yearInteger] - [NSDate currentYearInteger]);
 }
 
@@ -140,8 +140,8 @@
 
 - (NSInteger) dayOfWeekIndex
 {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *weekdayComponents =[gregorian components:NSWeekdayCalendarUnit fromDate:self];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *weekdayComponents =[gregorian components:NSCalendarUnitWeekday fromDate:self];
     return [weekdayComponents weekday]-1;
 }
 
