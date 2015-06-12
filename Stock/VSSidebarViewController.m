@@ -23,6 +23,7 @@
 #define PROFILE_IDENTIFIER @"profile"
 #define DAILY_ARTICLES_IDENTIFIER @"dailyArticles"
 #define FAQ_IDENTIFIER @"faq"
+#define CONTACT_US_IDENTIFIER @"contactUs"
 
 
 @interface VSSidebarViewController ()

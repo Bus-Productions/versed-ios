@@ -59,6 +59,16 @@
     [self.navigationController setNavigationBarHidden:YES];
 }
 
+- (void) setupKeyboard
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillAppear:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
 - (void) setupInfoLabel
 {
     [self.infoLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:13.0f]];
@@ -179,7 +189,7 @@
             [self hideHUD];
         }failure:^(NSError *error) {
             [self hideHUD];
-            [self showAlertWithText:[error localizedDescription] andTitle:@"Sorry!"];
+            [self showAlertWithText:@"There was a problem with your sign in. Try again!" andTitle:@"Sorry!"];
         }];
         
     } else {
@@ -243,5 +253,6 @@
         [hud hide:YES];
     }
 }
+
 
 @end

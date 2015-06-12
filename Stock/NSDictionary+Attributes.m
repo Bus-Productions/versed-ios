@@ -272,6 +272,11 @@
     return [self objectForKey:@"faq_response"];
 }
 
+- (BOOL) completed
+{
+    return [[NSString stringWithFormat:@"%@", [self objectForKey:@"completed"]] isEqualToString:@"1"];
+}
+
 - (NSMutableArray*) faqs
 {
     return [[self objectForKey:@"faqs"] mutableCopy];
