@@ -22,9 +22,17 @@
 
 - (void) configure
 {
-    UILabel *tracks = (UILabel*)[self viewWithTag:1];
+    UIView* container = (UIView*)[self.contentView viewWithTag:10];
+    
+    UILabel *tracks = (UILabel*)[container viewWithTag:1];
     NSString *trackCount = [[[LXSession thisSession] user] completedTracksCount];
-    [tracks setText:[NSString stringWithFormat:@"You are well-versed on %@ %@", trackCount, [trackCount isEqualToString:@"1"] ? @"topic" : @"topics"]];
+    [tracks setText:[NSString stringWithFormat:@"%@", trackCount]];
+    [tracks setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:100.0f]];
+    
+    UILabel *description = (UILabel*)[container viewWithTag:2];
+    [description setText:[NSString stringWithFormat:@"You are well-versed\non %@ %@.", trackCount, [trackCount isEqualToString:@"1"] ? @"topic" : @"topics"]];
+    [description setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
+    [description setTextColor:[UIColor grayColor]];
 }
 
 @end

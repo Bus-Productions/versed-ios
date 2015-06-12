@@ -21,14 +21,18 @@
 
 @synthesize sections, slideButton;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupSidebar];
     [self reloadScreen];
     [self setupKeyboard];
+    
+    [[self.navigationController.navigationBar.topItem rightBarButtonItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -140,6 +144,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"progress"]) {
+        return 180.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"settings"]) {
+        return 180.0f;
+    }
     return 160.0f;
 }
 
