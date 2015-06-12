@@ -93,6 +93,8 @@
 {
     self.sections = [[NSMutableArray alloc] init];
     
+    [self.sections addObject:@"header"];
+    
     if (self.articles.count < 1) {
         [self.sections addObject:@"empty"];
     } else {
@@ -108,6 +110,8 @@
         return self.articles.count;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
         return 1; 
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
+        return 1;
     }
     return 0;
 }
@@ -119,15 +123,32 @@
         return [self tableView:self.tableView articlesCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         return [self tableView:self.tableView emptyCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView articlesCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    VSResourceTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
     
-    [cell configureWithResource:[self.articles objectAtIndex:indexPath.row] andCompletedResources:completedResources];
+    NSMutableDictionary* article = [self.articles objectAtIndex:indexPath.row];
+    
+    UIView* container = (UIView*)[cell.contentView viewWithTag:10];
+    
+    UILabel* number = (UILabel*)[container viewWithTag:1];
+    [number setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:32.0f]];
+    [number setText:[NSString stringWithFormat:@"%li", indexPath.row+1]];
+    
+    UILabel* title = (UILabel*)[container viewWithTag:2];
+    [title setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    [title setText:[article headline]];
+    
+    UILabel* source = (UILabel*)[container viewWithTag:3];
+    [source setTextColor:[UIColor grayColor]];
+    [source setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    [source setText:[article objectForKey:@"source"]];
     
     return cell;
 }
@@ -137,6 +158,17 @@
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
     
     [cell configureWithText:@"Sorry there are no daily articles at this time!"];
+    
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView headerCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
+    
+    UILabel* label = (UILabel*)[cell.contentView viewWithTag:1];
+    [label setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    [label setText:@"Stay versed with the top 5 need\nto know topics each day."];
     
     return cell;
 }
@@ -152,6 +184,16 @@
         [self hideNavBarOnSwipe:YES];
         [self.navigationController pushViewController:webViewController animated:YES];
     }
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+        return 146.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
+        return 82.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
+    }
+    return 136.0f;
 }
 
 - (void) hideNavBarOnSwipe:(BOOL)hide

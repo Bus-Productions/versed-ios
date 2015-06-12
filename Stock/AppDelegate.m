@@ -19,6 +19,7 @@
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:0.8]];
     [[UINavigationBar appearance] setTranslucent:NO];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -26,8 +27,8 @@
     CGFloat verticalOffset = 0;
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
     
-    
-    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Light" size:16.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
     
     
     if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {

@@ -16,6 +16,7 @@
 #import "VSPollResultsViewController.h"
 #import "VSMessagesViewController.h"
 #import "VSCongratsViewController.h"
+#import "VSTrackTitleTableViewCell.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -26,6 +27,7 @@
 @implementation VSTrackViewController
 
 @synthesize track, tableView, sections, polls;
+@synthesize bottomToolbarView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,7 +62,7 @@
 {
     saveToMyTracksButton = [VSSaveToMyTracksButton initWithTrack:self.track andMyTrackIDs:myTracksIDs];
     [saveToMyTracksButton addTarget:self action:@selector(saveMyTrackButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationItem setTitleView:saveToMyTracksButton]; 
+    [self.navigationItem setTitleView:saveToMyTracksButton];
 }
 
 - (void) setupData
@@ -78,8 +80,16 @@
 
 - (void) setupBottomView
 {
-    [self.joinDiscussionButton setTitle:[NSString stringWithFormat:@"%@ %@ discussing", [usersDiscussing formattedPluralizationForSingular:@"person" orPlural:@"people"], usersDiscussing.count == 1 ? @"is" : @"are"] forState:UIControlStateNormal];
-    [self.seeCompletedButton setTitle:[NSString stringWithFormat:@"%@ completed", [completedPeople formattedPluralizationForSingular:@"person" orPlural:@"people"]] forState:UIControlStateNormal];
+    [self.joinDiscussionButton setTitle:@"" forState:UIControlStateNormal];
+    [self.seeCompletedButton setTitle:@"" forState:UIControlStateNormal];
+    
+    UILabel* leftLabel = (UILabel*) [self.bottomToolbarView viewWithTag:1];
+    [leftLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    [leftLabel setText:[NSString stringWithFormat:@"%@ %@ completed this track", [completedPeople formattedPluralizationForSingular:@"person" orPlural:@"people"], ([completedPeople count] == 1 ? @"has" : @"have")]];
+    
+    UILabel* rightLabel = (UILabel*) [self.bottomToolbarView viewWithTag:2];
+    [rightLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    [rightLabel setText:[NSString stringWithFormat:@"%@ %@ discussing", [usersDiscussing formattedPluralizationForSingular:@"person" orPlural:@"people"], usersDiscussing.count == 1 ? @"is" : @"are"]];
 }
 
 # pragma mark - Reload/Request
@@ -116,10 +126,15 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     self.sections = [[NSMutableArray alloc] init];
+    
+    [self.sections addObject:@"header"];
+    
     [self.sections addObject:@"resources"];
+    
     if (!requesting && self.polls.count > 0) {
         [self.sections addObject:@"polls"];
     }
+    
     return self.sections.count;
 }
 
@@ -129,6 +144,8 @@
         return [[self.track resources] count];
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"polls"]) {
         return self.polls.count;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
+        return 1;
     }
     return 0;
 }
@@ -140,6 +157,8 @@
         return [self tableView:self.tableView resourcesCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         return [self tableView:self.tableView pollCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -160,6 +179,15 @@
     VSPollsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"pollCell" forIndexPath:indexPath];
     
     [cell configureWithPoll:poll];
+    
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView headerCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSTrackTitleTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"trackTitleCell" forIndexPath:indexPath];
+    
+    [cell configureWithTrack:self.track andIndexPath:indexPath];
     
     return cell;
 }
@@ -189,6 +217,15 @@
     }
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return 146.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
+        return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
+    }
+    return 100.0f;
+}
 
 - (void) createResourceUserPairAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -203,6 +240,10 @@
         }failure:nil];
     }failure:nil];
 }
+
+
+
+
 
 #pragma mark - Helpers
 
@@ -231,7 +272,8 @@
 
 # pragma mark - Actions
 
-- (IBAction)seeCompletedAction:(id)sender {
+- (IBAction)seeCompletedAction:(id)sender
+{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSCompletedTrackViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"completedTrackViewController"];
     [vc setUsersCompleted:completedPeople];
@@ -240,7 +282,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)joinDiscussionAction:(id)sender {
+- (IBAction)joinDiscussionAction:(id)sender
+{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSMessagesViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"messagesViewController"];
     [vc setTrack:self.track];
@@ -255,6 +298,9 @@
 }
 
 
+
+
+
 # pragma mark - Alert
 
 - (void) showAlertWithText:(NSString*)text
@@ -262,4 +308,5 @@
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [av show];
 }
+
 @end

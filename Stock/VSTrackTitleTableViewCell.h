@@ -1,20 +1,17 @@
 //
-//  VSTrackTableViewCell.h
+//  VSTrackTitleTableViewCell.h
 //  Versed
 //
-//  Created by Joseph McArthur Gill on 5/15/15.
+//  Created by Will Schreiber on 6/11/15.
 //  Copyright (c) 2015 LXV. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface VSTrackTableViewCell : UITableViewCell
+@interface VSTrackTitleTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) NSMutableDictionary* track;
-@property (strong, nonatomic) UIButton *saveButton;
 
 - (void) configureWithTrack:(NSMutableDictionary*)t andIndexPath:(NSIndexPath*)indexPath;
-
-- (IBAction)saveTrackAction:(id)sender;
 
 @end

@@ -7,9 +7,10 @@
 //
 
 #import "VSSaveToMyTracksButton.h"
+@import QuartzCore;
 
-#define SAVE_TO_MY_TRACKS_TEXT @"Save to my tracks"
-#define REMOVE_FROM_MY_TRACKS_TEXT @"Remove from my tracks"
+#define SAVE_TO_MY_TRACKS_TEXT @"SAVE TO MY TRACKS"
+#define REMOVE_FROM_MY_TRACKS_TEXT @"REMOVE FROM MY TRACKS"
 
 @implementation VSSaveToMyTracksButton
 
@@ -19,11 +20,17 @@
 + (VSSaveToMyTracksButton*) initWithTrack:(NSMutableDictionary*)t andMyTrackIDs:(NSMutableArray*)ids
 {
     VSSaveToMyTracksButton *btn = [[VSSaveToMyTracksButton alloc] init];
+    
     btn.myTrackIDs = ids;
     btn.track = t;
+    
     [btn setTitle:[btn saveToMyTracksButtonTitle] forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal]; 
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [[btn titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
     btn.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    
+    [btn setShowsTouchWhenHighlighted:YES];
+    
     return btn;
 }
 

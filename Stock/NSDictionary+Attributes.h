@@ -16,6 +16,7 @@
 - (NSMutableDictionary*) cleanDictionary;
 
 # pragma mark - Added Getters
+
 // tracks/resources
 - (NSString*) status; 
 - (BOOL) live;
@@ -25,6 +26,7 @@
 - (NSMutableArray*) resources;
 - (NSString*) url;
 - (NSString*) mediaURL;
+- (NSString*) resourceType;
 - (NSString*) estimatedTime;
 - (NSString*) numberResources;
 

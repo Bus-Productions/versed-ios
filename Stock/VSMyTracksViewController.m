@@ -22,7 +22,10 @@
 
 @synthesize tableView, slideButton, myTracks, sections, bottomView;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"updatedMyTracks" object:nil];
+    
     [super viewDidLoad];
     [self setupSidebar];
     [self setupData];
@@ -111,8 +114,7 @@
 {
     NSMutableDictionary *track = [[self.myTracks objectAtIndex:indexPath.row] mutableCopy];
     VSTrackTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
-    
-    [cell.saveButton addTarget:self action:@selector(saveButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+
     [cell configureWithTrack:track andIndexPath:indexPath];
     
     return cell;
@@ -122,7 +124,7 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
     
-    [cell configureWithText:@"You can save learning tracks that you want to reference and they will show up here!"];
+    [cell configureWithTextsInArray:@[[NSString stringWithFormat:@"%@, you haven't saved any learning tracks.", [[[LXSession thisSession] user] firstName]], @"Saving learning tracks lets you easily come back later, and find out when new resources are added."]];
     
     return cell;
 }
@@ -138,29 +140,28 @@
     }
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"tracks"]) {
+        return 290.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+        return 400.0f;
+    }
+    return 100.0f;
+}
+
 
 # pragma mark - ACTIONS
-- (void) saveButtonTapped:(UIButton*)sender
+
+
+- (void) handleNotification:(NSNotification*)notification
 {
-    VSTrackTableViewCell *selectedCell = (VSTrackTableViewCell *)sender.superview.superview;
-    
-    if (selectedCell) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
-        [self updateMyTracks:[self.myTracks objectAtIndex:indexPath.row]];
-    }
+    [self handleResponse:[notification userInfo]];
 }
 
-- (void) updateMyTracks:(NSMutableDictionary*)t
+- (void) handleResponse:(NSDictionary*)notification
 {
-    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [t ID]} authType:@"none" success:^(id responseObject){
-        [self handleResponse:responseObject];
-    }failure:nil];
-}
-
-
-- (void) handleResponse:(id)responseObject
-{
-    self.myTracks = [[[responseObject cleanDictionary] objectForKey:@"my_tracks"] mutableCopy];
+    self.myTracks = [[[notification objectForKey:@"my_tracks"] mutableCopy] cleanArray];
     if (NULL_TO_NIL(self.myTracks)) {
         [self.myTracks saveLocalWithKey:@"myTracks" success:^(id responseObject){
             [self.tableView reloadData];

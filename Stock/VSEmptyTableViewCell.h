@@ -11,5 +11,6 @@
 @interface VSEmptyTableViewCell : UITableViewCell
 
 - (void) configureWithText:(NSString*)text;
+- (void) configureWithTextsInArray:(NSArray*)array;
 
 @end

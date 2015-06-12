@@ -136,6 +136,8 @@
     if ([self.tableView numberOfSections] > 0 && [self.tableView numberOfRowsInSection:0] > 0) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
+    
+    selectedIndex == 0 ? @"All Tracks" : [self.navigationController.navigationBar.topItem setTitle:[[[self.categoriesWithTracks objectAtIndex:selectedIndex] objectForKey:@"category"] categoryName]];
 }
 
 
@@ -181,7 +183,7 @@
 {
     NSMutableDictionary *track = [[[[[self.categoriesWithTracks objectAtIndex:selectedIndex] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row] mutableCopy];
     VSTrackTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
-    [cell.saveButton addTarget:self action:@selector(saveButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    //[cell.saveButton addTarget:self action:@selector(saveButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cell configureWithTrack:track andIndexPath:indexPath];
     
     return cell;
@@ -204,34 +206,5 @@
 }
 
 
-
-# pragma mark - ACTIONS
-
-- (void) saveButtonTapped:(UIButton*)sender
-{
-    VSTrackTableViewCell *selectedCell = (VSTrackTableViewCell *)sender.superview.superview;
-    
-    if (selectedCell) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
-        [self switchSaveToTracksText:(UIButton*)sender];
-        [self updateMyTracks:[[[[self.categoriesWithTracks objectAtIndex:indexPath.section] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row]];
-    }
-}
-
-- (void) updateMyTracks:(NSMutableDictionary*)t
-{
-    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [t ID]} authType:@"none" success:^(id responseObject){
-        [[[(NSArray*)[responseObject objectForKey:@"my_tracks"] cleanArray] mutableCopy] saveLocalWithKey:@"myTracks"];
-    }failure:nil];
-}
-
-- (void) switchSaveToTracksText:(UIButton*)btn
-{
-    if ([btn.currentTitle isEqualToString:SAVE_TO_MY_TRACKS_TEXT]) {
-        [btn setTitle:REMOVE_FROM_MY_TRACKS_TEXT forState:UIControlStateNormal];
-    } else {
-        [btn setTitle:SAVE_TO_MY_TRACKS_TEXT forState:UIControlStateNormal];
-    }
-}
 
 @end
