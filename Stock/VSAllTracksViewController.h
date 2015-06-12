@@ -10,9 +10,15 @@
 #import "SWRevealViewController.h"
 
 @interface VSAllTracksViewController : UIViewController <UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate>
+{
+    NSInteger selectedIndex;
+}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *categoriesWithTracks;
+
+@property (strong, nonatomic) IBOutlet UIScrollView *horizontalMenu;
+@property (strong, nonatomic) NSMutableArray* menuButtons;
 
 @end

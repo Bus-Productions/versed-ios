@@ -24,6 +24,7 @@
 - (NSString*) keyForTrack;
 - (NSMutableArray*) resources;
 - (NSString*) url;
+- (NSString*) mediaURL;
 - (NSString*) estimatedTime;
 - (NSString*) numberResources;
 

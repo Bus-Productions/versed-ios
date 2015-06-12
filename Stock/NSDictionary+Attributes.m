@@ -82,6 +82,11 @@
     return [self objectForKey:@"url"];
 }
 
+- (NSString*) mediaURL
+{
+    return [self objectForKey:@"media_url"];
+}
+
 - (BOOL) live
 {
     return [[self status] isEqualToString:@"live"];
