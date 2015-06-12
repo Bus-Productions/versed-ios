@@ -281,6 +281,16 @@
     return [[self objectForKey:@"weaknesses"] mutableCopy];
 }
 
+- (NSString*) estimatedTime
+{
+    return [NSString stringWithFormat:@"%@ minutes", [self objectForKey:@"estimated_time"]];
+}
+
+- (NSString*) numberResources
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"number_resources"]];
+}
+
 - (NSString*) pollAnswerID
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"poll_answer_id"]];

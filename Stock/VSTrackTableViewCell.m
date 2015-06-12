@@ -59,7 +59,7 @@
     title.layer.masksToBounds = NO;
     
     UILabel* subTitle = (UILabel*)[baseView viewWithTag:3];
-    [subTitle setText:@"10 resources · 43 minutes"];
+    [subTitle setText:[NSString stringWithFormat:@"%@ resources · %@", [track numberResources], [track estimatedTime]]];
     [subTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
     [subTitle setTextColor:[UIColor whiteColor]];
     
