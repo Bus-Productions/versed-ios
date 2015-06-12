@@ -35,6 +35,7 @@
 - (void) setupSidebar
 {
     [self setTitle:@"FAQ"];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     SWRevealViewController *revealViewController = self.revealViewController;
     if (revealViewController)
@@ -62,7 +63,6 @@
 {
     [[LXServer shared] requestPath:@"/faq_categories.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.faqCategories = [[[responseObject cleanDictionary] objectForKey:@"faq_categories"] mutableCopy];
-        NSLog(@"faqs = %@", self.faqCategories);
         [self.tableView reloadData];
     }failure:nil];
 }
@@ -113,6 +113,29 @@
         [vc setFaqCategory:[self.faqCategories objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:vc animated:YES]; 
     }
+}
+
+
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
+{
+    if (!text || [text length] == 0) {
+        return 0.0f;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 100000)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    return rect.size.height;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *text;
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"faqCategories"]) {
+        text = [[self.faqCategories objectAtIndex:indexPath.row] categoryName];
+    }
+    return [self heightForText:text width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0]] + 40.0f;
 }
 
 # pragma mark - Contact Us

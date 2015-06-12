@@ -11,6 +11,7 @@
 #import "VSProfileTopicsTableViewCell.h"
 #import "VSProfileSettingsTableViewCell.h"
 #import "SWRevealViewController.h"
+#import "AppDelegate.h"
 
 @interface VSProfileViewController ()
 
@@ -143,6 +144,14 @@
 }
 
 # pragma mark - Actions
+
+- (IBAction)logoutAction:(id)sender
+{
+    [[[LXSession thisSession] user] destroyLocal:^(id responseObject){
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate setRootStoryboard:@"MobileLogin"];
+    }failure:nil];
+}
 
 - (IBAction)updateSettingsAction:(id)sender {
     NSString *name = [((UITextField*)[[sender superview] viewWithTag:4]) text];

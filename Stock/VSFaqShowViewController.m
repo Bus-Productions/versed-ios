@@ -35,6 +35,7 @@
 - (void) setupNavigationBar
 {
     [self.navigationItem setTitle:@"Question"];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void) setupContactUsButton
@@ -96,9 +97,34 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
 {
-    return 80.0f;
+    if (!text || [text length] == 0) {
+        return 0.0f;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 100000)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    return rect.size.height;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *text;
+    NSString *fontName;
+    float size;
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"faqQuestion"]) {
+        text = [self.faq faqQuestion];
+        fontName = @"SourceSansPro-Light";
+        size = 18.0;
+    } else {
+        text = [self.faq faqResponse];
+        fontName = @"SourceSansPro-Regular";
+        size = 12.0;
+    }
+    return [self heightForText:text width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:fontName size:size]] + 40.0f;
 }
 
 # pragma mark - Contact Us
