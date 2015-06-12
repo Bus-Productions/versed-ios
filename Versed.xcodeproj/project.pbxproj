@@ -13,6 +13,8 @@
 		283A44971B2A93BD003012A7 /* talkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A44951B2A93BD003012A7 /* talkbox.png */; };
 		283A44991B2A9B3D003012A7 /* black_logo_sans.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A44981B2A9B3D003012A7 /* black_logo_sans.png */; };
 		283A449B1B2A9C7F003012A7 /* versed_daily.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A449A1B2A9C7F003012A7 /* versed_daily.png */; };
+		287684F01B2ABFE20076AB24 /* quiz_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 287684EF1B2ABFE20076AB24 /* quiz_splash.png */; };
+		287684F21B2AC2B60076AB24 /* question_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 287684F11B2AC2B60076AB24 /* question_header.png */; };
 		28793F041B288C3F00E2998F /* NSArray+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 28793F031B288C3F00E2998F /* NSArray+Attributes.m */; };
 		28793F0A1B288F4D00E2998F /* white_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 28793F091B288F4D00E2998F /* white_logo.png */; };
 		28793F0C1B288FEA00E2998F /* white_logo_sans.png in Resources */ = {isa = PBXBuildFile; fileRef = 28793F0B1B288FEA00E2998F /* white_logo_sans.png */; };
@@ -127,6 +129,8 @@
 		283A44951B2A93BD003012A7 /* talkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = talkbox.png; sourceTree = "<group>"; };
 		283A44981B2A9B3D003012A7 /* black_logo_sans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_logo_sans.png; sourceTree = "<group>"; };
 		283A449A1B2A9C7F003012A7 /* versed_daily.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = versed_daily.png; sourceTree = "<group>"; };
+		287684EF1B2ABFE20076AB24 /* quiz_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quiz_splash.png; sourceTree = "<group>"; };
+		287684F11B2AC2B60076AB24 /* question_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_header.png; sourceTree = "<group>"; };
 		28793F021B288C3F00E2998F /* NSArray+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Attributes.h"; sourceTree = "<group>"; };
 		28793F031B288C3F00E2998F /* NSArray+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Attributes.m"; sourceTree = "<group>"; };
 		28793F091B288F4D00E2998F /* white_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_logo.png; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 		283A448E1B2A5CF1003012A7 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				287684F11B2AC2B60076AB24 /* question_header.png */,
 				283A44941B2A93BD003012A7 /* checkmark.png */,
 				283A44951B2A93BD003012A7 /* talkbox.png */,
 				283A448F1B2A5CFC003012A7 /* people.png */,
@@ -352,6 +357,7 @@
 		28793F0D1B28907900E2998F /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				287684EF1B2ABFE20076AB24 /* quiz_splash.png */,
 				28793F0E1B28908D00E2998F /* login_warm_background.png */,
 			);
 			name = Backgrounds;
@@ -813,7 +819,9 @@
 				28793F1D1B2898DC00E2998F /* SourceSansPro-Black.otf in Resources */,
 				28A5340C1AD0A64F0049B3F7 /* MobileLogin.storyboard in Resources */,
 				28793F241B2898E200E2998F /* SourceSansPro-Light.otf in Resources */,
+				287684F01B2ABFE20076AB24 /* quiz_splash.png in Resources */,
 				28793F231B2898E200E2998F /* SourceSansPro-It.otf in Resources */,
+				287684F21B2AC2B60076AB24 /* question_header.png in Resources */,
 				28A534061ACF6F4E0049B3F7 /* Podfile in Resources */,
 				283A449B1B2A9C7F003012A7 /* versed_daily.png in Resources */,
 				28793F311B29E9D900E2998F /* burgermenu.png in Resources */,

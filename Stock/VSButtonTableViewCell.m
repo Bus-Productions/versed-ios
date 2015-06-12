@@ -24,9 +24,10 @@
 - (void) configureWithText:(NSString*)text andColor:(UIColor*)color
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
-    [lbl setBackgroundColor:color];
+    if (color) {
+        [lbl setBackgroundColor:color];
+    }
     [lbl setText:text];
-    lbl.layer.cornerRadius = 10;
-    lbl.clipsToBounds = YES;
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
 }
 @end

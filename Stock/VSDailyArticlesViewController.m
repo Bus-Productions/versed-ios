@@ -50,7 +50,7 @@
 
 - (void) setupSidebar
 {
-    [self setTitle:@"Daily Articles"];
+    [self setTitle:@"Versed Daily"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
     if (revealViewController)

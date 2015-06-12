@@ -11,6 +11,7 @@
 @interface VSQuizLandingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     BOOL isRequesting;
+    MBProgressHUD* hud;
 }
 
 @property (strong, nonatomic) NSMutableArray *quizQuestions;

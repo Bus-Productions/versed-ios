@@ -24,9 +24,27 @@
 - (void) configureWithQuizResults:(NSMutableArray*)quizResults
 {
     UILabel *recentQuizResultLabel = (UILabel*)[self viewWithTag:1];
-    [recentQuizResultLabel setText:[NSString stringWithFormat:@"%d of %lu correct", [quizResults numberQuizResultsCorrect], (unsigned long)[quizResults count]]];
+    [recentQuizResultLabel setText:[NSString stringWithFormat:@"%d of %lu", [quizResults numberQuizResultsCorrect], (unsigned long)[quizResults count]]];
+    [recentQuizResultLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:40.0f]];
+    [recentQuizResultLabel setTextColor:[UIColor whiteColor]];
+    
     UILabel *overallStatsLabel = (UILabel*)[self viewWithTag:2];
     [overallStatsLabel setText:[[[LXSession thisSession] user] overallQuizPercentage]];
+    [overallStatsLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:40.0f]];
+    [overallStatsLabel setTextColor:[UIColor whiteColor]];
+    
+    UILabel *labelLeft = (UILabel*)[self viewWithTag:3];
+    [labelLeft setText:@"QUESTIONS CORRECT"];
+    [labelLeft setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    [labelLeft setTextColor:[UIColor whiteColor]];
+    
+    UILabel *labelRight = (UILabel*)[self viewWithTag:4];
+    [labelRight setText:@"LIFETIME ACCURACY"];
+    [labelRight setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    [labelRight setTextColor:[UIColor whiteColor]];
+    
+    UIButton* button = (UIButton*)[self.contentView viewWithTag:5];
+    [[button titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
 }
 
 @end

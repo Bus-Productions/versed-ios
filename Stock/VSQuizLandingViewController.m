@@ -293,11 +293,14 @@
 
 - (void) showQuizPreview
 {
+    [self showHUDWithMessage:@"Loading Quiz..."];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSQuizPreviewViewController *vc = (VSQuizPreviewViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizPreviewViewController"];
     [vc setDelegate:self];
     [vc setQuiz:self.quiz];
-    [self.navigationController presentViewController:vc animated:YES completion:nil]; 
+    [self.navigationController presentViewController:vc animated:YES completion:^(void){
+        [self hideHUD];
+    }];
 }
 
 - (void) pushQuestionOnStack
@@ -342,5 +345,25 @@
         }
     }
 }
+
+
+
+# pragma mark hud delegate
+
+- (void) showHUDWithMessage:(NSString*) message
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = message;
+    [hud setColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:0.8]];
+    [hud setLabelFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+}
+
+- (void) hideHUD
+{
+    if (hud) {
+        [hud hide:YES];
+    }
+}
+
 
 @end

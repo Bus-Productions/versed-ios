@@ -12,6 +12,7 @@
 #import "VSNoMissesQuizTableViewCell.h"
 #import "VSTrackViewController.h"
 #import "VSEmptyTableViewCell.h"
+#import "VSDashboardViewController.h"
 
 @interface VSQuizResultsViewController ()
 
@@ -21,13 +22,15 @@
 
 @synthesize quizResults, tableView, sections, missedQuestions;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupData];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -67,7 +70,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     self.sections = [[NSMutableArray alloc] init];
+    
+    [self.sections addObject:@"wellDone"];
+    
     [self.sections addObject:@"showResults"];
+    
     if (self.missedQuestions.count > 0 && self.quizResults.count > 0) {
         [self.sections addObject:@"missedQuestions"];
     } else if (isRequesting) {
@@ -75,6 +82,7 @@
     } else if (self.quizResults.count > 0) {
         [self.sections addObject:@"noMisses"];
     }
+    
     return self.sections.count;
 }
 
@@ -87,6 +95,8 @@
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"noMisses"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"wellDone"]) {
         return 1;
     }
     return 0;
@@ -102,6 +112,8 @@
         return [self tableView:self.tableView noMissesCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         return [self tableView:self.tableView emptyCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"wellDone"]) {
+        return [self tableView:self.tableView wellDoneCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -110,6 +122,11 @@
 {
     VSOverallResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"overallResultsCell" forIndexPath:indexPath];
     [cell configureWithQuizResults:self.quizResults];
+    
+    UIButton* button = (UIButton*)[cell.contentView viewWithTag:5];
+    [button removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    [button addTarget:self action:@selector(showLeaderboard:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 
@@ -134,6 +151,23 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView wellDoneCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"wellDoneCell" forIndexPath:indexPath];
+    
+    UILabel* topLabel = (UILabel*)[cell.contentView viewWithTag:1];
+    [topLabel setText:[NSString stringWithFormat:@"Well done, %@!", [[[LXSession thisSession] user] firstName]]];
+    [topLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:28.0f]];
+    [topLabel setTextColor:[UIColor whiteColor]];
+    
+    UILabel* bottomLabel = (UILabel*)[cell.contentView viewWithTag:2];
+    [bottomLabel setText:[NSString stringWithFormat:@"You have a good knowledge of most of the major trends shaping business today."]];
+    [bottomLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:22.0f]];
+    [bottomLabel setTextColor:[UIColor whiteColor]];
+    
+    return cell;
+}
+
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -145,9 +179,36 @@
     }
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
+        return 170.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
+        return 100.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"noMisses"]) {
+
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"wellDone"]) {
+        return 190.0f;
+    }
+    return 54.0f;
+}
+
 
 # pragma mark - Helpers
 
+- (void) showLeaderboard:(UIButton*)sender
+{
+    [self pushDashboardOnStack];
+}
+
+- (void) pushDashboardOnStack
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSDashboardViewController *vc = (VSDashboardViewController*)[storyboard instantiateViewControllerWithIdentifier:@"dashboardViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void) setupMissedQuestions
 {

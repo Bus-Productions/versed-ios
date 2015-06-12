@@ -18,13 +18,15 @@
 
 @synthesize tableView, sections, leaders;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupData];
     [self setupNavigationBar];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -98,8 +100,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView leaderboardTitleCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleCell" forIndexPath:indexPath];
+    
     UILabel *lbl = (UILabel*)[cell viewWithTag:1];
     [lbl setText:@"The Leaderboard"];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];
+    
+    UILabel *descriptionText = (UILabel*)[cell viewWithTag:2];
+    [descriptionText setText:@"The top 10 lifetime quiz takers in your company."];
+    [descriptionText setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:11.0f]];
+    
     return cell;
 }
 
@@ -117,7 +126,17 @@
     return cell;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"title"]) {
+        return 74.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
 
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"leaders"]) {
+        return 80.0f;
+    }
+    return 100.0f;
+}
 
 
 @end

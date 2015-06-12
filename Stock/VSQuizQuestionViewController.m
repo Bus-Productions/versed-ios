@@ -63,9 +63,12 @@
     self.sections = [[NSMutableArray alloc] init];
     
     if (self.question) {
+        [self.sections addObject:@"header"];
         [self.sections addObject:@"question"];
         [self.sections addObject:@"answer"];
-        [self.sections addObject:@"next"];
+        //if (alreadyAnswered) {
+            [self.sections addObject:@"next"];
+        //}
     }
     return self.sections.count;
 }
@@ -77,6 +80,8 @@
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"answer"]) {
         return [[self.question questionAnswers] count];
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"next"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
         return 1;
     }
     return 0;
@@ -91,6 +96,8 @@
         return [self tableView:self.tableView answerCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
         return [self tableView:self.tableView nextCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -112,7 +119,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView nextCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSButtonTableViewCell *cell = (VSButtonTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"nextCell" forIndexPath:indexPath];
-    [cell configureWithText:@"Next" andColor:[UIColor blueColor]];
+    [cell configureWithText:@"Next" andColor:nil];
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView headerCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = (UITableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
+    
+    UILabel* timerLabel = (UILabel*)[cell.contentView viewWithTag:1];
+    [timerLabel setText:@"00:20"];
+    
+    UILabel* percentageLabel = (UILabel*)[cell.contentView viewWithTag:2];
+    [percentageLabel setText:@"90%"];
+    
+    UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
+    [questionLabel setText:@"2/7"];
+
     return cell;
 }
 
@@ -138,6 +161,33 @@
     }
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return self.view.frame.size.width/1080.0f*420.0f + 37.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answer"]) {
+        return 62.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
+        return 62.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
+        return 40.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
+    }
+    return 100.0f;
+}
+
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
+{
+    if (!text || [text length] == 0) {
+        return 0.0f;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 100000)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    return rect.size.height;
+}
+
 
 # pragma mark - Helpers
 
@@ -160,13 +210,14 @@
     if (NULL_TO_NIL(indexPath)) {
         chosenCell = [self.tableView cellForRowAtIndexPath:indexPath];
         if (![chosenCell isEqual:correctCell]) {
-            [chosenCell setBackgroundColor:[UIColor grayColor]];
+            [[chosenCell.contentView viewWithTag:1] setBackgroundColor:[UIColor grayColor]];
+            [(UILabel*)[chosenCell.contentView viewWithTag:1] setTextColor:[UIColor blackColor]];
         }
     } else {
 
         [self showAlertWithText:@"You ran out of time!"];
     }
-    [correctCell setBackgroundColor:[UIColor greenColor]];
+    [[correctCell.contentView viewWithTag:1] setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:0.8]];
 
     successCallback(nil);
 }

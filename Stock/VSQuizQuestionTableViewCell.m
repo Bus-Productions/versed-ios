@@ -26,12 +26,14 @@
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:[question questionText]];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     
-    [self.timerLabel setText:@"20s"];
+    //[self.timerLabel setText:@"20s"];
 }
 
 - (void) updateTimerLabel:(int)time
 {
     [self.timerLabel setText:[NSString stringWithFormat:@"%ds", time]];
 }
+
 @end

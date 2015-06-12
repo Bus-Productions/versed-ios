@@ -14,10 +14,16 @@
 
 @interface VSQuizPreviewViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) NSMutableDictionary *quiz;
 @property (nonatomic,assign) id delegate;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *infoLabel;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) IBOutlet UIButton *startButton;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
+- (IBAction)cancelAction:(id)sender;
 - (IBAction)takeQuizAction:(id)sender;
 
 @end

@@ -28,14 +28,22 @@
     UILabel *percentCorrect = (UILabel*)[self viewWithTag:4];
     
     [ranking setText:[self rankingOfUser:user inLeaders:leaders]];
+    [ranking setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:40]];
+    
     [name setText:[user name]];
-    [quizzesTaken setText:[self quizzesTakenTextForUser:user]];
+    [name setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:14.0f]];
+    
+    [quizzesTaken setText:[NSString stringWithFormat:@"%@ - %@", [self quizzesTakenTextForUser:user], [user level]]];
+    [quizzesTaken setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    [quizzesTaken setTextColor:[UIColor lightGrayColor]];
+    
     [percentCorrect setText:[user overallQuizPercentage]];
+    [percentCorrect setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:30]];
 }
 
 - (NSString *) rankingOfUser:(NSMutableDictionary*)user inLeaders:(NSMutableArray*)leaders
 {
-    return [NSString stringWithFormat:@"#%lu", (unsigned long)[leaders indexOfObject:user] + 1];
+    return [NSString stringWithFormat:@"%lu", (unsigned long)[leaders indexOfObject:user] + 1];
 }
 
 - (NSString *) quizzesTakenTextForUser:(NSMutableDictionary*)user
