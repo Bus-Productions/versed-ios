@@ -26,5 +26,6 @@
 #import "LXAddressBook.h"
 #import "LXArrayObjects.h"
 #import "NSArray+Attributes.h"
+#import "SGImageCache.h"
 
 #endif

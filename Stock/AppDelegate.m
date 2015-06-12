@@ -26,7 +26,7 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [[LXServer shared] requestPath:[NSString stringWithFormat:@"users/%@.json", [[[LXSession thisSession] user] ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
                 [[LXSession thisSession] setUser:[[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy]];
-                NSLog(@"user = %@", [[LXSession thisSession] user]);
+                //NSLog(@"user = %@", [[LXSession thisSession] user]);
             }failure:nil];
         });
         [self setRootStoryboard:@"Main"];

@@ -11,8 +11,8 @@
 #import "VSTrackViewController.h"
 @import QuartzCore;
 
-#define SAVE_TO_MY_TRACKS_TEXT @"Save To My Tracks"
-#define REMOVE_FROM_MY_TRACKS_TEXT @"Remove From My Tracks"
+#define SAVE_TO_MY_TRACKS_TEXT @"Save to my tracks"
+#define REMOVE_FROM_MY_TRACKS_TEXT @"Remove from my tracks"
 
 @interface VSAllTracksViewController ()
 
@@ -133,6 +133,9 @@
     }
     
     [self.tableView reloadData];
+    if ([self.tableView numberOfSections] > 0 && [self.tableView numberOfRowsInSection:0] > 0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
 }
 
 
