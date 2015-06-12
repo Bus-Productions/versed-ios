@@ -223,8 +223,24 @@
         return 146.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
         return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
+        NSString* pollQuestion = [[[self.polls objectAtIndex:indexPath.row] poll] pollQuestion];
+        return 52.0f + [self heightForText:pollQuestion width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]]; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
     }
     return 100.0f;
+}
+
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
+{
+    if (!text || [text length] == 0) {
+        return 0.0f;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 100000)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    return rect.size.height;
 }
 
 - (void) createResourceUserPairAtIndexPath:(NSIndexPath*)indexPath

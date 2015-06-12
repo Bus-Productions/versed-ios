@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSPollResultsViewController : UIViewController
+@interface VSPollResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableDictionary *poll;
 @property (strong, nonatomic) NSMutableArray *sections;

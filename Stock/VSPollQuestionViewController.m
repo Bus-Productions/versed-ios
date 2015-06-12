@@ -20,12 +20,14 @@
 
 @synthesize poll, tableView, sections;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupNavigationBar];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -49,6 +51,7 @@
 {
     self.sections = [[NSMutableArray alloc] init];
     if (self.poll) {
+        [self.sections addObject:@"header"];
         [self.sections addObject:@"question"];
         [self.sections addObject:@"answers"];
         [self.sections addObject:@"submit"];
@@ -64,6 +67,8 @@
         return [[self.poll pollAnswers] count];
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"submit"]) {
         return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
+        return 1;
     }
     return 0;
 }
@@ -77,8 +82,26 @@
         return [self tableView:self.tableView answerCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"submit"]) {
         return [self tableView:self.tableView submitCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
     }
     return nil;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView headerCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
+    
+    UILabel* title = (UILabel*)[cell.contentView viewWithTag:1];
+    [title setText:@"guesstimates"];
+    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:32.0f]];
+    
+    UILabel* byline = (UILabel*)[cell.contentView viewWithTag:2];
+    [byline setText:[NSString stringWithFormat:@"A Question from %@", @"your company."]];
+    NSLog(@"poll: %@", self.poll);
+    [byline setFont:[UIFont fontWithName:@"SourceSansPro-LightIt" size:18.0f]];
+    
+    return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView questionCellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,7 +127,7 @@
 {
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"submitCell" forIndexPath:indexPath];
     
-    [cell configureWithText:@"Submit Answer" andColor:[UIColor greenColor]];
+    [cell configureWithText:@"Submit Answer" andColor:nil];
     
     return cell;
 }
@@ -123,6 +146,35 @@
             [self.navigationController setViewControllers:activeViewControllers];
         }failure:nil];
     }
+}
+
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return 150.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
+        return 62.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"submit"]) {
+        return 62.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
+        return 40.0f + [self heightForText:[[self.poll poll] pollQuestion] width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
+    }
+    return 100.0f;
+}
+
+
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
+{
+    if (!text || [text length] == 0) {
+        return 0.0f;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 100000)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    return rect.size.height;
 }
 
 

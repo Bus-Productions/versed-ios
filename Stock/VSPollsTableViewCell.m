@@ -22,7 +22,14 @@
 
 - (void) configureWithPoll:(NSMutableDictionary*)poll
 {
-    UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
-    [lbl setText:[[poll objectForKey:@"poll"] pollQuestion]];
+    UIView* container = (UIView*)[self.contentView viewWithTag:10];
+    
+    UILabel *lbl = (UILabel*)[container viewWithTag:1];
+    [lbl setText:@"guesstimate"];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:18.0f]];
+    
+    UILabel *bottomLabel = (UILabel*)[container viewWithTag:2];
+    [bottomLabel setText:[[poll objectForKey:@"poll"] pollQuestion]];
+    [bottomLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
 }
 @end
