@@ -27,6 +27,7 @@
 - (NSString*) mediaURL;
 - (NSString*) estimatedTime;
 - (NSString*) numberResources;
+- (BOOL) completed;
 
 // quizzes
 - (NSMutableDictionary*) quiz;

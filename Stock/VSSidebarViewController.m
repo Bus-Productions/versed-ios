@@ -60,7 +60,6 @@
     [self.menuOptions addObject:QUIZ_IDENTIFIER];
     [self.menuOptions addObject:DAILY_ARTICLES_IDENTIFIER];
     [self.menuOptions addObject:FAQ_IDENTIFIER];
-    [self.menuOptions addObject:CONTACT_US_IDENTIFIER];
 }
 
 
@@ -130,10 +129,6 @@
     } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:FAQ_IDENTIFIER]) {
         vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"faqCategoryViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"faqNavigationController"];
-    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:CONTACT_US_IDENTIFIER]) {
-        NSString *url = [@"mailto:m@lxv.io?subject=Versed iOS Questions/Comments" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [[UIApplication sharedApplication]  openURL: [NSURL URLWithString: url]];
-        return;
     }
     
     [nc setViewControllers:@[vc] animated:NO];
