@@ -22,7 +22,8 @@
 
 @synthesize sections, tableView, question, delegate, totalQuestions, questionsCompleted;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupTimer];

@@ -26,13 +26,15 @@
 
 @synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk, quiz;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupSidebar];
     [self setupData];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -91,14 +93,16 @@
 {
     self.sections = [[NSMutableArray alloc] init];
     
-    if (isRequesting){
+    if (isRequesting) {
         [self.sections addObject:@"requesting"];
     } else if (self.questionsToAsk.count > 0) {
         [self.sections addObject:@"startQuiz"];
     } else {
         [self.sections addObject:@"showResults"];
     }
+    
     [self.sections addObject:@"dashboard"];
+    
     return self.sections.count;
 }
 
@@ -134,14 +138,30 @@
 {
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"actionCell" forIndexPath:indexPath];
     NSString *labelText = self.quizResults.count > 0 ? @"Continue Quiz" : @"Start Quiz";
-    [cell configureWithText:labelText andColor:[UIColor blueColor]];
+    
+    UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
+    [title setText:[self.quiz quizName]];
+    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
+    
+    UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
+    [action setText:labelText];
+    [action setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    
     return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView showResultsCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"actionCell" forIndexPath:indexPath];
-    [cell configureWithText:@"Show Results" andColor:[UIColor blueColor]];
+    
+    UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
+    [title setText:[self.quiz quizName]];
+    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
+    
+    UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
+    [action setText:@"Show Results"];
+    [action setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    
     return cell;
 }
 
@@ -155,7 +175,64 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView dashboardCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"dashboardCell" forIndexPath:indexPath];
-    [cell configureWithText:@"See Dashboard" andColor:[UIColor greenColor]];
+    //[cell configureWithText:@"See Dashboard" andColor:[UIColor greenColor]];
+    
+    UILabel* perfOv = (UILabel*)[cell.contentView viewWithTag:1];
+    [perfOv setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+    
+    UIView* container = (UIView*)[cell.contentView viewWithTag:10];
+    
+    UILabel* accuracy = (UILabel*)[container viewWithTag:1];
+    [accuracy setText:@"LIFETIME\nQUIZ ACCURACY"];
+    [accuracy setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:11.0f]];
+    
+    UILabel* percentage = (UILabel*)[container viewWithTag:2];
+    [percentage setText:[NSString stringWithFormat:@"%li%%", (long)[[[[LXSession thisSession] user] objectForKey:@"quiz_percentage"] integerValue]]];
+    [percentage setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:30.0f]];
+    
+    UILabel* label = (UILabel*)[container viewWithTag:3];
+    [label setText:@"View the\nLeaderboard"];
+    [label setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
+    
+    
+    
+    UILabel* strengthsLabel = (UILabel*)[cell.contentView viewWithTag:20];
+    [strengthsLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    [strengthsLabel setText:@"STRENGTHS"];
+    
+    UILabel* weaknessesLabel = (UILabel*)[cell.contentView viewWithTag:21];
+    [weaknessesLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    [weaknessesLabel setText:@"DEVELOPMENT AREAS"];
+    
+    UILabel* strengths = (UILabel*)[cell.contentView viewWithTag:30];
+    [strengths setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+    if ([[[LXSession thisSession] user] strengths] && [[[[LXSession thisSession] user] strengths] count] > 0) {
+        NSString* str = @"";
+        for (NSString* s in [[[LXSession thisSession] user] strengths]) {
+            str = [NSString stringWithFormat:@"%@%@\n", str, s];
+        }
+        [strengths setText:str];
+    } else {
+        [strengths setText:@"None, yet."];
+    }
+    
+    UILabel* weaknesses = (UILabel*)[cell.contentView viewWithTag:31];
+    [weaknesses setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+    if ([[[LXSession thisSession] user] weaknesses] && [[[[LXSession thisSession] user] weaknesses] count] > 0) {
+        NSString* str = @"";
+        for (NSString* s in [[[LXSession thisSession] user] weaknesses]) {
+            str = [NSString stringWithFormat:@"%@%@\n", str, s];
+        }
+        [weaknesses setHidden:NO];
+        [weaknessesLabel setHidden:NO];
+        [weaknesses setText:str];
+    } else {
+        [weaknesses setText:@"None, yet."];
+        [weaknesses setHidden:YES];
+        [weaknessesLabel setHidden:YES];
+    }
+    
+    
     return cell;
 }
 
@@ -171,6 +248,19 @@
     }
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
+        return 170.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
+        return 170.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"requesting"]) {
+        return 136.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
+        return 350.0f;
+    }
+    return 100.0f;
+}
 
 # pragma mark - VSCreateQuizResultDelegate
 
