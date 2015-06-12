@@ -24,11 +24,13 @@
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:[NSString stringWithFormat:@"%@ in your organization %@ versed on %@", [users formattedPluralizationForSingular:@"person" orPlural:@"people"], users.count == 1 ? @"is" : @"are", [track headline]]];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:24.0f]];
 }
 
 - (void) configureForDiscussionWithTrack:(NSMutableDictionary*)track
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:[NSString stringWithFormat:@"Join the discussion on %@", [track headline]]];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:24.0f]];
 }
 @end

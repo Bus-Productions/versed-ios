@@ -19,12 +19,15 @@
 
 @synthesize usersCompleted, sections, myTracksIDs, track;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupNavigationBar];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -103,6 +106,17 @@
     [cell configureWithText:@"Nobody has completed this track yet. Be the first!"];
     
     return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"title"]) {
+        return 90.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"usersCompleted"]) {
+        return 50.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+    }
+    return 100.0f;
 }
 
 

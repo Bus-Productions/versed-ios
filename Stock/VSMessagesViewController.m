@@ -32,7 +32,8 @@
 @synthesize track;
 @synthesize myTracksIDs; 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self setupProperties];
@@ -69,6 +70,8 @@
     [self setPage:0];
     
     maxComposeTextViewSize = self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - ([UIApplication sharedApplication].statusBarFrame.size.height-20.0) - (self.composeView.frame.size.height - self.composeTextView.frame.size.height);
+    
+    [[self.saveButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
 }
 
 - (void) setNavTitle
@@ -118,12 +121,15 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     self.sections = [[NSMutableArray alloc] init];
+    
     [self.sections addObject:@"title"];
+    
     if (self.allMessages.count > 0) {
         [self.sections addObject:@"messages"];
     } else {
         [self.sections addObject:@"empty"];
     }
+    
     return self.sections.count;
 }
 
@@ -184,6 +190,31 @@
 {
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"title"]) {
+        return 90.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"messages"]) {
+        NSDictionary* message = [self.allMessages objectAtIndex:indexPath.row];
+        return 61.0f + [self heightForText:[message message] width:(self.view.frame.size.width-16.0) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+        
+    }
+    return 44.0f;
+}
+
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
+{
+    if (!text || [text length] == 0) {
+        return 0.0f;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 100000)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    return rect.size.height;
+}
 
 
 # pragma mark Keyboard Notifications
