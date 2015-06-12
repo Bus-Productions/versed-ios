@@ -24,6 +24,7 @@
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:[poll pollQuestion]];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
 }
 
 @end

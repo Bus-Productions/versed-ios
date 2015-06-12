@@ -355,7 +355,7 @@
 {
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = message;
-    [hud setColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:0.8]];
+    [hud setColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
     [hud setLabelFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
 }
 

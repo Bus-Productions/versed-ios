@@ -24,7 +24,17 @@
 
 - (void) configure
 {
+    UILabel* topLabel = (UILabel*)[self.contentView viewWithTag:100];
+    [topLabel setTextColor:[UIColor grayColor]];
+    [topLabel setText:@"How helpful was this track?"];
+    [topLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];
+    
+    UIButton* submitButton = (UIButton*)[self.contentView viewWithTag:9];
+    [[submitButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
+    
     [self.ratingLabel setText:@"5 out of 5"];
+    [self.ratingLabel setFont:[UIFont fontWithName:@"SourcsSansPro-Bold" size:18.0f]];
+    [self.ratingLabel setTextColor:[UIColor blackColor]];
 
     [self.slider setBackgroundColor:[UIColor clearColor]];
     [self.slider setMinimumValue:0.0];

@@ -19,7 +19,8 @@
 
 @synthesize track, tableView, sections;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self.navigationItem setTitle:@"Feedback"]; 
 }
@@ -92,6 +93,18 @@
     [cell.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     
     return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"status"]) {
+        return 240;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"tracks"]) {
+        return 80;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"feedback"]) {
+        return 230;
+    }
+    return 100;
 }
 
 

@@ -17,13 +17,15 @@
 
 @synthesize poll, sections;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupNavigationBar];
     NSLog(@"poll = %@", poll);
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -47,6 +49,7 @@
 {
     self.sections = [[NSMutableArray alloc] init];
     if (self.poll) {
+        [self.sections addObject:@"header"];
         [self.sections addObject:@"answers"];
     }
     return self.sections.count;
@@ -56,6 +59,8 @@
 {
     if ([[self.sections objectAtIndex:section] isEqualToString:@"answers"]) {
         return [[self.poll pollAnswers] count];
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
+        return 1;
     }
     return 0;
 }
@@ -65,8 +70,21 @@
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
         return [self tableView:self.tableView answerCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
     }
     return nil;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView headerCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
+    
+    UILabel* headerLabel = (UILabel*)[cell.contentView viewWithTag:1];
+    [headerLabel setText:[NSString stringWithFormat:@"Thank you for giving us your guesstimate, %@.", [[[LXSession thisSession] user] firstName]]];
+    [headerLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:28.0f]];
+    
+    return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView answerCellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,6 +96,15 @@
     return cell;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
+        return 120.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return 200.0f;
+    }
+    return 100.0f;
+}
 
 
 @end
