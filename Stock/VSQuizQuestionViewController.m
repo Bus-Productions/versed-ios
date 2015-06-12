@@ -20,7 +20,7 @@
 
 @implementation VSQuizQuestionViewController
 
-@synthesize sections, tableView, question, delegate, totalQuestions, questionsCompleted;
+@synthesize sections, tableView, question, delegate, totalQuestions, questionsCompleted, quizResults;
 
 - (void)viewDidLoad
 {
@@ -128,13 +128,17 @@
     UITableViewCell *cell = (UITableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
     
     UILabel* timerLabel = (UILabel*)[cell.contentView viewWithTag:1];
-    [timerLabel setText:@"00:20"];
+    [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
     
     UILabel* percentageLabel = (UILabel*)[cell.contentView viewWithTag:2];
-    [percentageLabel setText:@"90%"];
+    float correct = [self.quizResults numberQuizResultsCorrect];
+    float total = questionsCompleted == 1 ? 2 : questionsCompleted - 1;
+    NSLog(@"questions completed = %d", questionsCompleted);
+    NSString *percentage = [NSString stringWithFormat:@"%ld%%", lround((correct/total)*100.0)];
+    [percentageLabel setText:percentage];
     
     UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
-    [questionLabel setText:@"2/7"];
+    [questionLabel setText:[NSString stringWithFormat:@"%lu/%lu",  (unsigned long)self.questionsCompleted, (unsigned long)self.totalQuestions]];
 
     return cell;
 }
@@ -229,6 +233,12 @@
     return [NSIndexPath indexPathForRow:firstRowIndex inSection:questionSectionIndex];
 }
 
+- (NSIndexPath*) timerIndexPath
+{
+    NSInteger questionSectionIndex = [self.sections indexOfObject:@"header"];
+    NSInteger firstRowIndex = 0;
+    return [NSIndexPath indexPathForRow:firstRowIndex inSection:questionSectionIndex];
+}
 
 # pragma mark - Timer
 
@@ -244,8 +254,9 @@
         [timer invalidate];
     } else {
         remainingTime = remainingTime - 1;
-        VSQuizQuestionTableViewCell *cell = (VSQuizQuestionTableViewCell*)[self.tableView cellForRowAtIndexPath:[self questionIndexPath]];
-        [cell updateTimerLabel:remainingTime];
+        UITableViewCell *cell = (UITableViewCell*)[self.tableView cellForRowAtIndexPath:[self timerIndexPath]];
+        UILabel *timerLabel = (UILabel*)[cell.contentView viewWithTag:1];
+        [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
     }
 }
 

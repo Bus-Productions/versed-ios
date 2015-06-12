@@ -310,6 +310,7 @@
     [vc setQuestion:[self.questionsToAsk firstObject]];
     [vc setTotalQuestions:[self.quizQuestions count]];
     [vc setQuestionsCompleted:[self.quizResults count] + 1];
+    [vc setQuizResults:self.quizResults];
     [vc setDelegate:self];
     [self.navigationController popToRootViewControllerAnimated:NO];
     [self.navigationController pushViewController:vc animated:YES];
