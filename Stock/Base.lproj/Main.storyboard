@@ -3176,8 +3176,8 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="8e8-rx-zXD"/>
-                                                    <exclude reference="aGy-J5-prc"/>
                                                     <exclude reference="8yi-eF-cEW"/>
+                                                    <exclude reference="aGy-J5-prc"/>
                                                     <exclude reference="xbh-uj-Siv"/>
                                                 </mask>
                                             </variation>
@@ -3231,9 +3231,9 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="roQ-uY-XaF"/>
-                                                    <exclude reference="jpb-EC-xe8"/>
                                                     <exclude reference="atO-1I-40X"/>
+                                                    <exclude reference="jpb-EC-xe8"/>
+                                                    <exclude reference="roQ-uY-XaF"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

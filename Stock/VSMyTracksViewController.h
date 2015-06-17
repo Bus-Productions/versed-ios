@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWRevealViewController.h"
 
-@interface VSMyTracksViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface VSMyTracksViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

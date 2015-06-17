@@ -10,7 +10,7 @@
 #import "SWRevealViewController.h"
 #import "VSContactUsButton.h"
 
-@interface VSFaqCategoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface VSFaqCategoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate>
 {
     VSContactUsButton *contactUsButton;
 }

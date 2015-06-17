@@ -7,7 +7,6 @@
 //
 
 #import "VSQuizLandingViewController.h"
-#import "SWRevealViewController.h"
 #import "VSQuizQuestionViewController.h"
 #import "VSButtonTableViewCell.h"
 #import "VSQuizResultsViewController.h"
@@ -52,6 +51,7 @@
     [self setTitle:@"Quiz"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
+    [revealViewController setDelegate:self];
     if (revealViewController)
     {
         [self.slideButton setTarget: self.revealViewController];
@@ -60,14 +60,34 @@
     }
 }
 
-
-# pragma mark - Setup
 - (void) setupData
 {
     self.quizQuestions = [[NSMutableArray alloc] init];
     self.questionsToAsk = [[NSMutableArray alloc] init];
     self.quizResults = [[NSMutableArray alloc] init];
     self.quiz = [[NSMutableDictionary alloc] init];
+}
+
+
+
+#pragma mark - SWRevealViewController Delegate Methods
+
+- (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
+}
+
+- (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
 }
 
 

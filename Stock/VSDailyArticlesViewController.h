@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWRevealViewController.h"
 
-@interface VSDailyArticlesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface VSDailyArticlesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate>
 {
     BOOL firstTime;
     NSMutableArray *completedResources; 
