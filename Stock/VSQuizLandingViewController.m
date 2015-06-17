@@ -284,21 +284,20 @@
 
 # pragma mark - VSCreateQuizResultDelegate
 
-- (void) createQuizResultWithQuestion:(NSMutableDictionary *)question andAnswer:(NSMutableDictionary *)answer
+- (void) createQuizResultWithQuestion:(NSMutableDictionary *)question andAnswer:(NSMutableDictionary *)answer success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSMutableDictionary *qr = [NSMutableDictionary create:@"quiz_result"];
-        [qr setObject:(answer ? [answer ID] : @"-1") forKey:@"quiz_answer_id"];
-        [qr setObject:[question ID] forKey:@"quiz_question_id"];
-        [qr setObject:[question quizID] forKey:@"quiz_id"];
-        [qr setObject:[question quizAnswerID] forKey:@"correct_answer_id"];
-        [qr setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
-        [self.quizResults addObject:qr];
-        [qr saveRemote:^(id responseObject){
-            [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
-            [self.tableView reloadData];
-        }failure:nil];
-    });
+    NSMutableDictionary *qr = [NSMutableDictionary create:@"quiz_result"];
+    [qr setObject:(answer ? [answer ID] : @"-1") forKey:@"quiz_answer_id"];
+    [qr setObject:[question ID] forKey:@"quiz_question_id"];
+    [qr setObject:[question quizID] forKey:@"quiz_id"];
+    [qr setObject:[question quizAnswerID] forKey:@"correct_answer_id"];
+    [qr setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
+    [self.quizResults addObject:qr];
+    [qr saveRemote:^(id responseObject){
+        [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
+        self.quizResults = [[[responseObject objectForKey:@"quiz_results"] cleanArray] mutableCopy];
+        successCallback(@{@"quiz_results": self.quizResults});
+    }failure:nil];
 }
 
 - (void) updateQuizQuestions

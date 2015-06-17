@@ -132,7 +132,11 @@
     
     UILabel* percentageLabel = (UILabel*)[cell.contentView viewWithTag:2];
     float correct = [self.quizResults numberQuizResultsCorrect];
-    float total = questionsCompleted < 2 ? 1.0 : questionsCompleted - 1;
+    float total = questionsCompleted > 1 ? questionsCompleted - 1 : 1.0;
+
+    if (alreadyAnswered) {
+        total = questionsCompleted;
+    }
     NSString *percentage = [NSString stringWithFormat:@"%ld%%", lround((correct/total)*100.0)];
     [percentageLabel setText:percentage];
     
@@ -156,9 +160,11 @@
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answer"]) {
         [self updateViewWithAnswerAtIndexPath:indexPath success:^(id responseObject){
-            [self.tableView reloadData];
+            [self.delegate createQuizResultWithQuestion:self.question andAnswer:[[self.question questionAnswers] objectAtIndex:indexPath.row] success:^(id responseObject){
+                self.quizResults = [responseObject objectForKey:@"quiz_results"];
+                [self.tableView reloadData];
+            } failure:nil];
         }failure:nil];
-        [self.delegate createQuizResultWithQuestion:self.question andAnswer:[[self.question questionAnswers] objectAtIndex:indexPath.row]];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
         [self.delegate updateQuizQuestions]; 
     }
@@ -217,7 +223,6 @@
             [(UILabel*)[chosenCell.contentView viewWithTag:1] setTextColor:[UIColor blackColor]];
         }
     } else {
-
         [self showAlertWithText:@"You ran out of time!"];
     }
     [[correctCell.contentView viewWithTag:1] setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
@@ -247,9 +252,11 @@
         [timer invalidate];
     } else if (remainingTime <= 0) {
         [self updateViewWithAnswerAtIndexPath:nil success:^(id responseObject){
-            [self.tableView reloadData];
+            [self.delegate createQuizResultWithQuestion:self.question andAnswer:nil success:^(id responseObject){
+                self.quizResults = [responseObject objectForKey:@"quiz_results"];
+                [self.tableView reloadData];
+            } failure:nil];
         }failure:nil];
-        [self.delegate createQuizResultWithQuestion:self.question andAnswer:nil];
         [timer invalidate];
     } else {
         remainingTime = remainingTime - 1;

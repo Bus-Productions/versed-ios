@@ -572,12 +572,12 @@
 		760F5D5D1B0BB6980038FF1A /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
-				768CE0941B03EF7E00E1E2E6 /* VSQuizQuestionViewController.h */,
-				768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */,
 				760F5D641B0BCF4A0038FF1A /* VSQuizLandingViewController.h */,
 				760F5D651B0BCF4A0038FF1A /* VSQuizLandingViewController.m */,
 				760829611B14B3790053E29F /* VSQuizPreviewViewController.h */,
 				760829621B14B3790053E29F /* VSQuizPreviewViewController.m */,
+				768CE0941B03EF7E00E1E2E6 /* VSQuizQuestionViewController.h */,
+				768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */,
 				76DB3F251B0D2428004EE88A /* VSQuizResultsViewController.h */,
 				76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */,
 				760829671B1641EA0053E29F /* VSDashboardViewController.h */,
