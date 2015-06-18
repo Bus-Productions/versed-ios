@@ -9,6 +9,7 @@
 #import "VSAllTracksViewController.h"
 #import "VSTrackTableViewCell.h"
 #import "VSTrackViewController.h"
+#import "VSMyTracksViewController.h"
 @import QuartzCore;
 
 #define SAVE_TO_MY_TRACKS_TEXT @"Save to my tracks"
@@ -27,11 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupData];
+    [self shouldSwitchToMyTracks];
     
     selectedIndex = -1;
     
     [self setupSidebar];
-    [self setupData];
     [self setupMenu];
 }
 
@@ -45,6 +47,25 @@
 {
     [super viewWillAppear:animated];
     [self reloadScreen];
+}
+
+- (void) shouldSwitchToMyTracks
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *myTracks = [defaults objectForKey:@"myTracks"];
+    NSNumber *isInitialLogin = [defaults objectForKey:@"isInitialLogin"];
+    if (myTracks.count > 0 && [isInitialLogin boolValue]) {
+        [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"isInitialLogin"];
+        [defaults synchronize];
+        UINavigationController *nc = [[UINavigationController alloc] init];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        VSMyTracksViewController *vc = (VSMyTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"myTracksViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"myTracksNavigationController"];
+        [nc setViewControllers:@[vc] animated:NO];
+        
+        [self.revealViewController setFrontViewController:nc];
+        [self.revealViewController revealToggleAnimated:YES];
+    }
 }
 
 

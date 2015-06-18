@@ -17,7 +17,8 @@
 {
     NSTimer *timer;
     int remainingTime;
-    BOOL alreadyAnswered; 
+    BOOL alreadyAnswered;
+    BOOL requesting; 
 }
 
 @property (strong, nonatomic) NSMutableArray *sections;

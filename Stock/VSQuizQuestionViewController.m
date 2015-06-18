@@ -130,15 +130,17 @@
     UILabel* timerLabel = (UILabel*)[cell.contentView viewWithTag:1];
     [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
     
-    UILabel* percentageLabel = (UILabel*)[cell.contentView viewWithTag:2];
-    float correct = [self.quizResults numberQuizResultsCorrect];
-    float total = questionsCompleted > 1 ? questionsCompleted - 1 : 1.0;
-
-    if (alreadyAnswered) {
-        total = questionsCompleted;
+    if (!requesting) {
+        UILabel* percentageLabel = (UILabel*)[cell.contentView viewWithTag:2];
+        float correct = [self.quizResults numberQuizResultsCorrect];
+        float total = questionsCompleted > 1 ? questionsCompleted - 1 : 1.0;
+        
+        if (alreadyAnswered) {
+            total = questionsCompleted;
+        }
+        NSString *percentage = [NSString stringWithFormat:@"%ld%%", lround((correct/total)*100.0)];
+        [percentageLabel setText:percentage];
     }
-    NSString *percentage = [NSString stringWithFormat:@"%ld%%", lround((correct/total)*100.0)];
-    [percentageLabel setText:percentage];
     
     UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
     [questionLabel setText:[NSString stringWithFormat:@"%lu/%lu",  (unsigned long)self.questionsCompleted, (unsigned long)self.totalQuestions]];
@@ -159,12 +161,15 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answer"]) {
+        requesting = YES;
         [self updateViewWithAnswerAtIndexPath:indexPath success:^(id responseObject){
-            [self.delegate createQuizResultWithQuestion:self.question andAnswer:[[self.question questionAnswers] objectAtIndex:indexPath.row] success:^(id responseObject){
-                self.quizResults = [responseObject objectForKey:@"quiz_results"];
-                [self.tableView reloadData];
-            } failure:nil];
+            [self.tableView reloadData];
         }failure:nil];
+        [self.delegate createQuizResultWithQuestion:self.question andAnswer:[[self.question questionAnswers] objectAtIndex:indexPath.row] success:^(id responseObject){
+            requesting = NO;
+            self.quizResults = [responseObject objectForKey:@"quiz_results"];
+            [self.tableView reloadData];
+        } failure:nil];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
         [self.delegate updateQuizQuestions]; 
     }
@@ -251,12 +256,15 @@
     if (alreadyAnswered) {
         [timer invalidate];
     } else if (remainingTime <= 0) {
+        requesting = YES;
         [self updateViewWithAnswerAtIndexPath:nil success:^(id responseObject){
-            [self.delegate createQuizResultWithQuestion:self.question andAnswer:nil success:^(id responseObject){
-                self.quizResults = [responseObject objectForKey:@"quiz_results"];
-                [self.tableView reloadData];
-            } failure:nil];
+            [self.tableView reloadData];
         }failure:nil];
+        [self.delegate createQuizResultWithQuestion:self.question andAnswer:nil success:^(id responseObject){
+            self.quizResults = [responseObject objectForKey:@"quiz_results"];
+            requesting = NO; 
+            [self.tableView reloadData];
+        } failure:nil];
         [timer invalidate];
     } else {
         remainingTime = remainingTime - 1;

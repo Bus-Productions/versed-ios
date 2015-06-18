@@ -17,8 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"isInitialLogin"];
+    [defaults synchronize];
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
     [[UINavigationBar appearance] setTranslucent:NO];
@@ -59,7 +62,10 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
+    [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"initialLogin"];
+    [defaults synchronize];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
