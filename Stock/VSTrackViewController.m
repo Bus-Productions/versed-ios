@@ -201,6 +201,7 @@
         
         SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:(NSString*)[[self resourceAtIndexPath:indexPath] url]];
         [self hideNavBarOnSwipe:YES];
+        [webViewController setTitle:[self.track headline]];
         [self.navigationController pushViewController:webViewController animated:YES];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];

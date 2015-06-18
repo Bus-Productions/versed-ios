@@ -157,13 +157,16 @@
 
 - (IBAction)verifyAction:(id)sender {
     if (self.tokenField.text && self.tokenField.text.length > 0) {
+        [self showHUDWithMessage:@"Verifying"];
         [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/confirm/%@.json", [[[LXSession thisSession] user] ID], self.tokenField.text] withMethod:@"POST" withParamaters:nil authType:@"none" success:^(id responseObject){
             [self dismissKeyboard];
             [[LXSession thisSession] setUser:[[responseObject cleanDictionary] objectForKey:@"user"]];
             [[[responseObject objectForKey:@"user"] cleanDictionary] saveLocal];
+            [self hideHUD];
             AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             [appDelegate setRootStoryboard:@"Main"];
         }failure:^(NSError *error){
+            [self hideHUD]; 
             [self showAlertWithText:@"Your token was incorrect."];
         }];
     } else {
@@ -205,6 +208,14 @@
     return NO;
 }
 
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *value = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (value.length == 4 && range.length <= 0) { //adding, not deleting
+        [self performSelector:@selector(verifyAction:) withObject:nil afterDelay:0.1];
+    }
+    return YES;
+}
 
 # pragma mark hud delegate
 
