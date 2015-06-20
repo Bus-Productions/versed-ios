@@ -17,6 +17,7 @@
 #import "VSMessagesViewController.h"
 #import "VSCongratsViewController.h"
 #import "VSTrackTitleTableViewCell.h"
+#import "VSResourceViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -199,9 +200,11 @@
             [self createResourceUserPairAtIndexPath:indexPath];
         });
         
-        SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:(NSString*)[[self resourceAtIndexPath:indexPath] url]];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
+        [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
+        [webViewController setTrack:self.track]; 
         [self hideNavBarOnSwipe:YES];
-        [webViewController setTitle:[self.track headline]];
         [self.navigationController pushViewController:webViewController animated:YES];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
