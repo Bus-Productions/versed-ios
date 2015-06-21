@@ -203,8 +203,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
         [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
-        [webViewController setTrack:self.track]; 
-        [self hideNavBarOnSwipe:YES];
+        [webViewController setTrack:self.track];
         [self.navigationController pushViewController:webViewController animated:YES];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
@@ -253,8 +252,13 @@
     [rup setObject:[[self resourceAtIndexPath:indexPath] ID] forKey:@"resource_id"];
     [rup setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
     [rup setObject:@"completed" forKey:@"status"];
-    showCongrats = completedResources.count == [[self.track resources] count] - 1; //just completed last resource
+    showCongrats = completedResources.count == [[self.track resources] count] - 1;
     [rup saveRemote:^(id responseObject){
+        NSLog(@"response = %@", responseObject);
+        NSLog(@"boolvalue = %@", [[responseObject objectForKey:@"new_record"] boolValue] ? @"yes" : @"no");
+        if (![[responseObject objectForKey:@"new_record"] boolValue]) {
+            showCongrats = NO;
+        }
         [[LXSession thisSession] setUser:[[responseObject objectForKey:@"user"] cleanDictionary] success:^(id responseObject){
             [self reloadScreen];
         }failure:nil];

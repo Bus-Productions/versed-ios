@@ -3587,6 +3587,7 @@
         <!--Resource View Controller-->
         <scene sceneID="fFv-Q2-kBR">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="69J-GK-ybn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="resourceViewController" id="Jrc-mY-OSz" customClass="VSResourceViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fQR-Xl-5sF"/>
@@ -3596,29 +3597,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c05-le-RcB">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jcG-xy-kWp">
+                                <rect key="frame" x="0.0" y="2" width="600" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="delegate" destination="Jrc-mY-OSz" id="6oS-O7-DPd"/>
+                                    <outlet property="delegate" destination="Jrc-mY-OSz" id="XWV-Je-wfH"/>
                                 </connections>
                             </webView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vIU-nK-xp0">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="mHD-7d-V7U"/>
+                                </constraints>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="c05-le-RcB" firstAttribute="leading" secondItem="QOa-iT-iti" secondAttribute="leading" id="1fC-1A-QiV"/>
-                            <constraint firstItem="c05-le-RcB" firstAttribute="bottom" secondItem="12O-Am-6Fz" secondAttribute="top" id="91m-zP-Wxg"/>
-                            <constraint firstAttribute="trailing" secondItem="c05-le-RcB" secondAttribute="trailing" id="MTq-1M-RaR"/>
-                            <constraint firstItem="c05-le-RcB" firstAttribute="top" secondItem="fQR-Xl-5sF" secondAttribute="bottom" id="e2c-Sn-4NM"/>
+                            <constraint firstItem="vIU-nK-xp0" firstAttribute="trailing" secondItem="jcG-xy-kWp" secondAttribute="trailing" id="F1Z-xL-ROq"/>
+                            <constraint firstItem="jcG-xy-kWp" firstAttribute="leading" secondItem="QOa-iT-iti" secondAttribute="leading" id="Jww-Oe-ugE"/>
+                            <constraint firstItem="vIU-nK-xp0" firstAttribute="top" secondItem="QOa-iT-iti" secondAttribute="top" id="Qa8-gS-DMq"/>
+                            <constraint firstItem="jcG-xy-kWp" firstAttribute="bottom" secondItem="12O-Am-6Fz" secondAttribute="top" id="Qsn-iC-Vzh"/>
+                            <constraint firstAttribute="trailing" secondItem="jcG-xy-kWp" secondAttribute="trailing" id="btb-hw-ZEg"/>
+                            <constraint firstItem="vIU-nK-xp0" firstAttribute="leading" secondItem="jcG-xy-kWp" secondAttribute="leading" id="sLs-Vy-nnf"/>
+                            <constraint firstItem="jcG-xy-kWp" firstAttribute="top" secondItem="vIU-nK-xp0" secondAttribute="bottom" id="vOB-eu-q6s"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="c05-le-RcB" id="cmq-gq-PXM"/>
+                        <outlet property="myProgressView" destination="vIU-nK-xp0" id="tdO-8f-fbK"/>
+                        <outlet property="progressBarHeightConstraint" destination="mHD-7d-V7U" id="gWx-8e-3Vh"/>
+                        <outlet property="webView" destination="jcG-xy-kWp" id="BPm-9q-byU"/>
+                        <outlet property="webViewTopConstraint" destination="vOB-eu-q6s" id="Rk5-yC-hsO"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="69J-GK-ybn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5535" y="1481"/>
+            <point key="canvasLocation" x="5575" y="1481"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vmG-Aa-Ekv">
