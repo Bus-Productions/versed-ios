@@ -21,7 +21,7 @@
     [self setStyle];
     [self setShouldRotate:NO]; 
     
-    if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
+    if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live] && [[[LXSession thisSession] user] name] && [[[[LXSession thisSession] user] name] length] > 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [[LXServer shared] requestPath:[NSString stringWithFormat:@"users/%@.json", [[[LXSession thisSession] user] ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
                 [[LXSession thisSession] setUser:[[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy]];

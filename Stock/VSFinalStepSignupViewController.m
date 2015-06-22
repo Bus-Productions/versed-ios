@@ -1,60 +1,31 @@
 //
-//  VSSignupVIewController.m
+//  VSFinalStepSignupViewController.m
 //  Versed
 //
-//  Created by Joseph McArthur Gill on 5/12/15.
+//  Created by Joseph McArthur Gill on 6/22/15.
 //  Copyright (c) 2015 LXV. All rights reserved.
 //
 
-#import "VSSignupViewController.h"
-#import "VSLoginViewController.h"
-#import "VSAllTracksViewController.h"
-#import "VSTokenViewController.h"
-#import "AppDelegate.h"
 #import "VSFinalStepSignupViewController.h"
 
-@import QuartzCore;
-
-@interface VSSignupViewController ()
+@interface VSFinalStepSignupViewController ()
 
 @end
 
-@implementation VSSignupViewController
+@implementation VSFinalStepSignupViewController
 
-@synthesize emailField;
-@synthesize signUpButton, hasAccountButton;
-@synthesize signingUpUser;
+@synthesize nameField, passwordField, passwordConfirmationField;
+@synthesize signUpButton;
 @synthesize infoLabel;
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.signingUpUser = [NSMutableDictionary create:@"user"];
-    if ([[[LXSession thisSession] user] unconfirmed]) {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-        VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
-        [self.navigationController presentViewController:vc animated:YES completion:nil];
-    } else if ([[[LXSession thisSession] user] live] && ![[[LXSession thisSession] user] name]) {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-        VSFinalStepSignupViewController* vc = (VSFinalStepSignupViewController*)[storyboard instantiateViewControllerWithIdentifier:@"finalStepSignupViewController"];
-        [self.navigationController presentViewController:vc animated:YES completion:nil];
-    } else {
-        [LXSession storeLocalUserKey:[self.signingUpUser localKey]];
-    }
-    
     [self setupGestureRecognizer];
     [self setupNavigationBar];
     [self setupTextFieldAppearances];
     [self setupButtonAppearances];
     [self setupInfoLabel];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -63,6 +34,10 @@
     [self dismissKeyboard];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 # pragma mark - Setup
 
@@ -93,14 +68,17 @@
     [[self.signUpButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:20.0f]];
     self.signUpButton.layer.cornerRadius = 4;
     self.signUpButton.clipsToBounds = YES;
-    
-    [[self.hasAccountButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
 }
 
 - (void) setupTextFieldAppearances
 {
-    [self addBottomBorderToField:self.emailField];
-    [self setTintForField:self.emailField withPlaceholder:@"Company Email*"];
+    [self addBottomBorderToField:self.nameField];
+    [self addBottomBorderToField:self.passwordField];
+    [self addBottomBorderToField:self.passwordConfirmationField];
+    
+    [self setTintForField:self.nameField withPlaceholder:@"Name"];
+    [self setTintForField:self.passwordField withPlaceholder:@"Password"];
+    [self setTintForField:self.passwordConfirmationField withPlaceholder:@"Confirm Password"];
 }
 
 - (void) addBottomBorderToField:(UITextField*)field
@@ -134,7 +112,9 @@
 
 - (void) dismissKeyboard
 {
-    [self.emailField resignFirstResponder];
+    [self.nameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.passwordConfirmationField resignFirstResponder];
 }
 
 
@@ -142,13 +122,19 @@
 
 - (BOOL) inputsVerified
 {
-    return self.emailField && self.emailField.text.length > 0;
+    return self.passwordField.text && self.passwordField.text.length > 0 && self.passwordConfirmationField.text && self.passwordConfirmationField.text.length > 0 && [self.passwordField.text isEqualToString:self.passwordConfirmationField.text] && self.nameField && self.nameField.text.length > 0;
 }
 
 - (NSString *) errorMessage
 {
-    if (!self.emailField.text || self.emailField.text.length < 1)
-        return @"Your must enter your email!";
+    if (!self.nameField.text || self.nameField.text.length < 1)
+        return @"Your must enter your name!";
+    else if (!self.passwordField.text || self.passwordField.text.length < 1)
+        return @"You must enter a password!";
+    else if (!self.passwordConfirmationField.text || self.passwordConfirmationField.text.length < 1)
+        return @"You must confirm your password!";
+    else if (![self.passwordField.text isEqualToString:self.passwordConfirmationField.text])
+        return @"Your passwords must match!";
     
     return nil;
 }
@@ -158,43 +144,32 @@
 - (IBAction)signupAction:(id)sender
 {
     if ([self inputsVerified]) {
-        
-        [self.signingUpUser setObject:self.emailField.text forKey:@"email"];
+        NSMutableDictionary *user = [[[LXSession thisSession] user] mutableCopy];
+        [user setObject:self.nameField.text forKey:@"name"];
+        [user setObject:self.passwordField.text forKey:@"password"];
+        [user setObject:self.passwordField.text forKey:@"password_confirmation"];
         
         [self showHUDWithMessage:@"Registering..."];
         
-        [self.signingUpUser saveRemote:^(id responseObject){
+        [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/final_step_signup.json", [user ID]] withMethod:@"POST" withParamaters:@{@"user": user} success:^(id responseObject){
             if ([responseObject objectForKey:@"user"]) {
-                self.signingUpUser = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
-                [[LXSession thisSession] setUser:self.signingUpUser];
-                [self.signingUpUser saveLocal];
+                [[LXSession thisSession] setUser:[[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy]];
+                [[[LXSession thisSession] user] saveLocal];
             }
             if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
                 AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                 [appDelegate setRootStoryboard:@"Main"];
-            } else {
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-                VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
-                [self.navigationController presentViewController:vc animated:YES completion:nil];
             }
+            [self dismissKeyboard]; 
             [self hideHUD];
-        }failure:^(NSError *error) {
+        }failure:^(NSError *error){
             [self hideHUD];
-            [self showAlertWithText:@"There was a problem with your sign in. Try again!" andTitle:@"Sorry!"];
-        }];
-        
+            [self showAlertWithText:@"Sorry there was a problem"];
+        }]; 
     } else {
         [self showAlertWithText:[self errorMessage]];
     }
 }
-
-- (IBAction)loginAction:(id)sender
-{
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-    VSLoginViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 
 # pragma mark - Alert
 
@@ -244,6 +219,5 @@
         [hud hide:YES];
     }
 }
-
 
 @end

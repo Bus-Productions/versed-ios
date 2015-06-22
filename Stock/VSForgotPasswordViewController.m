@@ -32,6 +32,13 @@
 }
 
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self dismissKeyboard];
+}
+
+
 # pragma mark - Setup
 
 - (void) setupLabelAppearance

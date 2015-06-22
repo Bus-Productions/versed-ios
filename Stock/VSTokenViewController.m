@@ -8,6 +8,7 @@
 
 #import "VSTokenViewController.h"
 #import "AppDelegate.h"
+#import "VSFinalStepSignupViewController.h"
 
 @interface VSTokenViewController ()
 
@@ -35,6 +36,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self dismissKeyboard];
+}
 
 # pragma mark - Setup
 
@@ -79,7 +86,7 @@
 
 - (void) setupLabels
 {
-    [self.nameLabel setText:[NSString stringWithFormat:@"Welcome, %@!", [[[LXSession thisSession] user] firstName]]];
+    [self.nameLabel setText:@"Welcome!"];
     [self.nameLabel setFont:[UIFont fontWithName:@"SourceSansPro-Black" size:24.0f]];
     [self.nameLabel setClipsToBounds:NO];
     [self.nameLabel setBackgroundColor:[UIColor clearColor]];
@@ -159,12 +166,12 @@
     if (self.tokenField.text && self.tokenField.text.length > 0) {
         [self showHUDWithMessage:@"Verifying"];
         [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/confirm/%@.json", [[[LXSession thisSession] user] ID], self.tokenField.text] withMethod:@"POST" withParamaters:nil authType:@"none" success:^(id responseObject){
-            [self dismissKeyboard];
             [[LXSession thisSession] setUser:[[responseObject cleanDictionary] objectForKey:@"user"]];
-            [[[responseObject objectForKey:@"user"] cleanDictionary] saveLocal];
+            [self dismissKeyboard];
             [self hideHUD];
-            AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            [appDelegate setRootStoryboard:@"Main"];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
+            VSFinalStepSignupViewController *vc = (VSFinalStepSignupViewController*)[storyboard instantiateViewControllerWithIdentifier:@"finalStepSignupViewController"];
+            [self presentViewController:vc animated:YES completion:nil];
         }failure:^(NSError *error){
             [self hideHUD]; 
             [self showAlertWithText:@"Your token was incorrect."];

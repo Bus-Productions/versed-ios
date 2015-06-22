@@ -89,6 +89,7 @@
 		7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC351B0697B000051C93 /* VSResourceTableViewCell.m */; };
 		7666FC3C1B0A8EA700051C93 /* VSDailyArticlesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7666FC3B1B0A8EA700051C93 /* VSDailyArticlesViewController.m */; };
 		768419E61B3853660029118D /* VSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768419E51B3853660029118D /* VSLoginViewController.m */; };
+		768419E91B387C9E0029118D /* VSFinalStepSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768419E81B387C9E0029118D /* VSFinalStepSignupViewController.m */; };
 		768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0701B025A9800E1E2E6 /* VSSignupViewController.m */; };
 		768CE08D1B03EED500E1E2E6 /* VSSidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE08C1B03EED500E1E2E6 /* VSSidebarViewController.m */; };
 		768CE0901B03EF1900E1E2E6 /* VSAllTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE08F1B03EF1900E1E2E6 /* VSAllTracksViewController.m */; };
@@ -259,6 +260,8 @@
 		7666FC3A1B0A8EA700051C93 /* VSDailyArticlesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSDailyArticlesViewController.h; sourceTree = "<group>"; };
 		7666FC3B1B0A8EA700051C93 /* VSDailyArticlesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDailyArticlesViewController.m; sourceTree = "<group>"; };
 		768419E51B3853660029118D /* VSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSLoginViewController.m; sourceTree = "<group>"; };
+		768419E71B387C9E0029118D /* VSFinalStepSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFinalStepSignupViewController.h; sourceTree = "<group>"; };
+		768419E81B387C9E0029118D /* VSFinalStepSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFinalStepSignupViewController.m; sourceTree = "<group>"; };
 		768CE06F1B025A9800E1E2E6 /* VSSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSignupViewController.h; sourceTree = "<group>"; };
 		768CE0701B025A9800E1E2E6 /* VSSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSignupViewController.m; sourceTree = "<group>"; };
 		768CE0751B026E1300E1E2E6 /* VSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSLoginViewController.h; sourceTree = "<group>"; };
@@ -506,6 +509,8 @@
 			children = (
 				768CE06F1B025A9800E1E2E6 /* VSSignupViewController.h */,
 				768CE0701B025A9800E1E2E6 /* VSSignupViewController.m */,
+				768419E71B387C9E0029118D /* VSFinalStepSignupViewController.h */,
+				768419E81B387C9E0029118D /* VSFinalStepSignupViewController.m */,
 				768CE0751B026E1300E1E2E6 /* VSLoginViewController.h */,
 				768419E51B3853660029118D /* VSLoginViewController.m */,
 				760829641B14C2920053E29F /* VSTokenViewController.h */,
@@ -909,6 +914,7 @@
 				76DEE72C1B29EDE800323EA0 /* VSFaqResponseTableViewCell.m in Sources */,
 				766408371B1E7C6A006272E8 /* VSPollResultsViewController.m in Sources */,
 				7666FC3C1B0A8EA700051C93 /* VSDailyArticlesViewController.m in Sources */,
+				768419E91B387C9E0029118D /* VSFinalStepSignupViewController.m in Sources */,
 				760829661B14C2920053E29F /* VSTokenViewController.m in Sources */,
 				76F6370E1B29F2EF004B0A1A /* VSContactUsButton.m in Sources */,
 				7636ED891B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m in Sources */,
