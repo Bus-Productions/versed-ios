@@ -7,6 +7,7 @@
 //
 
 #import "VSResourceViewController.h"
+#import "AppDelegate.h"
 
 @interface VSResourceViewController ()
 
@@ -30,6 +31,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate setShouldRotate:YES];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -38,6 +41,11 @@
     [progressBarTimer invalidate];
 }
 
+- (void) viewDidDisappear:(BOOL)animated
+{
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate setShouldRotate:NO];
+}
 
 # pragma mark - Setup
 

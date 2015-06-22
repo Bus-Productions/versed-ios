@@ -39,6 +39,18 @@
     [self hideNavBarOnSwipe:NO];
 }
 
+
+# pragma mark - Orientations
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL) shouldAutorotate {
+    return YES;
+}
+
+
 # pragma mark - Setup
 
 - (void) setupData

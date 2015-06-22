@@ -57,6 +57,17 @@
 }
 
 
+# pragma mark - Orientations
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL) shouldAutorotate {
+    return YES;
+}
+
+
 # pragma mark - Setup
 
 - (void) setupNavigationBar
@@ -254,8 +265,6 @@
     [rup setObject:@"completed" forKey:@"status"];
     showCongrats = completedResources.count == [[self.track resources] count] - 1;
     [rup saveRemote:^(id responseObject){
-        NSLog(@"response = %@", responseObject);
-        NSLog(@"boolvalue = %@", [[responseObject objectForKey:@"new_record"] boolValue] ? @"yes" : @"no");
         if (![[responseObject objectForKey:@"new_record"] boolValue]) {
             showCongrats = NO;
         }

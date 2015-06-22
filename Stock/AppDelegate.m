@@ -17,21 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"isInitialLogin"];
-    [defaults synchronize];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
-    [[UINavigationBar appearance] setTranslucent:NO];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Light" size:18.0], NSFontAttributeName, nil]];
-    CGFloat verticalOffset = 0;
-    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
-
-    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
-    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Light" size:16.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    [self setInitialLoginTimestamp];
+    [self setStyle];
+    [self setShouldRotate:NO]; 
     
     if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
@@ -46,6 +34,35 @@
     }
     
     return YES;
+}
+
+- (void) setStyle
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Light" size:18.0], NSFontAttributeName, nil]];
+    CGFloat verticalOffset = 0;
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Light" size:16.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
+}
+
+- (void) setInitialLoginTimestamp
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"isInitialLogin"];
+    [defaults synchronize];
+}
+
+-(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    if (self.shouldRotate)
+        return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
+    else
+        return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void) setRootStoryboard:(NSString*)name
