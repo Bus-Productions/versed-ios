@@ -21,7 +21,6 @@
 {
     [super viewDidLoad];
     [self setupNavigationBar];
-    NSLog(@"poll = %@", poll);
 }
 
 - (void)didReceiveMemoryWarning
