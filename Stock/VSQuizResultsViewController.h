@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol VSRefreshQuizLandingVC <NSObject>
+- (void) reloadScreen;
+@end
+
 @interface VSQuizResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     BOOL isRequesting; 
@@ -16,5 +20,6 @@
 @property (strong, nonatomic) NSMutableArray *missedQuestions;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *sections;
+@property (nonatomic,assign) id delegate;
 
 @end
