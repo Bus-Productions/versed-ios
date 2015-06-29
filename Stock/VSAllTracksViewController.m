@@ -32,8 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupData];
     [self shouldSwitchToMyTracks];
+
+    [self setupData];
     
     selectedIndex = -1;
     
