@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "VSSaveToMyTracksButton.h"
 
-@interface VSMessagesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
+@interface VSMessagesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, MBProgressHUDDelegate>
 {
     CGFloat maxComposeTextViewSize;
     VSSaveToMyTracksButton *saveToMyTracksButton;
+    MBProgressHUD *hud; 
 }
 
 @property (strong, nonatomic) NSMutableDictionary *track;

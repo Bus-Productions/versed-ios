@@ -17,6 +17,7 @@
 #import "VSMessagesViewController.h"
 #import "VSCongratsViewController.h"
 #import "VSTrackTitleTableViewCell.h"
+#import "VSResourceViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -53,6 +54,17 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [self hideNavBarOnSwipe:NO];
+}
+
+
+# pragma mark - Orientations
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL) shouldAutorotate {
+    return YES;
 }
 
 
@@ -199,8 +211,10 @@
             [self createResourceUserPairAtIndexPath:indexPath];
         });
         
-        SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:(NSString*)[[self resourceAtIndexPath:indexPath] url]];
-        [self hideNavBarOnSwipe:YES];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
+        [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
+        [webViewController setTrack:self.track];
         [self.navigationController pushViewController:webViewController animated:YES];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
@@ -249,8 +263,11 @@
     [rup setObject:[[self resourceAtIndexPath:indexPath] ID] forKey:@"resource_id"];
     [rup setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
     [rup setObject:@"completed" forKey:@"status"];
-    showCongrats = completedResources.count == [[self.track resources] count] - 1; //just completed last resource
+    showCongrats = completedResources.count == [[self.track resources] count] - 1;
     [rup saveRemote:^(id responseObject){
+        if (![[responseObject objectForKey:@"new_record"] boolValue]) {
+            showCongrats = NO;
+        }
         [[LXSession thisSession] setUser:[[responseObject objectForKey:@"user"] cleanDictionary] success:^(id responseObject){
             [self reloadScreen];
         }failure:nil];

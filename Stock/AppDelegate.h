@@ -14,5 +14,7 @@
 
 - (void) setRootStoryboard:(NSString*)name;
 
+@property (assign, nonatomic) BOOL shouldRotate; 
+
 @end
 

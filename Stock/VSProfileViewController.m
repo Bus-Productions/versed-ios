@@ -10,7 +10,6 @@
 #import "VSProfileProgressTableViewCell.h"
 #import "VSProfileTopicsTableViewCell.h"
 #import "VSProfileSettingsTableViewCell.h"
-#import "SWRevealViewController.h"
 #import "AppDelegate.h"
 
 @interface VSProfileViewController ()
@@ -49,6 +48,7 @@
     [self setTitle:@"Snapshot and Settings"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
+    [revealViewController setDelegate:self];
     if (revealViewController)
     {
         [self.slideButton setTarget: self.revealViewController];
@@ -72,6 +72,29 @@
         }failure:nil];
     }failure:nil];
 }
+
+
+
+#pragma mark - SWRevealViewController Delegate Methods
+
+- (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
+}
+
+- (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
+}
+
 
 #pragma mark - Table view data source
 

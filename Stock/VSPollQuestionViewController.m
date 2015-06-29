@@ -54,7 +54,6 @@
         [self.sections addObject:@"header"];
         [self.sections addObject:@"question"];
         [self.sections addObject:@"answers"];
-        [self.sections addObject:@"submit"];
     }
     return self.sections.count;
 }
@@ -65,8 +64,6 @@
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"answers"]) {
         return [[self.poll pollAnswers] count];
-    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"submit"]) {
-        return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
         return 1;
     }
@@ -80,8 +77,6 @@
         return [self tableView:self.tableView questionCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
         return [self tableView:self.tableView answerCellForRowAtIndexPath:indexPath];
-    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"submit"]) {
-        return [self tableView:self.tableView submitCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
         return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
     }
@@ -97,8 +92,7 @@
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:32.0f]];
     
     UILabel* byline = (UILabel*)[cell.contentView viewWithTag:2];
-    [byline setText:[NSString stringWithFormat:@"A Question from %@", @"your company."]];
-    NSLog(@"poll: %@", self.poll);
+    [byline setText:[NSString stringWithFormat:@"A question from %@", @"your company."]];
     [byline setFont:[UIFont fontWithName:@"SourceSansPro-LightIt" size:18.0f]];
     
     return cell;
@@ -123,29 +117,19 @@
     return cell;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView submitCellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"submitCell" forIndexPath:indexPath];
-    
-    [cell configureWithText:@"Submit Answer" andColor:nil];
-    
-    return cell;
-}
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"submit"]) {
-        [self updateWithAnswerAtIndexPath:indexPath success:^(id responseObject){
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            VSPollResultsViewController *vc = (VSPollResultsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollResultsViewController"];
-            [vc setPoll:self.poll];
-            NSMutableArray *activeViewControllers=[[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers] ;
-            [activeViewControllers removeLastObject];
-            [activeViewControllers addObject:vc];
-            [self.navigationController pushViewController:vc animated:YES];
-            [self.navigationController setViewControllers:activeViewControllers];
-        }failure:nil];
-    }
+    [self updateWithAnswerAtIndexPath:indexPath success:^(id responseObject){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        VSPollResultsViewController *vc = (VSPollResultsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollResultsViewController"];
+        [vc setPoll:self.poll];
+        NSMutableArray *activeViewControllers=[[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers] ;
+        [activeViewControllers removeLastObject];
+        [activeViewControllers addObject:vc];
+        [self.navigationController pushViewController:vc animated:YES];
+        [self.navigationController setViewControllers:activeViewControllers];
+    }failure:nil];
 }
 
 
@@ -154,8 +138,6 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
         return 150.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
-        return 62.0f;
-    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"submit"]) {
         return 62.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
         return 40.0f + [self heightForText:[[self.poll poll] pollQuestion] width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
@@ -182,6 +164,7 @@
 
 - (void) updateWithAnswerAtIndexPath:(NSIndexPath*)indexPath success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback
 {
+    [self updateViewWithResponseAtIndexPath:indexPath];
     NSMutableDictionary *pr = [NSMutableDictionary create:@"poll_result"];
     [pr setObject:[[[self.poll pollAnswers] objectAtIndex:indexPath.row] ID] forKey:@"poll_answer_id"];
     [pr setObject:[[self.poll objectForKey:@"poll"] ID] forKey:@"poll_id"];
@@ -192,6 +175,10 @@
     }failure:nil];
 }
 
+- (void) updateViewWithResponseAtIndexPath:(NSIndexPath*)indexPath
+{
+    [[[self.tableView cellForRowAtIndexPath:indexPath] contentView] setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
+}
 
 
 

@@ -7,7 +7,6 @@
 //
 
 #import "VSQuizLandingViewController.h"
-#import "SWRevealViewController.h"
 #import "VSQuizQuestionViewController.h"
 #import "VSButtonTableViewCell.h"
 #import "VSQuizResultsViewController.h"
@@ -52,6 +51,7 @@
     [self setTitle:@"Quiz"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
+    [revealViewController setDelegate:self];
     if (revealViewController)
     {
         [self.slideButton setTarget: self.revealViewController];
@@ -60,14 +60,34 @@
     }
 }
 
-
-# pragma mark - Setup
 - (void) setupData
 {
     self.quizQuestions = [[NSMutableArray alloc] init];
     self.questionsToAsk = [[NSMutableArray alloc] init];
     self.quizResults = [[NSMutableArray alloc] init];
     self.quiz = [[NSMutableDictionary alloc] init];
+}
+
+
+
+#pragma mark - SWRevealViewController Delegate Methods
+
+- (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
+}
+
+- (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
 }
 
 
@@ -264,21 +284,20 @@
 
 # pragma mark - VSCreateQuizResultDelegate
 
-- (void) createQuizResultWithQuestion:(NSMutableDictionary *)question andAnswer:(NSMutableDictionary *)answer
+- (void) createQuizResultWithQuestion:(NSMutableDictionary *)question andAnswer:(NSMutableDictionary *)answer success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSMutableDictionary *qr = [NSMutableDictionary create:@"quiz_result"];
-        [qr setObject:(answer ? [answer ID] : @"-1") forKey:@"quiz_answer_id"];
-        [qr setObject:[question ID] forKey:@"quiz_question_id"];
-        [qr setObject:[question quizID] forKey:@"quiz_id"];
-        [qr setObject:[question quizAnswerID] forKey:@"correct_answer_id"];
-        [qr setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
-        [self.quizResults addObject:qr];
-        [qr saveRemote:^(id responseObject){
-            [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
-            [self.tableView reloadData];
-        }failure:nil];
-    });
+    NSMutableDictionary *qr = [NSMutableDictionary create:@"quiz_result"];
+    [qr setObject:(answer ? [answer ID] : @"-1") forKey:@"quiz_answer_id"];
+    [qr setObject:[question ID] forKey:@"quiz_question_id"];
+    [qr setObject:[question quizID] forKey:@"quiz_id"];
+    [qr setObject:[question quizAnswerID] forKey:@"correct_answer_id"];
+    [qr setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
+    [self.quizResults addObject:qr];
+    [qr saveRemote:^(id responseObject){
+        [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
+        self.quizResults = [[[responseObject objectForKey:@"quiz_results"] cleanArray] mutableCopy];
+        successCallback(@{@"quiz_results": self.quizResults});
+    }failure:nil];
 }
 
 - (void) updateQuizQuestions

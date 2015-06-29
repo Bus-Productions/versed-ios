@@ -156,12 +156,19 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"wellDoneCell" forIndexPath:indexPath];
     
     UILabel* topLabel = (UILabel*)[cell.contentView viewWithTag:1];
-    [topLabel setText:[NSString stringWithFormat:@"Well done, %@!", [[[LXSession thisSession] user] firstName]]];
+    NSString *topLabelText = [NSString stringWithFormat:@"Well done, %@!", [[[LXSession thisSession] user] firstName]];
+    NSString *bottomLabelText = [NSString stringWithFormat:@"You have a good knowledge of most of the major trends shaping business today."];
+    
+    if ([self.quizResults numberQuizResultsCorrect]/self.quizResults.count <= 0.5) {
+        topLabelText = [NSString stringWithFormat:@"Keep practicing, %@!", [[[LXSession thisSession] user] firstName]];
+        bottomLabelText = [NSString stringWithFormat:@"With a little more reading, you can get a solid grasp on these topics."];
+    }
+    [topLabel setText:topLabelText];
     [topLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:28.0f]];
     [topLabel setTextColor:[UIColor whiteColor]];
     
     UILabel* bottomLabel = (UILabel*)[cell.contentView viewWithTag:2];
-    [bottomLabel setText:[NSString stringWithFormat:@"You have a good knowledge of most of the major trends shaping business today."]];
+    [bottomLabel setText:bottomLabelText];
     [bottomLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:22.0f]];
     [bottomLabel setTextColor:[UIColor whiteColor]];
     

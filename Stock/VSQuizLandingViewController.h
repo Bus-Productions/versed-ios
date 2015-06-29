@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWRevealViewController.h"
 
-@interface VSQuizLandingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface VSQuizLandingViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate>
 {
     BOOL isRequesting;
     MBProgressHUD* hud;

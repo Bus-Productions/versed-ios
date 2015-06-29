@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VSTokenViewController : UIViewController <UITextFieldDelegate>
+@interface VSTokenViewController : UIViewController <UITextFieldDelegate, MBProgressHUDDelegate>
 {
     MBProgressHUD* hud;
 }

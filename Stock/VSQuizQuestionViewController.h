@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @protocol VSCreateQuizResultDelegate <NSObject>
-- (void) createQuizResultWithQuestion:(NSMutableDictionary *)question andAnswer:(NSMutableDictionary *)answer;
-- (void) updateQuizQuestions; 
+- (void) createQuizResultWithQuestion:(NSMutableDictionary *)question andAnswer:(NSMutableDictionary *)answer success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
+- (void) updateQuizQuestions;
 @end
 
 @interface VSQuizQuestionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSTimer *timer;
     int remainingTime;
-    BOOL alreadyAnswered; 
+    BOOL alreadyAnswered;
+    BOOL requesting; 
 }
 
 @property (strong, nonatomic) NSMutableArray *sections;

@@ -8,7 +8,6 @@
 
 #import "VSDailyArticlesViewController.h"
 #import "VSResourceTableViewCell.h"
-#import "SWRevealViewController.h"
 #import "VSEmptyTableViewCell.h"
 #import "SVWebViewController.h"
 
@@ -40,6 +39,18 @@
     [self hideNavBarOnSwipe:NO];
 }
 
+
+# pragma mark - Orientations
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL) shouldAutorotate {
+    return YES;
+}
+
+
 # pragma mark - Setup
 
 - (void) setupData
@@ -53,6 +64,7 @@
     [self setTitle:@"Versed Daily"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
+    [revealViewController setDelegate:self]; 
     if (revealViewController)
     {
         [self.slideButton setTarget: self.revealViewController];
@@ -61,10 +73,27 @@
     }
 }
 
-- (void) viewWillDisappear:(BOOL)animated
+
+#pragma mark - SWRevealViewController Delegate Methods
+
+- (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
 {
-    
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
 }
+
+- (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
+}
+
 
 # pragma mark - Request/Reload
 

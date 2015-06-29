@@ -9,10 +9,15 @@
 #import "VSAllTracksViewController.h"
 #import "VSTrackTableViewCell.h"
 #import "VSTrackViewController.h"
+#import "VSMyTracksViewController.h"
+#import "VSMessagesViewController.h"
+
 @import QuartzCore;
 
 #define SAVE_TO_MY_TRACKS_TEXT @"Save to my tracks"
 #define REMOVE_FROM_MY_TRACKS_TEXT @"Remove from my tracks"
+
+#define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
 @interface VSAllTracksViewController ()
 
@@ -27,12 +32,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupData];
+    [self shouldSwitchToMyTracks];
     
     selectedIndex = -1;
     
     [self setupSidebar];
-    [self setupData];
     [self setupMenu];
+    [self setupNotifications];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +54,25 @@
     [self reloadScreen];
 }
 
+- (void) shouldSwitchToMyTracks
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *myTracks = [defaults objectForKey:@"myTracks"];
+    NSNumber *isInitialLogin = [defaults objectForKey:@"isInitialLogin"];
+    if (myTracks.count > 0 && [isInitialLogin boolValue]) {
+        [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"isInitialLogin"];
+        [defaults synchronize];
+        UINavigationController *nc = [[UINavigationController alloc] init];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        VSMyTracksViewController *vc = (VSMyTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"myTracksViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"myTracksNavigationController"];
+        [nc setViewControllers:@[vc] animated:NO];
+        
+        [self.revealViewController setFrontViewController:nc];
+        [self.revealViewController revealToggleAnimated:YES];
+    }
+}
+
 
 # pragma mark - Setup
 
@@ -55,11 +81,38 @@
     [self setTitle:@"All Tracks"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
+    [revealViewController setDelegate:self];
     if (revealViewController)
     {
         [self.slideButton setTarget: self.revealViewController];
         [self.slideButton setAction: @selector(revealToggle:)];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
+}
+
+- (void) setupNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"updatedMyTracks" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"showDiscussion" object:nil];
+}
+
+#pragma mark - SWRevealViewController Delegate Methods
+
+- (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
+}
+
+- (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
     }
 }
 
@@ -205,6 +258,38 @@
     [self.navigationController pushViewController:vc animated:YES]; 
 }
 
+
+
+- (void) handleNotification:(NSNotification*)notification
+{
+    if ([[notification name] isEqualToString:@"showDiscussion"]) {
+        [self handleShowDiscussionResponse:[notification userInfo]];
+    } else if ([[notification name] isEqualToString:@"updatedMyTracks"]){
+        [self handleMyTracksResponse:[notification userInfo]];
+    }
+}
+
+- (void) handleMyTracksResponse:(NSDictionary*)notification
+{
+    NSMutableArray *myTracks = [[[notification objectForKey:@"my_tracks"] mutableCopy] cleanArray];
+    if (NULL_TO_NIL(myTracks)) {
+        [myTracks saveLocalWithKey:@"myTracks" success:^(id responseObject){
+            [self.tableView reloadData];
+        }failure:nil];
+    } else {
+        [[[NSMutableArray alloc] init] destroyLocalWithKey:@"myTracks" success:^(id responseObject){
+            [self.tableView reloadData];
+        }failure:nil];
+    }
+}
+
+- (void) handleShowDiscussionResponse:(NSDictionary*)notification
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSMessagesViewController *vc = (VSMessagesViewController*)[storyboard instantiateViewControllerWithIdentifier:@"messagesViewController"];
+    [vc setTrack:[[notification objectForKey:@"track"] mutableCopy]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 @end

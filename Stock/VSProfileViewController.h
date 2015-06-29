@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWRevealViewController.h"
 
-@interface VSProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface VSProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate>
 {
     MBProgressHUD *hud;
 }

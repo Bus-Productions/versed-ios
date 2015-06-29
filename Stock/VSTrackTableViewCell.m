@@ -78,9 +78,9 @@
     
     UILabel* numberOfPeople = (UILabel*)[baseView viewWithTag:7];
     [numberOfPeople setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
-    if ([track objectForKey:@"completed_in_company"] && [[track objectForKey:@"completed_in_company"] count] > 0) {
+    if ([track objectForKey:@"people_discussing"] && [[track objectForKey:@"people_discussing"] count] > 0) {
         //NSLog(@"%@", [track objectForKey:@"completed_in_company"]);
-        [numberOfPeople setText:[NSString stringWithFormat:@"%lu", (unsigned long)[[track objectForKey:@"completed_in_company"] count]]];
+        [numberOfPeople setText:[NSString stringWithFormat:@"%lu", (unsigned long)[[track objectForKey:@"people_discussing"] count]]];
     } else {
         [numberOfPeople setText:@"0"];
     }
@@ -99,6 +99,10 @@
 {
     [self switchSaveToTracksText:(UIButton*)sender];
     [self updateMyTrack];
+}
+
+- (IBAction)showDiscussionAction:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showDiscussion" object:nil userInfo:@{@"track": self.track}];
 }
 
 - (void) updateMyTrack

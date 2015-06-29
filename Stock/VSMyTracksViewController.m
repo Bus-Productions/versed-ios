@@ -7,10 +7,10 @@
 //
 
 #import "VSMyTracksViewController.h"
-#import "SWRevealViewController.h"
 #import "VSTrackTableViewCell.h"
 #import "VSTrackViewController.h"
 #import "VSEmptyTableViewCell.h"
+#import "VSMessagesViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -24,11 +24,10 @@
 
 - (void)viewDidLoad
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"updatedMyTracks" object:nil];
-    
     [super viewDidLoad];
     [self setupSidebar];
     [self setupData];
+    [self setupNotifications];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -50,6 +49,7 @@
     [self setTitle:@"My Tracks"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
+    [revealViewController setDelegate:self];
     if (revealViewController)
     {
         [self.slideButton setTarget: self.revealViewController];
@@ -63,13 +63,40 @@
     self.myTracks = [[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] ? [[[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] mutableCopy] : [[NSMutableArray alloc] init];
 }
 
+- (void) setupNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"updatedMyTracks" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"showDiscussion" object:nil];
+}
+
+#pragma mark - SWRevealViewController Delegate Methods
+
+- (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
+}
+
+- (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+    } else {
+        self.view.userInteractionEnabled = NO;
+    }
+}
+
+
 
 # pragma mark - Request/Reload
 
 - (void) reloadScreen
 {
     [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
-        [self handleResponse:responseObject];
+        [self handleMyTracksResponse:responseObject];
     }failure:nil];
 }
 
@@ -156,10 +183,14 @@
 
 - (void) handleNotification:(NSNotification*)notification
 {
-    [self handleResponse:[notification userInfo]];
+    if ([[notification name] isEqualToString:@"showDiscussion"]) {
+        [self handleShowDiscussionResponse:[notification userInfo]];
+    } else if ([[notification name] isEqualToString:@"updatedMyTracks"]){
+        [self handleMyTracksResponse:[notification userInfo]];
+    }
 }
 
-- (void) handleResponse:(NSDictionary*)notification
+- (void) handleMyTracksResponse:(NSDictionary*)notification
 {
     self.myTracks = [[[notification objectForKey:@"my_tracks"] mutableCopy] cleanArray];
     if (NULL_TO_NIL(self.myTracks)) {
@@ -171,6 +202,14 @@
             [self.tableView reloadData];
         }failure:nil];
     }
+}
+
+- (void) handleShowDiscussionResponse:(NSDictionary*)notification
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSMessagesViewController *vc = (VSMessagesViewController*)[storyboard instantiateViewControllerWithIdentifier:@"messagesViewController"];
+    [vc setTrack:[[notification objectForKey:@"track"] mutableCopy]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

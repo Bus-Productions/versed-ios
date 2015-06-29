@@ -17,20 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self setInitialLoginTimestamp];
+    [self setStyle];
+    [self setShouldRotate:NO]; 
     
-    
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
-    [[UINavigationBar appearance] setTranslucent:NO];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Light" size:18.0], NSFontAttributeName, nil]];
-    CGFloat verticalOffset = 0;
-    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
-
-    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
-    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Light" size:16.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
-    
-    if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
+    if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live] && [[[LXSession thisSession] user] name] && [[[[LXSession thisSession] user] name] length] > 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [[LXServer shared] requestPath:[NSString stringWithFormat:@"users/%@.json", [[[LXSession thisSession] user] ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
                 [[LXSession thisSession] setUser:[[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy]];
@@ -43,6 +34,35 @@
     }
     
     return YES;
+}
+
+- (void) setStyle
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Light" size:18.0], NSFontAttributeName, nil]];
+    CGFloat verticalOffset = 0;
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:verticalOffset forBarMetrics:UIBarMetricsDefault];
+    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,[UIFont fontWithName:@"SourceSansPro-Light" size:16.0], NSFontAttributeName, nil] forState:UIControlStateNormal];
+}
+
+- (void) setInitialLoginTimestamp
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"isInitialLogin"];
+    [defaults synchronize];
+}
+
+-(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    if (self.shouldRotate)
+        return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
+    else
+        return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void) setRootStoryboard:(NSString*)name
@@ -59,7 +79,10 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
+    [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"initialLogin"];
+    [defaults synchronize];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

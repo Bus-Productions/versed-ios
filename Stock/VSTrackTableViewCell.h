@@ -16,5 +16,6 @@
 - (void) configureWithTrack:(NSMutableDictionary*)t andIndexPath:(NSIndexPath*)indexPath;
 
 - (IBAction)saveTrackAction:(id)sender;
+- (IBAction)showDiscussionAction:(id)sender;
 
 @end

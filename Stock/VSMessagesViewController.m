@@ -38,7 +38,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self setupProperties];
     [self setNavTitle];
-    
+    [self setupData];
     [self setupConstraints];
     [self observeKeyboard];
 }
@@ -95,7 +95,27 @@
     [self.view addConstraint:self.bottomConstraint];
 }
 
-
+- (void) setupData
+{
+    if (self.allMessages && self.allMessages.count > 0) {
+        NSLog(@"got them");
+    } else {
+        [self showHUDWithMessage:@"Gathering messages..."];
+        [[LXServer shared] requestPath:@"/messages/for_user_and_track.json" withMethod:@"GET" withParamaters:@{@"track_id": [self.track ID]} authType:@"none" success:^(id responseObject){
+            self.allMessages = [[responseObject objectForKey:@"messages"] mutableCopy];
+            [self.tableView reloadData];
+            [self setNavTitle];
+            [self hideHUD];
+        }failure:^(NSError *error){
+            [self hideHUD];
+        }];
+    }
+    if (self.myTracksIDs && self.myTracksIDs.count > 0) {
+        NSLog(@"got track ids");
+    } else {
+        self.myTracksIDs = [[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] ? [[[[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] mutableCopy] pluckIDs] : [[NSMutableArray alloc] init];
+    }
+}
 
 # pragma mark - Actions
 
@@ -385,5 +405,22 @@
 {
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [av show];
+}
+
+# pragma mark hud delegate
+
+- (void) showHUDWithMessage:(NSString*) message
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = message;
+    [hud setColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:0.8]];
+    [hud setLabelFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+}
+
+- (void) hideHUD
+{
+    if (hud) {
+        [hud hide:YES];
+    }
 }
 @end
