@@ -220,7 +220,7 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         return 146.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
-        return 90.0f;
+        return 100.0f;
     }
     return 136.0f;
 }
