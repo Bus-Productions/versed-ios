@@ -771,6 +771,7 @@
 				TargetAttributes = {
 					28A533B91ACF688A0049B3F7 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = B28RCHZM6D;
 					};
 					28A533D21ACF688A0049B3F7 = {
 						CreatedOnToolsVersion = 6.2;
@@ -1075,12 +1076,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Stock/App-Prefix.pch";
 				INFOPLIST_FILE = Stock/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Versed;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1090,12 +1093,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Stock/App-Prefix.pch";
 				INFOPLIST_FILE = Stock/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Versed;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
