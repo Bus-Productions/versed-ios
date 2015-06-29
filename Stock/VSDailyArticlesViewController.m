@@ -230,7 +230,6 @@
     self.navigationController.hidesBarsOnSwipe = hide;
 }
 
-
 - (void) createResourceUserPairAtIndexPath:(NSIndexPath*)indexPath
 {
     NSMutableDictionary *rup = [NSMutableDictionary create:@"resource_user_pair"];
