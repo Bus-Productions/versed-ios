@@ -229,6 +229,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
