@@ -27,6 +27,7 @@
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupData];
+    [self.delegate reloadScreen];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,35 +36,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-    [self reloadScreen];
-}
-
 
 # pragma mark - Setup
 - (void) setupData
 {
     self.missedQuestions = [[NSMutableArray alloc] init];
+    [self setupMissedQuestions:^(id responseObject){
+        [self.tableView reloadData];
+    }failure:nil];
 }
 
 - (void) setupNavigationBar
 {
     [self.navigationItem setTitle:@"Quiz Results"];
 }
-
-# pragma mark - Request/Reload
-- (void) reloadScreen
-{
-    isRequesting = YES;
-    [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
-        self.quizResults = [responseObject quizResults];
-        [self setupMissedQuestions];
-        isRequesting = NO;
-        [self.tableView reloadData];
-    }failure:nil];
-}
-
 
 #pragma mark - Table view data source
 
@@ -217,9 +203,8 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void) setupMissedQuestions
+- (void) setupMissedQuestions:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback
 {
-    [self.missedQuestions removeAllObjects];
     for (NSMutableDictionary *qr in self.quizResults) {
         if (![qr quizResultIsCorrect]) {
             [self.missedQuestions addObject:qr];

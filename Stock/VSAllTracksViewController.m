@@ -32,8 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupData];
     [self shouldSwitchToMyTracks];
+
+    [self setupData];
     
     selectedIndex = -1;
     
@@ -240,6 +241,11 @@
     [cell configureWithTrack:track andIndexPath:indexPath];
     
     return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 276.0f;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

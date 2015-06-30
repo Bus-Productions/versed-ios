@@ -30,17 +30,13 @@
     [super viewDidLoad];
     [self setupSidebar];
     [self setupData];
+    [self reloadScreen];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [self reloadScreen];
 }
 
 
@@ -96,8 +92,8 @@
 {
     isRequesting = YES;
     [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
-        self.quizQuestions = [[responseObject quiz] quizQuestions];
-        self.quizResults = [responseObject quizResults];
+        [self.quizResults removeAllObjects];
+        self.quizQuestions = [[responseObject quiz] objectForKey:@"random_quiz_questions"];
         self.questionsToAsk = [self.quizQuestions mutableCopy];
         self.quiz = [responseObject quiz];
         [self removeAnsweredQuestionsFromQuestionsToAsk];
@@ -292,10 +288,10 @@
     [qr setObject:[question quizID] forKey:@"quiz_id"];
     [qr setObject:[question quizAnswerID] forKey:@"correct_answer_id"];
     [qr setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
-    [self.quizResults addObject:qr];
     [qr saveRemote:^(id responseObject){
+        [qr setObject:question forKey:@"quiz_question"];
+        [self.quizResults addObject:qr];
         [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
-        self.quizResults = [[[responseObject objectForKey:@"quiz_results"] cleanArray] mutableCopy];
         successCallback(@{@"quiz_results": self.quizResults});
     }failure:nil];
 }
@@ -332,7 +328,7 @@
     [vc setQuizResults:self.quizResults];
     [vc setDelegate:self];
     [self.navigationController popToRootViewControllerAnimated:NO];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 - (void) pushResultsOnStack
@@ -340,6 +336,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSQuizResultsViewController *vc = (VSQuizResultsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizResultsViewController"];
     [vc setQuizResults:self.quizResults];
+    [vc setDelegate:self];
     [self.navigationController popToRootViewControllerAnimated:NO];
     [self.navigationController pushViewController:vc animated:YES];
 }

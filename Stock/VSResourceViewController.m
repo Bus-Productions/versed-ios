@@ -51,7 +51,11 @@
 
 - (void) setupNavigationBar
 {
-    [self.navigationItem setTitle:[track headline]];
+    if (self.track && [self.track respondsToSelector:@selector(headline)]) {
+        [self.navigationItem setTitle:[track headline]];
+    } else {
+        [self.navigationItem setTitle:@"Versed Today"];
+    }
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction:)];
     self.navigationItem.rightBarButtonItem = shareButton;
 }

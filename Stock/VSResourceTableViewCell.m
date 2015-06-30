@@ -42,6 +42,24 @@
     [descriptionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
     [descriptionLabel setTextColor:[UIColor grayColor]];
     
+    UIImageView* sourceView = (UIImageView*)[baseView viewWithTag:82];
+    if ([resource mediaURL]) {
+        if ([SGImageCache haveImageForURL:[resource mediaURL]]) {
+            [sourceView setImage:[SGImageCache imageForURL:[resource mediaURL]]];
+        } else if (![sourceView.image isEqual:[SGImageCache imageForURL:[resource mediaURL]]]) {
+            sourceView.image = nil;
+            [sourceView setAlpha:0.0f];
+            [SGImageCache getImageForURL:[resource mediaURL]].then(^(UIImage* image) {
+                if (image) {
+                    sourceView.image = image;
+                }
+                [UIView animateWithDuration:1.0f animations:^(void){
+                    [sourceView setAlpha:1.0f];
+                }];
+            });
+        }
+    }
+    
 }
 
 

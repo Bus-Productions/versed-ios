@@ -77,7 +77,7 @@
     [description setText:[track objectForKey:@"description"]];
     
     UILabel* numberOfPeople = (UILabel*)[baseView viewWithTag:7];
-    [numberOfPeople setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+    [numberOfPeople setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:12.0f]];
     if ([track objectForKey:@"people_discussing"] && [[track objectForKey:@"people_discussing"] count] > 0) {
         //NSLog(@"%@", [track objectForKey:@"completed_in_company"]);
         [numberOfPeople setText:[NSString stringWithFormat:@"%lu", (unsigned long)[[track objectForKey:@"people_discussing"] count]]];
@@ -89,7 +89,7 @@
     [self.saveButton setTitle:[self saveToMyTracksButtonTitle] forState:UIControlStateNormal];
     [self.saveButton setBackgroundColor:[UIColor colorWithRed:0.925f green:0.925f blue:0.925f alpha:1.0f]];
     [self.saveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [[self.saveButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    [[self.saveButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
 }
 
 

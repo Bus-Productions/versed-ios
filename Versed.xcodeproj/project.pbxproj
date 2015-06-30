@@ -12,7 +12,6 @@
 		283A44961B2A93BD003012A7 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A44941B2A93BD003012A7 /* checkmark.png */; };
 		283A44971B2A93BD003012A7 /* talkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A44951B2A93BD003012A7 /* talkbox.png */; };
 		283A44991B2A9B3D003012A7 /* black_logo_sans.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A44981B2A9B3D003012A7 /* black_logo_sans.png */; };
-		283A449B1B2A9C7F003012A7 /* versed_daily.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A449A1B2A9C7F003012A7 /* versed_daily.png */; };
 		287684F01B2ABFE20076AB24 /* quiz_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 287684EF1B2ABFE20076AB24 /* quiz_splash.png */; };
 		287684F21B2AC2B60076AB24 /* question_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 287684F11B2AC2B60076AB24 /* question_header.png */; };
 		28793F041B288C3F00E2998F /* NSArray+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 28793F031B288C3F00E2998F /* NSArray+Attributes.m */; };
@@ -54,6 +53,7 @@
 		28A534061ACF6F4E0049B3F7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 28A534051ACF6F4E0049B3F7 /* Podfile */; };
 		28A534091ACF75C70049B3F7 /* LXAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A534071ACF75C70049B3F7 /* LXAddressBook.m */; };
 		28A5340C1AD0A64F0049B3F7 /* MobileLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A5340B1AD0A64F0049B3F7 /* MobileLogin.storyboard */; };
+		28A8F10D1B42DE63007BD774 /* versed_daily.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A8F10C1B42DE63007BD774 /* versed_daily.png */; };
 		760829631B14B3790053E29F /* VSQuizPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829621B14B3790053E29F /* VSQuizPreviewViewController.m */; };
 		760829661B14C2920053E29F /* VSTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829651B14C2920053E29F /* VSTokenViewController.m */; };
 		760829691B1641EB0053E29F /* VSDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829681B1641EA0053E29F /* VSDashboardViewController.m */; };
@@ -130,7 +130,6 @@
 		283A44941B2A93BD003012A7 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		283A44951B2A93BD003012A7 /* talkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = talkbox.png; sourceTree = "<group>"; };
 		283A44981B2A9B3D003012A7 /* black_logo_sans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_logo_sans.png; sourceTree = "<group>"; };
-		283A449A1B2A9C7F003012A7 /* versed_daily.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = versed_daily.png; sourceTree = "<group>"; };
 		287684EF1B2ABFE20076AB24 /* quiz_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quiz_splash.png; sourceTree = "<group>"; };
 		287684F11B2AC2B60076AB24 /* question_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_header.png; sourceTree = "<group>"; };
 		28793F021B288C3F00E2998F /* NSArray+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Attributes.h"; sourceTree = "<group>"; };
@@ -190,6 +189,7 @@
 		28A534081ACF75C70049B3F7 /* LXAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXAddressBook.h; sourceTree = "<group>"; };
 		28A5340A1ACF76890049B3F7 /* App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		28A5340B1AD0A64F0049B3F7 /* MobileLogin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MobileLogin.storyboard; sourceTree = "<group>"; };
+		28A8F10C1B42DE63007BD774 /* versed_daily.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = versed_daily.png; sourceTree = "<group>"; };
 		482B486F1AD55514B9E2B5F0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		760829611B14B3790053E29F /* VSQuizPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizPreviewViewController.h; sourceTree = "<group>"; };
 		760829621B14B3790053E29F /* VSQuizPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizPreviewViewController.m; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 		28793F061B288E0900E2998F /* Logos */ = {
 			isa = PBXGroup;
 			children = (
-				283A449A1B2A9C7F003012A7 /* versed_daily.png */,
+				28A8F10C1B42DE63007BD774 /* versed_daily.png */,
 				283A44981B2A9B3D003012A7 /* black_logo_sans.png */,
 				28793F0B1B288FEA00E2998F /* white_logo_sans.png */,
 				28793F091B288F4D00E2998F /* white_logo.png */,
@@ -820,6 +820,7 @@
 				283A44901B2A5CFC003012A7 /* people.png in Resources */,
 				28793F0F1B28908D00E2998F /* login_warm_background.png in Resources */,
 				28793F0A1B288F4D00E2998F /* white_logo.png in Resources */,
+				28A8F10D1B42DE63007BD774 /* versed_daily.png in Resources */,
 				283A44991B2A9B3D003012A7 /* black_logo_sans.png in Resources */,
 				28793F221B2898E200E2998F /* SourceSansPro-ExtraLightIt.otf in Resources */,
 				28793F1E1B2898DE00E2998F /* SourceSansPro-BlackIt.otf in Resources */,
@@ -834,7 +835,6 @@
 				28793F231B2898E200E2998F /* SourceSansPro-It.otf in Resources */,
 				287684F21B2AC2B60076AB24 /* question_header.png in Resources */,
 				28A534061ACF6F4E0049B3F7 /* Podfile in Resources */,
-				283A449B1B2A9C7F003012A7 /* versed_daily.png in Resources */,
 				28793F311B29E9D900E2998F /* burgermenu.png in Resources */,
 				28793F211B2898E200E2998F /* SourceSansPro-ExtraLight.otf in Resources */,
 				28A533CB1ACF688A0049B3F7 /* Images.xcassets in Resources */,

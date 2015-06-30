@@ -9,8 +9,7 @@
 #import "VSDailyArticlesViewController.h"
 #import "VSResourceTableViewCell.h"
 #import "VSEmptyTableViewCell.h"
-#import "SVWebViewController.h"
-
+#import "VSResourceViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -22,11 +21,16 @@
 
 @synthesize tableView, slideButton, articles, sections;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupSidebar];
     [self setupData];
     [self reloadScreen];
+    
+    UIImageView* titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"versed_daily.png"]];
+    [titleView setContentMode:UIViewContentModeScaleAspectFit];
+    self.navigationController.navigationBar.topItem.titleView = titleView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +65,7 @@
 
 - (void) setupSidebar
 {
-    [self setTitle:@"Versed Daily"];
+    [self setTitle:@"Versed Today"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
     [revealViewController setDelegate:self]; 
@@ -209,8 +213,9 @@
             [self createResourceUserPairAtIndexPath:indexPath];
         });
         
-        SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:(NSString*)[[self.articles objectAtIndex:indexPath.row] url]];
-        [self hideNavBarOnSwipe:YES];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
+        [webViewController setResource:[self.articles objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:webViewController animated:YES];
     }
 }
@@ -220,16 +225,15 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         return 146.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
-        return 82.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
+        return 100.0f;
     }
-    return 136.0f;
+    return 54.0;
 }
 
 - (void) hideNavBarOnSwipe:(BOOL)hide
 {
     self.navigationController.hidesBarsOnSwipe = hide;
 }
-
 
 - (void) createResourceUserPairAtIndexPath:(NSIndexPath*)indexPath
 {
