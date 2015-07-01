@@ -23,18 +23,23 @@
 
 - (void) configure
 {
+    NSMutableDictionary *user = [[LXSession thisSession] user];
     UILabel *name = (UILabel*)[self viewWithTag:1];
-    [name setText:[NSString stringWithFormat:@"%@'s Progress", [[[LXSession thisSession] user] firstName]]];
+    [name setText:[NSString stringWithFormat:@"%@'s Progress", [user firstName]]];
     [name setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:28.0f]];
     
     UILabel *level = (UILabel*)[self viewWithTag:2];
-    [level setText:[NSString stringWithFormat:@"LEVEL: %@", [[[[LXSession thisSession] user] level] uppercaseString]]];
+    [level setText:[NSString stringWithFormat:@"LEVEL: %@", [[user level] uppercaseString]]];
     [level setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
     
-    UILabel *tracks = (UILabel*)[self viewWithTag:3];
-    NSString *trackCount = [[[LXSession thisSession] user] numberTracksToNextLevel];
-    [tracks setText:[NSString stringWithFormat:@"Only %@ more %@ until you\nreach the next level.", !NULL_TO_NIL(trackCount) ? @"0" : trackCount, [trackCount isEqualToString:@"1"] ? @"track" : @"tracks"]];
-    [tracks setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    UILabel *points = (UILabel*)[self viewWithTag:3];
+    NSString *pointsToNextLevel = [user pointsToNextLevel];
+    if ([pointsToNextLevel isEqualToString:@"0"]) {
+        [points setText:@"You are at the highest level!"];
+    } else {
+        [points setText:[NSString stringWithFormat:@"Only %@ more %@ until you\nreach the next level.", pointsToNextLevel, [pointsToNextLevel isEqualToString:@"1"] ? @"point" : @"points"]];
+    }
+    [points setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
 }
 
 @end

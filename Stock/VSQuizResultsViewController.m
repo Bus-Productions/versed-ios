@@ -28,6 +28,7 @@
     [self setupNavigationBar];
     [self setupData];
     [self.delegate reloadScreen];
+    [self updateUserWithFinishedQuiz];
 }
 
 - (void)didReceiveMemoryWarning
@@ -143,7 +144,7 @@
     
     UILabel* topLabel = (UILabel*)[cell.contentView viewWithTag:1];
     NSString *topLabelText = [NSString stringWithFormat:@"Well done, %@!", [[[LXSession thisSession] user] firstName]];
-    NSString *bottomLabelText = [NSString stringWithFormat:@"You have a good knowledge of most of the major trends shaping business today."];
+    NSString *bottomLabelText = [NSString stringWithFormat:@"You are steadily getting versed on key topics."];
     
     if ([self.quizResults numberQuizResultsCorrect]/self.quizResults.count <= 0.5) {
         topLabelText = [NSString stringWithFormat:@"Keep practicing, %@!", [[[LXSession thisSession] user] firstName]];
@@ -186,6 +187,15 @@
         return 190.0f;
     }
     return 54.0f;
+}
+
+- (void) updateUserWithFinishedQuiz
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        NSMutableDictionary *user = [[LXSession thisSession] user];
+        [user incrementQuizzesTaken];
+        [user saveBoth:nil failure:nil];
+    });
 }
 
 

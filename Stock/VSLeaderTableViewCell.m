@@ -25,7 +25,7 @@
     UILabel *ranking = (UILabel*)[self viewWithTag:1];
     UILabel *name = (UILabel*)[self viewWithTag:2];
     UILabel *quizzesTaken = (UILabel*)[self viewWithTag:3];
-    UILabel *percentCorrect = (UILabel*)[self viewWithTag:4];
+    UILabel *score = (UILabel*)[self viewWithTag:4];
     
     [ranking setText:[self rankingOfUser:user inLeaders:leaders]];
     [ranking setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:40]];
@@ -37,8 +37,8 @@
     [quizzesTaken setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
     [quizzesTaken setTextColor:[UIColor lightGrayColor]];
     
-    [percentCorrect setText:[user overallQuizPercentage]];
-    [percentCorrect setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:30]];
+    [score setText:[user score]];
+    [score setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:30]];
 }
 
 - (NSString *) rankingOfUser:(NSMutableDictionary*)user inLeaders:(NSMutableArray*)leaders
@@ -49,10 +49,10 @@
 - (NSString *) quizzesTakenTextForUser:(NSMutableDictionary*)user
 {
     NSString *quizText = @"quizzes";
-    if ([[user totalQuizzes] isEqualToString:@"1"]){
+    if ([[user quizzesTaken] isEqualToString:@"1"]){
         quizText = @"quiz";
     }
-    return [NSString stringWithFormat:@"%@ %@ taken", [user totalQuizzes], quizText];
+    return [NSString stringWithFormat:@"%@ %@ taken", [user quizzesTaken], quizText];
 }
 
 @end

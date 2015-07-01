@@ -302,6 +302,34 @@
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"number_resources"]];
 }
 
+- (NSString*) seen
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"seen"]];
+}
+
+- (NSString*) pointsToNextLevel
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"points_to_next_level"]];
+}
+
+
+- (void) incrementQuizzesTaken
+{
+    NSNumber* taken = [self valueForKey:@"quizzes_taken"];
+    int newCount = [taken intValue] + 1;
+    [self setValue:[NSNumber numberWithInt:newCount] forKey:@"quizzes_taken"];
+}
+
+- (NSString*) quizzesTaken
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"quizzes_taken"]];
+}
+
+- (NSString*) score
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"score"]];
+}
+
 - (NSString*) pollAnswerID
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"poll_answer_id"]];

@@ -39,6 +39,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated]; 
+    [self.tableView reloadData];
+}
 
 # pragma mark - Setup
 
@@ -156,7 +161,8 @@
     NSString *labelText = self.quizResults.count > 0 ? @"Continue Quiz" : @"Start Quiz";
     
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-    [title setText:[self.quiz quizName]];
+    NSDate *now = [NSDate date]; 
+    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
     
     UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
@@ -171,7 +177,8 @@
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"actionCell" forIndexPath:indexPath];
     
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-    [title setText:[self.quiz quizName]];
+    NSDate *now = [NSDate date];
+    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
     
     UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
@@ -199,11 +206,11 @@
     UIView* container = (UIView*)[cell.contentView viewWithTag:10];
     
     UILabel* accuracy = (UILabel*)[container viewWithTag:1];
-    [accuracy setText:@"LIFETIME\nQUIZ ACCURACY"];
+    [accuracy setText:@"LIFETIME\nPOINTS"];
     [accuracy setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:11.0f]];
     
     UILabel* percentage = (UILabel*)[container viewWithTag:2];
-    [percentage setText:[NSString stringWithFormat:@"%li%%", (long)[[[[LXSession thisSession] user] objectForKey:@"quiz_percentage"] integerValue]]];
+    [percentage setText:[[[LXSession thisSession] user] score]];
     [percentage setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:30.0f]];
     
     UILabel* label = (UILabel*)[container viewWithTag:3];
@@ -218,7 +225,7 @@
     
     UILabel* weaknessesLabel = (UILabel*)[cell.contentView viewWithTag:21];
     [weaknessesLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
-    [weaknessesLabel setText:@"DEVELOPMENT AREAS"];
+    [weaknessesLabel setText:@"FOCUS AREAS"];
     
     UILabel* strengths = (UILabel*)[cell.contentView viewWithTag:30];
     [strengths setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
