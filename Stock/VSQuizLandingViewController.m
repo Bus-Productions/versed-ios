@@ -93,7 +93,12 @@
     isRequesting = YES;
     [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         [self.quizResults removeAllObjects];
+        NSLog(@"response = %@", responseObject);
+        NSLog(@"*******************");
+        
         self.quizQuestions = [[responseObject quiz] objectForKey:@"random_quiz_questions"];
+        NSLog(@"quiz questions = %@", self.quizQuestions);
+                NSLog(@"*******************");
         self.questionsToAsk = [self.quizQuestions mutableCopy];
         self.quiz = [responseObject quiz];
         [self removeAnsweredQuestionsFromQuestionsToAsk];

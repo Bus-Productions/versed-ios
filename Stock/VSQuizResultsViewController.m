@@ -28,6 +28,7 @@
     [self setupNavigationBar];
     [self setupData];
     [self.delegate reloadScreen];
+    [self updateUserWithFinishedQuiz];
 }
 
 - (void)didReceiveMemoryWarning
@@ -186,6 +187,15 @@
         return 190.0f;
     }
     return 54.0f;
+}
+
+- (void) updateUserWithFinishedQuiz
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        NSMutableDictionary *user = [[LXSession thisSession] user];
+        [user incrementQuizzesTaken];
+        [user saveBoth:nil failure:nil];
+    });
 }
 
 

@@ -27,6 +27,7 @@
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupTimer];
+    NSLog(@"q = %@", self.question);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +54,7 @@
                                                   target: self
                                                 selector:@selector(onTick:)
                                                 userInfo: nil repeats:YES];
-    remainingTime = 20;
+    remainingTime = 15;
 }
 
 #pragma mark - Table view data source
@@ -130,17 +131,8 @@
     UILabel* timerLabel = (UILabel*)[cell.contentView viewWithTag:1];
     [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
     
-    if (!requesting) {
-        UILabel* percentageLabel = (UILabel*)[cell.contentView viewWithTag:2];
-        float correct = [self.quizResults numberQuizResultsCorrect];
-        float total = questionsCompleted > 1 ? questionsCompleted - 1 : 1.0;
-        
-        if (alreadyAnswered) {
-            total = questionsCompleted;
-        }
-        NSString *percentage = [NSString stringWithFormat:@"%ld%%", lround((correct/total)*100.0)];
-        [percentageLabel setText:percentage];
-    }
+    UILabel* pointsLabel = (UILabel*)[cell.contentView viewWithTag:2];
+    [pointsLabel setText:[NSString stringWithFormat:@"+%@", [self.question seen]]];
     
     UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
     [questionLabel setText:[NSString stringWithFormat:@"%lu/%lu",  (unsigned long)self.questionsCompleted, (unsigned long)self.totalQuestions]];

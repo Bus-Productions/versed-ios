@@ -49,6 +49,7 @@
 - (NSString*) overallQuizPercentage;
 - (NSMutableDictionary*) track;
 - (NSString*) quizName;
+- (NSString*) seen;
 
 // users
 - (NSString*) email;
@@ -57,10 +58,13 @@
 - (NSString*) totalQuizzes;
 - (NSString*) companyID;
 - (NSString*) level;
+- (NSString*) score;
 - (NSString*) numberTracksToNextLevel;
 - (NSString*) completedTracksCount;
 - (NSMutableArray*) strengths;
 - (NSMutableArray*) weaknesses;
+- (void) incrementQuizzesTaken; 
+- (NSString*) quizzesTaken;
 
 // track user pairs
 - (NSMutableArray *) trackUserPairs;
