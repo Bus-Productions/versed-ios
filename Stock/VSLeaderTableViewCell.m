@@ -52,7 +52,7 @@
     if ([[user quizzesTaken] isEqualToString:@"1"]){
         quizText = @"quiz";
     }
-    return [NSString stringWithFormat:@"%@ %@ taken", [user totalQuizzes], quizText];
+    return [NSString stringWithFormat:@"%@ %@ taken", [user quizzesTaken], quizText];
 }
 
 @end

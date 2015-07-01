@@ -27,7 +27,6 @@
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupTimer];
-    NSLog(@"q = %@", self.question);
 }
 
 - (void)didReceiveMemoryWarning {

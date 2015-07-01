@@ -65,6 +65,7 @@
 - (NSMutableArray*) weaknesses;
 - (void) incrementQuizzesTaken; 
 - (NSString*) quizzesTaken;
+- (NSString*) pointsToNextLevel;
 
 // track user pairs
 - (NSMutableArray *) trackUserPairs;

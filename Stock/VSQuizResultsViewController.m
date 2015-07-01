@@ -144,7 +144,7 @@
     
     UILabel* topLabel = (UILabel*)[cell.contentView viewWithTag:1];
     NSString *topLabelText = [NSString stringWithFormat:@"Well done, %@!", [[[LXSession thisSession] user] firstName]];
-    NSString *bottomLabelText = [NSString stringWithFormat:@"You have a good knowledge of most of the major trends shaping business today."];
+    NSString *bottomLabelText = [NSString stringWithFormat:@"You are steadily getting versed on key topics."];
     
     if ([self.quizResults numberQuizResultsCorrect]/self.quizResults.count <= 0.5) {
         topLabelText = [NSString stringWithFormat:@"Keep practicing, %@!", [[[LXSession thisSession] user] firstName]];

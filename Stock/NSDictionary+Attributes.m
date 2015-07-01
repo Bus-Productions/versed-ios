@@ -307,6 +307,12 @@
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"seen"]];
 }
 
+- (NSString*) pointsToNextLevel
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"points_to_next_level"]];
+}
+
+
 - (void) incrementQuizzesTaken
 {
     NSNumber* taken = [self valueForKey:@"quizzes_taken"];

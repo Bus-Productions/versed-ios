@@ -201,7 +201,7 @@
     
     UILabel* label = (UILabel*)[cell.contentView viewWithTag:1];
     [label setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
-    [label setText:@"Stay versed with the top 5 need\nto know topics each day."];
+    [label setText:@"Check out the five resources \nmost recently added to Versed"];
     
     return cell;
 }

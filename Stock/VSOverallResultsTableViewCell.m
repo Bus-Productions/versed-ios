@@ -29,7 +29,7 @@
     [recentQuizResultLabel setTextColor:[UIColor whiteColor]];
     
     UILabel *overallStatsLabel = (UILabel*)[self viewWithTag:2];
-    [overallStatsLabel setText:[[[LXSession thisSession] user] overallQuizPercentage]];
+    [overallStatsLabel setText:[[[LXSession thisSession] user] score]];
     [overallStatsLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:40.0f]];
     [overallStatsLabel setTextColor:[UIColor whiteColor]];
     
@@ -39,7 +39,7 @@
     [labelLeft setTextColor:[UIColor whiteColor]];
     
     UILabel *labelRight = (UILabel*)[self viewWithTag:4];
-    [labelRight setText:@"LIFETIME ACCURACY"];
+    [labelRight setText:@"LIFETIME POINTS"];
     [labelRight setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
     [labelRight setTextColor:[UIColor whiteColor]];
     

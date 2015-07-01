@@ -33,8 +33,10 @@
 
 - (void) setupTextLabels
 {
-    [self.titleLabel setText:[self.quiz quizName]];
-    [self.infoLabel setText:@"This quiz is a pulse check:\nA way to make sure you're up to speed on all the major trends and identify potential knowledge gaps."];
+    NSDate *now = [NSDate date];
+    [self.titleLabel setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
+
+    [self.infoLabel setText:@"This 10-question quiz will help you evaluate how much you know about the trends and forces shaping business today. You will earn three points for each correct answer if you haven't previously seen the question and one point if you answer correctly but you've already seen the question once before. We encourage you to take quizzes often because your results will allow Versed to recommend specific content for you."];
 }
 
 - (void) setupAppearance
@@ -47,6 +49,9 @@
     
     [[self.cancelButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
     [[self.startButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];
+    
+    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", nil];
+    [self.backgroundImage setImage:[UIImage imageNamed:[backgroundImages randomArrayItem]]];
 }
 
 
