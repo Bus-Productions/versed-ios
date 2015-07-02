@@ -164,24 +164,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView articlesCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
+//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
+//    
+//    NSMutableDictionary* article = [self.articles objectAtIndex:indexPath.row];
+//    
+//    UIView* container = (UIView*)[cell.contentView viewWithTag:10];
+//    
+//    UILabel* number = (UILabel*)[container viewWithTag:1];
+//    [number setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:32.0f]];
+//    [number setText:[NSString stringWithFormat:@"%li", indexPath.row+1]];
+//    
+//    UILabel* title = (UILabel*)[container viewWithTag:2];
+//    [title setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+//    [title setText:[article headline]];
+//    
+//    UILabel* source = (UILabel*)[container viewWithTag:3];
+//    [source setTextColor:[UIColor grayColor]];
+//    [source setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+//    [source setText:[article objectForKey:@"source"]];
     
-    NSMutableDictionary* article = [self.articles objectAtIndex:indexPath.row];
+    VSResourceTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
     
-    UIView* container = (UIView*)[cell.contentView viewWithTag:10];
-    
-    UILabel* number = (UILabel*)[container viewWithTag:1];
-    [number setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:32.0f]];
-    [number setText:[NSString stringWithFormat:@"%li", indexPath.row+1]];
-    
-    UILabel* title = (UILabel*)[container viewWithTag:2];
-    [title setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
-    [title setText:[article headline]];
-    
-    UILabel* source = (UILabel*)[container viewWithTag:3];
-    [source setTextColor:[UIColor grayColor]];
-    [source setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
-    [source setText:[article objectForKey:@"source"]];
+    [cell configureWithResource:[self.articles objectAtIndex:indexPath.row] andCompletedResources:completedResources];
     
     return cell;
 }
@@ -219,15 +223,27 @@
         [self.navigationController pushViewController:webViewController animated:YES];
     }
 }
-
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
-        return 146.0f;
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return 60.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
-        return 100.0f;
+        return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
     }
-    return 54.0;
+    return 80.0f;
+}
+
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
+{
+    if (!text || [text length] == 0) {
+        return 0.0f;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 100000)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    return rect.size.height;
 }
 
 - (void) hideNavBarOnSwipe:(BOOL)hide
