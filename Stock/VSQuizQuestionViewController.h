@@ -21,12 +21,19 @@
     BOOL requesting; 
 }
 
+@property (nonatomic,assign) id delegate;
+
 @property (strong, nonatomic) NSMutableArray *sections;
 @property (strong, nonatomic) NSMutableArray *quizResults;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableDictionary *question;
 @property (nonatomic) NSUInteger totalQuestions;
 @property (nonatomic) NSUInteger questionsCompleted;
-@property (nonatomic,assign) id delegate;
+
+@property (strong, nonatomic) IBOutlet UIView *nextContainer;
+@property (strong, nonatomic) IBOutlet UIButton *nextButton;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *nextContainerHeightConstraint;
+
+- (IBAction)nextAction:(id)sender;
 
 @end

@@ -30,6 +30,7 @@
 - (NSString*) estimatedTime;
 - (NSString*) numberResources;
 - (BOOL) completed;
+- (NSString*) resourceDate;
 
 // quizzes
 - (NSMutableDictionary*) quiz;

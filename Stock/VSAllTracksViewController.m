@@ -126,6 +126,8 @@
 {
     if ((!self.menuButtons || [self.menuButtons count] == 0) && self.categoriesWithTracks && [self.categoriesWithTracks count] > 0) {
         
+        [self.horizontalMenu setFrame:CGRectMake(self.horizontalMenu.frame.origin.x, self.horizontalMenu.frame.origin.y, self.view.frame.size.width, self.horizontalMenu.frame.size.height)];
+        
         self.menuButtons = [[NSMutableArray alloc] init];
         UIFont* font = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f];
         CGFloat topMarginSpacing = 10.0f;
@@ -158,6 +160,8 @@
             
             ++i;
         }
+        
+        [self.horizontalMenu setContentSize:CGSizeMake(spacing*(i+1)+aggregateWidth, self.horizontalMenu.frame.size.height)];
         
         if (selectedIndex < 0 && [self.categoriesWithTracks count] > 0) {
             [self selectCategory:0];

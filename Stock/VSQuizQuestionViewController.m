@@ -21,12 +21,22 @@
 @implementation VSQuizQuestionViewController
 
 @synthesize sections, tableView, question, delegate, totalQuestions, questionsCompleted, quizResults;
+@synthesize nextButton, nextContainer, nextContainerHeightConstraint;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupTimer];
+    
+    [self showOrHideNextBar];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self showOrHideNextBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +63,7 @@
                                                   target: self
                                                 selector:@selector(onTick:)
                                                 userInfo: nil repeats:YES];
-    remainingTime = 15;
+    remainingTime = 25;
 }
 
 #pragma mark - Table view data source
@@ -67,7 +77,7 @@
         [self.sections addObject:@"question"];
         [self.sections addObject:@"answer"];
         //if (alreadyAnswered) {
-            [self.sections addObject:@"next"];
+            //[self.sections addObject:@"next"];
         //}
     }
     return self.sections.count;
@@ -166,6 +176,11 @@
     }
 }
 
+- (IBAction)nextAction:(id)sender
+{
+    [self.delegate updateQuizQuestions];
+}
+
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
@@ -175,7 +190,7 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
         return 62.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
-        return 40.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
+        return 40.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-32.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:22.0f]];
     }
     return 100.0f;
 }
@@ -224,6 +239,8 @@
     [[correctCell.contentView viewWithTag:1] setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
 
     successCallback(nil);
+    
+    [self showOrHideNextBar];
 }
 
 - (NSIndexPath*) questionIndexPath
@@ -239,6 +256,19 @@
     NSInteger firstRowIndex = 0;
     return [NSIndexPath indexPathForRow:firstRowIndex inSection:questionSectionIndex];
 }
+
+
+
+- (void) showOrHideNextBar
+{
+    if (alreadyAnswered) {
+        self.nextContainerHeightConstraint.constant = 56;
+    } else {
+        self.nextContainerHeightConstraint.constant = 0;
+    }
+}
+
+
 
 # pragma mark - Timer
 
@@ -278,5 +308,6 @@
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:title message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [av show];
 }
+
 
 @end

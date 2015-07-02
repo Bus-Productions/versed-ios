@@ -26,6 +26,8 @@
 {
     [self setResource:r];
     
+    NSLog(@"resource: %@", r);
+    
     UIView* baseView = (UIView*)[self.contentView viewWithTag:10];
     
     UILabel* title = (UILabel*)[baseView viewWithTag:1];
@@ -33,7 +35,7 @@
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:20.0f]];
     
     UILabel* subtitle = (UILabel*)[baseView viewWithTag:2];
-    [subtitle setText:[[NSString stringWithFormat:@"%@ · %@ · %@", [resource objectForKey:@"source"], [[NSDate dateFromString:[resource createdAt]] timeAgoActual], [resource resourceType]] uppercaseString]];
+    [subtitle setText:[[NSString stringWithFormat:@"%@ · %@ · %@", [resource objectForKey:@"source"], [resource resourceDate], [resource resourceType]] uppercaseString]];
     [subtitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
     [subtitle setTextColor:[UIColor grayColor]];
     
@@ -60,6 +62,14 @@
         }
     }
     
+    UIImageView* readImage = (UIImageView*) [baseView viewWithTag:83];
+    [readImage setImage:[UIImage imageNamed:@"green_check.png"]];
+    if ([completedResources containsObject:resource] || [completedResources containsObject:[resource ID]]) {
+        [readImage setHidden:NO];
+    } else {
+        [readImage setHidden:YES];
+    }
+    
 }
 
 
@@ -84,11 +94,3 @@
 
 
 @end
-
-
-//    if ([completedResources containsObject:resource] || [completedResources containsObject:[resource ID]]) {
-//        //[lbl setText:[NSString stringWithFormat:@"%@ %@", [resource objectForKey:@"headline"], @"(completed)"]];
-//        [lbl setText:[resource objectForKey:@"headline"]];
-//    } else {
-//        [lbl setText:[resource objectForKey:@"headline"]];
-//    }

@@ -50,7 +50,7 @@
     [[self.cancelButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
     [[self.startButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];
     
-    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", nil];
+    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", @"1.png", @"2.png", @"3.png", nil];
     [self.backgroundImage setImage:[UIImage imageNamed:[backgroundImages randomArrayItem]]];
 }
 

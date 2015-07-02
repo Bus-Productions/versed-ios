@@ -277,6 +277,11 @@
     return [[NSString stringWithFormat:@"%@", [self objectForKey:@"completed"]] isEqualToString:@"1"];
 }
 
+- (NSString*) resourceDate
+{
+    return [self objectForKey:@"resource_date"] && NULL_TO_NIL([self objectForKey:@"resource_date"]) ? [self objectForKey:@"resource_date"] : [[NSDate dateFromString:[self objectForKey:@"created_at"]] timeAgoActual];
+}
+
 - (NSMutableArray*) faqs
 {
     return [[self objectForKey:@"faqs"] mutableCopy];
