@@ -307,6 +307,16 @@
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"number_resources"]];
 }
 
+- (NSString*) numberChosen
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"number_chosen"]];
+}
+
+- (NSString*) numberTaken
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"number_taken"]];
+}
+
 - (NSString*) seen
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"seen"]];
