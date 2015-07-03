@@ -1878,24 +1878,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUt-n4-HtE">
-                                                    <rect key="frame" x="8" y="29" width="291" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wjv-9X-VO3">
-                                                    <rect key="frame" x="301" y="29" width="291" height="21"/>
+                                                    <rect key="frame" x="8" y="29" width="584" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Wjv-9X-VO3" firstAttribute="top" secondItem="8YR-kz-gSN" secondAttribute="topMargin" constant="21" id="CA1-bc-nfO"/>
+                                                <constraint firstItem="MUt-n4-HtE" firstAttribute="trailing" secondItem="8YR-kz-gSN" secondAttribute="trailingMargin" id="7am-ff-BQD"/>
                                                 <constraint firstItem="MUt-n4-HtE" firstAttribute="top" secondItem="8YR-kz-gSN" secondAttribute="topMargin" constant="21" id="fxn-zh-4YX"/>
-                                                <constraint firstItem="Wjv-9X-VO3" firstAttribute="width" secondItem="MUt-n4-HtE" secondAttribute="width" id="jdm-ln-5dN"/>
-                                                <constraint firstItem="Wjv-9X-VO3" firstAttribute="trailing" secondItem="8YR-kz-gSN" secondAttribute="trailingMargin" id="maY-WO-ykV"/>
-                                                <constraint firstItem="Wjv-9X-VO3" firstAttribute="leading" secondItem="MUt-n4-HtE" secondAttribute="trailing" constant="2" id="rfD-GX-5kF"/>
                                                 <constraint firstItem="MUt-n4-HtE" firstAttribute="leading" secondItem="8YR-kz-gSN" secondAttribute="leadingMargin" id="x9J-dB-cTR"/>
                                             </constraints>
                                         </tableViewCellContentView>

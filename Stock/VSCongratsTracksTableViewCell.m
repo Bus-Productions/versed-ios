@@ -24,7 +24,7 @@
 {
     NSMutableDictionary *user = [[LXSession thisSession] user];
     UILabel *tracksCompleted = (UILabel*)[self viewWithTag:1];
-    [tracksCompleted setText:[[NSString stringWithFormat:@"%@ tracks completed", [user completedTracksCount]] uppercaseString]];
+    [tracksCompleted setText:[[NSString stringWithFormat:@"%@ %@ completed", [user completedTracksCount], [[user completedTracksCount] isEqualToString:@"1"] ? @"track" : @"tracks"] uppercaseString]];
     [tracksCompleted setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
     [tracksCompleted setTextColor:[UIColor whiteColor]];
     
