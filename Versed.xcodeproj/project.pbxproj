@@ -100,6 +100,9 @@
 		768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0921B03EF5000E1E2E6 /* VSMyTracksViewController.m */; };
 		768CE0961B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */; };
 		76A21E1E1B35A0DB00B7C40D /* VSResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A21E1D1B35A0DB00B7C40D /* VSResourceViewController.m */; };
+		76BC95601B4AFC1C006785F9 /* VSInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC955F1B4AFC1C006785F9 /* VSInitialViewController.m */; };
+		76BC95631B4AFCC7006785F9 /* VSOnboardingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC95621B4AFCC7006785F9 /* VSOnboardingPageViewController.m */; };
+		76BC95661B4AFD7D006785F9 /* VSIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC95651B4AFD7D006785F9 /* VSIntroViewController.m */; };
 		76DB3F271B0D2428004EE88A /* VSQuizResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */; };
 		76DB3F2D1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2C1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.m */; };
 		76DB3F301B0D4058004EE88A /* NSMutableArray+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2F1B0D4058004EE88A /* NSMutableArray+Attributes.m */; };
@@ -283,6 +286,12 @@
 		768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizQuestionViewController.m; sourceTree = "<group>"; };
 		76A21E1C1B35A0DB00B7C40D /* VSResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSResourceViewController.h; sourceTree = "<group>"; };
 		76A21E1D1B35A0DB00B7C40D /* VSResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSResourceViewController.m; sourceTree = "<group>"; };
+		76BC955E1B4AFC1C006785F9 /* VSInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSInitialViewController.h; sourceTree = "<group>"; };
+		76BC955F1B4AFC1C006785F9 /* VSInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSInitialViewController.m; sourceTree = "<group>"; };
+		76BC95611B4AFCC7006785F9 /* VSOnboardingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSOnboardingPageViewController.h; sourceTree = "<group>"; };
+		76BC95621B4AFCC7006785F9 /* VSOnboardingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSOnboardingPageViewController.m; sourceTree = "<group>"; };
+		76BC95641B4AFD7D006785F9 /* VSIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSIntroViewController.h; sourceTree = "<group>"; };
+		76BC95651B4AFD7D006785F9 /* VSIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSIntroViewController.m; sourceTree = "<group>"; };
 		76DB3F251B0D2428004EE88A /* VSQuizResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizResultsViewController.h; sourceTree = "<group>"; };
 		76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizResultsViewController.m; sourceTree = "<group>"; };
 		76DB3F2B1B0D3D8B004EE88A /* VSOverallResultsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSOverallResultsTableViewCell.h; sourceTree = "<group>"; };
@@ -529,6 +538,12 @@
 				760829651B14C2920053E29F /* VSTokenViewController.m */,
 				760829701B1791EC0053E29F /* VSForgotPasswordViewController.h */,
 				760829711B1791EC0053E29F /* VSForgotPasswordViewController.m */,
+				76BC955E1B4AFC1C006785F9 /* VSInitialViewController.h */,
+				76BC955F1B4AFC1C006785F9 /* VSInitialViewController.m */,
+				76BC95611B4AFCC7006785F9 /* VSOnboardingPageViewController.h */,
+				76BC95621B4AFCC7006785F9 /* VSOnboardingPageViewController.m */,
+				76BC95641B4AFD7D006785F9 /* VSIntroViewController.h */,
+				76BC95651B4AFD7D006785F9 /* VSIntroViewController.m */,
 			);
 			name = Login/Signup;
 			sourceTree = "<group>";
@@ -919,11 +934,13 @@
 				28A533F91ACF699A0049B3F7 /* NSArray+Alphabet.m in Sources */,
 				76F0D59B1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m in Sources */,
 				760829721B1791EC0053E29F /* VSForgotPasswordViewController.m in Sources */,
+				76BC95631B4AFCC7006785F9 /* VSOnboardingPageViewController.m in Sources */,
 				7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */,
 				28793F041B288C3F00E2998F /* NSArray+Attributes.m in Sources */,
 				764060DE1B279472004FA5CC /* VSProfileSettingsTableViewCell.m in Sources */,
 				766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */,
 				768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */,
+				76BC95601B4AFC1C006785F9 /* VSInitialViewController.m in Sources */,
 				768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */,
 				7664082D1B1E5CAB006272E8 /* VSPollQuestionViewController.m in Sources */,
 				764060D81B274BFC004FA5CC /* VSProfileProgressTableViewCell.m in Sources */,
@@ -948,6 +965,7 @@
 				760F5D561B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m in Sources */,
 				7636ED8F1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m in Sources */,
 				768CE0961B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m in Sources */,
+				76BC95661B4AFD7D006785F9 /* VSIntroViewController.m in Sources */,
 				7666FC301B068B2300051C93 /* LXArrayObjects.m in Sources */,
 				76A21E1E1B35A0DB00B7C40D /* VSResourceViewController.m in Sources */,
 				766408241B1E1AE0006272E8 /* VSSaveToMyTracksButton.m in Sources */,

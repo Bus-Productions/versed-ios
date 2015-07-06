@@ -30,7 +30,7 @@
         });
         [self setRootStoryboard:@"Main"];
     } else {
-        [self setRootStoryboard:@"MobileLogin"];
+        [self setRootStoryboard:@"Intro"];
     }
     
     return YES;
