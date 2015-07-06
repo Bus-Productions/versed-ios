@@ -170,8 +170,7 @@
                 [self.signingUpUser saveLocal];
             }
             if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
-                AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-                [appDelegate setRootStoryboard:@"Main"];
+                [self loginAction:nil];
             } else {
                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
                 VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
