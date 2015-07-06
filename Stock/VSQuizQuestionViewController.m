@@ -186,11 +186,11 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
         return self.view.frame.size.width/1080.0f*420.0f + 37.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answer"]) {
-        return 62.0f;
+        return 44.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
         return 62.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
-        return 40.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-32.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:22.0f]];
+        return 40.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-32.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
     }
     return 100.0f;
 }

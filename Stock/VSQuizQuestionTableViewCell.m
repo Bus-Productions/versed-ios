@@ -26,7 +26,7 @@
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:[question questionText]];
-    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:22.0f]];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
 }
 
 - (void) updateTimerLabel:(int)time
