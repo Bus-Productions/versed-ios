@@ -35,7 +35,7 @@
 
     NSString *trackCount = [[[LXSession thisSession] user] completedTracksCount];
     UILabel *description = (UILabel*)[container viewWithTag:2];
-    [description setText:[NSString stringWithFormat:@"You have completed\n%@ %@.", trackCount, [trackCount isEqualToString:@"1"] ? @"tracks" : @"tracks"]];
+    [description setText:[NSString stringWithFormat:@"You have completed\n%@ %@.", trackCount, [trackCount isEqualToString:@"1"] ? @"track" : @"tracks"]];
     [description setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     [description setTextColor:[UIColor grayColor]];
 }

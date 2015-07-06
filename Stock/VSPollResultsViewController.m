@@ -84,6 +84,12 @@
     [headerLabel setText:[NSString stringWithFormat:@"Thank you for giving us your guesstimate, %@.", [[[LXSession thisSession] user] firstName]]];
     [headerLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:28.0f]];
     
+    NSMutableDictionary *poll = [self.poll objectForKey:@"poll"];
+    
+    UILabel* numberTaken = (UILabel*)[cell.contentView viewWithTag:2];
+    [numberTaken setText:[NSString stringWithFormat:@"%@ %@", [poll numberTaken], [[poll numberTaken] isEqualToString:@"1"] ? @"total response" : @"total responses"]];
+    [numberTaken setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:12.0f]];
+    
     return cell;
 }
 
