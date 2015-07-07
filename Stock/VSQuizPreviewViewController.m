@@ -36,7 +36,7 @@
     NSDate *now = [NSDate date];
     [self.titleLabel setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
 
-    [self.infoLabel setText:@"This 10-question quiz is a pulse check on how much you know about the trends and forces shaping business today. Your results will allow Versed to recommended specific tracks for you to focus on.\n\nYou only have 25 seconds for each question. So, get ready.  It’s time to test your knowledge."];
+    [self.infoLabel setText:@"This 10-question quiz is a pulse check on how much you know about the trends and forces shaping business today. Your results will allow Versed to recommended specific tracks for you to focus on.\n\nYou only have 15 seconds for each question. So, get ready.  It’s time to test your knowledge."];
 }
 
 - (void) setupAppearance
