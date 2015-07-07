@@ -19,13 +19,18 @@
 @synthesize text;
 @synthesize backgroundImageView;
 @synthesize image;
+@synthesize imageView;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupAppearance];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -38,11 +43,19 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     [self.messageLabel setText:self.text];
+    [self.messageLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     if ([self.text containsString:@"top issues shaping business today."]) {
         [self.messageLabel boldSubstring:@"top issues shaping business today."];
     } else if ([self.text containsString:@"too much time to find good content."]) {
         [self.messageLabel boldSubstring:@"too much time to find good content."];
+    }
+    
+    if (!self.text || [self.text length] == 0) {
+        [self.imageView setHidden:YES];
+    } else {
+        [self.imageView setHidden:NO];
     }
 }
 

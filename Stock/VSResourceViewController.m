@@ -17,7 +17,8 @@
 
 @synthesize track, resource, webView;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupWebView];

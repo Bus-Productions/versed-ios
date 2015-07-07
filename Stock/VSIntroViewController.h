@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 @property (strong, nonatomic) NSString *image; 
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 - (void) setMessage:(NSString*)message;
 

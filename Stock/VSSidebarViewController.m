@@ -38,6 +38,8 @@
     [super viewDidLoad];
     [self setupMenu];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning {

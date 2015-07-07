@@ -29,15 +29,17 @@
     UIPageControl *pageControlAppearance = [UIPageControl appearanceWhenContainedIn:[UIPageViewController class], nil];
 //    [pageControlAppearance setBackgroundColor:[UIColor clearColor]];
     pageControlAppearance.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControlAppearance.currentPageIndicatorTintColor = [UIColor darkGrayColor];
+    pageControlAppearance.currentPageIndicatorTintColor = [UIColor whiteColor];
     
     quotes = @[
                @"To be successful, you have to stay up-to-speed on industry trends.\n\nBut it takes too much time to find good content. Versed can help.",
-               @"Versed solves information overload with expert-curated content, laser-focused on the top issues shaping business today."
+               @"Versed solves information overload with expert-curated content, laser-focused on the top issues shaping business today.",
+               @""
                ];
     images = @[
                @"1.png",
-               @"2.png"
+               @"2.png",
+               @"login_warm_background.png"
                ];
     
     [self setViewControllers:@[[self messageControllerWithMessage:[self.quotes firstObject] andIndex:0 andImage:[self.images firstObject]]] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:^(BOOL finished) {
@@ -78,15 +80,22 @@
 {
     if ([[pageViewController.viewControllers firstObject] respondsToSelector:@selector(index)]) {
         [self setChildIndex:[[pageViewController.viewControllers firstObject] index]];
+        if ([[pageViewController.viewControllers firstObject] index] == [self.quotes count]-1) {
+            [self presentLoginView];
+        }
     } else {
         [self setChildIndex:self.quotes.count];
     }
 }
 
+- (void) presentLoginView
+{
+    [self presentViewController:(UINavigationController*)[[UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"mainNavigationController"] animated:NO completion:nil];
+}
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    return [self.quotes count]+1;
+    return [self.quotes count];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController

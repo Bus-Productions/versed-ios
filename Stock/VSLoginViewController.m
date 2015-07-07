@@ -151,6 +151,8 @@
                               [[LXSession thisSession] setCachedUser:u];
                               [u saveLocal:^(id responseObject){
                                   if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
+                                      [self.emailField resignFirstResponder];
+                                      [self.passwordField resignFirstResponder];
                                       AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                                       [appDelegate setRootStoryboard:@"Main"];
                                   } else {
