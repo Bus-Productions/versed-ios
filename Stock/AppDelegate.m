@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SWRevealViewController.h"
 
 @interface AppDelegate ()
 
@@ -28,13 +29,48 @@
                 //NSLog(@"user = %@", [[LXSession thisSession] user]);
             }failure:nil];
         });
+        
         [self setRootStoryboard:@"Main"];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToOption:) name:@"goToOption" object:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        [self.window.rootViewController presentViewController:[storyboard instantiateViewControllerWithIdentifier:@"promptOptionsViewController"] animated:NO completion:^(void){}];
+        
     } else {
         [self setRootStoryboard:@"MobileLogin"];
     }
     
     return YES;
 }
+
+
+- (void) goToOption:(NSNotification*) notification
+{
+    NSDictionary* optionsDictionary = [notification userInfo];
+    
+    SWRevealViewController *revealViewController = (SWRevealViewController*)self.window.rootViewController;
+    
+    [revealViewController revealToggleAnimated:NO];
+    
+    UIViewController *vc;
+    UINavigationController *nc = [[UINavigationController alloc] init];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    if ([[optionsDictionary objectForKey:@"to"] isEqualToString:@"allTracks"]) {
+        vc = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"mainNavigationController"];
+    } else if ([[optionsDictionary objectForKey:@"to"] isEqualToString:@"quiz"]) {
+        vc = [storyboard instantiateViewControllerWithIdentifier:@"quizLandingViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"quizQuestionsNavigationViewController"];
+    }
+    
+    [nc setViewControllers:@[vc] animated:NO];
+    
+    [revealViewController setFrontViewController:nc];
+    [revealViewController revealToggleAnimated:YES];
+}
+
+
 
 - (void) setStyle
 {
