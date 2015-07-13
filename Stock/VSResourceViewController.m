@@ -39,7 +39,7 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [progressBarTimer invalidate];
+    [self stopTimer]; 
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -90,11 +90,13 @@
     myProgressView.progress = 0;
     webViewFinishedLoading = false;
     progressBarTimer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateProgressBar) userInfo:nil repeats:YES];
+    [self showHUDWithMessage:@"Loading"];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     webViewFinishedLoading = true;
+    [self performSelectorOnMainThread:@selector(stopTimer) withObject:nil waitUntilDone:YES];
 }
 
 - (void) updateProgressBar
@@ -103,9 +105,7 @@
         if (myProgressView.progress >= 1) {
             myProgressView.hidden = true;
             [self updateConstraints];
-            [progressBarTimer invalidate];
-        }
-        else {
+        } else {
             myProgressView.progress += 0.1;
         }
     }
@@ -117,6 +117,12 @@
     }
 }
 
+- (void) stopTimer
+{
+    [progressBarTimer invalidate];
+    progressBarTimer = nil;
+    [self hideHUD];
+}
 
 # pragma mark - ScrollView
 
@@ -147,4 +153,23 @@
     }];
 }
 
+
+# pragma mark hud delegate
+
+- (void) showHUDWithMessage:(NSString*) message
+{
+    if (!hud) {
+        hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = message;
+        [hud setColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:0.8]];
+        [hud setLabelFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+    }
+}
+
+- (void) hideHUD
+{
+    if (hud) {
+        [hud hide:YES];
+    }
+}
 @end
