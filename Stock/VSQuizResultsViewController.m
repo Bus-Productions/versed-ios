@@ -194,6 +194,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         NSMutableDictionary *user = [[LXSession thisSession] user];
         [user incrementQuizzesTaken];
+        [user removeObjectForKey:@"password"];
+        [user removeObjectForKey:@"password_confirmation"];
         [user saveBoth:nil failure:nil];
     });
 }
