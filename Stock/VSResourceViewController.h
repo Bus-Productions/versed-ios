@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface VSResourceViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>
 {
     BOOL webViewFinishedLoading;
     IBOutlet UIProgressView* myProgressView;
     NSTimer *progressBarTimer;
+    MBProgressHUD *hud; 
+    
 }
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) NSMutableDictionary *resource;
