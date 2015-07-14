@@ -60,9 +60,8 @@
 {
     self.sections = [[NSMutableArray alloc] init];
     
-    [self.sections addObject:@"wellDone"];
-    
     if (self.quizResults.count > 0) {
+        [self.sections addObject:@"wellDone"];
         [self.sections addObject:@"reviewQuiz"];
     } else {
         [self.sections addObject:@"showResults"];
