@@ -24,6 +24,7 @@
 @implementation VSQuizLandingViewController
 
 @synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk, quiz;
+@synthesize backgroundImage;
 
 - (void)viewDidLoad
 {
@@ -31,6 +32,9 @@
     [self setupSidebar];
     [self setupData];
     [self reloadScreen];
+    
+    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", @"1.png", @"2.png", @"3.png", nil];
+    [self.backgroundImage setImage:[UIImage imageNamed:[backgroundImages randomArrayItem]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -161,9 +165,10 @@
     NSString *labelText = self.quizResults.count > 0 ? @"Continue Quiz" : @"Start Quiz";
     
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-    NSDate *now = [NSDate date]; 
-    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
-    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
+    //NSDate *now = [NSDate date];
+    //[title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
+    [title setText:@"This 10-question quiz is a pulse check on how much you know about the trends and forces shaping business today. Your results will allow Versed to recommended specific tracks for you to focus on.\n\nYou only have 15 seconds for each question. So, get ready.  It’s time to test your knowledge."];
+    [title setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     
     UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
     [action setText:labelText];
@@ -177,9 +182,10 @@
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"actionCell" forIndexPath:indexPath];
     
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-    NSDate *now = [NSDate date];
-    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
-    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
+    //NSDate *now = [NSDate date];
+    //[title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
+    [title setText:@"You've currently answered all the questions!"];
+    [title setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     
     UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
     [action setText:@"Show Results"];
@@ -263,7 +269,8 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
-        [self showQuizPreview];
+        //[self showQuizPreview];
+        [self pushQuestionOnStack];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         [self pushResultsOnStack];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
@@ -274,7 +281,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
-        return 170.0f;
+        return 250.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         return 170.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"requesting"]) {
