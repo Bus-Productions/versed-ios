@@ -170,10 +170,10 @@
     NSString *labelText = self.quizResults.count > 0 ? @"Continue Quiz" : @"Start Quiz";
     
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-    NSDate *now = [NSDate date]; 
+    NSDate *now = [NSDate date];
     [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
-    
+
     UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
     [action setText:labelText];
     [action setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
@@ -188,6 +188,7 @@
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
     NSDate *now = [NSDate date];
     [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
+//    [title setText:@"You've currently answered all the questions!"];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
     
     UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
@@ -211,7 +212,7 @@
     if (self.quizQuestions && self.quizQuestions.count > 0) {
         [lbl setText:[NSString stringWithFormat:@"This %lu-question quiz is a pulse check on your business knowledge. You have 15 seconds for each question. So, get ready - it's time to test your knowledge!", self.quizQuestions.count]];
     } else {
-        [lbl setText:@"You've already answered every quiz question! Don't worry, we'll continually be adding more questions. You can see your results above."];
+        [lbl setText:@"You've already answered every quiz question! Don't worry, we'll continually be adding more questions."];
     }
 
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];

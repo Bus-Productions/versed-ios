@@ -205,7 +205,7 @@
     NSString *topLabelText = [NSString stringWithFormat:@"Well done, %@!", [[[LXSession thisSession] user] firstName]];
     NSString *bottomLabelText = [NSString stringWithFormat:@"You are steadily getting versed on key topics."];
     
-    if ([self.quizResults numberQuizResultsCorrect]/self.quizResults.count <= 0.5) {
+    if ([self.quizResults numberQuizResultsCorrect]/(self.quizResults && self.quizResults.count > 0 ? self.quizResults.count : 0) <= 0.5) {
         topLabelText = [NSString stringWithFormat:@"Keep practicing, %@!", [[[LXSession thisSession] user] firstName]];
         bottomLabelText = [NSString stringWithFormat:@"With a little more reading, you can get a solid grasp on these topics."];
     }

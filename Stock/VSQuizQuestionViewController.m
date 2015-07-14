@@ -30,6 +30,9 @@
     [self setupTimer];
     
     [self showOrHideNextBar];
+    
+    //NSLog(@"question: %@", self.question);
+    //NSLog(@"qr: %@", self.quizResults);
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -233,6 +236,11 @@
             [[chosenCell.contentView viewWithTag:1] setBackgroundColor:[UIColor grayColor]];
             [(UILabel*)[chosenCell.contentView viewWithTag:1] setTextColor:[UIColor blackColor]];
         }
+        if ([indexPath isEqual:[self indexPathOfCorrectAnswer]]) {
+            [self animateTopCell:YES];
+        } else {
+            [self animateTopCell:NO];
+        }
     } else {
         [self showAlertWithText:@"You ran out of time!"];
     }
@@ -241,6 +249,53 @@
     successCallback(nil);
     
     [self showOrHideNextBar];
+}
+
+- (void) animateTopCell:(BOOL)correct
+{
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    
+    UIImageView* headerBackground = (UIImageView*)[cell.contentView viewWithTag:21];
+    [headerBackground setImage:[UIImage imageNamed:@"question_header_transparent.png"]];
+    [headerBackground setBackgroundColor:[UIColor clearColor]];
+    
+    UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:22];
+    [questionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
+    [questionLabel setTextColor:[UIColor whiteColor]];
+    
+    [questionLabel setAlpha:1.0f];
+    
+    NSLog(@"questionLabel: %f %f %f %f", questionLabel.frame.origin.x, questionLabel.frame.origin.y
+          , questionLabel.frame.size.width, questionLabel.frame.size.height);
+    
+    if (correct) {
+        [questionLabel setText:@"1"];
+        [questionLabel setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
+    } else {
+        [questionLabel setText:@"0"];
+        [questionLabel setBackgroundColor:[UIColor redColor]];
+    }
+    
+    UILabel* curLabel = (UILabel*)[cell.contentView viewWithTag:2];
+    
+    [curLabel setAlpha:0];
+    
+    return;
+    
+    [UIView animateWithDuration:2.0f
+                     animations:^(void){
+                         [questionLabel setAlpha:0.0f];
+                     } completion:^(BOOL finished){
+                         //[headerBackground setImage:[UIImage imageNamed:@"question_header.png"]];
+                     }
+     ];
+    
+    [UIView animateWithDuration:1.0f delay:1.0f options:UIViewAnimationOptionCurveLinear
+                     animations:^(void){
+                         [curLabel setAlpha:1.0f];
+                     } completion:nil
+     ];
+    
 }
 
 - (NSIndexPath*) questionIndexPath
