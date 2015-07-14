@@ -34,7 +34,8 @@
 
 @synthesize tableView, menuOptions, menuIdentifiers;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupMenu];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

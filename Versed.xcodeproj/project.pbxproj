@@ -11,6 +11,7 @@
 		28204A311B45AFBA000D592C /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 28204A2E1B45AFBA000D592C /* 2.png */; };
 		28204A321B45AFBA000D592C /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 28204A2F1B45AFBA000D592C /* 3.png */; };
 		28204A341B45C7B4000D592C /* green_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 28204A331B45C7B4000D592C /* green_check.png */; };
+		282CEA011B544D090076BE38 /* VSPromptOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 282CEA001B544D090076BE38 /* VSPromptOptions.m */; };
 		283A44901B2A5CFC003012A7 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A448F1B2A5CFC003012A7 /* people.png */; };
 		283A44931B2A7C2C003012A7 /* VSTrackTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 283A44921B2A7C2C003012A7 /* VSTrackTitleTableViewCell.m */; };
 		283A44961B2A93BD003012A7 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A44941B2A93BD003012A7 /* checkmark.png */; };
@@ -135,6 +136,8 @@
 		28204A2E1B45AFBA000D592C /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		28204A2F1B45AFBA000D592C /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		28204A331B45C7B4000D592C /* green_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_check.png; sourceTree = "<group>"; };
+		282CE9FF1B544D090076BE38 /* VSPromptOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPromptOptions.h; sourceTree = "<group>"; };
+		282CEA001B544D090076BE38 /* VSPromptOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSPromptOptions.m; sourceTree = "<group>"; };
 		283A448F1B2A5CFC003012A7 /* people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = people.png; sourceTree = "<group>"; };
 		283A44911B2A7C2C003012A7 /* VSTrackTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTrackTitleTableViewCell.h; sourceTree = "<group>"; };
 		283A44921B2A7C2C003012A7 /* VSTrackTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTrackTitleTableViewCell.m; sourceTree = "<group>"; };
@@ -738,6 +741,8 @@
 			children = (
 				768CE08B1B03EED500E1E2E6 /* VSSidebarViewController.h */,
 				768CE08C1B03EED500E1E2E6 /* VSSidebarViewController.m */,
+				282CE9FF1B544D090076BE38 /* VSPromptOptions.h */,
+				282CEA001B544D090076BE38 /* VSPromptOptions.m */,
 			);
 			name = Sidebar;
 			sourceTree = "<group>";
@@ -937,6 +942,7 @@
 				76BC95631B4AFCC7006785F9 /* VSOnboardingPageViewController.m in Sources */,
 				7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */,
 				28793F041B288C3F00E2998F /* NSArray+Attributes.m in Sources */,
+				282CEA011B544D090076BE38 /* VSPromptOptions.m in Sources */,
 				764060DE1B279472004FA5CC /* VSProfileSettingsTableViewCell.m in Sources */,
 				766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */,
 				768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */,
