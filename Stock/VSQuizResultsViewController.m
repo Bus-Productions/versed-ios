@@ -7,12 +7,14 @@
 //
 
 #import "VSQuizResultsViewController.h"
-#import "VSOverallResultsTableViewCell.h"
+#import "VSReviewQuizTableViewCell.h"
 #import "VSMissedQuestionTableViewCell.h"
 #import "VSNoMissesQuizTableViewCell.h"
 #import "VSTrackViewController.h"
 #import "VSEmptyTableViewCell.h"
 #import "VSDashboardViewController.h"
+#import "VSShowResultsTableViewCell.h"
+#import "VSReviewQuizViewController.h"
 
 @interface VSQuizResultsViewController ()
 
@@ -60,30 +62,40 @@
     
     [self.sections addObject:@"wellDone"];
     
-    [self.sections addObject:@"showResults"];
-    
-    if (self.missedQuestions.count > 0 && self.quizResults.count > 0) {
-        [self.sections addObject:@"missedQuestions"];
-    } else if (isRequesting) {
-        [self.sections addObject:@"empty"];
-    } else if (self.quizResults.count > 0) {
-        [self.sections addObject:@"noMisses"];
+    if (self.quizResults.count > 0) {
+        [self.sections addObject:@"reviewQuiz"];
+    } else {
+        [self.sections addObject:@"showResults"];
     }
     
+    [self.sections addObject:@"weaknessesTitle"];
+    if ([[[[LXSession thisSession] user] weaknesses] count] > 0) {
+        [self.sections addObject:@"weaknesses"];
+    }else {
+        [self.sections addObject:@"noWeaknesses"];
+    }
     return self.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([[self.sections objectAtIndex:section] isEqualToString:@"showResults"]) {
+    if ([[self.sections objectAtIndex:section] isEqualToString:@"reviewQuiz"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"missedQuestions"]) {
         return self.missedQuestions.count;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"showResults"]) {
+        return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"noMisses"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"wellDone"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"weaknessesTitle"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"weaknesses"]) {
+        return [[[[LXSession thisSession] user] weaknesses] count];
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"noWeaknesses"]) {
         return 1;
     }
     return 0;
@@ -91,7 +103,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"reviewQuiz"]) {
+        return [self tableView:self.tableView reviewQuizCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         return [self tableView:self.tableView showResultsCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
         return [self tableView:self.tableView missedQuestionsCellForRowAtIndexPath:indexPath];
@@ -101,16 +115,34 @@
         return [self tableView:self.tableView emptyCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"wellDone"]) {
         return [self tableView:self.tableView wellDoneCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"weaknesses"]) {
+        return [self tableView:self.tableView weaknessesCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"weaknessesTitle"]) {
+        return [self tableView:self.tableView weaknessesTitleCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"noWeaknesses"]) {
+        return [self tableView:self.tableView noWeaknessesCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView showResultsCellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView reviewQuizCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    VSOverallResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"overallResultsCell" forIndexPath:indexPath];
+    VSReviewQuizTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"reviewQuizCell" forIndexPath:indexPath];
     [cell configureWithQuizResults:self.quizResults];
     
-    UIButton* button = (UIButton*)[cell.contentView viewWithTag:5];
+    UIButton* button = (UIButton*)[cell.contentView viewWithTag:7];
+    [button removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    [button addTarget:self action:@selector(reviewQuiz:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView showResultsCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     VSShowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"showResultsCell" forIndexPath:indexPath];
+    [cell configure];
+    
+    UIButton* button = (UIButton*)[cell.contentView viewWithTag:7];
     [button removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     [button addTarget:self action:@selector(showLeaderboard:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -123,6 +155,33 @@
     [cell configureWithQuizResult:[self.missedQuestions objectAtIndex:indexPath.row]];
     return cell;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView weaknessesCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSWeaknessesTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"weaknessCell" forIndexPath:indexPath];
+    [cell configureWithWeakness:[[[[[LXSession thisSession] user] weaknesses] objectAtIndex:indexPath.row] mutableCopy]];
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView noWeaknessesCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
+    UILabel* lbl = (UILabel*)[cell.contentView viewWithTag:1];
+    [lbl setText:@"None, yet."];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView weaknessesTitleCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"weaknessesTitleCell" forIndexPath:indexPath];
+    UILabel* lbl = (UILabel*)[cell.contentView viewWithTag:1];
+    [lbl setText:@"Focus Areas"];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:16.0f]];
+    return cell;
+}
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView noMissesCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -165,10 +224,10 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"weaknesses"]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         VSTrackViewController *vc = (VSTrackViewController*)[storyboard instantiateViewControllerWithIdentifier:@"trackViewController"];
-        [vc setTrack:[[[[self.missedQuestions objectAtIndex:indexPath.row] quizQuestion] track] mutableCopy]];
+        [vc setTrack:[[[[[LXSession thisSession] user] weaknesses] objectAtIndex:indexPath.row] mutableCopy]];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -179,6 +238,14 @@
         return 170.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
         return 100.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"reviewQuiz"]) {
+        return 170.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"weaknesses"]) {
+        return 100.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"noWeaknesses"]) {
+        return 80.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"weaknessesTitle"]) {
+        return 30.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"noMisses"]) {
 
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
@@ -191,13 +258,15 @@
 
 - (void) updateUserWithFinishedQuiz
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSMutableDictionary *user = [[LXSession thisSession] user];
-        [user incrementQuizzesTaken];
-        [user removeObjectForKey:@"password"];
-        [user removeObjectForKey:@"password_confirmation"];
-        [user saveBoth:nil failure:nil];
-    });
+    if (self.quizResults && self.quizResults.count > 0) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            NSMutableDictionary *user = [[LXSession thisSession] user];
+            [user incrementQuizzesTaken];
+            [user removeObjectForKey:@"password"];
+            [user removeObjectForKey:@"password_confirmation"];
+            [user saveBoth:nil failure:nil];
+        });
+    }
 }
 
 
@@ -206,6 +275,15 @@
 - (void) showLeaderboard:(UIButton*)sender
 {
     [self pushDashboardOnStack];
+}
+
+- (void) reviewQuiz:(UIButton*)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSReviewQuizViewController *vc = (VSReviewQuizViewController*)[storyboard instantiateViewControllerWithIdentifier:@"reviewQuizViewController"];
+    [vc setMissedQuestions:self.missedQuestions];
+    [vc setQuizResults:self.quizResults]; 
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) pushDashboardOnStack

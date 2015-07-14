@@ -10,7 +10,7 @@
 #import "VSQuizQuestionViewController.h"
 #import "VSButtonTableViewCell.h"
 #import "VSQuizResultsViewController.h"
-#import "VSOverallResultsTableViewCell.h"
+#import "VSReviewQuizTableViewCell.h"
 #import "VSQuizPreviewViewController.h"
 #import "VSEmptyTableViewCell.h"
 #import "VSDashboardViewController.h"
@@ -23,12 +23,13 @@
 
 @implementation VSQuizLandingViewController
 
-@synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk, quiz;
+@synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk, quiz, backgroundImageView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setupSidebar];
+    [self setupAppearance]; 
     [self setupData];
     [self reloadScreen];
 }
@@ -69,7 +70,11 @@
     self.quiz = [[NSMutableDictionary alloc] init];
 }
 
-
+- (void) setupAppearance
+{
+    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", @"1.png", @"2.png", @"3.png", nil];
+    [self.backgroundImageView setImage:[UIImage imageNamed:[backgroundImages randomArrayItem]]];
+}
 
 #pragma mark - SWRevealViewController Delegate Methods
 
@@ -97,7 +102,7 @@
 {
     isRequesting = YES;
     [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
-        [self.quizResults removeAllObjects];
+        self.quizResults = [[NSMutableArray alloc] init];
         self.quizQuestions = [[responseObject quiz] objectForKey:@"random_quiz_questions"];
         self.questionsToAsk = [self.quizQuestions mutableCopy];
         self.quiz = [responseObject quiz];
@@ -121,8 +126,8 @@
     } else {
         [self.sections addObject:@"showResults"];
     }
-    
-    [self.sections addObject:@"dashboard"];
+    [self.sections addObject:@"explanation"];
+//    [self.sections addObject:@"dashboard"];
     
     return self.sections.count;
 }
@@ -134,6 +139,8 @@
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"showResults"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"requesting"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"explanation"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"dashboard"]) {
         return 1;
@@ -149,6 +156,8 @@
         return [self tableView:self.tableView showResultsCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"requesting"]) {
         return [self tableView:self.tableView requestingCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"explanation"]) {
+        return [self tableView:self.tableView explanationCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
         return [self tableView:self.tableView dashboardCellForRowAtIndexPath:indexPath];
     }
@@ -195,6 +204,20 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView explanationCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"explanationCell" forIndexPath:indexPath];
+    UILabel *lbl = (UILabel*)[cell.contentView viewWithTag:1];
+    if (self.quizQuestions && self.quizQuestions.count > 0) {
+        [lbl setText:[NSString stringWithFormat:@"This %lu-question quiz is a pulse check on your business knowledge. You have 15 seconds for each question. So, get ready - it's time to test your knowledge!", self.quizQuestions.count]];
+    } else {
+        [lbl setText:@"You've already answered every quiz question! Don't worry, we'll continually be adding more questions. You can see your results above."];
+    }
+
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView dashboardCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"dashboardCell" forIndexPath:indexPath];
@@ -217,45 +240,6 @@
     [label setText:@"View the\nLeaderboard"];
     [label setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
     
-    
-    
-    UILabel* strengthsLabel = (UILabel*)[cell.contentView viewWithTag:20];
-    [strengthsLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
-    [strengthsLabel setText:@"STRENGTHS"];
-    
-    UILabel* weaknessesLabel = (UILabel*)[cell.contentView viewWithTag:21];
-    [weaknessesLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
-    [weaknessesLabel setText:@"FOCUS AREAS"];
-    
-    UILabel* strengths = (UILabel*)[cell.contentView viewWithTag:30];
-    [strengths setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
-    if ([[[LXSession thisSession] user] strengths] && [[[[LXSession thisSession] user] strengths] count] > 0) {
-        NSString* str = @"";
-        for (NSString* s in [[[LXSession thisSession] user] strengths]) {
-            str = [NSString stringWithFormat:@"%@%@\n", str, s];
-        }
-        [strengths setText:str];
-    } else {
-        [strengths setText:@"None, yet."];
-    }
-    
-    UILabel* weaknesses = (UILabel*)[cell.contentView viewWithTag:31];
-    [weaknesses setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
-    if ([[[LXSession thisSession] user] weaknesses] && [[[[LXSession thisSession] user] weaknesses] count] > 0) {
-        NSString* str = @"";
-        for (NSString* s in [[[LXSession thisSession] user] weaknesses]) {
-            str = [NSString stringWithFormat:@"%@%@\n", str, s];
-        }
-        [weaknesses setHidden:NO];
-        [weaknessesLabel setHidden:NO];
-        [weaknesses setText:str];
-    } else {
-        [weaknesses setText:@"None, yet."];
-        [weaknesses setHidden:YES];
-        [weaknessesLabel setHidden:YES];
-    }
-    
-    
     return cell;
 }
 
@@ -263,7 +247,7 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
-        [self showQuizPreview];
+        [self pushQuestionOnStack];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         [self pushResultsOnStack];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
@@ -280,6 +264,8 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"requesting"]) {
         return 136.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
+        return 350.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"explanation"]) {
         return 350.0f;
     }
     return 100.0f;
@@ -311,18 +297,6 @@
     } else {
         [self pushResultsOnStack];
     }
-}
-
-- (void) showQuizPreview
-{
-    [self showHUDWithMessage:@"Loading Quiz..."];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    VSQuizPreviewViewController *vc = (VSQuizPreviewViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizPreviewViewController"];
-    [vc setDelegate:self];
-    [vc setQuiz:self.quiz];
-    [self.navigationController presentViewController:vc animated:YES completion:^(void){
-        [self hideHUD];
-    }];
 }
 
 - (void) pushQuestionOnStack

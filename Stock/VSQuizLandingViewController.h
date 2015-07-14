@@ -24,4 +24,6 @@
 @property (strong, nonatomic) NSMutableArray *sections;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
 @end

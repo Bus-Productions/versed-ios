@@ -287,9 +287,27 @@
     return [[self objectForKey:@"faqs"] mutableCopy];
 }
 
+- (NSMutableArray*) strengthTitles
+{
+    NSMutableArray *strengthTitles = [[NSMutableArray alloc] init];
+    for (NSDictionary *track in self) {
+        [strengthTitles addObject:[track headline]];
+    }
+    return strengthTitles;
+}
+
 - (NSMutableArray*) strengths
 {
     return [[self objectForKey:@"strengths"] mutableCopy];
+}
+
+- (NSMutableArray*) weaknessesTitles
+{
+    NSMutableArray *weaknessesTitles = [[NSMutableArray alloc] init];
+    for (NSDictionary *track in self) {
+        [weaknessesTitles addObject:[track headline]];
+    }
+    return weaknessesTitles;
 }
 
 - (NSMutableArray*) weaknesses
