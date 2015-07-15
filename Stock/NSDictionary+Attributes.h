@@ -63,10 +63,13 @@
 - (NSString*) numberTracksToNextLevel;
 - (NSString*) completedTracksCount;
 - (NSMutableArray*) strengths;
+- (NSMutableArray*) strengthsTitles;
 - (NSMutableArray*) weaknesses;
+- (NSMutableArray*) weaknessesTitles;
 - (void) incrementQuizzesTaken; 
 - (NSString*) quizzesTaken;
 - (NSString*) pointsToNextLevel;
+
 
 // track user pairs
 - (NSMutableArray *) trackUserPairs;

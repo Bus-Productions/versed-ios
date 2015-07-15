@@ -144,7 +144,7 @@
     [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
     
     UILabel* pointsLabel = (UILabel*)[cell.contentView viewWithTag:2];
-    [pointsLabel setText:[NSString stringWithFormat:@"+0", [self.question seen]]];
+    [pointsLabel setText:@"+1"];
     
     UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
     [questionLabel setText:[NSString stringWithFormat:@"%lu/%lu",  (unsigned long)self.questionsCompleted, (unsigned long)self.totalQuestions]];

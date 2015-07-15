@@ -41,6 +41,7 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [self addSwipeGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -148,4 +149,17 @@
     return 52.0f;
 }
 
+
+# pragma mark - other
+
+- (void) addSwipeGestureRecognizer
+{
+    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
+    [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [self.view addGestureRecognizer:gestureRecognizer];
+}
+
+-(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
+    [self.revealViewController revealToggle:nil]; 
+}
 @end

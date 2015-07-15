@@ -23,7 +23,8 @@
 - (void) configure
 {
     UILabel *lbl = (UILabel*)[self viewWithTag:1];
-    [lbl setText:@"Congrats! You got them all right!"]; 
+    [lbl setText:@"Congrats! You got them all right!"];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];
 }
 
 @end

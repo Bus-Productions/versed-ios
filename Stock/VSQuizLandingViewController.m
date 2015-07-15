@@ -10,7 +10,7 @@
 #import "VSQuizQuestionViewController.h"
 #import "VSButtonTableViewCell.h"
 #import "VSQuizResultsViewController.h"
-#import "VSOverallResultsTableViewCell.h"
+#import "VSReviewQuizTableViewCell.h"
 #import "VSQuizPreviewViewController.h"
 #import "VSEmptyTableViewCell.h"
 #import "VSDashboardViewController.h"
@@ -23,18 +23,15 @@
 
 @implementation VSQuizLandingViewController
 
-@synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk, quiz;
-@synthesize backgroundImage;
+@synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk, quiz, backgroundImageView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setupSidebar];
+    [self setupAppearance]; 
     [self setupData];
     [self reloadScreen];
-    
-    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", @"1.png", @"2.png", @"3.png", nil];
-    [self.backgroundImage setImage:[UIImage imageNamed:[backgroundImages randomArrayItem]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,7 +70,11 @@
     self.quiz = [[NSMutableDictionary alloc] init];
 }
 
-
+- (void) setupAppearance
+{
+    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", @"1.png", @"2.png", @"3.png", nil];
+    [self.backgroundImageView setImage:[UIImage imageNamed:[backgroundImages randomArrayItem]]];
+}
 
 #pragma mark - SWRevealViewController Delegate Methods
 
@@ -101,7 +102,7 @@
 {
     isRequesting = YES;
     [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
-        [self.quizResults removeAllObjects];
+        self.quizResults = [[NSMutableArray alloc] init];
         self.quizQuestions = [[responseObject quiz] objectForKey:@"random_quiz_questions"];
         self.questionsToAsk = [self.quizQuestions mutableCopy];
         self.quiz = [responseObject quiz];
@@ -125,8 +126,8 @@
     } else {
         [self.sections addObject:@"showResults"];
     }
-    
-    [self.sections addObject:@"dashboard"];
+    [self.sections addObject:@"explanation"];
+//    [self.sections addObject:@"dashboard"];
     
     return self.sections.count;
 }
@@ -138,6 +139,8 @@
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"showResults"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"requesting"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"explanation"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"dashboard"]) {
         return 1;
@@ -153,6 +156,8 @@
         return [self tableView:self.tableView showResultsCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"requesting"]) {
         return [self tableView:self.tableView requestingCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"explanation"]) {
+        return [self tableView:self.tableView explanationCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
         return [self tableView:self.tableView dashboardCellForRowAtIndexPath:indexPath];
     }
@@ -165,11 +170,10 @@
     NSString *labelText = self.quizResults.count > 0 ? @"Continue Quiz" : @"Start Quiz";
     
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-    //NSDate *now = [NSDate date];
-    //[title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
-    [title setText:@"This 10-question quiz is a pulse check on how much you know about the trends and forces shaping business today. Your results will allow Versed to recommended specific tracks for you to focus on.\n\nYou only have 15 seconds for each question. So, get ready.  It’s time to test your knowledge."];
-    [title setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
-    
+    NSDate *now = [NSDate date];
+    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
+    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
+
     UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
     [action setText:labelText];
     [action setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
@@ -182,10 +186,10 @@
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"actionCell" forIndexPath:indexPath];
     
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-    //NSDate *now = [NSDate date];
-    //[title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
-    [title setText:@"You've currently answered all the questions!"];
-    [title setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
+    NSDate *now = [NSDate date];
+    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
+//    [title setText:@"You've currently answered all the questions!"];
+    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
     
     UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
     [action setText:@"Show Results"];
@@ -198,6 +202,20 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"requestingCell" forIndexPath:indexPath];
     [cell configureWithText:@"Requesting quiz data"];
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView explanationCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"explanationCell" forIndexPath:indexPath];
+    UILabel *lbl = (UILabel*)[cell.contentView viewWithTag:1];
+    if (self.quizQuestions && self.quizQuestions.count > 0) {
+        [lbl setText:[NSString stringWithFormat:@"This %lu-question quiz is a pulse check on your business knowledge. You have 15 seconds for each question. So, get ready - it's time to test your knowledge!", self.quizQuestions.count]];
+    } else {
+        [lbl setText:@"You've already answered every quiz question! Don't worry, we'll continually be adding more questions."];
+    }
+
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];
     return cell;
 }
 
@@ -223,45 +241,6 @@
     [label setText:@"View the\nLeaderboard"];
     [label setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
     
-    
-    
-    UILabel* strengthsLabel = (UILabel*)[cell.contentView viewWithTag:20];
-    [strengthsLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
-    [strengthsLabel setText:@"STRENGTHS"];
-    
-    UILabel* weaknessesLabel = (UILabel*)[cell.contentView viewWithTag:21];
-    [weaknessesLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
-    [weaknessesLabel setText:@"FOCUS AREAS"];
-    
-    UILabel* strengths = (UILabel*)[cell.contentView viewWithTag:30];
-    [strengths setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
-    if ([[[LXSession thisSession] user] strengths] && [[[[LXSession thisSession] user] strengths] count] > 0) {
-        NSString* str = @"";
-        for (NSString* s in [[[LXSession thisSession] user] strengths]) {
-            str = [NSString stringWithFormat:@"%@%@\n", str, s];
-        }
-        [strengths setText:str];
-    } else {
-        [strengths setText:@"None, yet."];
-    }
-    
-    UILabel* weaknesses = (UILabel*)[cell.contentView viewWithTag:31];
-    [weaknesses setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
-    if ([[[LXSession thisSession] user] weaknesses] && [[[[LXSession thisSession] user] weaknesses] count] > 0) {
-        NSString* str = @"";
-        for (NSString* s in [[[LXSession thisSession] user] weaknesses]) {
-            str = [NSString stringWithFormat:@"%@%@\n", str, s];
-        }
-        [weaknesses setHidden:NO];
-        [weaknessesLabel setHidden:NO];
-        [weaknesses setText:str];
-    } else {
-        [weaknesses setText:@"None, yet."];
-        [weaknesses setHidden:YES];
-        [weaknessesLabel setHidden:YES];
-    }
-    
-    
     return cell;
 }
 
@@ -269,7 +248,6 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
-        //[self showQuizPreview];
         [self pushQuestionOnStack];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         [self pushResultsOnStack];
@@ -281,12 +259,14 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
-        return 250.0f;
+        return 170.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         return 170.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"requesting"]) {
         return 136.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
+        return 350.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"explanation"]) {
         return 350.0f;
     }
     return 100.0f;
@@ -318,18 +298,6 @@
     } else {
         [self pushResultsOnStack];
     }
-}
-
-- (void) showQuizPreview
-{
-    [self showHUDWithMessage:@"Loading Quiz..."];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    VSQuizPreviewViewController *vc = (VSQuizPreviewViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizPreviewViewController"];
-    [vc setDelegate:self];
-    [vc setQuiz:self.quiz];
-    [self.navigationController presentViewController:vc animated:YES completion:^(void){
-        [self hideHUD];
-    }];
 }
 
 - (void) pushQuestionOnStack
