@@ -27,7 +27,7 @@
 
 @implementation VSTrackViewController
 
-@synthesize track, tableView, sections, polls;
+@synthesize track, tableView, sections;
 @synthesize bottomToolbarView;
 
 - (void)viewDidLoad {
@@ -47,6 +47,8 @@
     [self setupNavigationBar];
     if (showCongrats) {
         [self showCongratsScreen];
+    } else if (NULL_TO_NIL(pollToShow)) {
+        [self showPollScreen];
     }
     [self reloadScreen];
 }
@@ -83,7 +85,6 @@
     completedResources = [[NSMutableArray alloc] init];
     messages = [[NSMutableArray alloc] init];
     usersDiscussing = [[NSMutableArray alloc] init];
-    self.polls = [[NSMutableArray alloc] init];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:[track keyForTrack]]) {
         self.track = [[[NSUserDefaults standardUserDefaults] objectForKey:[self.track keyForTrack]] mutableCopy];
     }
@@ -115,7 +116,6 @@
         usersDiscussing = [[responseObject objectForKey:@"people_discussing"] mutableCopy];
         completedResources = [[responseObject objectForKey:@"completed_resources"] mutableCopy];
         [self setupBottomView];
-        self.polls = [[responseObject objectForKey:@"polls"] mutableCopy];
         self.track = [[responseObject objectForKey:@"track"] mutableCopy];
         [self.track setObject:[responseObject resources] forKey:@"resources"];
         requesting = NO;
@@ -143,10 +143,6 @@
     
     [self.sections addObject:@"resources"];
     
-    if (!requesting && self.polls.count > 0) {
-        [self.sections addObject:@"polls"];
-    }
-    
     return self.sections.count;
 }
 
@@ -154,8 +150,6 @@
 {
     if ([[self.sections objectAtIndex:section] isEqualToString:@"resources"]) {
         return [[self.track resources] count];
-    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"polls"]) {
-        return self.polls.count;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
         return 1;
     }
@@ -167,8 +161,6 @@
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
         return [self tableView:self.tableView resourcesCellForRowAtIndexPath:indexPath];
-    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
-        return [self tableView:self.tableView pollCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
         return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
     }
@@ -181,16 +173,6 @@
     VSResourceTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
     
     [cell configureWithResource:resource andCompletedResources:completedResources];
-    
-    return cell;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView pollCellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSMutableDictionary *poll = [[self.polls objectAtIndex:indexPath.row] mutableCopy];
-    VSPollsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"pollCell" forIndexPath:indexPath];
-    
-    [cell configureWithPoll:poll];
     
     return cell;
 }
@@ -216,18 +198,6 @@
         [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
         [webViewController setTrack:self.track];
         [self.navigationController pushViewController:webViewController animated:YES];
-    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        NSMutableDictionary *p = [self.polls objectAtIndex:indexPath.row];
-        if (!NULL_TO_NIL([p objectForKey:@"user_answer"])) {
-            VSPollQuestionViewController *vc = (VSPollQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollQuestionViewController"];
-            [vc setPoll:p];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else {
-            VSPollResultsViewController *vc = (VSPollResultsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollResultsViewController"];
-            [vc setPoll:p];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -238,9 +208,6 @@
         return 146.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
         return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
-    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
-        NSString* pollQuestion = [[[self.polls objectAtIndex:indexPath.row] poll] pollQuestion];
-        return 52.0f + [self heightForText:pollQuestion width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]]; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
     }
     return 100.0f;
 }
@@ -265,6 +232,7 @@
     [rup setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
     [rup setObject:@"completed" forKey:@"status"];
     showCongrats = completedResources.count == [[self.track resources] count] - 1;
+    pollToShow = [[[self resourceAtIndexPath:indexPath] polls] pollToShow];
     [rup saveRemote:^(id responseObject){
         if (![[responseObject objectForKey:@"new_record"] boolValue]) {
             showCongrats = NO;
@@ -301,6 +269,16 @@
     VSCongratsViewController *vc = (VSCongratsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"congratsViewController"];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [vc setTrack:self.track];
+    [self.navigationController presentViewController:nc animated:YES completion:nil];
+}
+
+- (void) showPollScreen
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSPollQuestionViewController *vc = (VSPollQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollQuestionViewController"];
+    [vc setPoll:pollToShow];
+    pollToShow = nil;
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.navigationController presentViewController:nc animated:YES completion:nil];
 }
 

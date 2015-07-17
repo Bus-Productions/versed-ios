@@ -13,5 +13,6 @@
 @property (strong, nonatomic) NSMutableDictionary *poll; 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *sections; 
+@property (nonatomic) BOOL hideRightBarButton;
 
 @end

@@ -23,6 +23,16 @@
     return count; 
 }
 
+- (NSMutableDictionary*) pollToShow
+{
+    for (NSDictionary *poll in self) {
+        if (!NULL_TO_NIL([poll userAnswer])) {
+            return [poll mutableCopy];
+        }
+    }
+    return nil; 
+}
+
 - (NSString*)formattedPluralizationForSingular:(NSString*)sing orPlural:(NSString*)plural
 {
     return (self.count == 1) ? [NSString stringWithFormat:@"%lu %@", (unsigned long)self.count, sing] : [NSString stringWithFormat:@"%lu %@", (unsigned long)self.count, plural];

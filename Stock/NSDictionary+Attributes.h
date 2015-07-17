@@ -79,10 +79,12 @@
 - (NSString *) pollQuestion;
 - (NSMutableArray *) pollAnswers;
 - (NSMutableDictionary *) poll;
+- (NSMutableArray *) polls;
 - (NSString *) percentage;
 - (NSString*) pollAnswerID;
 - (NSString*) numberChosen;
 - (NSString*) numberTaken;
+- (NSMutableDictionary *) userAnswer;
 
 // messages
 - (NSString*) message;

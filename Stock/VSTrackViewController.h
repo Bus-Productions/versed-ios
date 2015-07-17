@@ -18,12 +18,12 @@
     NSMutableArray *completedResources; 
     NSMutableArray *messages;
     BOOL requesting;
-    BOOL showCongrats; 
+    BOOL showCongrats;
+    NSMutableDictionary *pollToShow;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *track;
 @property (strong, nonatomic) NSMutableArray *sections;
-@property (strong, nonatomic) NSMutableArray *polls;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
