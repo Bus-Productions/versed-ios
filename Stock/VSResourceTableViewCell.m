@@ -25,9 +25,7 @@
 - (void) configureWithResource:r andCompletedResources:completedResources
 {
     [self setResource:r];
-    
-    NSLog(@"resource: %@", r);
-    
+        
     UIView* baseView = (UIView*)[self.contentView viewWithTag:10];
     
     UILabel* title = (UILabel*)[baseView viewWithTag:1];

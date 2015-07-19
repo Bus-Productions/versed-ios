@@ -10,7 +10,6 @@
 #import "VSCongratsFeedbackTableViewCell.h"
 #import "VSCongratsStatusTableViewCell.h"
 #import "VSCongratsTracksTableViewCell.h"
-#import "YLProgressBar.h"
 
 @interface VSCongratsViewController ()
 

@@ -41,7 +41,6 @@ PODS:
     - SGHTTPRequest
   - SVWebViewController (1.0)
   - SWRevealViewController (2.3.0)
-  - YLProgressBar (3.7.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2)
@@ -49,7 +48,6 @@ DEPENDENCIES:
   - SGImageCache
   - SVWebViewController
   - SWRevealViewController (~> 2.3)
-  - YLProgressBar (~> 3.7.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
@@ -60,6 +58,5 @@ SPEC CHECKSUMS:
   SGImageCache: 1e6603abf78144f593a82ebc7594f12c8adcb036
   SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
-  YLProgressBar: 04baeddfda977c690a97da7c834108ce976f892c
 
 COCOAPODS: 0.37.2
