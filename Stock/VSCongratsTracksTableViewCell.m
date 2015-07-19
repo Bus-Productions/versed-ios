@@ -7,7 +7,7 @@
 //
 
 #import "VSCongratsTracksTableViewCell.h"
-//#import "YLProgressBar.h"
+#import <YLProgressBar.h>
 
 @implementation VSCongratsTracksTableViewCell
 
@@ -29,10 +29,10 @@
     [tracksCompleted setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
     [tracksCompleted setTextColor:[UIColor whiteColor]];
     
-//    YLProgressBar *progressBar = (YLProgressBar*)[self.contentView viewWithTag:2];
-////    progressBar.type               = YLProgressBarTypeRounded;
-//    progressBar.progressTintColor  = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
-////    progressBar.hideStripes        = YES;
-//    progressBar.progress = [[user liveTracksCount] floatValue]/[[user completedTracksCount] floatValue];
+    UIProgressView *progressBar = (UIProgressView*)[self.contentView viewWithTag:2];
+    progressBar.progressTintColor  = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
+    progressBar.progress = [[user completedTracksCount] floatValue]/[[user liveTracksCount] floatValue];
+    CATransform3D transform = CATransform3DScale(progressBar.layer.transform, 1.0f, 3.0f, 1.0f);
+    progressBar.layer.transform = transform;
 }
 @end

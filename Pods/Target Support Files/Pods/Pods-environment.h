@@ -108,3 +108,9 @@
 #define COCOAPODS_VERSION_MINOR_SWRevealViewController 3
 #define COCOAPODS_VERSION_PATCH_SWRevealViewController 0
 
+// YLProgressBar
+#define COCOAPODS_POD_AVAILABLE_YLProgressBar
+#define COCOAPODS_VERSION_MAJOR_YLProgressBar 3
+#define COCOAPODS_VERSION_MINOR_YLProgressBar 7
+#define COCOAPODS_VERSION_PATCH_YLProgressBar 1
+

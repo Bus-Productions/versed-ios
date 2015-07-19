@@ -854,8 +854,8 @@
                                                 <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUn-BT-2f1">
                                                     <rect key="frame" x="0.0" y="8" width="600" height="144"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEM-yC-1jL">
-                                                            <rect key="frame" x="161" y="8" width="431" height="128"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEM-yC-1jL">
+                                                            <rect key="frame" x="161" y="35" width="431" height="51"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -875,18 +875,25 @@
                                                             <color key="textColor" red="0.070588235289999995" green="0.47450980390000003" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <progressView opaque="NO" tag="3" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="csr-He-3WI">
+                                                            <rect key="frame" x="161" y="87" width="431" height="2"/>
+                                                        </progressView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="8fH-bt-X4W" firstAttribute="top" secondItem="LUn-BT-2f1" secondAttribute="top" constant="17" id="58n-Cg-x6Y"/>
                                                         <constraint firstItem="0rm-n6-9Ms" firstAttribute="top" secondItem="8fH-bt-X4W" secondAttribute="bottom" constant="8" id="5Rh-Ch-JpN"/>
                                                         <constraint firstItem="HEM-yC-1jL" firstAttribute="leading" secondItem="0rm-n6-9Ms" secondAttribute="trailing" constant="25" id="Hji-vE-nIb"/>
-                                                        <constraint firstItem="HEM-yC-1jL" firstAttribute="top" secondItem="LUn-BT-2f1" secondAttribute="top" constant="8" id="LPx-mx-JSs"/>
-                                                        <constraint firstAttribute="bottom" secondItem="HEM-yC-1jL" secondAttribute="bottom" constant="8" id="Opx-hV-b8d"/>
+                                                        <constraint firstItem="HEM-yC-1jL" firstAttribute="top" secondItem="LUn-BT-2f1" secondAttribute="top" constant="35" id="LPx-mx-JSs"/>
+                                                        <constraint firstAttribute="bottom" secondItem="HEM-yC-1jL" secondAttribute="bottom" constant="58" id="Opx-hV-b8d"/>
+                                                        <constraint firstItem="csr-He-3WI" firstAttribute="leading" secondItem="8fH-bt-X4W" secondAttribute="trailing" constant="25" id="RSU-5e-NOi"/>
+                                                        <constraint firstItem="csr-He-3WI" firstAttribute="top" secondItem="HEM-yC-1jL" secondAttribute="bottom" constant="1" id="Yv6-W3-oeO"/>
                                                         <constraint firstAttribute="trailing" secondItem="HEM-yC-1jL" secondAttribute="trailing" constant="8" id="aZ1-pV-7hz"/>
+                                                        <constraint firstItem="HEM-yC-1jL" firstAttribute="centerX" secondItem="csr-He-3WI" secondAttribute="centerX" id="d2P-JY-goJ"/>
                                                         <constraint firstAttribute="bottom" secondItem="8fH-bt-X4W" secondAttribute="bottom" constant="39" id="fCi-M8-tEX"/>
                                                         <constraint firstItem="HEM-yC-1jL" firstAttribute="leading" secondItem="8fH-bt-X4W" secondAttribute="trailing" constant="25" id="gE9-6N-i8D"/>
                                                         <constraint firstItem="0rm-n6-9Ms" firstAttribute="leading" secondItem="LUn-BT-2f1" secondAttribute="leading" constant="8" id="k50-Vw-uOb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="csr-He-3WI" secondAttribute="trailing" constant="8" id="uAC-fg-2Dd"/>
                                                         <constraint firstItem="8fH-bt-X4W" firstAttribute="leading" secondItem="LUn-BT-2f1" secondAttribute="leading" constant="8" id="zqe-UH-Z7g"/>
                                                     </constraints>
                                                 </view>
