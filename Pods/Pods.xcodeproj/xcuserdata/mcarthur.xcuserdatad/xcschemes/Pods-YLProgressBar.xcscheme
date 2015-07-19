@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BCB99C0D1604600EADD12E72"
-               BuildableName = "libPods-MGEvents.a"
-               BlueprintName = "Pods-MGEvents"
+               BlueprintIdentifier = "3323152AD08832F57D9BD565"
+               BuildableName = "libPods-YLProgressBar.a"
+               BlueprintName = "Pods-YLProgressBar"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

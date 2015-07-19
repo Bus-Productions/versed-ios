@@ -32,7 +32,7 @@
     UIButton* submitButton = (UIButton*)[self.contentView viewWithTag:9];
     [[submitButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
     
-    [self.ratingLabel setText:@"5 out of 5"];
+    [self.ratingLabel setText:@"3 out of 5"];
     [self.ratingLabel setFont:[UIFont fontWithName:@"SourcsSansPro-Bold" size:18.0f]];
     [self.ratingLabel setTextColor:[UIColor blackColor]];
 
@@ -40,7 +40,7 @@
     [self.slider setMinimumValue:0.0];
     [self.slider setMaximumValue:5.0];
     [self.slider setContinuous:YES];
-    [self.slider setValue:5.0]; 
+    [self.slider setValue:3.0];
 }
 
 - (void) sliderChanged

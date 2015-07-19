@@ -72,6 +72,10 @@
     return [NSString stringWithFormat:@"%lu", (unsigned long)[[self objectForKey:@"completed_tracks"] count]];
 }
 
+- (NSString*) liveTracksCount
+{
+    return [NSString stringWithFormat:@"%lu", (unsigned long)[[self objectForKey:@"live_tracks"] count]];
+}
 
 - (NSString*) ID
 {

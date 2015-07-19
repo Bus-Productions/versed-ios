@@ -62,6 +62,7 @@
 - (NSString*) score;
 - (NSString*) numberTracksToNextLevel;
 - (NSString*) completedTracksCount;
+- (NSString*) liveTracksCount;
 - (NSMutableArray*) strengths;
 - (NSMutableArray*) strengthsTitles;
 - (NSMutableArray*) weaknesses;

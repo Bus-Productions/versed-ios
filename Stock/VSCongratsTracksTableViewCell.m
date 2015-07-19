@@ -7,6 +7,7 @@
 //
 
 #import "VSCongratsTracksTableViewCell.h"
+#import "YLProgressBar.h"
 
 @implementation VSCongratsTracksTableViewCell
 
@@ -24,12 +25,14 @@
 {
     NSMutableDictionary *user = [[LXSession thisSession] user];
     UILabel *tracksCompleted = (UILabel*)[self viewWithTag:1];
-    [tracksCompleted setText:[[NSString stringWithFormat:@"%@ %@ completed", [user completedTracksCount], [[user completedTracksCount] isEqualToString:@"1"] ? @"track" : @"tracks"] uppercaseString]];
+    [tracksCompleted setText:[[NSString stringWithFormat:@"%@ of %@ %@ completed", [user completedTracksCount], [user liveTracksCount], [[user liveTracksCount] isEqualToString:@"1"] ? @"track" : @"tracks"] uppercaseString]];
     [tracksCompleted setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
     [tracksCompleted setTextColor:[UIColor whiteColor]];
     
-    UILabel *nextLevel = (UILabel*)[self viewWithTag:2];
-    [nextLevel setText:[NSString stringWithFormat:@"Your status: %@", [user numberTracksToNextLevel]]];
-    [nextLevel setHidden:YES];
+    YLProgressBar *progressBar = (YLProgressBar*)[self.contentView viewWithTag:2];
+//    progressBar.type               = YLProgressBarTypeRounded;
+    progressBar.progressTintColor  = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
+//    progressBar.hideStripes        = YES;
+    progressBar.progress = [[user liveTracksCount] floatValue]/[[user completedTracksCount] floatValue];
 }
 @end
