@@ -25,9 +25,7 @@
 - (void) configureWithResource:r andCompletedResources:completedResources
 {
     [self setResource:r];
-    
-    NSLog(@"resource: %@", r);
-    
+        
     UIView* baseView = (UIView*)[self.contentView viewWithTag:10];
     
     UILabel* title = (UILabel*)[baseView viewWithTag:1];
@@ -64,7 +62,7 @@
     
     UIImageView* readImage = (UIImageView*) [baseView viewWithTag:83];
     [readImage setImage:[UIImage imageNamed:@"green_check.png"]];
-    if ([completedResources containsObject:resource] || [completedResources containsObject:[resource ID]]) {
+    if ([completedResources containsObject:[resource ID]]) {
         [readImage setHidden:NO];
     } else {
         [readImage setHidden:YES];

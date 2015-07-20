@@ -62,6 +62,7 @@
 - (NSString*) score;
 - (NSString*) numberTracksToNextLevel;
 - (NSString*) completedTracksCount;
+- (NSString*) liveTracksCount;
 - (NSMutableArray*) strengths;
 - (NSMutableArray*) strengthsTitles;
 - (NSMutableArray*) weaknesses;
@@ -79,10 +80,12 @@
 - (NSString *) pollQuestion;
 - (NSMutableArray *) pollAnswers;
 - (NSMutableDictionary *) poll;
+- (NSMutableArray *) polls;
 - (NSString *) percentage;
 - (NSString*) pollAnswerID;
 - (NSString*) numberChosen;
 - (NSString*) numberTaken;
+- (NSMutableDictionary *) userAnswer;
 
 // messages
 - (NSString*) message;

@@ -72,6 +72,10 @@
     return [NSString stringWithFormat:@"%lu", (unsigned long)[[self objectForKey:@"completed_tracks"] count]];
 }
 
+- (NSString*) liveTracksCount
+{
+    return [NSString stringWithFormat:@"%lu", (unsigned long)[[self objectForKey:@"live_tracks"] count]];
+}
 
 - (NSString*) ID
 {
@@ -239,7 +243,7 @@
 
 - (NSString *) pollQuestion
 {
-    return [self objectForKey:@"poll_question"];
+    return [[self objectForKey:@"poll_question"] mutableCopy];
 }
 
 - (NSMutableArray *) pollAnswers
@@ -249,12 +253,25 @@
 
 - (NSMutableDictionary *) poll
 {
-    return [self objectForKey:@"poll"];
+    return [[self objectForKey:@"poll"] mutableCopy];
+}
+
+- (NSMutableArray *) polls
+{
+    return [[self objectForKey:@"polls"] mutableCopy];
+}
+
+- (NSMutableDictionary *) userAnswer
+{
+    if (NULL_TO_NIL([self objectForKey:@"user_answer"])) {
+        return [[self objectForKey:@"user_answer"] mutableCopy];
+    }
+    return nil;
 }
 
 - (NSString*) percentage
 {
-    return [NSString stringWithFormat:@"%@%%", [self objectForKey:@"percentage"]];
+    return [NSString stringWithFormat:@"%.01f%%", [[self objectForKey:@"percentage"] floatValue]];
 }
 
 - (NSString*) categoryName

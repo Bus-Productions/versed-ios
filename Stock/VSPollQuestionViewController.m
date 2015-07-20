@@ -18,7 +18,7 @@
 
 @implementation VSPollQuestionViewController
 
-@synthesize poll, tableView, sections;
+@synthesize poll, tableView, sections, hideRightBarButton;
 
 - (void)viewDidLoad
 {
@@ -124,6 +124,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         VSPollResultsViewController *vc = (VSPollResultsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollResultsViewController"];
         [vc setPoll:self.poll];
+        [vc setHideRightBarButton:self.hideRightBarButton]; 
         NSMutableArray *activeViewControllers=[[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers] ;
         [activeViewControllers removeLastObject];
         [activeViewControllers addObject:vc];

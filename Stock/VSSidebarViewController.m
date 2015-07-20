@@ -16,6 +16,7 @@
 #import "VSProfileViewController.h"
 #import "VSProfileTableViewCell.h"
 #import "VSFaqCategoryViewController.h"
+#import "VSPollsViewController.h"
 
 #define ALL_TRACKS_IDENTIFIER @"allTracks"
 #define MY_TRACKS_IDENTIFIER @"myTracks"
@@ -23,6 +24,7 @@
 #define PROFILE_IDENTIFIER @"profile"
 #define DAILY_ARTICLES_IDENTIFIER @"dailyArticles"
 #define FAQ_IDENTIFIER @"faq"
+#define POLLS_IDENTIFIER @"polls"
 #define CONTACT_US_IDENTIFIER @"contactUs"
 
 
@@ -63,6 +65,7 @@
     [self.menuOptions addObject:MY_TRACKS_IDENTIFIER];
     [self.menuOptions addObject:QUIZ_IDENTIFIER];
     [self.menuOptions addObject:DAILY_ARTICLES_IDENTIFIER];
+    [self.menuOptions addObject:POLLS_IDENTIFIER];
     [self.menuOptions addObject:FAQ_IDENTIFIER];
 }
 
@@ -133,6 +136,9 @@
     } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:FAQ_IDENTIFIER]) {
         vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"faqCategoryViewController"];
         nc = [storyboard instantiateViewControllerWithIdentifier:@"faqNavigationController"];
+    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:POLLS_IDENTIFIER]) {
+        vc = (VSPollsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollsViewController"];
+        nc = [storyboard instantiateViewControllerWithIdentifier:@"pollsNavigationController"];
     }
     
     [nc setViewControllers:@[vc] animated:NO];

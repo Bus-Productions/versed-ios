@@ -23,21 +23,27 @@
 - (void) configure
 {
     UIView* container = (UIView*)[self.contentView viewWithTag:10];
-    
+    NSMutableDictionary *user = [[LXSession thisSession] user];
+
     UILabel *tracks = (UILabel*)[container viewWithTag:1];
-    NSString *score = [[[LXSession thisSession] user] score];
-    [tracks setText:[NSString stringWithFormat:@"%@", score]];
+    [tracks setText:[NSString stringWithFormat:@"%@", [user score]]];
     [tracks setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:100.0f]];
     
     UILabel *pts = (UILabel*)[container viewWithTag:5];
     [pts setText:@"LIFETIME POINTS"];
     [pts setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:12.0f]];
+    
+    UILabel *tracksCompleted = (UILabel*)[self viewWithTag:2];
+    [tracksCompleted setText:[NSString stringWithFormat:@"%@ of %@ %@ completed", [user completedTracksCount], [user liveTracksCount], [[user liveTracksCount] isEqualToString:@"1"] ? @"track" : @"tracks"]];
+    [tracksCompleted setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    [tracksCompleted setTextColor:[UIColor grayColor]];
+    
+    UIProgressView *progressBar = (UIProgressView*)[self.contentView viewWithTag:3];
+    progressBar.progressTintColor  = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
+    progressBar.progress = [[user completedTracksCount] floatValue]/[[user liveTracksCount] floatValue];
+    CATransform3D transform = CATransform3DScale(progressBar.layer.transform, 1.0f, 3.0f, 1.0f);
+    progressBar.layer.transform = transform;
 
-    NSString *trackCount = [[[LXSession thisSession] user] completedTracksCount];
-    UILabel *description = (UILabel*)[container viewWithTag:2];
-    [description setText:[NSString stringWithFormat:@"You have completed\n%@ %@.", trackCount, [trackCount isEqualToString:@"1"] ? @"track" : @"tracks"]];
-    [description setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
-    [description setTextColor:[UIColor grayColor]];
 }
 
 @end

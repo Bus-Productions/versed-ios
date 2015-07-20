@@ -66,7 +66,7 @@
                                                   target: self
                                                 selector:@selector(onTick:)
                                                 userInfo: nil repeats:YES];
-    remainingTime = 15;
+    remainingTime = 20;
 }
 
 #pragma mark - Table view data source

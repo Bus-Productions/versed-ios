@@ -12,7 +12,7 @@
 
 # pragma mark other array helpers
 - (int) numberQuizResultsCorrect;
-
+- (NSMutableDictionary*) pollToShow;
 - (NSString*)formattedPluralizationForSingular:(NSString*)sing orPlural:(NSString*)plural;
 
 @end

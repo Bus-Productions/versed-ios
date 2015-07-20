@@ -15,13 +15,12 @@
 
 @implementation VSPollResultsViewController
 
-@synthesize poll, sections;
+@synthesize poll, sections, hideRightBarButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setupNavigationBar];
-    NSLog(@"poll = %@", self.poll);
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,11 +35,14 @@
 - (void) setupNavigationBar
 {
     [self.navigationItem setTitle:@"Results"];
+    if (!self.hideRightBarButton) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(exit)];
+    }
 }
 
-- (void) backToRootView
+- (void) exit
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

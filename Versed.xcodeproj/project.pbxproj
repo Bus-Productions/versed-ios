@@ -104,6 +104,7 @@
 		768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0921B03EF5000E1E2E6 /* VSMyTracksViewController.m */; };
 		768CE0961B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */; };
 		76A21E1E1B35A0DB00B7C40D /* VSResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A21E1D1B35A0DB00B7C40D /* VSResourceViewController.m */; };
+		76A2CB6A1B5973CA008F00F8 /* VSPollsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A2CB691B5973CA008F00F8 /* VSPollsViewController.m */; };
 		76BC95601B4AFC1C006785F9 /* VSInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC955F1B4AFC1C006785F9 /* VSInitialViewController.m */; };
 		76BC95631B4AFCC7006785F9 /* VSOnboardingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC95621B4AFCC7006785F9 /* VSOnboardingPageViewController.m */; };
 		76BC95661B4AFD7D006785F9 /* VSIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC95651B4AFD7D006785F9 /* VSIntroViewController.m */; };
@@ -297,6 +298,8 @@
 		768CE0951B03EF7E00E1E2E6 /* VSQuizQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizQuestionViewController.m; sourceTree = "<group>"; };
 		76A21E1C1B35A0DB00B7C40D /* VSResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSResourceViewController.h; sourceTree = "<group>"; };
 		76A21E1D1B35A0DB00B7C40D /* VSResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSResourceViewController.m; sourceTree = "<group>"; };
+		76A2CB681B5973CA008F00F8 /* VSPollsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPollsViewController.h; sourceTree = "<group>"; };
+		76A2CB691B5973CA008F00F8 /* VSPollsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSPollsViewController.m; sourceTree = "<group>"; };
 		76BC955E1B4AFC1C006785F9 /* VSInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSInitialViewController.h; sourceTree = "<group>"; };
 		76BC955F1B4AFC1C006785F9 /* VSInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSInitialViewController.m; sourceTree = "<group>"; };
 		76BC95611B4AFCC7006785F9 /* VSOnboardingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSOnboardingPageViewController.h; sourceTree = "<group>"; };
@@ -592,6 +595,7 @@
 				7636ED911B0E7DD600BD4E1A /* All Tracks */,
 				7636ED901B0E7DCD00BD4E1A /* My Tracks */,
 				760F5D5D1B0BB6980038FF1A /* Quiz */,
+				7664082E1B1E5CB5006272E8 /* Polls */,
 				7636ED921B0E7DDE00BD4E1A /* Daily Articles */,
 				764060D51B2745E3004FA5CC /* Profile */,
 				76DEE71D1B29D5B400323EA0 /* FAQ */,
@@ -610,7 +614,6 @@
 				766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */,
 				76F0D5901B28D31400F54C56 /* VSCongratsViewController.h */,
 				76F0D5911B28D31500F54C56 /* VSCongratsViewController.m */,
-				7664082E1B1E5CB5006272E8 /* Poll */,
 				760CFD3D1B25CD7000A9C875 /* Messages */,
 				76A21E1C1B35A0DB00B7C40D /* VSResourceViewController.h */,
 				76A21E1D1B35A0DB00B7C40D /* VSResourceViewController.m */,
@@ -671,15 +674,17 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		7664082E1B1E5CB5006272E8 /* Poll */ = {
+		7664082E1B1E5CB5006272E8 /* Polls */ = {
 			isa = PBXGroup;
 			children = (
+				76A2CB681B5973CA008F00F8 /* VSPollsViewController.h */,
+				76A2CB691B5973CA008F00F8 /* VSPollsViewController.m */,
 				7664082B1B1E5CAB006272E8 /* VSPollQuestionViewController.h */,
 				7664082C1B1E5CAB006272E8 /* VSPollQuestionViewController.m */,
 				766408351B1E7C6A006272E8 /* VSPollResultsViewController.h */,
 				766408361B1E7C6A006272E8 /* VSPollResultsViewController.m */,
 			);
-			name = Poll;
+			name = Polls;
 			sourceTree = "<group>";
 		};
 		7666FC2D1B06335E00051C93 /* TableViewCells */ = {
@@ -960,6 +965,7 @@
 				764060DE1B279472004FA5CC /* VSProfileSettingsTableViewCell.m in Sources */,
 				766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */,
 				768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */,
+				76A2CB6A1B5973CA008F00F8 /* VSPollsViewController.m in Sources */,
 				76BC95601B4AFC1C006785F9 /* VSInitialViewController.m in Sources */,
 				768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */,
 				7664082D1B1E5CAB006272E8 /* VSPollQuestionViewController.m in Sources */,
