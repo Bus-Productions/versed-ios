@@ -25,7 +25,7 @@
     [self setupViews];
     
     [self.topButton setTitle:@"Get Versed" forState:UIControlStateNormal];
-    [self.bottomButton setTitle:@"Take Quiz" forState:UIControlStateNormal];
+    [self.bottomButton setTitle:@"Test Your Knowledge" forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad
