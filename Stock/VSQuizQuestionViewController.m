@@ -31,7 +31,7 @@
     
     [self showOrHideNextBar];
     
-    //NSLog(@"question: %@", self.question);
+    NSLog(@"question: %@", self.question);
     //NSLog(@"qr: %@", self.quizResults);
 }
 
@@ -144,7 +144,7 @@
     [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
     
     UILabel* pointsLabel = (UILabel*)[cell.contentView viewWithTag:2];
-    [pointsLabel setText:@"+1"];
+    [pointsLabel setText:[self.question pointsForQuestion]];
     
     UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
     [questionLabel setText:[NSString stringWithFormat:@"%lu/%lu",  (unsigned long)self.questionsCompleted, (unsigned long)self.totalQuestions]];

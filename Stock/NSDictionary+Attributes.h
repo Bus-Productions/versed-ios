@@ -51,6 +51,7 @@
 - (NSMutableDictionary*) track;
 - (NSString*) quizName;
 - (NSString*) seen;
+- (NSString*) pointsForQuestion; 
 
 // users
 - (NSString*) email;
