@@ -10,6 +10,6 @@
 
 @interface VSPollsTableViewCell : UITableViewCell
 
-- (void) configureWithPoll:(NSMutableDictionary*)poll; 
+- (void) configureWithPoll:(NSMutableDictionary*)poll andIndexPath:(NSIndexPath*)indexPath;
 
 @end

@@ -10,7 +10,9 @@
 #import "SWRevealViewController.h"
 
 @interface VSPollsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate>
-
+{
+    NSMutableArray *pollKeys;
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *polls;

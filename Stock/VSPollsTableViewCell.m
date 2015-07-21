@@ -20,12 +20,12 @@
     // Configure the view for the selected state
 }
 
-- (void) configureWithPoll:(NSMutableDictionary*)poll
+- (void) configureWithPoll:(NSMutableDictionary*)poll andIndexPath:(NSIndexPath*)indexPath
 {
     UIView* container = (UIView*)[self.contentView viewWithTag:10];
     
     UILabel *lbl = (UILabel*)[container viewWithTag:1];
-    [lbl setText:[poll objectForKey:@"track_headline"]];
+    [lbl setText:[NSString stringWithFormat:@"guesstimate #%ld", indexPath.row + 1]];
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:18.0f]];
     
     UILabel *bottomLabel = (UILabel*)[container viewWithTag:2];
