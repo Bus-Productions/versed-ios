@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *topButton;
 @property (strong, nonatomic) IBOutlet UIButton *bottomButton;
+@property (strong, nonatomic) IBOutlet UILabel *topLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bottomLabel;
 
 - (IBAction)topAction:(id)sender;
 - (IBAction)bottomAction:(id)sender;

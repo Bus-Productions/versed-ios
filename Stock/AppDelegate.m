@@ -32,10 +32,6 @@
         
         [self setRootStoryboard:@"Main"];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToOption:) name:@"goToOption" object:nil];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        [self.window.rootViewController presentViewController:[storyboard instantiateViewControllerWithIdentifier:@"promptOptionsViewController"] animated:NO completion:^(void){}];
-        
     } else {
         [self setRootStoryboard:@"MobileLogin"];
     }
@@ -106,6 +102,11 @@
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:name bundle:[NSBundle mainBundle]];
     self.window.rootViewController = [storyboard instantiateInitialViewController];
     [self.window makeKeyAndVisible];
+    
+    if ([name isEqualToString:@"Main"]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToOption:) name:@"goToOption" object:nil];
+        [self.window.rootViewController presentViewController:[storyboard instantiateViewControllerWithIdentifier:@"promptOptionsViewController"] animated:NO completion:^(void){}];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

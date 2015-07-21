@@ -16,6 +16,8 @@
 
 @synthesize topButton;
 @synthesize bottomButton;
+@synthesize topLabel;
+@synthesize bottomLabel;
 
 
 - (void) viewWillAppear:(BOOL)animated
@@ -26,6 +28,11 @@
     
     [self.topButton setTitle:@"Get Versed" forState:UIControlStateNormal];
     [self.bottomButton setTitle:@"Test Your Knowledge" forState:UIControlStateNormal];
+    
+    [self.topLabel setText:@"Go straight to tracks to learn about the trends and forces shaping business."];
+    [self.bottomLabel setText:@"Find out how much you know by taking a quiz about Versed topics."];
+    [self.topLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
+    [self.bottomLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
 }
 
 - (void)viewDidLoad
