@@ -19,7 +19,7 @@
 
 @implementation VSReviewQuizViewController
 
-@synthesize quizResults, missedQuestions;
+@synthesize quizResults, missedQuestions, pointsThatRound;
 
 
 - (void)viewDidLoad
@@ -95,7 +95,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView reviewQuizCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSReviewQuizTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"reviewQuizCell" forIndexPath:indexPath];
-    [cell configureWithQuizResults:self.quizResults];
+    [cell configureWithQuizResults:self.quizResults andPointsThatRound:self.pointsThatRound];
     
     UIButton* button = (UIButton*)[cell.contentView viewWithTag:7];
     [button removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];

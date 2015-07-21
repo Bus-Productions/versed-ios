@@ -11,6 +11,7 @@
 @protocol VSCreateQuizResultDelegate <NSObject>
 - (void) createQuizResultWithQuestion:(NSMutableDictionary *)question andAnswer:(NSMutableDictionary *)answer success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback;
 - (void) updateQuizQuestions;
+- (NSInteger) pointsForRound; 
 @end
 
 @interface VSQuizQuestionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>

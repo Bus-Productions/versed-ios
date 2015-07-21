@@ -18,7 +18,8 @@
 @property (strong, nonatomic) NSMutableArray *quizQuestions;
 @property (strong, nonatomic) NSMutableArray *quizResults;
 @property (strong, nonatomic) NSMutableArray *questionsToAsk;
-@property (strong, nonatomic) NSMutableDictionary *quiz; 
+@property (strong, nonatomic) NSMutableDictionary *quiz;
+@property (nonatomic) NSInteger totalPoints;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (strong, nonatomic) NSMutableArray *sections;

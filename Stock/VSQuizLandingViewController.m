@@ -23,7 +23,7 @@
 
 @implementation VSQuizLandingViewController
 
-@synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk, quiz, backgroundImageView;
+@synthesize slideButton, quizQuestions, sections, tableView, quizResults, questionsToAsk, quiz, backgroundImageView, totalPoints;
 
 - (void)viewDidLoad
 {
@@ -68,6 +68,7 @@
     self.questionsToAsk = [[NSMutableArray alloc] init];
     self.quizResults = [[NSMutableArray alloc] init];
     self.quiz = [[NSMutableDictionary alloc] init];
+    self.totalPoints = 0;
 }
 
 - (void) setupAppearance
@@ -103,6 +104,7 @@
     isRequesting = YES;
     [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.quizResults = [[NSMutableArray alloc] init];
+        self.totalPoints = 0;
         self.quizQuestions = [[responseObject quiz] objectForKey:@"random_quiz_questions"];
         self.questionsToAsk = [self.quizQuestions mutableCopy];
         self.quiz = [responseObject quiz];
@@ -282,6 +284,7 @@
     [qr setObject:[question quizID] forKey:@"quiz_id"];
     [qr setObject:[question quizAnswerID] forKey:@"correct_answer_id"];
     [qr setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
+    [self updateTotalPointsWithQuizResult:qr andQuestion:question];
     [qr saveRemote:^(id responseObject){
         [qr setObject:question forKey:@"quiz_question"];
         [self.quizResults addObject:qr];
@@ -328,6 +331,18 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSDashboardViewController *vc = (VSDashboardViewController*)[storyboard instantiateViewControllerWithIdentifier:@"dashboardViewController"];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) updateTotalPointsWithQuizResult:(NSMutableDictionary*)qr andQuestion:(NSMutableDictionary*)question
+{
+    if ([[qr correctAnswerID] isEqualToString:[qr quizAnswerID]] && ![[question pointsForQuestion] isEqualToString:@"0"]) {
+        self.totalPoints = self.totalPoints + 1;
+    }
+}
+
+- (NSInteger) pointsForRound
+{
+    return self.totalPoints; 
 }
 
 # pragma mark - Helpers

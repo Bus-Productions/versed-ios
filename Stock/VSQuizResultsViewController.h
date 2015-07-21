@@ -11,11 +11,13 @@
 
 @protocol VSRefreshQuizLandingVC <NSObject>
 - (void) reloadScreen;
+- (NSInteger) pointsForRound;
 @end
 
 @interface VSQuizResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
-    BOOL isRequesting; 
+    BOOL isRequesting;
+    NSInteger pointsThatRound; 
 }
 @property (strong, nonatomic) NSMutableArray *quizResults;
 @property (strong, nonatomic) NSMutableArray *missedQuestions;

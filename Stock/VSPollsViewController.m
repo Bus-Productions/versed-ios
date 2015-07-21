@@ -89,6 +89,7 @@
 - (void) reloadScreen
 {
     [[LXServer shared] requestPath:@"/polls.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
+        NSLog(@"responseObject = %@", responseObject);
         [self handlePollsResponse:responseObject];
     }failure:nil];
 }

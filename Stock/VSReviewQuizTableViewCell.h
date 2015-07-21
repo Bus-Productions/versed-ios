@@ -10,6 +10,6 @@
 
 @interface VSReviewQuizTableViewCell : UITableViewCell
 
-- (void) configureWithQuizResults:(NSMutableArray*)quizResults;
+- (void) configureWithQuizResults:(NSMutableArray*)quizResults andPointsThatRound:(NSInteger)pts;
 
 @end

@@ -74,6 +74,11 @@
 			<key>orderHint</key>
 			<integer>12</integer>
 		</dict>
+		<key>Pods-YLProgressBar.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -95,6 +100,21 @@
 			<true/>
 		</dict>
 		<key>111DF1EE77B8A65D083223F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1EBA9F289DA1E5E02E72B833</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1EBE53DB075C3CED047B9787</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>210E87B330AA5501BBB059E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -124,7 +144,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4CB2A54C8C089CE4F489120E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>584E518EAB69D30E2DFF42C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5C0F6698E3B30977047C74AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -140,6 +170,11 @@
 			<true/>
 		</dict>
 		<key>73C12F20BADCED23365F6ADB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7493170A1AD90367E1DC9F42</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -165,6 +200,11 @@
 			<true/>
 		</dict>
 		<key>ABA8BD4108B6AC0EE16731C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AF23A4D2599516DDD00AC08C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -204,7 +244,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>E589A445FDA0F8FFC3D0B49A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ECEFEE72278375FC81279B36</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>F0616D2D5BEEF2ABC4F10B77</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE082A2781AC53BE1E40843D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
