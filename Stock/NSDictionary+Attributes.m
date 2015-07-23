@@ -375,6 +375,11 @@
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"quizzes_taken"]];
 }
 
+- (NSString*) pointsForQuestion
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"points_for_question"]];
+}
+
 - (NSString*) score
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"score"]];

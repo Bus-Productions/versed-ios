@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSMutableArray *missedQuestions;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *sections;
+@property (nonatomic) NSInteger pointsThatRound;
 
 @end

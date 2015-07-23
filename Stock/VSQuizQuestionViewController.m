@@ -31,7 +31,7 @@
     
     [self showOrHideNextBar];
     
-    //NSLog(@"question: %@", self.question);
+//    NSLog(@"question: %@", self.question);
     //NSLog(@"qr: %@", self.quizResults);
 }
 
@@ -144,9 +144,7 @@
     [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
     
     UILabel* pointsLabel = (UILabel*)[cell.contentView viewWithTag:2];
-    [pointsLabel setText:[NSString stringWithFormat:@"%i", [self numberCorrect]]];
-    
-    NSLog(@"quizResults: %@", self.quizResults);
+    [pointsLabel setText:[NSString stringWithFormat:@"%li", (long)[self pointsForRound]]];
     
     UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
     [questionLabel setText:[NSString stringWithFormat:@"%lu/%lu",  (unsigned long)self.questionsCompleted, (unsigned long)self.totalQuestions]];
@@ -181,15 +179,9 @@
     }
 }
 
-- (NSInteger) numberCorrect
+- (NSInteger) pointsForRound
 {
-    NSInteger cur = 0;
-    for (NSDictionary* q in quizResults) {
-        if ([[q objectForKey:@"correct_answer_id"] integerValue] == [[q objectForKey:@"quiz_answer_id"] integerValue]) {
-            ++cur;
-        }
-    }
-    return cur;
+    return [self.delegate pointsForRound];
 }
 
 - (IBAction)nextAction:(id)sender
@@ -282,7 +274,7 @@
     [questionLabel setAlpha:1.0f];
     
     if (correct) {
-        [questionLabel setText:@"+1"];
+        [questionLabel setText:[NSString stringWithFormat:@"+%@", [self.question pointsForQuestion]]];
         [questionLabel setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
     } else {
         [questionLabel setText:@"+0"];

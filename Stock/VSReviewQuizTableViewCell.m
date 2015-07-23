@@ -21,7 +21,7 @@
     // Configure the view for the selected state
 }
 
-- (void) configureWithQuizResults:(NSMutableArray*)quizResults
+- (void) configureWithQuizResults:(NSMutableArray*)quizResults andPointsThatRound:(NSInteger)pts
 {
     UILabel *recentQuizResultLabel = (UILabel*)[self viewWithTag:1];
     [recentQuizResultLabel setText:[NSString stringWithFormat:@"%d of %lu", [quizResults numberQuizResultsCorrect], (unsigned long)[quizResults count]]];
@@ -29,7 +29,7 @@
     [recentQuizResultLabel setTextColor:[UIColor whiteColor]];
     
     UILabel *ptsThatRound = (UILabel*)[self viewWithTag:2];
-    [ptsThatRound setText:[NSString stringWithFormat:@"%d", [quizResults numberQuizResultsCorrect]]];
+    [ptsThatRound setText:[NSString stringWithFormat:@"%ld", (long)pts]];
     [ptsThatRound setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:40.0f]];
     [ptsThatRound setTextColor:[UIColor whiteColor]];
     
@@ -55,6 +55,9 @@
     
     UIButton* button = (UIButton*)[self.contentView viewWithTag:7];
     [[button titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
+    
+    UIButton* showLeaderboard = (UIButton*)[self.contentView viewWithTag:8];
+    [[showLeaderboard titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
 }
 
 @end

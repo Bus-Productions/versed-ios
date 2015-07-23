@@ -43,6 +43,7 @@
 # pragma mark - Setup
 - (void) setupData
 {
+    pointsThatRound = [self.delegate pointsForRound];
     self.missedQuestions = [[NSMutableArray alloc] init];
     [self setupMissedQuestions:^(id responseObject){
         [self.tableView reloadData];
@@ -127,24 +128,28 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView reviewQuizCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSReviewQuizTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"reviewQuizCell" forIndexPath:indexPath];
-    [cell configureWithQuizResults:self.quizResults];
+    [cell configureWithQuizResults:self.quizResults andPointsThatRound:pointsThatRound];
     
     UIButton* button = (UIButton*)[cell.contentView viewWithTag:7];
     [button removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     [button addTarget:self action:@selector(reviewQuiz:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIButton* showLeaderboard = (UIButton*)[cell.contentView viewWithTag:8];
+    [showLeaderboard removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    [showLeaderboard addTarget:self action:@selector(showLeaderboard:) forControlEvents:UIControlEventTouchUpInside];
+
     return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView showResultsCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     VSShowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"showResultsCell" forIndexPath:indexPath];
+    VSShowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"showResultsCell" forIndexPath:indexPath];
     [cell configure];
     
     UIButton* button = (UIButton*)[cell.contentView viewWithTag:7];
     [button removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
     [button addTarget:self action:@selector(showLeaderboard:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     return cell;
 }
 
@@ -203,8 +208,9 @@
     UILabel* topLabel = (UILabel*)[cell.contentView viewWithTag:1];
     NSString *topLabelText = [NSString stringWithFormat:@"Well done, %@!", [[[LXSession thisSession] user] firstName]];
     NSString *bottomLabelText = [NSString stringWithFormat:@"You are steadily getting versed on key topics."];
-    
-    if ([self.quizResults numberQuizResultsCorrect]/(self.quizResults && self.quizResults.count > 0 ? self.quizResults.count : 0) <= 0.5) {
+    float qrCount = self.quizResults.count;
+
+    if (([self.quizResults numberQuizResultsCorrect]/((self.quizResults && qrCount > 0) ? qrCount : 10)) <= 0.5) {
         topLabelText = [NSString stringWithFormat:@"Keep practicing, %@!", [[[LXSession thisSession] user] firstName]];
         bottomLabelText = [NSString stringWithFormat:@"With a little more reading, you can get a solid grasp on these topics."];
     }
@@ -238,7 +244,7 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
         return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"reviewQuiz"]) {
-        return 170.0f;
+        return 236.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"weaknesses"]) {
         return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"noWeaknesses"]) {
@@ -281,7 +287,8 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSReviewQuizViewController *vc = (VSReviewQuizViewController*)[storyboard instantiateViewControllerWithIdentifier:@"reviewQuizViewController"];
     [vc setMissedQuestions:self.missedQuestions];
-    [vc setQuizResults:self.quizResults]; 
+    [vc setQuizResults:self.quizResults];
+    [vc setPointsThatRound:pointsThatRound];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
