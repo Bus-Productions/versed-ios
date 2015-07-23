@@ -214,6 +214,7 @@
                                                 
                                             }
                                 ];
+                               NSLog(@"**** cat with tracks = %@", self.categoriesWithTracks);
                            } failure:^(NSError* error) {
                            }
      ];

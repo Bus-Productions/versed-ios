@@ -285,9 +285,11 @@
     [qr setObject:[question quizAnswerID] forKey:@"correct_answer_id"];
     [qr setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
     [self updateTotalPointsWithQuizResult:qr andQuestion:question];
+    [self.quizResults addObject:qr];
     [qr saveRemote:^(id responseObject){
+        NSUInteger indexOfQuizResult = [self.quizResults indexOfObject:qr];
         [qr setObject:question forKey:@"quiz_question"];
-        [self.quizResults addObject:qr];
+        [self.quizResults replaceObjectAtIndex:indexOfQuizResult withObject:qr];
         [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
         successCallback(@{@"quiz_results": self.quizResults});
     }failure:nil];

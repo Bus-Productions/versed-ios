@@ -171,6 +171,7 @@
         if (!NULL_TO_NIL([p objectForKey:@"user_answer"])) {
             VSPollQuestionViewController *vc = (VSPollQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollQuestionViewController"];
             [vc setPoll:p];
+            [vc setHideRightBarButton:YES];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
             VSPollResultsViewController *vc = (VSPollResultsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollResultsViewController"];
