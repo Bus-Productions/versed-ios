@@ -31,7 +31,7 @@
     
     [self showOrHideNextBar];
     
-    NSLog(@"question: %@", self.question);
+//    NSLog(@"question: %@", self.question);
     //NSLog(@"qr: %@", self.quizResults);
 }
 

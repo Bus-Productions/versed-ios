@@ -289,7 +289,9 @@
     [qr saveRemote:^(id responseObject){
         NSUInteger indexOfQuizResult = [self.quizResults indexOfObject:qr];
         [qr setObject:question forKey:@"quiz_question"];
-        [self.quizResults replaceObjectAtIndex:indexOfQuizResult withObject:qr];
+        if (indexOfQuizResult && indexOfQuizResult < self.quizResults.count) {
+            [self.quizResults replaceObjectAtIndex:indexOfQuizResult withObject:qr];
+        }
         [[LXSession thisSession] setUser:[[[responseObject objectForKey:@"user"] cleanDictionary] mutableCopy]];
         successCallback(@{@"quiz_results": self.quizResults});
     }failure:nil];
