@@ -211,6 +211,8 @@
     UILabel *lbl = (UILabel*)[cell.contentView viewWithTag:1];
     if (self.quizQuestions && self.quizQuestions.count > 0) {
         [lbl setText:[NSString stringWithFormat:@"This %lu-question quiz is a pulse check on your business knowledge. You have 20 seconds for each question. So, get ready - it's time to test your knowledge!", self.quizQuestions.count]];
+    } else if (isRequesting) {
+        [lbl setText:@""];
     } else {
         [lbl setText:@"You've already answered every quiz question! Don't worry, we'll continually be adding more questions."];
     }
