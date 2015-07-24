@@ -170,12 +170,27 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"tracks"]) {
-        return 276.0f;
+        NSMutableDictionary *track = [[self.myTracks objectAtIndex:indexPath.row] mutableCopy];
+        return 205.0f + [self heightForText:[track objectForKey:@"description"] width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         return 400.0f;
     }
     return 100.0f;
 }
+
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
+{
+    if (!text || [text length] == 0) {
+        return 0.0f;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 100000)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    return rect.size.height;
+}
+
 
 
 # pragma mark - ACTIONS

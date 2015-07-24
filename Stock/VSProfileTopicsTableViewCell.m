@@ -10,11 +10,13 @@
 
 @implementation VSProfileTopicsTableViewCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
@@ -33,17 +35,18 @@
     [pts setText:@"LIFETIME POINTS"];
     [pts setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:12.0f]];
     
-    UILabel *tracksCompleted = (UILabel*)[self viewWithTag:2];
-    [tracksCompleted setText:[NSString stringWithFormat:@"%@ of %@ %@ completed", [user completedTracksCount], [user liveTracksCount], [[user liveTracksCount] isEqualToString:@"1"] ? @"track" : @"tracks"]];
-    [tracksCompleted setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
-    [tracksCompleted setTextColor:[UIColor grayColor]];
+    UILabel *level = (UILabel*)[self viewWithTag:2];
+    [level setText:[NSString stringWithFormat:@"LEVEL: %@", [[user level] uppercaseString]]];
+    [level setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
     
-    UIProgressView *progressBar = (UIProgressView*)[self.contentView viewWithTag:3];
-    progressBar.progressTintColor  = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
-    progressBar.progress = [[user completedTracksCount] floatValue]/[[user liveTracksCount] floatValue];
-    CATransform3D transform = CATransform3DScale(progressBar.layer.transform, 1.0f, 3.0f, 1.0f);
-    progressBar.layer.transform = transform;
-
+    UILabel *points = (UILabel*)[self viewWithTag:3];
+    NSString *pointsToNextLevel = [user pointsToNextLevel];
+    if ([pointsToNextLevel isEqualToString:@"0"]) {
+        [points setText:@"You are at the highest level!"];
+    } else {
+        [points setText:[NSString stringWithFormat:@"Only %@ more %@ until you\nreach the next level.", pointsToNextLevel, [pointsToNextLevel isEqualToString:@"1"] ? @"point" : @"points"]];
+    }
+    [points setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
 }
 
 @end

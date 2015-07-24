@@ -28,7 +28,7 @@
     [congrats setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:32.0f]];
     
     UILabel *status = (UILabel*)[self viewWithTag:2];
-    [status setText:[NSString stringWithFormat:@"You've completed the %@ track. Your status: %@", [track headline], [[[[LXSession thisSession] user] level] uppercaseString]]];
+    [status setText:[NSString stringWithFormat:@"You've completed the %@ track.", [track headline]]]; // [[[[LXSession thisSession] user] level] uppercaseString]
     [status setTextColor:[UIColor whiteColor]];
     [status setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
 }

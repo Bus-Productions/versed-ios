@@ -43,7 +43,7 @@
                     headlineImage.image = image;
                 }
                 [UIView animateWithDuration:1.0f animations:^(void){
-                    [headlineImage setAlpha:1.0f];
+                    [headlineImage setAlpha:[self.track alphaForImage]];
                 }];
             });
         }
@@ -90,6 +90,16 @@
     [self.saveButton setBackgroundColor:[UIColor colorWithRed:0.925f green:0.925f blue:0.925f alpha:1.0f]];
     [self.saveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [[self.saveButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
+    
+    [baseView setAlpha:[self.track alphaForImage]];
+    [headlineImage setAlpha:[self.track alphaForImage]];
+    
+    UIImageView* readView = (UIImageView*)[baseView viewWithTag:43];
+    if ([self.track completed]) {
+        [readView setHidden:NO];
+    } else {
+        [readView setHidden:YES];
+    }
 }
 
 

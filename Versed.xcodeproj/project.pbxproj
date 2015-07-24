@@ -11,6 +11,8 @@
 		28204A311B45AFBA000D592C /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 28204A2E1B45AFBA000D592C /* 2.png */; };
 		28204A321B45AFBA000D592C /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 28204A2F1B45AFBA000D592C /* 3.png */; };
 		28204A341B45C7B4000D592C /* green_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 28204A331B45C7B4000D592C /* green_check.png */; };
+		282129611B60441E00B99850 /* talkbox_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 282129601B60441E00B99850 /* talkbox_black.png */; };
+		282129631B60487B00B99850 /* dark_v.png in Resources */ = {isa = PBXBuildFile; fileRef = 282129621B60487B00B99850 /* dark_v.png */; };
 		282CEA011B544D090076BE38 /* VSPromptOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 282CEA001B544D090076BE38 /* VSPromptOptions.m */; };
 		282CEA031B5579980076BE38 /* question_header_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 282CEA021B5579980076BE38 /* question_header_transparent.png */; };
 		283A44901B2A5CFC003012A7 /* people.png in Resources */ = {isa = PBXBuildFile; fileRef = 283A448F1B2A5CFC003012A7 /* people.png */; };
@@ -140,6 +142,8 @@
 		28204A2E1B45AFBA000D592C /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		28204A2F1B45AFBA000D592C /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		28204A331B45C7B4000D592C /* green_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_check.png; sourceTree = "<group>"; };
+		282129601B60441E00B99850 /* talkbox_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = talkbox_black.png; sourceTree = "<group>"; };
+		282129621B60487B00B99850 /* dark_v.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dark_v.png; sourceTree = "<group>"; };
 		282CE9FF1B544D090076BE38 /* VSPromptOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPromptOptions.h; sourceTree = "<group>"; };
 		282CEA001B544D090076BE38 /* VSPromptOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSPromptOptions.m; sourceTree = "<group>"; };
 		282CEA021B5579980076BE38 /* question_header_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_header_transparent.png; sourceTree = "<group>"; };
@@ -361,11 +365,13 @@
 			isa = PBXGroup;
 			children = (
 				282CEA021B5579980076BE38 /* question_header_transparent.png */,
+				282129601B60441E00B99850 /* talkbox_black.png */,
 				28204A331B45C7B4000D592C /* green_check.png */,
 				287684F11B2AC2B60076AB24 /* question_header.png */,
 				283A44941B2A93BD003012A7 /* checkmark.png */,
 				283A44951B2A93BD003012A7 /* talkbox.png */,
 				283A448F1B2A5CFC003012A7 /* people.png */,
+				282129621B60487B00B99850 /* dark_v.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -878,8 +884,10 @@
 				283A44991B2A9B3D003012A7 /* black_logo_sans.png in Resources */,
 				28204A301B45AFBA000D592C /* 1.png in Resources */,
 				28793F221B2898E200E2998F /* SourceSansPro-ExtraLightIt.otf in Resources */,
+				282129611B60441E00B99850 /* talkbox_black.png in Resources */,
 				28793F1E1B2898DE00E2998F /* SourceSansPro-BlackIt.otf in Resources */,
 				283A44961B2A93BD003012A7 /* checkmark.png in Resources */,
+				282129631B60487B00B99850 /* dark_v.png in Resources */,
 				28793F251B2898E200E2998F /* SourceSansPro-LightIt.otf in Resources */,
 				28793F201B2898E200E2998F /* SourceSansPro-BoldIt.otf in Resources */,
 				28793F1F1B2898E200E2998F /* SourceSansPro-Bold.otf in Resources */,
