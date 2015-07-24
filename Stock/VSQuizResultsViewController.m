@@ -211,8 +211,8 @@
     float qrCount = self.quizResults.count;
 
     if (([self.quizResults numberQuizResultsCorrect]/((self.quizResults && qrCount > 0) ? qrCount : 10)) <= 0.5) {
-        topLabelText = [NSString stringWithFormat:@"Keep practicing, %@!", [[[LXSession thisSession] user] firstName]];
-        bottomLabelText = [NSString stringWithFormat:@"With a little more reading, you can get a solid grasp on these topics."];
+        topLabelText = [NSString stringWithFormat:@"Don't get discouraged, %@!", [[[LXSession thisSession] user] firstName]];
+        bottomLabelText = [NSString stringWithFormat:@"Check out the tracks below to get versed on key topics."];
     }
     [topLabel setText:topLabelText];
     [topLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:28.0f]];
