@@ -32,8 +32,8 @@
     pageControlAppearance.currentPageIndicatorTintColor = [UIColor whiteColor];
     
     quotes = @[
-               @"To be successful, you have to stay up-to-speed on industry trends.\n\nBut it takes too much time to find good content. Versed can help.",
-               @"Versed solves information overload with expert-curated content, laser-focused on the top issues shaping business today.",
+               @"To be successful, you need to understand the external business landscape. Currently there is no timely way to build this knowledge. Versed can help.",
+               @"Versed solves the information overload problem with expert curated content that will get you up to speed on the forces and trends shaping business today.",
                @""
                ];
     images = @[
