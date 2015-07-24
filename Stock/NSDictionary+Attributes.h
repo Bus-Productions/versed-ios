@@ -31,6 +31,7 @@
 - (NSString*) numberResources;
 - (BOOL) completed;
 - (NSString*) resourceDate;
+- (CGFloat) alphaForImage;
 
 // quizzes
 - (NSMutableDictionary*) quiz;

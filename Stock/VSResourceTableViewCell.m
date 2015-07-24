@@ -64,9 +64,16 @@
     [readImage setImage:[UIImage imageNamed:@"green_check.png"]];
     if ([completedResources containsObject:[resource ID]]) {
         [readImage setHidden:NO];
+        [baseView setAlpha:0.7f];
+        [sourceView setAlpha:0.7f];
     } else {
         [readImage setHidden:YES];
+        [baseView setAlpha:1.0f];
+        [sourceView setAlpha:1.0f];
     }
+    
+    NSLog(@"height: %f %f", self.frame.size.height, descriptionLabel.frame.size.height);
+    NSLog(@"width: %f %f", self.frame.size.width, descriptionLabel.frame.size.width);
     
 }
 

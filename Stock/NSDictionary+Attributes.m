@@ -413,4 +413,10 @@
     float avg = ([c floatValue]/[t floatValue])*100.0;
     return [NSString stringWithFormat:@"%d%%", (int)roundf(avg)];
 }
+
+- (CGFloat) alphaForImage
+{
+    return [self completed] ? 0.7f : 1.0f;
+}
+
 @end
