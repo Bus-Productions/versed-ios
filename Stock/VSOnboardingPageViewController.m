@@ -32,7 +32,7 @@
     pageControlAppearance.currentPageIndicatorTintColor = [UIColor whiteColor];
     
     quotes = @[
-               @"To be successful, you need to understand the external business landscape. Currently there is no timely way to build this knowledge. Versed can help.",
+               @"To be successful, you need to understand the external business landscape. Currently there's no timely way to build this knowledge. Versed can help.",
                @"Versed solves the information overload problem with expert curated content that will get you up to speed on the forces and trends shaping business today.",
                @""
                ];

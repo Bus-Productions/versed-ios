@@ -23,7 +23,7 @@
 
 - (void) pressedAction
 {
-    NSString *url = [@"mailto:m@lxv.io?subject=Versed iOS Questions/Comments" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *url = [@"mailto:info@versedapp.com?subject=Versed iOS Questions/Comments" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [[UIApplication sharedApplication]  openURL: [NSURL URLWithString: url]];
 }
 

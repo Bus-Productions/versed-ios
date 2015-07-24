@@ -97,10 +97,6 @@
     VSReviewQuizTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"reviewQuizCell" forIndexPath:indexPath];
     [cell configureWithQuizResults:self.quizResults andPointsThatRound:self.pointsThatRound];
     
-    UIButton* button = (UIButton*)[cell.contentView viewWithTag:7];
-    [button removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-    [button addTarget:self action:@selector(showLeaderboard:) forControlEvents:UIControlEventTouchUpInside];
-    
     return cell;
 }
 
@@ -127,7 +123,7 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
         return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"reviewQuiz"]) {
-        return 170.0f;
+        return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"noMisses"]) {
         return 100.0f;
     }
