@@ -32,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self shouldSwitchToMyTracks];
+//    [self shouldSwitchToMyTracks];
 
     [self setupData];
     

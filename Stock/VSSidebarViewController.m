@@ -166,6 +166,6 @@
 }
 
 -(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
-    [self.revealViewController revealToggle:nil]; 
+    [self.revealViewController revealToggle:nil];
 }
 @end

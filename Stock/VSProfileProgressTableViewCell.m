@@ -36,8 +36,10 @@
     UIProgressView *progressBar = (UIProgressView*)[self.contentView viewWithTag:3];
     progressBar.progressTintColor  = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
     progressBar.progress = [[user completedTracksCount] floatValue]/[[user liveTracksCount] floatValue];
-    CATransform3D transform = CATransform3DScale(progressBar.layer.transform, 1.0f, 3.0f, 1.0f);
-    progressBar.layer.transform = transform;
+    if (progressBar.frame.size.height < 7.0) {
+        CATransform3D transform = CATransform3DScale(progressBar.layer.transform, 1.0f, 3.0f, 1.0f);
+        progressBar.layer.transform = transform;
+    }
 }
 
 @end

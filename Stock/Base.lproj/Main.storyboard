@@ -2778,23 +2778,6 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7M-Zm-c5k">
-                                                    <rect key="frame" x="40" y="110" width="520" height="46"/>
-                                                    <color key="backgroundColor" red="0.070588235289999995" green="0.47450980390000003" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="46" id="LFQ-Cs-LXy"/>
-                                                        <constraint firstAttribute="height" constant="46" id="Yyc-92-35r"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Show Leaderboard">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="LFQ-Cs-LXy"/>
-                                                        </mask>
-                                                    </variation>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kU7-oc-PAB">
                                                     <rect key="frame" x="203" y="16" width="194" height="50"/>
                                                     <constraints>
@@ -2851,10 +2834,8 @@
                                                 <constraint firstItem="Q8K-e9-bh0" firstAttribute="top" secondItem="09d-sM-w1z" secondAttribute="bottom" id="5Ua-3i-FVG"/>
                                                 <constraint firstItem="pjC-4X-ipY" firstAttribute="leading" secondItem="8me-Dr-l2b" secondAttribute="trailing" id="6Gh-QZ-wQ3"/>
                                                 <constraint firstItem="09d-sM-w1z" firstAttribute="width" secondItem="kU7-oc-PAB" secondAttribute="width" id="8Ze-Y1-J0q"/>
-                                                <constraint firstItem="Z7M-Zm-c5k" firstAttribute="leading" secondItem="Tug-xe-k3z" secondAttribute="leadingMargin" constant="32" id="8pN-6f-A8h"/>
                                                 <constraint firstItem="09d-sM-w1z" firstAttribute="trailing" secondItem="Tug-xe-k3z" secondAttribute="trailingMargin" id="9R0-TD-uas"/>
                                                 <constraint firstItem="0XW-Ns-f16" firstAttribute="top" secondItem="Tug-xe-k3z" secondAttribute="topMargin" constant="8" id="FIf-bn-gOy"/>
-                                                <constraint firstItem="Z7M-Zm-c5k" firstAttribute="top" secondItem="pjC-4X-ipY" secondAttribute="bottom" constant="23" id="GX3-4i-a9Z"/>
                                                 <constraint firstItem="8me-Dr-l2b" firstAttribute="top" secondItem="0XW-Ns-f16" secondAttribute="bottom" id="I1A-WW-KWK"/>
                                                 <constraint firstItem="pjC-4X-ipY" firstAttribute="height" secondItem="Q8K-e9-bh0" secondAttribute="height" id="IW3-Nv-kY6"/>
                                                 <constraint firstItem="pjC-4X-ipY" firstAttribute="height" secondItem="8me-Dr-l2b" secondAttribute="height" id="LbA-s1-jPq"/>
@@ -2867,7 +2848,6 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="Q8K-e9-bh0" secondAttribute="trailing" id="iMW-iy-nOQ"/>
                                                 <constraint firstItem="pjC-4X-ipY" firstAttribute="width" secondItem="8me-Dr-l2b" secondAttribute="width" id="m6m-zt-6hq"/>
                                                 <constraint firstItem="0XW-Ns-f16" firstAttribute="leading" secondItem="Tug-xe-k3z" secondAttribute="leadingMargin" id="sEN-fC-D71"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Z7M-Zm-c5k" secondAttribute="trailing" constant="32" id="tX8-Vf-h6S"/>
                                                 <constraint firstItem="Q8K-e9-bh0" firstAttribute="leading" secondItem="pjC-4X-ipY" secondAttribute="trailing" id="ts6-1T-u6k"/>
                                                 <constraint firstItem="kU7-oc-PAB" firstAttribute="top" secondItem="Tug-xe-k3z" secondAttribute="topMargin" constant="8" id="uv2-jk-uLV"/>
                                             </constraints>

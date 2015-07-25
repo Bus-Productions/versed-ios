@@ -54,10 +54,14 @@
     [labelRight setTextColor:[UIColor whiteColor]];
     
     UIButton* button = (UIButton*)[self.contentView viewWithTag:7];
-    [[button titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
+    if (button) {
+        [[button titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
+    }
     
     UIButton* showLeaderboard = (UIButton*)[self.contentView viewWithTag:8];
-    [[showLeaderboard titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
+    if (showLeaderboard) {
+        [[showLeaderboard titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
+    }
 }
 
 @end

@@ -63,7 +63,7 @@
     [nc setViewControllers:@[vc] animated:NO];
     
     [revealViewController setFrontViewController:nc];
-    [revealViewController revealToggleAnimated:YES];
+    [revealViewController revealToggleAnimated:NO];
 }
 
 
