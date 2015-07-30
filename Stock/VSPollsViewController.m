@@ -207,7 +207,7 @@
     [label setText:[pollKeys objectAtIndex:section]];
     [label setBackgroundColor:[UIColor clearColor]];
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor clearColor]];
+    [view setBackgroundColor:[UIColor colorWithRed:225.0/255.0 green:225.0/255.0 blue:225.0/255.0 alpha:1.0]];
     return view;
 }
 
