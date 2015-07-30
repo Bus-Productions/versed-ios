@@ -8,6 +8,10 @@
 
 #import "VSPollResultsViewController.h"
 #import "VSPollResultsTableViewCell.h"
+#import "VSPieChartTableViewCell.h"
+
+#define COLORS = [[NSArray alloc] initWithObjects:PNRed, PNGreen, PNBlue, PNLightBlue, PNLightGreen, PNYellow, PNPinkDark, PNBlack, nil];
+
 
 @interface VSPollResultsViewController ()
 
@@ -21,6 +25,7 @@
 {
     [super viewDidLoad];
     [self setupNavigationBar];
+    [self setupColors];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,6 +45,11 @@
     }
 }
 
+- (void) setupColors
+{
+   colors = [[NSArray alloc] initWithObjects:PNRed, PNGreen, PNBlue, PNLightBlue, PNLightGreen, PNYellow, PNPinkDark, PNBlack, nil];
+}
+
 - (void) exit
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -52,6 +62,7 @@
     self.sections = [[NSMutableArray alloc] init];
     if (self.poll) {
         [self.sections addObject:@"header"];
+        [self.sections addObject:@"chart"];
         [self.sections addObject:@"answers"];
     }
     return self.sections.count;
@@ -62,6 +73,8 @@
     if ([[self.sections objectAtIndex:section] isEqualToString:@"answers"]) {
         return [[self.poll pollAnswers] count];
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"chart"]) {
         return 1;
     }
     return 0;
@@ -74,6 +87,8 @@
         return [self tableView:self.tableView answerCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
         return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"chart"]) {
+        return [self tableView:self.tableView chartCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -88,10 +103,6 @@
     [headerLabel setText:[currentPoll pollQuestion]];
     [headerLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:28.0f]];
     
-    UILabel* numberTaken = (UILabel*)[cell.contentView viewWithTag:2];
-    [numberTaken setText:[NSString stringWithFormat:@"%@ %@", [currentPoll numberTaken], [[currentPoll numberTaken] isEqualToString:@"1"] ? @"total response" : @"total responses"]];
-    [numberTaken setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:12.0f]];
-    
     return cell;
 }
 
@@ -99,7 +110,16 @@
 {
     VSPollResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"pollResultsCell" forIndexPath:indexPath];
     
-    [cell configureWithPollResult:[[self.poll pollAnswers] objectAtIndex:indexPath.row] andUserAnswer:[self.poll objectForKey:@"user_answer"]];
+    [cell configureWithPoll:self.poll andIndexPath:indexPath andColors:colors];
+    
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView chartCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSPieChartTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"pieChartCell" forIndexPath:indexPath];
+    
+    [cell configureWithPoll:self.poll andColors:colors];
     
     return cell;
 }
@@ -107,9 +127,11 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
-        return 120.0f;
+        return 80.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
-        return 200.0f;
+        return 150.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"chart"]) {
+        return 260.0f;
     }
     return 100.0f;
 }

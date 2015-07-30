@@ -10,6 +10,6 @@
 
 @interface VSPollResultsTableViewCell : UITableViewCell
 
-- (void) configureWithPollResult:(NSMutableDictionary*)pollAnswer andUserAnswer:(NSMutableDictionary*)userAnswer;
+- (void) configureWithPoll:(NSMutableDictionary*)poll andIndexPath:(NSIndexPath *)indexPath andColors:(NSArray*)colors;
 
 @end

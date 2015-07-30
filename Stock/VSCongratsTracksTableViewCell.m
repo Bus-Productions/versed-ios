@@ -7,7 +7,6 @@
 //
 
 #import "VSCongratsTracksTableViewCell.h"
-#import <YLProgressBar.h>
 
 @implementation VSCongratsTracksTableViewCell
 
