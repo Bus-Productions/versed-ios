@@ -44,7 +44,7 @@
 
 - (void) setupSidebar
 {
-    [self setTitle:@"Guesstimates"];
+    [self setTitle:@"Viewpoints"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
     [revealViewController setDelegate:self];
@@ -157,7 +157,7 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
 
-    [cell configureWithText:@"Sorry there are no guesstimates at this time!"];
+    [cell configureWithText:@"Sorry there are no viewpoints at this time!"];
     
     return cell;
 }

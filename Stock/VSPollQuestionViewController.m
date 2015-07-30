@@ -37,7 +37,7 @@
 
 - (void) setupNavigationBar
 {
-    [self.navigationItem setTitle:@"Guesstimates"];
+    [self.navigationItem setTitle:@"Viewpoints"];
     self.navigationItem.backBarButtonItem =
     [[UIBarButtonItem alloc] initWithTitle:@"Back"
                                       style:UIBarButtonItemStylePlain
@@ -88,7 +88,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
     
     UILabel* title = (UILabel*)[cell.contentView viewWithTag:1];
-    [title setText:@"guesstimates"];
+    [title setText:@"viewpoints"];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:32.0f]];
     
     UILabel* byline = (UILabel*)[cell.contentView viewWithTag:2];
