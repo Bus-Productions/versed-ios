@@ -2041,6 +2041,22 @@
             </objects>
             <point key="canvasLocation" x="5516" y="114"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Fe8-sz-Bko">
+            <objects>
+                <navigationController id="jH0-i1-dEl" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cP0-Yl-LkB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DpA-r5-h7v" kind="relationship" relationship="rootViewController" id="mX5-g5-Zff"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Fw-cP-P3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4836" y="-578"/>
+        </scene>
         <!--Quiz Results View Controller-->
         <scene sceneID="QYt-6L-xfM">
             <objects>
@@ -2053,7 +2069,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="H4r-bM-HvX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="H4r-bM-HvX">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -2518,13 +2534,21 @@
                             <constraint firstItem="H4r-bM-HvX" firstAttribute="bottom" secondItem="dcb-HY-g1t" secondAttribute="top" id="vwo-2X-7PN"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="dyI-qa-ISN">
+                        <barButtonItem key="leftBarButtonItem" image="burgermenu.png" id="u3I-Ya-IQC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="slideButton" destination="u3I-Ya-IQC" id="Jwj-4E-mVs"/>
                         <outlet property="tableView" destination="H4r-bM-HvX" id="KWL-An-cCH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3v-Wz-moY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4801" y="-578"/>
+            <point key="canvasLocation" x="5617" y="-578"/>
         </scene>
         <!--Dashboard View Controller-->
         <scene sceneID="kAX-Dl-oxh">
@@ -2724,7 +2748,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUn-PF-big" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5492" y="-578"/>
+            <point key="canvasLocation" x="6308" y="-578"/>
         </scene>
         <!--Review Quiz View Controller-->
         <scene sceneID="Wz1-nJ-ajr">
@@ -2950,7 +2974,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m3p-ry-FCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6182" y="-578"/>
+            <point key="canvasLocation" x="6998" y="-578"/>
         </scene>
         <!--My Tracks View Controller-->
         <scene sceneID="LOW-n0-m4m">

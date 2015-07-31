@@ -7,6 +7,7 @@
 //
 
 #import "VSResourceTableViewCell.h"
+#define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
 @implementation VSResourceTableViewCell
 
@@ -38,7 +39,7 @@
     [subtitle setTextColor:[UIColor grayColor]];
     
     UILabel* descriptionLabel = (UILabel*)[baseView viewWithTag:3];
-    [descriptionLabel setText:[resource objectForKey:@"description"]];
+    [descriptionLabel setText:[NSString stringWithFormat:@"%@ %@", [resource objectForKey:@"description"], NULL_TO_NIL([resource objectForKey:@"paywall"]) ? [resource objectForKey:@"paywall"] : @""]];
     [descriptionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
     [descriptionLabel setTextColor:[UIColor grayColor]];
     

@@ -245,7 +245,6 @@
         [self showAlertWithText:@"You ran out of time!"];
     }
     [[correctCell.contentView viewWithTag:1] setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
-    [(UILabel*)[correctCell.contentView viewWithTag:1] setTextColor:[UIColor whiteColor]];
 
     successCallback(nil);
     
