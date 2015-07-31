@@ -107,6 +107,10 @@
     [label setTextColor:[UIColor whiteColor]];
     [label setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:20.0f]];
     
+    UIView *selectionColor = [[UIView alloc] init];
+    selectionColor.backgroundColor = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
+    cell.selectedBackgroundView = selectionColor;
+    
     return cell;
 }
 

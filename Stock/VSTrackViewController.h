@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VSSaveToMyTracksButton.h"
 
 @interface VSTrackViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray *myTracksIDs;
-    VSSaveToMyTracksButton *saveToMyTracksButton;
     NSMutableArray *completedPeople;
     NSMutableArray *usersDiscussing;
     NSMutableArray *completedResources; 

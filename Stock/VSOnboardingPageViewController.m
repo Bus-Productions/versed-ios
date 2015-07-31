@@ -27,12 +27,12 @@
     [self setDataSource:self];
     
     UIPageControl *pageControlAppearance = [UIPageControl appearanceWhenContainedIn:[UIPageViewController class], nil];
-//    [pageControlAppearance setBackgroundColor:[UIColor clearColor]];
-    pageControlAppearance.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControlAppearance.currentPageIndicatorTintColor = [UIColor whiteColor];
+//    [pageControlAppearance setBackgroundColor:[UIColor whiteColor]];
+    pageControlAppearance.pageIndicatorTintColor = [UIColor whiteColor];
+    pageControlAppearance.currentPageIndicatorTintColor = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
     
     quotes = @[
-               @"To be successful, you need to understand the external business landscape. Currently there's no timely way to build this knowledge. Versed can help.",
+               @"To be successful, you need to understand the external business landscape. \n\nCurrently there's no timely way to build this knowledge. Versed can help.",
                @"Versed solves the information overload problem with expert curated content that will get you up to speed on the forces and trends shaping business today.",
                @""
                ];

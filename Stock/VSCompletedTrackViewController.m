@@ -36,9 +36,7 @@
 
 - (void) setupNavigationBar
 {
-    saveToMyTracksButton = [VSSaveToMyTracksButton initWithTrack:self.track andMyTrackIDs:myTracksIDs];
-    [saveToMyTracksButton addTarget:self action:@selector(saveMyTrackButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationItem setTitleView:saveToMyTracksButton];
+    [self.navigationItem setTitle:[self.track headline]];
 }
 
 #pragma mark - Table view data source
@@ -119,12 +117,4 @@
     return 100.0f;
 }
 
-
-
-# pragma mark - Actions
-
-- (void) saveMyTrackButtonPressed
-{
-    [saveToMyTracksButton updateMyTracks];
-}
 @end

@@ -76,9 +76,7 @@
 
 - (void) setNavTitle
 {
-    saveToMyTracksButton = [VSSaveToMyTracksButton initWithTrack:self.track andMyTrackIDs:myTracksIDs];
-    [saveToMyTracksButton addTarget:self action:@selector(saveMyTrackButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationItem setTitleView:saveToMyTracksButton];
+    [self.navigationItem setTitle:[self.track headline]];
 }
 
 -(void) setupConstraints
@@ -118,12 +116,6 @@
 }
 
 # pragma mark - Actions
-
-- (void) saveMyTrackButtonPressed
-{
-    [saveToMyTracksButton updateMyTracks];
-}
-
 
 - (void) toggleSaveButton
 {

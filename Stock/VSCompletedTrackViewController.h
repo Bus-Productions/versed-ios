@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "VSSaveToMyTracksButton.h"
 
 @interface VSCompletedTrackViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-{
-    VSSaveToMyTracksButton *saveToMyTracksButton;
-}
+
 @property (strong, nonatomic) NSMutableArray *sections;
 @property (strong, nonatomic) NSMutableArray *usersCompleted;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

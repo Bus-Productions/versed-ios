@@ -31,6 +31,10 @@
     [level setText:[NSString stringWithFormat:@"Level: %@", [[[[LXSession thisSession] user] level] uppercaseString]]];
     [level setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
     [level setTextColor:[UIColor whiteColor]];
+    
+    UIView *selectionColor = [[UIView alloc] init];
+    selectionColor.backgroundColor = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
+    self.selectedBackgroundView = selectionColor;
 }
 
 @end
