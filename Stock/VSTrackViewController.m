@@ -155,9 +155,10 @@
     
     [self.sections addObject:@"header"];
     
-    [self.sections addObject:@"editorsNote"];
-    
-    [self.sections addObject:@"resources"];
+    if ([self.track resources] && [[self.track resources] count] > 0) {
+        [self.sections addObject:@"editorsNote"];
+        [self.sections addObject:@"resources"];
+    }
     
     return self.sections.count;
 }
