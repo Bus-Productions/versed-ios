@@ -208,7 +208,7 @@
         return 90.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"messages"]) {
         NSDictionary* message = [self.allMessages objectAtIndex:indexPath.row];
-        return 61.0f + [self heightForText:[message message] width:(self.view.frame.size.width-16.0) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+        return 61.0f + [self heightForText:[message message] width:(self.view.frame.size.width-16.0) font:[UIFont fontWithName:@"SourceSansPro-Bold" size:14.0f]];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         
     }
