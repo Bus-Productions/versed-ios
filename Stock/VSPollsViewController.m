@@ -172,11 +172,13 @@
             VSPollQuestionViewController *vc = (VSPollQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollQuestionViewController"];
             [vc setPoll:p];
             [vc setHideRightBarButton:YES];
+            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
             VSPollResultsViewController *vc = (VSPollResultsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollResultsViewController"];
             [vc setPoll:p];
             [vc setHideRightBarButton:YES];
+            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
             [self.navigationController pushViewController:vc animated:YES];
         }
 

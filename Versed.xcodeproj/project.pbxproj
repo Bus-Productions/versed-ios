@@ -120,6 +120,8 @@
 		76DEE7261B29EB2800323EA0 /* VSFaqShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEE7251B29EB2800323EA0 /* VSFaqShowViewController.m */; };
 		76DEE7291B29ED1300323EA0 /* VSFaqQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEE7281B29ED1300323EA0 /* VSFaqQuestionTableViewCell.m */; };
 		76DEE72C1B29EDE800323EA0 /* VSFaqResponseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEE72B1B29EDE800323EA0 /* VSFaqResponseTableViewCell.m */; };
+		76EB2F091B710928008C3840 /* VSEditorsNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76EB2F081B710928008C3840 /* VSEditorsNoteTableViewCell.m */; };
+		76EB2F0C1B711108008C3840 /* UIView+Fold.m in Sources */ = {isa = PBXBuildFile; fileRef = 76EB2F0B1B711108008C3840 /* UIView+Fold.m */; };
 		76F0D5921B28D31500F54C56 /* VSCongratsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D5911B28D31500F54C56 /* VSCongratsViewController.m */; };
 		76F0D5951B28DDE400F54C56 /* VSCongratsStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D5941B28DDE400F54C56 /* VSCongratsStatusTableViewCell.m */; };
 		76F0D5981B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D5971B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m */; };
@@ -331,6 +333,10 @@
 		76DEE7281B29ED1300323EA0 /* VSFaqQuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFaqQuestionTableViewCell.m; sourceTree = "<group>"; };
 		76DEE72A1B29EDE800323EA0 /* VSFaqResponseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFaqResponseTableViewCell.h; sourceTree = "<group>"; };
 		76DEE72B1B29EDE800323EA0 /* VSFaqResponseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFaqResponseTableViewCell.m; sourceTree = "<group>"; };
+		76EB2F071B710928008C3840 /* VSEditorsNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSEditorsNoteTableViewCell.h; sourceTree = "<group>"; };
+		76EB2F081B710928008C3840 /* VSEditorsNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSEditorsNoteTableViewCell.m; sourceTree = "<group>"; };
+		76EB2F0A1B711108008C3840 /* UIView+Fold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Fold.h"; sourceTree = "<group>"; };
+		76EB2F0B1B711108008C3840 /* UIView+Fold.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Fold.m"; sourceTree = "<group>"; };
 		76F0D5901B28D31400F54C56 /* VSCongratsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCongratsViewController.h; sourceTree = "<group>"; };
 		76F0D5911B28D31500F54C56 /* VSCongratsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCongratsViewController.m; sourceTree = "<group>"; };
 		76F0D5931B28DDE400F54C56 /* VSCongratsStatusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCongratsStatusTableViewCell.h; sourceTree = "<group>"; };
@@ -545,6 +551,8 @@
 				28A533E81ACF697C0049B3F7 /* LXDate+RailsTimeConverter.m */,
 				28A534081ACF75C70049B3F7 /* LXAddressBook.h */,
 				28A534071ACF75C70049B3F7 /* LXAddressBook.m */,
+				76EB2F0A1B711108008C3840 /* UIView+Fold.h */,
+				76EB2F0B1B711108008C3840 /* UIView+Fold.m */,
 			);
 			name = LXV;
 			sourceTree = "<group>";
@@ -761,6 +769,8 @@
 				76698E001B55760D0031BA21 /* VSShowResultsTableViewCell.m */,
 				7634C1151B6AA96C0030C84B /* VSPieChartTableViewCell.h */,
 				7634C1161B6AA96C0030C84B /* VSPieChartTableViewCell.m */,
+				76EB2F071B710928008C3840 /* VSEditorsNoteTableViewCell.h */,
+				76EB2F081B710928008C3840 /* VSEditorsNoteTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1022,6 +1032,7 @@
 				760CFD401B25D5BC00A9C875 /* VSMessageTableViewCell.m in Sources */,
 				28A533F21ACF698F0049B3F7 /* LXString+NSString.m in Sources */,
 				76F0D5921B28D31500F54C56 /* VSCongratsViewController.m in Sources */,
+				76EB2F0C1B711108008C3840 /* UIView+Fold.m in Sources */,
 				764060DB1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m in Sources */,
 				28A534001ACF69AF0049B3F7 /* UIImage+Helpers.m in Sources */,
 				760F5D531B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m in Sources */,
@@ -1029,6 +1040,7 @@
 				76F0D5981B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m in Sources */,
 				7664082A1B1E5B20006272E8 /* VSPollsTableViewCell.m in Sources */,
 				28A533EF1ACF69850049B3F7 /* LXSession.m in Sources */,
+				76EB2F091B710928008C3840 /* VSEditorsNoteTableViewCell.m in Sources */,
 				766408341B1E74AE006272E8 /* VSPollAnswerTableViewCell.m in Sources */,
 				7608296C1B16466F0053E29F /* VSLeaderTableViewCell.m in Sources */,
 				76698DFE1B55600E0031BA21 /* VSWeaknessesTableViewCell.m in Sources */,

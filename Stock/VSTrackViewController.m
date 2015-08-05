@@ -18,6 +18,7 @@
 #import "VSCongratsViewController.h"
 #import "VSTrackTitleTableViewCell.h"
 #import "VSResourceViewController.h"
+#import "VSEditorsNoteTableViewCell.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -87,6 +88,7 @@
         self.track = [[[NSUserDefaults standardUserDefaults] objectForKey:[self.track keyForTrack]] mutableCopy];
     }
     myTracksIDs = [[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] ? [[[[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] mutableCopy] pluckIDs] : [[NSMutableArray alloc] init];
+    expandedCells = [[NSMutableSet alloc] init];
 }
 
 - (void) setupBottomView
@@ -144,6 +146,8 @@
     
     [self.sections addObject:@"header"];
     
+//    [self.sections addObject:@"editorsNote"];
+    
     [self.sections addObject:@"resources"];
     
     return self.sections.count;
@@ -154,6 +158,8 @@
     if ([[self.sections objectAtIndex:section] isEqualToString:@"resources"]) {
         return [[self.track resources] count];
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"editorsNote"]) {
         return 1;
     }
     return 0;
@@ -166,6 +172,8 @@
         return [self tableView:self.tableView resourcesCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
         return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
+        return [self tableView:self.tableView editorsNoteCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -189,6 +197,15 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView editorsNoteCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"editorsNoteCell"];
+    
+    [cell configureWithDetails:[expandedCells containsObject:@"editorsNote"] andTrack:self.track];
+    
+    return cell;
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
@@ -201,6 +218,17 @@
         [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
         [webViewController setTrack:self.track];
         [self.navigationController pushViewController:webViewController animated:YES];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
+        VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        if ([expandedCells containsObject:@"editorsNote"]) {
+            [expandedCells removeObject:@"editorsNote"];
+            [cell animateClosed];
+        } else {
+            [expandedCells addObject:@"editorsNote"];
+            [cell animateOpen]; 
+        }
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+                         withRowAnimation:UITableViewRowAnimationNone];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -212,6 +240,9 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
         return 117.0f + [self heightForText:[[[self.track resources] objectAtIndex:indexPath.row] objectForKey:@"description"] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
         return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.estimatedRowHeight = 50.f;
     }
     return 100.0f;
 }

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface VSResourceViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>
+@interface VSResourceViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 {
     BOOL webViewFinishedLoading;
     IBOutlet UIProgressView* myProgressView;
