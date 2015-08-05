@@ -74,6 +74,8 @@
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
+    singleFingerTap.numberOfTapsRequired = 1;
+    singleFingerTap.delegate = self;
     [self.webView addGestureRecognizer:singleFingerTap];
 }
 
@@ -95,8 +97,16 @@
 
 - (void) handleSingleTap:(id)sender
 {
-    NSLog(@"navbar tapped!");
-    [self hideNavBarOnSwipe:NO];
+    if (self.navigationController.navigationBarHidden) {
+        [self hideNavBarOnSwipe:NO];
+    } else {
+        [self hideNavBarOnSwipe:YES];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 # pragma mark - UIWebView Delegate
