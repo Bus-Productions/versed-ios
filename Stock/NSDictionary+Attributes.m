@@ -284,6 +284,11 @@
     return [self objectForKey:@"category_name"];
 }
 
+- (NSString*) editorsNote
+{
+    return [self objectForKey:@"editors_note"];
+}
+
 - (NSString*) faqQuestion
 {
     return [self objectForKey:@"faq_question"];

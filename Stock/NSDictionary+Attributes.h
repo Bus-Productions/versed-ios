@@ -32,6 +32,7 @@
 - (BOOL) completed;
 - (NSString*) resourceDate;
 - (CGFloat) alphaForImage;
+- (NSString*) editorsNote;
 
 // quizzes
 - (NSMutableDictionary*) quiz;

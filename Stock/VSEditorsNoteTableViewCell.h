@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIView+Fold.h"
 
 @interface VSEditorsNoteTableViewCell : UITableViewCell
 
-@property (nonatomic, assign) BOOL withDetails;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailContainerViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *detailContainerView;
+@property (strong, nonatomic) NSMutableDictionary *track;
+@property (strong, nonatomic) NSMutableArray *myTrackIDs;
 
-- (void) configureWithDetails:(BOOL)details andTrack:(NSMutableDictionary*)track; 
-- (void)animateOpen;
-- (void)animateClosed;
+- (void) configure;
+- (IBAction)saveToMyTracks:(id)sender;
 
 @end
