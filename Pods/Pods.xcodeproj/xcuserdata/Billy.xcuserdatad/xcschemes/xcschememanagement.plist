@@ -4,6 +4,26 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>MGEvents.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
+		<key>PNChart.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -86,10 +106,45 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>PromiseKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
+		<key>SGHTTPRequest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+		<key>SGImageCache.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
+		<key>SVWebViewController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
+		<key>SWRevealViewController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>22</integer>
+		</dict>
+		<key>UICountingLabel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0266B41E279A12EE0A1D02F8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03799983EB1BEF0A07CBFFFE5FFBAB5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -100,6 +155,11 @@
 			<true/>
 		</dict>
 		<key>111DF1EE77B8A65D083223F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1E6D88BCBCE91835033CFC418A2B8AD8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -129,6 +189,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>35DE7DE41F15107DA4E52B4EE40CC31A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3A3A759CFB50AA8F33168CDC</key>
 		<dict>
 			<key>primary</key>
@@ -144,12 +209,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4523CC296C765D9DE346B82E441C1C55</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4CB2A54C8C089CE4F489120E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>584E518EAB69D30E2DFF42C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>594434B534C8C8DA75BADFA05F5E996B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -194,6 +269,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>947F7DE3ADAFFC5E17D8EAD45B087EE6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A49329CAFD38ABA6319FCA1E</key>
 		<dict>
 			<key>primary</key>
@@ -224,12 +304,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C78C52AD76B33912DC3263D7C971BDA2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CBE133D09659CD777BAB96513D6269D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D62C1E175E332B08DF4D9FB1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>DAC0DCB9B51971269A7A4E92C2312DF9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DDD01D3ECBC5EBD98E074204</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF6B62D79728EF0641BA03AAAE9C576B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -255,6 +355,11 @@
 			<true/>
 		</dict>
 		<key>F0616D2D5BEEF2ABC4F10B77</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3EFB078901B1FAC1D353628DDED2A77</key>
 		<dict>
 			<key>primary</key>
 			<true/>
