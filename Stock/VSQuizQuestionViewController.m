@@ -239,7 +239,7 @@
         chosenCell = [self.tableView cellForRowAtIndexPath:indexPath];
         if (![chosenCell isEqual:correctCell]) {
             [[chosenCell.contentView viewWithTag:1] setBackgroundColor:[UIColor grayColor]];
-            [(UILabel*)[chosenCell.contentView viewWithTag:1] setTextColor:[UIColor blackColor]];
+            [(UILabel*)[chosenCell.contentView viewWithTag:1] setTextColor:[UIColor whiteColor]];
         }
     } else {
         [self showAlertWithText:@"You ran out of time!"];

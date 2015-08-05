@@ -74,9 +74,7 @@
 
 - (void) setupNavigationBar
 {
-    saveToMyTracksButton = [VSSaveToMyTracksButton initWithTrack:self.track andMyTrackIDs:myTracksIDs];
-    [saveToMyTracksButton addTarget:self action:@selector(saveMyTrackButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationItem setTitleView:saveToMyTracksButton];
+    [self.navigationItem setTitle:[self.track headline]];
 }
 
 - (void) setupData
@@ -96,13 +94,18 @@
     [self.joinDiscussionButton setTitle:@"" forState:UIControlStateNormal];
     [self.seeCompletedButton setTitle:@"" forState:UIControlStateNormal];
     
+    UIView *leftBorder = [[UIView alloc] initWithFrame:CGRectMake(1, 10, 1, self.joinDiscussionButton.frame.size.height - 20)];
+    leftBorder.backgroundColor = [UIColor whiteColor];
+    [leftBorder setAlpha:0.1];
+    [self.joinDiscussionButton addSubview:leftBorder];
+    
     UILabel* leftLabel = (UILabel*) [self.bottomToolbarView viewWithTag:1];
     [leftLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
     [leftLabel setText:[NSString stringWithFormat:@"%@ %@ completed this track", [completedPeople formattedPluralizationForSingular:@"person" orPlural:@"people"], ([completedPeople count] == 1 ? @"has" : @"have")]];
     
     UILabel* rightLabel = (UILabel*) [self.bottomToolbarView viewWithTag:2];
     [rightLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
-    [rightLabel setText:[NSString stringWithFormat:@"%@ %@ discussing", [usersDiscussing formattedPluralizationForSingular:@"person" orPlural:@"people"], usersDiscussing.count == 1 ? @"is" : @"are"]];
+    [rightLabel setText:[NSString stringWithFormat:@"%@ %@ discussing this track", [usersDiscussing formattedPluralizationForSingular:@"person" orPlural:@"people"], usersDiscussing.count == 1 ? @"is" : @"are"]];
 }
 
 # pragma mark - Reload/Request
@@ -305,10 +308,6 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void) saveMyTrackButtonPressed
-{
-    [saveToMyTracksButton updateMyTracks]; 
-}
 
 
 

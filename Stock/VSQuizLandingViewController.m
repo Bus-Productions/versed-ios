@@ -212,7 +212,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"explanationCell" forIndexPath:indexPath];
     UILabel *lbl = (UILabel*)[cell.contentView viewWithTag:1];
     if (self.quizQuestions && self.quizQuestions.count > 0) {
-        [lbl setText:[NSString stringWithFormat:@"This %lu-question quiz is a pulse check on your knowledge of the forces and trends shaping business. You have 20 seconds for each question. So, get ready - it's time to test your business acumen!", self.quizQuestions.count]];
+        [lbl setText:[NSString stringWithFormat:@"This %lu-question quiz is a pulse check on the forces and trends shaping business. You have 20 seconds for each question. Get ready - it's time to test your knowledge!", self.quizQuestions.count]];
     } else if (isRequesting) {
         [lbl setText:@""];
     } else {
@@ -329,7 +329,7 @@
     [vc setQuizResults:self.quizResults];
     [vc setDelegate:self];
     [self.navigationController popToRootViewControllerAnimated:NO];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 - (void) pushDashboardOnStack

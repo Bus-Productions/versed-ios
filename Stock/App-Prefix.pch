@@ -27,6 +27,6 @@
 #import "LXArrayObjects.h"
 #import "NSArray+Attributes.h"
 #import "SGImageCache.h"
-#import <YLProgressBar.h>
+#import "PNChart.h"
 
 #endif

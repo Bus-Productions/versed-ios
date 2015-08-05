@@ -22,6 +22,8 @@ PODS:
     - AFNetworking/NSURLSession
   - MBProgressHUD (0.9.1)
   - MGEvents (1.0.3)
+  - PNChart (0.8.5):
+    - UICountingLabel (~> 1.2.0)
   - PromiseKit/base (1.5.3):
     - PromiseKit/Promise
     - PromiseKit/Until
@@ -41,25 +43,26 @@ PODS:
     - SGHTTPRequest
   - SVWebViewController (1.0)
   - SWRevealViewController (2.3.0)
-  - YLProgressBar (3.7.1)
+  - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2)
   - MBProgressHUD (~> 0.8)
+  - PNChart
   - SGImageCache
   - SVWebViewController
   - SWRevealViewController (~> 2.3)
-  - YLProgressBar (~> 3.7.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MGEvents: 739ea3e582a8df05bd1044500c7fb6d8f7aff5c8
+  PNChart: 353d27a13634c94d090ed65909776d5ceab55f31
   PromiseKit: ecdccab1791b95b4752a9fac57223044f5a6c105
   SGHTTPRequest: f3544a44833166124059f277014707e684abe13b
   SGImageCache: 1e6603abf78144f593a82ebc7594f12c8adcb036
   SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
-  YLProgressBar: 04baeddfda977c690a97da7c834108ce976f892c
+  UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

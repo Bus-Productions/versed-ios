@@ -179,7 +179,7 @@
     for (UIButton* button in self.menuButtons) {
         if (button.tag == tagIndex) {
             [button setSelected:YES];
-            [button setBackgroundColor:[UIColor lightGrayColor]];
+            [button setBackgroundColor:[UIColor colorWithRed:0.925f green:0.925f blue:0.925f alpha:1.0f]];
         } else {
             [button setSelected:NO];
             [button setBackgroundColor:[UIColor clearColor]];
@@ -280,7 +280,8 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     VSTrackViewController *vc = (VSTrackViewController*)[storyboard instantiateViewControllerWithIdentifier:@"trackViewController"];
     [vc setTrack:[[[[self.categoriesWithTracks objectAtIndex:selectedIndex] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:vc animated:YES]; 
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

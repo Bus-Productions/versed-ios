@@ -73,6 +73,7 @@
 		760F5D561B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D551B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m */; };
 		760F5D5C1B0BB30D0038FF1A /* VSButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D5B1B0BB30D0038FF1A /* VSButtonTableViewCell.m */; };
 		760F5D661B0BCF4A0038FF1A /* VSQuizLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D651B0BCF4A0038FF1A /* VSQuizLandingViewController.m */; };
+		7634C1171B6AA96C0030C84B /* VSPieChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7634C1161B6AA96C0030C84B /* VSPieChartTableViewCell.m */; };
 		7636ED891B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636ED881B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m */; };
 		7636ED8F1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636ED8E1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m */; };
 		764060D11B2742D2004FA5CC /* VSProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060D01B2742D2004FA5CC /* VSProfileTableViewCell.m */; };
@@ -236,6 +237,8 @@
 		760F5D5B1B0BB30D0038FF1A /* VSButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSButtonTableViewCell.m; sourceTree = "<group>"; };
 		760F5D641B0BCF4A0038FF1A /* VSQuizLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizLandingViewController.h; sourceTree = "<group>"; };
 		760F5D651B0BCF4A0038FF1A /* VSQuizLandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizLandingViewController.m; sourceTree = "<group>"; };
+		7634C1151B6AA96C0030C84B /* VSPieChartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPieChartTableViewCell.h; sourceTree = "<group>"; };
+		7634C1161B6AA96C0030C84B /* VSPieChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSPieChartTableViewCell.m; sourceTree = "<group>"; };
 		7636ED871B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSNoMissesQuizTableViewCell.h; sourceTree = "<group>"; };
 		7636ED881B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSNoMissesQuizTableViewCell.m; sourceTree = "<group>"; };
 		7636ED8D1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSMissedQuestionTableViewCell.h; sourceTree = "<group>"; };
@@ -756,6 +759,8 @@
 				76698DFD1B55600E0031BA21 /* VSWeaknessesTableViewCell.m */,
 				76698DFF1B55760D0031BA21 /* VSShowResultsTableViewCell.h */,
 				76698E001B55760D0031BA21 /* VSShowResultsTableViewCell.m */,
+				7634C1151B6AA96C0030C84B /* VSPieChartTableViewCell.h */,
+				7634C1161B6AA96C0030C84B /* VSPieChartTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -967,6 +972,7 @@
 				76F0D59B1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m in Sources */,
 				760829721B1791EC0053E29F /* VSForgotPasswordViewController.m in Sources */,
 				76BC95631B4AFCC7006785F9 /* VSOnboardingPageViewController.m in Sources */,
+				7634C1171B6AA96C0030C84B /* VSPieChartTableViewCell.m in Sources */,
 				7666FC361B0697B000051C93 /* VSResourceTableViewCell.m in Sources */,
 				28793F041B288C3F00E2998F /* NSArray+Attributes.m in Sources */,
 				282CEA011B544D090076BE38 /* VSPromptOptions.m in Sources */,

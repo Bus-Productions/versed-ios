@@ -271,7 +271,12 @@
 
 - (NSString*) percentage
 {
-    return [NSString stringWithFormat:@"%.01f%%", [[self objectForKey:@"percentage"] floatValue]];
+    return [NSString stringWithFormat:@"%.00f%%", [[self objectForKey:@"percentage"] floatValue]];
+}
+
+- (float) percentageAsFloat
+{
+    return [[self objectForKey:@"percentage"] floatValue];
 }
 
 - (NSString*) categoryName

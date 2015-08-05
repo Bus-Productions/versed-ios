@@ -46,10 +46,10 @@
     
     [self.messageLabel setText:self.text];
     [self.messageLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
-    if ([self.text containsString:@"top issues shaping business today."]) {
-        [self.messageLabel boldSubstring:@"top issues shaping business today."];
-    } else if ([self.text containsString:@"too much time to find good content."]) {
-        [self.messageLabel boldSubstring:@"too much time to find good content."];
+    if ([self.text containsString:@"no timely way to build this knowledge."]) {
+        [self.messageLabel boldSubstring:@"no timely way to build this knowledge."];
+    } else if ([self.text containsString:@"forces and trends shaping business today."]) {
+        [self.messageLabel boldSubstring:@"forces and trends shaping business today."];
     }
     
     if (!self.text || [self.text length] == 0) {

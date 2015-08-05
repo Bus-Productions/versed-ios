@@ -100,6 +100,11 @@
     } else {
         [readView setHidden:YES];
     }
+    
+    baseView.layer.shadowColor = [UIColor blackColor].CGColor;
+    baseView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    baseView.layer.shadowOpacity = 0.2f;
+    baseView.layer.shadowPath = [UIBezierPath bezierPathWithRect:baseView.bounds].CGPath;
 }
 
 

@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface VSPollResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+{
+    NSArray *colors; 
+}
 @property (strong, nonatomic) NSMutableDictionary *poll;
 @property (strong, nonatomic) NSMutableArray *sections;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

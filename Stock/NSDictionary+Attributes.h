@@ -88,6 +88,7 @@
 - (NSString*) numberChosen;
 - (NSString*) numberTaken;
 - (NSMutableDictionary *) userAnswer;
+- (float) percentageAsFloat; 
 
 // messages
 - (NSString*) message;

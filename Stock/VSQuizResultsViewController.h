@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "VSWeaknessesTableViewCell.h"
+#import "SWRevealViewController.h"
 
 @protocol VSRefreshQuizLandingVC <NSObject>
 - (void) reloadScreen;
 - (NSInteger) pointsForRound;
 @end
 
-@interface VSQuizResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface VSQuizResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate>
 {
     BOOL isRequesting;
     NSInteger pointsThatRound; 
@@ -24,5 +25,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *sections;
 @property (nonatomic,assign) id delegate;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 
 @end
