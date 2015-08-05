@@ -35,6 +35,7 @@
     [super viewDidLoad];
     [self setupData];
     [self setupBottomView];
+    [self setupNotifications];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +52,7 @@
     } else if (NULL_TO_NIL(pollToShow)) {
         [self showPollScreen];
     }
+    [expandedCells removeAllObjects];
     [self reloadScreen];
 }
 
@@ -89,6 +91,11 @@
     }
     myTracksIDs = [[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] ? [[[[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] mutableCopy] pluckIDs] : [[NSMutableArray alloc] init];
     expandedCells = [[NSMutableSet alloc] init];
+}
+
+- (void) setupNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:@"updatedMyTracks" object:nil];
 }
 
 - (void) setupBottomView
@@ -146,7 +153,7 @@
     
     [self.sections addObject:@"header"];
     
-//    [self.sections addObject:@"editorsNote"];
+    [self.sections addObject:@"editorsNote"];
     
     [self.sections addObject:@"resources"];
     
@@ -201,7 +208,9 @@
 {
     VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"editorsNoteCell"];
     
-    [cell configureWithDetails:[expandedCells containsObject:@"editorsNote"] andTrack:self.track];
+    [cell setTrack:self.track];
+    [cell setMyTrackIDs:myTracksIDs];
+    [cell configure];
     
     return cell;
 }
@@ -220,15 +229,20 @@
         [self.navigationController pushViewController:webViewController animated:YES];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
+        [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
+
         if ([expandedCells containsObject:@"editorsNote"]) {
             [expandedCells removeObject:@"editorsNote"];
-            [cell animateClosed];
+            cell.detailContainerView.hidden = YES;
+            [title setText:@"Editor's Note \u25BC"];
         } else {
             [expandedCells addObject:@"editorsNote"];
-            [cell animateOpen]; 
+            [title setText:@"Editor's Note \u25B4"];
+            cell.detailContainerView.hidden = NO;
         }
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                         withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView beginUpdates];
+        [self.tableView endUpdates];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -241,8 +255,12 @@
         return 117.0f + [self heightForText:[[[self.track resources] objectAtIndex:indexPath.row] objectForKey:@"description"] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
         return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
-        self.tableView.estimatedRowHeight = 50.f;
+        float heightOfTitle = 16.0f + [self heightForText:@"Editor's Note" width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
+        if ([expandedCells containsObject:@"editorsNote"]) {
+            return 20.0f + [self heightForText:[self.track editorsNote] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]] + heightOfTitle  + 30.0f;
+        } else {
+            return heightOfTitle;
+        }
     }
     return 100.0f;
 }
@@ -341,6 +359,22 @@
 
 
 
+- (void) handleNotification:(NSNotification*)notification
+{
+    if ([[notification name] isEqualToString:@"updatedMyTracks"]){
+        [self handleMyTracksResponse:[notification userInfo]];
+    }
+}
+
+- (void) handleMyTracksResponse:(NSDictionary*)notification
+{
+    NSMutableArray *myTracks = [[[notification objectForKey:@"my_tracks"] mutableCopy] cleanArray];
+    if (NULL_TO_NIL(myTracks)) {
+        [myTracks saveLocalWithKey:@"myTracks"];
+    } else {
+        [[[NSMutableArray alloc] init] destroyLocalWithKey:@"myTracks"];
+    }
+}
 
 
 
