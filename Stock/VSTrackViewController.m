@@ -52,7 +52,6 @@
     } else if (NULL_TO_NIL(pollToShow)) {
         [self showPollScreen];
     }
-    [expandedCells removeAllObjects];
     [self reloadScreen];
 }
 
@@ -133,6 +132,9 @@
         requesting = NO;
         [[self.track cleanDictionary] saveLocalWithKey:[self.track keyForTrack]
                              success:^(id responseObject) {
+                                 [expandedCells removeAllObjects];
+                                 [self.tableView beginUpdates];
+                                 [self.tableView endUpdates];
                                  [self.tableView reloadData];
                              }
                              failure:nil];
@@ -229,17 +231,12 @@
         [self.navigationController pushViewController:webViewController animated:YES];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-        UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-        [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
-
         if ([expandedCells containsObject:@"editorsNote"]) {
             [expandedCells removeObject:@"editorsNote"];
-            cell.detailContainerView.hidden = YES;
-            [title setText:@"Editor's Note \u25BC"];
+            [cell contract];
         } else {
             [expandedCells addObject:@"editorsNote"];
-            [title setText:@"Editor's Note \u25B4"];
-            cell.detailContainerView.hidden = NO;
+            [cell expand];
         }
         [self.tableView beginUpdates];
         [self.tableView endUpdates];

@@ -16,5 +16,6 @@
 
 - (void) configure;
 - (IBAction)saveToMyTracks:(id)sender;
-
+- (void) contract;
+- (void) expand; 
 @end
