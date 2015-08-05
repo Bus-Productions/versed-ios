@@ -18,6 +18,7 @@
     BOOL requesting;
     BOOL showCongrats;
     NSMutableDictionary *pollToShow;
+    NSMutableSet *expandedCells; 
 }
 
 @property (strong, nonatomic) NSMutableDictionary *track;

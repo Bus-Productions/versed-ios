@@ -120,15 +120,16 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     self.sections = [[NSMutableArray alloc] init];
-    
     if (isRequesting) {
         [self.sections addObject:@"requesting"];
-    } else if (self.questionsToAsk.count > 0) {
-        [self.sections addObject:@"startQuiz"];
     } else {
-        [self.sections addObject:@"showResults"];
+        [self.sections addObject:@"explanation"];
+        if (self.questionsToAsk.count > 0) {
+            [self.sections addObject:@"startQuiz"];
+        } else {
+            [self.sections addObject:@"showResults"];
+        }
     }
-    [self.sections addObject:@"explanation"];
 //    [self.sections addObject:@"dashboard"];
     
     return self.sections.count;
@@ -170,11 +171,6 @@
 {
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"actionCell" forIndexPath:indexPath];
     NSString *labelText = self.quizResults.count > 0 ? @"Continue Quiz" : @"Start Quiz";
-    
-    UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-    NSDate *now = [NSDate date];
-    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
-    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
 
     UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
     [action setText:labelText];
@@ -210,7 +206,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView explanationCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"explanationCell" forIndexPath:indexPath];
-    UILabel *lbl = (UILabel*)[cell.contentView viewWithTag:1];
+    UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
+    NSDate *now = [NSDate date];
+    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
+    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
+    
+    UILabel *lbl = (UILabel*)[cell.contentView viewWithTag:2];
     if (self.quizQuestions && self.quizQuestions.count > 0) {
         [lbl setText:[NSString stringWithFormat:@"This %lu-question quiz is a pulse check on the forces and trends shaping business. You have 20 seconds for each question. Get ready - it's time to test your knowledge!", self.quizQuestions.count]];
     } else if (isRequesting) {
@@ -263,7 +264,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"startQuiz"]) {
-        return 170.0f;
+        return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"showResults"]) {
         return 170.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"requesting"]) {
@@ -271,7 +272,7 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
         return 350.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"explanation"]) {
-        return 350.0f;
+        return 300.0f;
     }
     return 100.0f;
 }

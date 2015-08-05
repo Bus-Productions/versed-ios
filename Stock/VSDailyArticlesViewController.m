@@ -27,10 +27,6 @@
     [self setupSidebar];
     [self setupData];
     [self reloadScreen];
-    
-    UIImageView* titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"versed_daily.png"]];
-    [titleView setContentMode:UIViewContentModeScaleAspectFit];
-    self.navigationController.navigationBar.topItem.titleView = titleView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -164,25 +160,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView articlesCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
-//    
-//    NSMutableDictionary* article = [self.articles objectAtIndex:indexPath.row];
-//    
-//    UIView* container = (UIView*)[cell.contentView viewWithTag:10];
-//    
-//    UILabel* number = (UILabel*)[container viewWithTag:1];
-//    [number setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:32.0f]];
-//    [number setText:[NSString stringWithFormat:@"%li", indexPath.row+1]];
-//    
-//    UILabel* title = (UILabel*)[container viewWithTag:2];
-//    [title setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
-//    [title setText:[article headline]];
-//    
-//    UILabel* source = (UILabel*)[container viewWithTag:3];
-//    [source setTextColor:[UIColor grayColor]];
-//    [source setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
-//    [source setText:[article objectForKey:@"source"]];
-    
     VSResourceTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"resourceCell" forIndexPath:indexPath];
     
     [cell configureWithResource:[self.articles objectAtIndex:indexPath.row] andCompletedResources:completedResources];
@@ -220,6 +197,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
         [webViewController setResource:[self.articles objectAtIndex:indexPath.row]];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:webViewController animated:YES];
     }
 }

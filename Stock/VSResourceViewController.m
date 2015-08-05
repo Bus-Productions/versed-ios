@@ -22,6 +22,7 @@
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupWebView];
+    [self setupGestures];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,6 +69,13 @@
     [self.webView loadRequest: request];
 }
 
+- (void) setupGestures
+{
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSingleTap:)];
+    [self.webView addGestureRecognizer:singleFingerTap];
+}
 
 # pragma mark - Actions
 
@@ -82,6 +90,14 @@
     [self presentViewController:activityController animated:YES completion:nil];
 }
 
+
+# pragma mark - UIGestureRecognizerDelegate
+
+- (void) handleSingleTap:(id)sender
+{
+    NSLog(@"navbar tapped!");
+    [self hideNavBarOnSwipe:NO];
+}
 
 # pragma mark - UIWebView Delegate
 
