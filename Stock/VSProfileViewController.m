@@ -170,7 +170,7 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"progress"]) {
         return 180.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"settings"]) {
-        return 180.0f;
+        return 250.0f;
     }
     return 160.0f;
 }

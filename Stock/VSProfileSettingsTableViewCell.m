@@ -22,6 +22,9 @@
 
 - (void) configure
 {
+    UILabel* settings = (UILabel*)[self.contentView viewWithTag:40];
+    [settings setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
+    
     UILabel* nameLabel = (UILabel*)[self.contentView viewWithTag:1];
     [nameLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
     
