@@ -24,7 +24,10 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 @property (strong, nonatomic) NSMutableArray *sections;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *startQuizView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
+- (IBAction)startQuizAction:(id)sender;
 
 @end

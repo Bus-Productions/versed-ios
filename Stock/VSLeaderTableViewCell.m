@@ -34,7 +34,7 @@
     [name setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:14.0f]];
     
     [quizzesTaken setText:[NSString stringWithFormat:@"%@ - %@", [self quizzesTakenTextForUser:user], [user level]]];
-    [quizzesTaken setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    [quizzesTaken setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:10.0f]];
     [quizzesTaken setTextColor:[UIColor lightGrayColor]];
     
     [score setText:[user score]];

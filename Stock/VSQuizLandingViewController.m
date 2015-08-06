@@ -69,6 +69,12 @@
     self.quizResults = [[NSMutableArray alloc] init];
     self.quiz = [[NSMutableDictionary alloc] init];
     self.totalPoints = 0;
+    
+    NSString *buttonText = self.quizResults.count > 0 ? @"Continue Quiz" : @"Start Quiz";
+    UIButton *action = (UIButton*)[self.startQuizView viewWithTag:2];
+    [action setTitle:buttonText forState:UIControlStateNormal];
+    action.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f];
+    
 }
 
 - (void) setupAppearance
@@ -122,13 +128,10 @@
     self.sections = [[NSMutableArray alloc] init];
     if (isRequesting) {
         [self.sections addObject:@"requesting"];
+        [self.startQuizView setHidden:YES];
     } else {
         [self.sections addObject:@"explanation"];
-        if (self.questionsToAsk.count > 0) {
-            [self.sections addObject:@"startQuiz"];
-        } else {
-            [self.sections addObject:@"showResults"];
-        }
+        [self.startQuizView setHidden:NO];
     }
 //    [self.sections addObject:@"dashboard"];
     
@@ -170,11 +173,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView startQuizCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"actionCell" forIndexPath:indexPath];
-    NSString *labelText = self.quizResults.count > 0 ? @"Continue Quiz" : @"Start Quiz";
-
-    UILabel *action = (UILabel*)[cell.contentView viewWithTag:2];
-    [action setText:labelText];
-    [action setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
     
     return cell;
 }
@@ -272,7 +270,7 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"dashboard"]) {
         return 350.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"explanation"]) {
-        return 300.0f;
+        return self.tableView.frame.size.height - self.startQuizView.frame.size.height;
     }
     return 100.0f;
 }
@@ -387,4 +385,7 @@
 }
 
 
+- (IBAction)startQuizAction:(id)sender {
+    [self pushQuestionOnStack];
+}
 @end

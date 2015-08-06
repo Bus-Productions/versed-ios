@@ -40,17 +40,17 @@
     
     UILabel *labelLeft = (UILabel*)[self viewWithTag:4];
     [labelLeft setText:@"QUESTIONS CORRECT"];
-    [labelLeft setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    [labelLeft setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:10.0f]];
     [labelLeft setTextColor:[UIColor whiteColor]];
     
     UILabel *labelMiddle = (UILabel*)[self viewWithTag:5];
     [labelMiddle setText:@"POINTS EARNED"];
-    [labelMiddle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    [labelMiddle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:10.0f]];
     [labelMiddle setTextColor:[UIColor whiteColor]];
     
     UILabel *labelRight = (UILabel*)[self viewWithTag:6];
     [labelRight setText:@"LIFETIME POINTS"];
-    [labelRight setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
+    [labelRight setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:10.0f]];
     [labelRight setTextColor:[UIColor whiteColor]];
     
     UIButton* button = (UIButton*)[self.contentView viewWithTag:7];

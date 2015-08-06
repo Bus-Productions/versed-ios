@@ -132,10 +132,10 @@
         requesting = NO;
         [[self.track cleanDictionary] saveLocalWithKey:[self.track keyForTrack]
                              success:^(id responseObject) {
+                                 [self.tableView reloadData];
                                  [expandedCells removeAllObjects];
                                  [self.tableView beginUpdates];
                                  [self.tableView endUpdates];
-                                 [self.tableView reloadData];
                              }
                              failure:nil];
         
