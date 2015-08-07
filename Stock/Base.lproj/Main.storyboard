@@ -228,7 +228,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAQ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LF-qw-XRx">
-                                                    <rect key="frame" x="8" y="8" width="584" height="44"/>
+                                                    <rect key="frame" x="8" y="9" width="584" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -249,7 +249,13 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="8LF-qw-XRx" secondAttribute="bottom" id="dze-Y5-pPk"/>
                                                 <constraint firstItem="4uz-Eq-DHc" firstAttribute="leading" secondItem="wHq-jI-SKN" secondAttribute="leadingMargin" constant="-60" id="pZi-Jo-Xep"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="8LF-qw-XRx" secondAttribute="trailing" id="vdg-fw-nfl"/>
+                                                <constraint firstItem="8LF-qw-XRx" firstAttribute="top" secondItem="4uz-Eq-DHc" secondAttribute="bottom" id="xde-OK-FaZ"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="3UK-rp-MOU"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
