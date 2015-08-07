@@ -234,6 +234,7 @@
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
         [webViewController setTrack:self.track];
         [self.navigationController pushViewController:webViewController animated:YES];
