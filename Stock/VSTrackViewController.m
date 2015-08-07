@@ -36,6 +36,7 @@
     [self setupData];
     [self setupBottomView];
     [self setupNotifications];
+    [self setupEditorsNote];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,6 +117,13 @@
     [rightLabel setText:[NSString stringWithFormat:@"%@ %@ discussing this track", [usersDiscussing formattedPluralizationForSingular:@"person" orPlural:@"people"], usersDiscussing.count == 1 ? @"is" : @"are"]];
 }
 
+- (void) setupEditorsNote
+{
+    [expandedCells addObject:@"editorsNote"];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
 # pragma mark - Reload/Request
 
 - (void) reloadScreen
@@ -133,7 +141,6 @@
         [[self.track cleanDictionary] saveLocalWithKey:[self.track keyForTrack]
                              success:^(id responseObject) {
                                  [self.tableView reloadData];
-                                 [expandedCells removeAllObjects];
                                  [self.tableView beginUpdates];
                                  [self.tableView endUpdates];
                              }

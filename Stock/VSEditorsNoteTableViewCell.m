@@ -29,10 +29,10 @@
 {
     [self setBackgroundColor:[UIColor clearColor]];
     [self.detailContainerView setBackgroundColor:[UIColor clearColor]];
-    [self.detailContainerView setHidden:YES];
+    [self.detailContainerView setHidden:NO];
 
     UILabel *title = (UILabel*)[self.contentView viewWithTag:1];
-    [title setText:@"Editor's Note \u25BC"];
+    [title setText:@"Editor's Note \u25B4"];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
     
     UILabel *note = (UILabel*)[self.contentView viewWithTag:3];
