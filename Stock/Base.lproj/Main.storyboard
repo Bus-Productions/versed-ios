@@ -233,11 +233,21 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view alpha="0.24999999999999967" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4uz-Eq-DHc">
+                                                    <rect key="frame" x="-7" y="8" width="614" height="1"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="kks-d3-iqu"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="8LF-qw-XRx" firstAttribute="top" secondItem="wHq-jI-SKN" secondAttribute="topMargin" id="3UK-rp-MOU"/>
                                                 <constraint firstItem="8LF-qw-XRx" firstAttribute="leading" secondItem="wHq-jI-SKN" secondAttribute="leadingMargin" id="3bi-kA-NXh"/>
+                                                <constraint firstItem="4uz-Eq-DHc" firstAttribute="trailing" secondItem="wHq-jI-SKN" secondAttribute="trailingMargin" constant="-30" id="Jiq-1x-cF6"/>
+                                                <constraint firstItem="4uz-Eq-DHc" firstAttribute="top" secondItem="wHq-jI-SKN" secondAttribute="topMargin" id="KCr-RB-jvB"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="8LF-qw-XRx" secondAttribute="bottom" id="dze-Y5-pPk"/>
+                                                <constraint firstItem="4uz-Eq-DHc" firstAttribute="leading" secondItem="wHq-jI-SKN" secondAttribute="leadingMargin" constant="-60" id="pZi-Jo-Xep"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="8LF-qw-XRx" secondAttribute="trailing" id="vdg-fw-nfl"/>
                                             </constraints>
                                         </tableViewCellContentView>

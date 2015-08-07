@@ -21,6 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *menuOptions;
+@property (strong, nonatomic) NSMutableArray *bottomOptions;
 @property (strong, nonatomic) NSMutableArray *menuIdentifiers;
+@property (strong, nonatomic) NSMutableArray *sections; 
 
 @end

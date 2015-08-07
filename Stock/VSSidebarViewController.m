@@ -17,6 +17,7 @@
 #import "VSProfileTableViewCell.h"
 #import "VSFaqCategoryViewController.h"
 #import "VSPollsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define ALL_TRACKS_IDENTIFIER @"allTracks"
 #define MY_TRACKS_IDENTIFIER @"myTracks"
@@ -66,7 +67,9 @@
     [self.menuOptions addObject:DAILY_ARTICLES_IDENTIFIER];
     [self.menuOptions addObject:QUIZ_IDENTIFIER];
     [self.menuOptions addObject:POLLS_IDENTIFIER];
-    [self.menuOptions addObject:FAQ_IDENTIFIER];
+    
+    self.bottomOptions = [[NSMutableArray alloc] init];
+    [self.bottomOptions addObject:FAQ_IDENTIFIER];
 }
 
 
@@ -74,22 +77,35 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    self.sections = [[NSMutableArray alloc] init];
+    [self.sections addObject:@"mainMenu"];
+    [self.sections addObject:@"bottom"];
+    return self.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.menuOptions.count;
+    if ([[self.sections objectAtIndex:section] isEqualToString:@"mainMenu"]) {
+        return self.menuOptions.count;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"bottom"]) {
+        return self.bottomOptions.count;
+    }
+    return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
-        return [self tableView:self.tableView profileCellForRowAtIndexPath:indexPath];
-    } else {
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"mainMenu"]) {
+        if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
+            return [self tableView:self.tableView profileCellForRowAtIndexPath:indexPath];
+        } else {
+            return [self tableView:self.tableView basicMenuCellForRowAtIndexPath:indexPath];
+        }
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"bottom"]) {
         return [self tableView:self.tableView basicMenuCellForRowAtIndexPath:indexPath];
     }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView profileCellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,7 +117,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView basicMenuCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[self.menuOptions objectAtIndex:indexPath.row] forIndexPath:indexPath];
+    NSString *identifier;
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"mainMenu"]) {
+        identifier = [self.menuOptions objectAtIndex:indexPath.row];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"bottom"]) {
+        identifier = [self.bottomOptions objectAtIndex:indexPath.row];
+    }
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     UILabel* label = (UILabel*) [cell.contentView viewWithTag:1];
     [label setTextColor:[UIColor whiteColor]];
@@ -122,27 +145,31 @@
     UINavigationController *nc = [[UINavigationController alloc] init];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
-    if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:ALL_TRACKS_IDENTIFIER]) {
-        vc = (VSAllTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
-        nc = [storyboard instantiateViewControllerWithIdentifier:@"mainNavigationController"];
-    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:MY_TRACKS_IDENTIFIER]) {
-        vc = (VSMyTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"myTracksViewController"];
-        nc = [storyboard instantiateViewControllerWithIdentifier:@"myTracksNavigationController"];
-    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:QUIZ_IDENTIFIER]) {
-        vc = (VSQuizLandingViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizLandingViewController"];
-        nc = [storyboard instantiateViewControllerWithIdentifier:@"quizQuestionsNavigationViewController"];
-    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:DAILY_ARTICLES_IDENTIFIER]) {
-        vc = (VSDailyArticlesViewController*)[storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesViewController"];
-        nc = [storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesNavigationController"];
-    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
-        vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
-        nc = [storyboard instantiateViewControllerWithIdentifier:@"profileNavigationController"];
-    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:FAQ_IDENTIFIER]) {
-        vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"faqCategoryViewController"];
-        nc = [storyboard instantiateViewControllerWithIdentifier:@"faqNavigationController"];
-    } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:POLLS_IDENTIFIER]) {
-        vc = (VSPollsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollsViewController"];
-        nc = [storyboard instantiateViewControllerWithIdentifier:@"pollsNavigationController"];
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"mainMenu"]) {
+        if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:ALL_TRACKS_IDENTIFIER]) {
+            vc = (VSAllTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+            nc = [storyboard instantiateViewControllerWithIdentifier:@"mainNavigationController"];
+        } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:MY_TRACKS_IDENTIFIER]) {
+            vc = (VSMyTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"myTracksViewController"];
+            nc = [storyboard instantiateViewControllerWithIdentifier:@"myTracksNavigationController"];
+        } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:QUIZ_IDENTIFIER]) {
+            vc = (VSQuizLandingViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizLandingViewController"];
+            nc = [storyboard instantiateViewControllerWithIdentifier:@"quizQuestionsNavigationViewController"];
+        } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:DAILY_ARTICLES_IDENTIFIER]) {
+            vc = (VSDailyArticlesViewController*)[storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesViewController"];
+            nc = [storyboard instantiateViewControllerWithIdentifier:@"dailyArticlesNavigationController"];
+        } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
+            vc = (VSProfileViewController*)[storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
+            nc = [storyboard instantiateViewControllerWithIdentifier:@"profileNavigationController"];
+        } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:POLLS_IDENTIFIER]) {
+            vc = (VSPollsViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollsViewController"];
+            nc = [storyboard instantiateViewControllerWithIdentifier:@"pollsNavigationController"];
+        }
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"bottom"]) {
+        if ([[self.bottomOptions objectAtIndex:indexPath.row] isEqualToString:FAQ_IDENTIFIER]) {
+            vc = (VSFaqCategoryViewController*)[storyboard instantiateViewControllerWithIdentifier:@"faqCategoryViewController"];
+            nc = [storyboard instantiateViewControllerWithIdentifier:@"faqNavigationController"];
+        }
     }
     
     [nc setViewControllers:@[vc] animated:NO];
@@ -153,12 +180,39 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
-        return 80.0f;
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"mainMenu"]) {
+        if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
+            return 80.0f;
+        }
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"bottom"]) {
+        if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
+            return 70.0f;
+        }
     }
     return 52.0f;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if ([[self.sections objectAtIndex:section] isEqualToString:@"mainMenu"]) {
+        return 0.0;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"bottom"]) {
+        return self.tableView.frame.size.height - 80.0f - (52.0*(self.menuOptions.count-1)) - (70.0*self.bottomOptions.count) - 20.0f; //20.0f for status bar, 80.0f for profile, 52.0 for basic cells
+    }
+    return 0.0;
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if ([[self.sections objectAtIndex:section] isEqualToString:@"mainMenu"]) {
+        return nil;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"bottom"]) {
+        UIView *header = [[UIView alloc] init];
+        [header setBackgroundColor:[UIColor clearColor]];
+        return header;
+    }
+    return nil;
+}
 
 # pragma mark - other
 
