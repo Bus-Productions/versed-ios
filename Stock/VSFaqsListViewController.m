@@ -89,6 +89,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         VSFaqShowViewController *vc = (VSFaqShowViewController*)[storyboard instantiateViewControllerWithIdentifier:@"faqShowViewController"];
         [vc setFaq:[[self.faqCategory faqs] objectAtIndex:indexPath.row]];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

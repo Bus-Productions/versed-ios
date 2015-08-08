@@ -349,7 +349,8 @@
     VSCompletedTrackViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"completedTrackViewController"];
     [vc setUsersCompleted:completedPeople];
     [vc setTrack:self.track];
-    [vc setMyTracksIDs:myTracksIDs]; 
+    [vc setMyTracksIDs:myTracksIDs];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -360,6 +361,7 @@
     [vc setTrack:self.track];
     [vc setAllMessages:messages]; 
     [vc setMyTracksIDs:myTracksIDs];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
