@@ -27,8 +27,7 @@
     [self setDataSource:self];
     
     UIPageControl *pageControlAppearance = [UIPageControl appearanceWhenContainedIn:[UIPageViewController class], nil];
-//    [pageControlAppearance setBackgroundColor:[UIColor whiteColor]];
-    pageControlAppearance.pageIndicatorTintColor = [UIColor whiteColor];
+    pageControlAppearance.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControlAppearance.currentPageIndicatorTintColor = [UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0];
     
     quotes = @[

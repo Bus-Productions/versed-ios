@@ -73,6 +73,8 @@
 		760F5D561B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D551B0BAD900038FF1A /* VSQuizAnswerTableViewCell.m */; };
 		760F5D5C1B0BB30D0038FF1A /* VSButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D5B1B0BB30D0038FF1A /* VSButtonTableViewCell.m */; };
 		760F5D661B0BCF4A0038FF1A /* VSQuizLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D651B0BCF4A0038FF1A /* VSQuizLandingViewController.m */; };
+		7620FCAE1B74FB980013FD92 /* Versed_Final_Logo_Black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7620FCAC1B74FB980013FD92 /* Versed_Final_Logo_Black.png */; };
+		7620FCAF1B74FB980013FD92 /* versed_today.png in Resources */ = {isa = PBXBuildFile; fileRef = 7620FCAD1B74FB980013FD92 /* versed_today.png */; };
 		7634C1171B6AA96C0030C84B /* VSPieChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7634C1161B6AA96C0030C84B /* VSPieChartTableViewCell.m */; };
 		7636ED891B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636ED881B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m */; };
 		7636ED8F1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7636ED8E1B0E6AFC00BD4E1A /* VSMissedQuestionTableViewCell.m */; };
@@ -238,6 +240,8 @@
 		760F5D5B1B0BB30D0038FF1A /* VSButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSButtonTableViewCell.m; sourceTree = "<group>"; };
 		760F5D641B0BCF4A0038FF1A /* VSQuizLandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizLandingViewController.h; sourceTree = "<group>"; };
 		760F5D651B0BCF4A0038FF1A /* VSQuizLandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizLandingViewController.m; sourceTree = "<group>"; };
+		7620FCAC1B74FB980013FD92 /* Versed_Final_Logo_Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Versed_Final_Logo_Black.png; sourceTree = "<group>"; };
+		7620FCAD1B74FB980013FD92 /* versed_today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = versed_today.png; sourceTree = "<group>"; };
 		7634C1151B6AA96C0030C84B /* VSPieChartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPieChartTableViewCell.h; sourceTree = "<group>"; };
 		7634C1161B6AA96C0030C84B /* VSPieChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSPieChartTableViewCell.m; sourceTree = "<group>"; };
 		7636ED871B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSNoMissesQuizTableViewCell.h; sourceTree = "<group>"; };
@@ -397,6 +401,8 @@
 		28793F061B288E0900E2998F /* Logos */ = {
 			isa = PBXGroup;
 			children = (
+				7620FCAC1B74FB980013FD92 /* Versed_Final_Logo_Black.png */,
+				7620FCAD1B74FB980013FD92 /* versed_today.png */,
 				28A8F10C1B42DE63007BD774 /* versed_daily.png */,
 				283A44981B2A9B3D003012A7 /* black_logo_sans.png */,
 				28793F0B1B288FEA00E2998F /* white_logo_sans.png */,
@@ -907,6 +913,7 @@
 				287684F01B2ABFE20076AB24 /* quiz_splash.png in Resources */,
 				28793F231B2898E200E2998F /* SourceSansPro-It.otf in Resources */,
 				287684F21B2AC2B60076AB24 /* question_header.png in Resources */,
+				7620FCAF1B74FB980013FD92 /* versed_today.png in Resources */,
 				28A534061ACF6F4E0049B3F7 /* Podfile in Resources */,
 				28793F311B29E9D900E2998F /* burgermenu.png in Resources */,
 				28793F211B2898E200E2998F /* SourceSansPro-ExtraLight.otf in Resources */,
@@ -915,6 +922,7 @@
 				28793F331B29E9D900E2998F /* burgermenu@3x.png in Resources */,
 				28793F2B1B29E52C00E2998F /* settingsbutton.png in Resources */,
 				28793F271B2898E200E2998F /* SourceSansPro-Semibold.otf in Resources */,
+				7620FCAE1B74FB980013FD92 /* Versed_Final_Logo_Black.png in Resources */,
 				28793F0C1B288FEA00E2998F /* white_logo_sans.png in Resources */,
 				28793F281B2898E200E2998F /* SourceSansPro-SemiboldIt.otf in Resources */,
 			);

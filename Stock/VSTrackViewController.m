@@ -37,6 +37,7 @@
     [self setupData];
     [self setupBottomView];
     [self setupNotifications];
+    [self setupEditorsNote];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +54,6 @@
     } else if (NULL_TO_NIL(pollToShow)) {
         [self showPollScreen];
     }
-    [expandedCells removeAllObjects];
     [self reloadScreen];
 }
 
@@ -118,6 +118,13 @@
     [rightLabel setText:[NSString stringWithFormat:@"%@ %@ discussing this track", [usersDiscussing formattedPluralizationForSingular:@"person" orPlural:@"people"], usersDiscussing.count == 1 ? @"is" : @"are"]];
 }
 
+- (void) setupEditorsNote
+{
+    [expandedCells addObject:@"editorsNote"];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
 # pragma mark - Reload/Request
 
 - (void) reloadScreen
@@ -135,6 +142,8 @@
         [[self.track cleanDictionary] saveLocalWithKey:[self.track keyForTrack]
                              success:^(id responseObject) {
                                  [self.tableView reloadData];
+                                 [self.tableView beginUpdates];
+                                 [self.tableView endUpdates];
                              }
                              failure:nil];
         
@@ -154,9 +163,10 @@
     
     [self.sections addObject:@"header"];
     
-    [self.sections addObject:@"editorsNote"];
-    
-    [self.sections addObject:@"resources"];
+    if ([self.track resources] && [[self.track resources] count] > 0) {
+        [self.sections addObject:@"editorsNote"];
+        [self.sections addObject:@"resources"];
+    }
     
     return self.sections.count;
 }
@@ -225,22 +235,18 @@
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
         [webViewController setTrack:self.track];
         [self.navigationController pushViewController:webViewController animated:YES];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-        UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
-        [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
-
         if ([expandedCells containsObject:@"editorsNote"]) {
             [expandedCells removeObject:@"editorsNote"];
-            cell.detailContainerView.hidden = YES;
-            [title setText:@"Editor's Note \u25BC"];
+            [cell contract];
         } else {
             [expandedCells addObject:@"editorsNote"];
-            [title setText:@"Editor's Note \u25B4"];
-            cell.detailContainerView.hidden = NO;
+            [cell expand];
         }
         [self.tableView beginUpdates];
         [self.tableView endUpdates];

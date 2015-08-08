@@ -204,7 +204,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
-        return 60.0f;
+        return 130.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
         return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
     }

@@ -73,6 +73,7 @@
         [sourceView setAlpha:1.0f];
     }
     
+    baseView.layer.cornerRadius = 4.0;
     baseView.layer.shadowColor = [UIColor blackColor].CGColor;
     baseView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
     baseView.layer.shadowOpacity = 0.2f;
