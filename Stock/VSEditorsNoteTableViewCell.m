@@ -25,14 +25,15 @@
     // Configure the view for the selected state
 }
 
-- (void) configure
+- (void) configureAndHide:(BOOL)hide
 {
     [self setBackgroundColor:[UIColor clearColor]];
     [self.detailContainerView setBackgroundColor:[UIColor clearColor]];
-    [self.detailContainerView setHidden:NO];
-
+    [self.detailContainerView setHidden:hide];
+    NSString *arrow = hide ? @"\u25BC" : @"\u25B4";
+    
     UILabel *title = (UILabel*)[self.contentView viewWithTag:1];
-    [title setText:@"Editor's Note \u25B4"];
+    [title setText:[NSString stringWithFormat:@"Introduction %@", arrow]];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
     
     UILabel *note = (UILabel*)[self.contentView viewWithTag:3];
@@ -87,14 +88,14 @@
 - (void) contract
 {
     UILabel *title = (UILabel*)[self.contentView viewWithTag:1];
-    [title setText:@"Editor's Note \u25BC"];
+    [title setText:@"Introduction \u25BC"];
     self.detailContainerView.hidden = YES;
 }
 
 - (void) expand
 {
     UILabel *title = (UILabel*)[self.contentView viewWithTag:1];
-    [title setText:@"Editor's Note \u25B4"];
+    [title setText:@"Introduction \u25B4"];
     self.detailContainerView.hidden = NO;
 }
 

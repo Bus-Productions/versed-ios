@@ -39,7 +39,7 @@
                     headlineImage.image = image;
                 }
                 [UIView animateWithDuration:1.0f animations:^(void){
-                    [headlineImage setAlpha:1.0f];
+                    [headlineImage setAlpha:[self.track alphaForImage]];
                 }];
             });
         }
@@ -66,6 +66,9 @@
     subTitle.layer.shadowRadius = 1.5;
     subTitle.layer.shadowOpacity = 1.0;
     subTitle.layer.masksToBounds = NO;
+    
+    [baseView setAlpha:[self.track alphaForImage]];
+    [headlineImage setAlpha:[self.track alphaForImage]];
 }
 
 

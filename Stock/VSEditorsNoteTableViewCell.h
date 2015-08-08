@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSMutableDictionary *track;
 @property (strong, nonatomic) NSMutableArray *myTrackIDs;
 
-- (void) configure;
+- (void) configureAndHide:(BOOL)hide;
 - (IBAction)saveToMyTracks:(id)sender;
 - (void) contract;
 - (void) expand; 

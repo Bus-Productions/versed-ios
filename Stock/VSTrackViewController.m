@@ -119,7 +119,15 @@
 
 - (void) setupEditorsNote
 {
-    [expandedCells addObject:@"editorsNote"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *tracksSeen = [[NSMutableArray alloc] initWithArray:[[defaults objectForKey:@"tracksSeen"] mutableCopy]];
+    NSLog(@"tracksSeen = %@", tracksSeen);
+    if (![tracksSeen containsObject:[self.track ID]]) {
+        [expandedCells addObject:@"editorsNote"];
+        [tracksSeen addObject:[self.track ID]];
+        [defaults setObject:tracksSeen forKey:@"tracksSeen"];
+        [defaults synchronize];
+    }
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
 }
@@ -220,7 +228,7 @@
     
     [cell setTrack:self.track];
     [cell setMyTrackIDs:myTracksIDs];
-    [cell configure];
+    [cell configureAndHide:![expandedCells containsObject:@"editorsNote"]];
     
     return cell;
 }

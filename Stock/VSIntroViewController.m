@@ -46,11 +46,6 @@
     
     [self.messageLabel setText:self.text];
     [self.messageLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];
-    if ([self.text containsString:@"no timely way to build this knowledge."]) {
-        [self.messageLabel boldSubstring:@"no timely way to build this knowledge."];
-    } else if ([self.text containsString:@"forces and trends shaping business today."]) {
-        [self.messageLabel boldSubstring:@"forces and trends shaping business today."];
-    }
     
     if (!self.text || [self.text length] == 0) {
         [self.imageView setHidden:YES];

@@ -31,7 +31,7 @@
 - (void) configureForDiscussionWithTrack:(NSMutableDictionary*)track
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
-    [lbl setText:[NSString stringWithFormat:@"Join the discussion on %@", [track headline]]];
+    [lbl setText:[NSString stringWithFormat:@"Join the %@ discussion", [track headline]]];
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:24.0f]];
     [lbl boldSubstring:[track headline]];
 }
