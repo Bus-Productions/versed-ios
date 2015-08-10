@@ -3917,8 +3917,8 @@
                                                 <view tag="2" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="otI-wj-LqJ">
                                                     <rect key="frame" x="20" y="31" width="560" height="88"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkW-aE-8ab">
-                                                            <rect key="frame" x="15" y="16" width="530" height="22"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkW-aE-8ab">
+                                                            <rect key="frame" x="15" y="4" width="530" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" priority="998" constant="22" id="I6X-lE-ads"/>
                                                             </constraints>
@@ -3931,28 +3931,13 @@
                                                                 </mask>
                                                             </variation>
                                                         </label>
-                                                        <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGB-mx-Sym">
-                                                            <rect key="frame" x="15" y="50" width="530" height="30"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="Cdt-GL-fne"/>
-                                                            </constraints>
-                                                            <state key="normal" title="Button">
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="saveToMyTracks:" destination="7Sg-aJ-u47" eventType="touchUpInside" id="QsE-Lh-V1z"/>
-                                                            </connections>
-                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.5772191010996921" green="1" blue="0.54290363646747053" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" id="6O5-di-4uC"/>
                                                         <constraint firstItem="gkW-aE-8ab" firstAttribute="leading" secondItem="otI-wj-LqJ" secondAttribute="leading" constant="15" id="FRb-W0-CZY"/>
-                                                        <constraint firstItem="pGB-mx-Sym" firstAttribute="leading" secondItem="otI-wj-LqJ" secondAttribute="leading" constant="15" id="ICq-ja-3Aa"/>
-                                                        <constraint firstItem="gkW-aE-8ab" firstAttribute="top" secondItem="otI-wj-LqJ" secondAttribute="top" id="J5F-m1-a1F"/>
+                                                        <constraint firstItem="gkW-aE-8ab" firstAttribute="top" secondItem="otI-wj-LqJ" secondAttribute="top" constant="4" id="J5F-m1-a1F"/>
                                                         <constraint firstAttribute="trailing" secondItem="gkW-aE-8ab" secondAttribute="trailing" constant="15" id="bqs-iW-VC6"/>
-                                                        <constraint firstAttribute="trailing" secondItem="pGB-mx-Sym" secondAttribute="trailing" constant="15" id="sfe-pc-xt9"/>
-                                                        <constraint firstItem="pGB-mx-Sym" firstAttribute="top" secondItem="gkW-aE-8ab" secondAttribute="bottom" constant="12" id="vC3-rH-0Az"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

@@ -101,8 +101,7 @@
         [readView setHidden:YES];
     }
     
-    UIBezierPath *maskPath;
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:headlineImage.bounds
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:headlineImage.bounds
                                      byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
                                            cornerRadii:CGSizeMake(4.0, 4.0)];
     
@@ -110,7 +109,7 @@
     maskLayer.frame = self.bounds;
     maskLayer.path = maskPath.CGPath;
     headlineImage.layer.mask = maskLayer;
-
+    
     baseView.layer.cornerRadius = 4.0; 
     baseView.layer.shadowColor = [UIColor blackColor].CGColor;
     baseView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
