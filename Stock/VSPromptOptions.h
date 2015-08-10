@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *bottomButton;
 @property (strong, nonatomic) IBOutlet UILabel *topLabel;
 @property (strong, nonatomic) IBOutlet UILabel *bottomLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orLabel;
 
 - (IBAction)topAction:(id)sender;
 - (IBAction)bottomAction:(id)sender;
