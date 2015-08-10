@@ -29,7 +29,7 @@
     for (int i=0; i < [[poll pollAnswers] count]; i++) {
         [items addObject:[PNPieChartDataItem dataItemWithValue:[[[poll pollAnswers] objectAtIndex:i] percentageAsFloat] color:[colors objectAtIndex:i]]];
     }
-    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(self.bounds.size.width/2 - CHART_WIDTH/2.0, self.bounds.size.height/2 - CHART_HEIGHT/2.0, CHART_WIDTH, CHART_HEIGHT) items:items];
+    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(self.bounds.size.width/2 - CHART_WIDTH/2.0, self.bounds.size.height/2 - CHART_HEIGHT/2.0 - 20.0, CHART_WIDTH, CHART_HEIGHT) items:items];
     pieChart.descriptionTextColor = [UIColor whiteColor];
     pieChart.descriptionTextFont  = [UIFont fontWithName:@"SourceSansPro-Regular" size:14.0];
     [pieChart strokeChart];

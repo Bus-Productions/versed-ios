@@ -124,12 +124,26 @@
     return cell;
 }
 
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
+{
+    if (!text || [text length] == 0) {
+        return 0.0f;
+    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, 100000)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    return rect.size.height;
+}
+
+
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
         return 80.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
-        return 150.0f;
+        return 50.0 + [self heightForText:[[self.poll objectForKey:@"poll"] pollQuestion] width:self.view.frame.size.width - 30.0f font:[UIFont fontWithName:@"SourceSansPro-Light" size:28.0f]];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"chart"]) {
         return 260.0f;
     }
