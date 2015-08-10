@@ -59,8 +59,6 @@
 - (void) setupData
 {
     self.polls = [[NSUserDefaults standardUserDefaults] objectForKey:@"polls"] ? [[[NSUserDefaults standardUserDefaults] objectForKey:@"polls"] mutableCopy] : [[NSMutableArray alloc] init];
-    pollKeys = [[NSMutableArray alloc] init];
-    [self setupPollKeys];
 }
 
 
@@ -99,7 +97,6 @@
 - (void) handlePollsResponse:(NSDictionary *)responseObject
 {
     self.polls = [[[responseObject objectForKey:@"polls"] cleanArray] mutableCopy];
-    [self setupPollKeys];
     if (NULL_TO_NIL(self.polls)) {
         [self.polls saveLocalWithKey:@"polls" success:^(id responseObject){
             [self.tableView reloadData];
@@ -117,30 +114,37 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     self.sections = [[NSMutableArray alloc] init];
+    [self.sections addObject:@"header"];
     
     if (self.polls.count < 1) {
         [self.sections addObject:@"empty"];
     } else {
-        return pollKeys.count;
+        [self.sections addObject:@"polls"];
     }
     return self.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.sections.count > 0 && [[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
+    if ([[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
         return 1;
+    } if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"polls"]) {
+        return self.polls.count;
     }
-    return [[[self.polls objectAtIndex:section] objectForKey:[pollKeys objectAtIndex:section]] count];
+    return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sections.count > 0 && [[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         return [self tableView:self.tableView emptyCellForRowAtIndexPath:indexPath];
-    } else {
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         return [self tableView:self.tableView pollsCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
     }
     
     return nil;
@@ -149,7 +153,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView pollsCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSPollsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"pollCell" forIndexPath:indexPath];
-    [cell configureWithPoll:[self getPollAtIndexPath:indexPath] andIndexPath:indexPath];
+    [cell configureWithPoll:[self.polls objectAtIndex:indexPath.row] andIndexPath:indexPath];
     return cell;
 }
 
@@ -162,12 +166,24 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView headerCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
+    
+    UILabel* label = (UILabel*)[cell.contentView viewWithTag:1];
+    [label setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    [label setText:@"See what the Versed community \nthinks about key topics"];
+    
+    return cell;
+}
+
+
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sections.count == 0) {
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        NSMutableDictionary *p = [self getPollAtIndexPath:indexPath];
+        NSMutableDictionary *p = [self.polls objectAtIndex:indexPath.row];
         if (!NULL_TO_NIL([p objectForKey:@"user_answer"])) {
             VSPollQuestionViewController *vc = (VSPollQuestionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"pollQuestionViewController"];
             [vc setPoll:p];
@@ -181,48 +197,19 @@
             self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
             [self.navigationController pushViewController:vc animated:YES];
         }
-
     }
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.sections.count > 0 && [[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
+    if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         return 100.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
+        return 100.0f;
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
+        return 130.0f;
     }
     return 100.0f;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.sections.count > 0 && [[self.sections objectAtIndex:section] isEqualToString:@"empty"]) {
-        return 0;
-    }
-    return 30.0f;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 30.0f)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.tableView.frame.size.width, 30.0f)];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
-    [label setText:[pollKeys objectAtIndex:section]];
-    [label setBackgroundColor:[UIColor clearColor]];
-    [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorWithRed:225.0/255.0 green:225.0/255.0 blue:225.0/255.0 alpha:1.0]];
-    return view;
-}
-
-- (NSMutableDictionary*) getPollAtIndexPath:(NSIndexPath*)indexPath
-{
-    return [[[[self.polls objectAtIndex:indexPath.section] objectForKey:[pollKeys objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row] mutableCopy];
-}
-
-- (void) setupPollKeys
-{
-    [pollKeys removeAllObjects];
-    for (NSDictionary*dict in self.polls) {
-        [pollKeys addObjectsFromArray:[dict allKeys]];
-    }
-}
 @end
