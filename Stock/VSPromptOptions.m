@@ -56,6 +56,16 @@
     
     [self.orLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
     
+    if (self.view.frame.size.height < 500.0) { //4s & iPad
+        self.logoToTopConstraint.constant = 0;
+    } else if (self.view.frame.size.height < 510.0) { //5s
+        self.logoToTopConstraint.constant = 25;
+    } else { //6 & 6+
+        self.logoToTopConstraint.constant = 60;
+        self.logoHeightConstraint.constant = 80;
+    }
+    NSLog(@"height = %f", self.view.frame.size.height);
+    
 }
 
 
