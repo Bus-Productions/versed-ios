@@ -226,7 +226,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView emptyCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
-    [cell configureWithText:@"Fetching results"];
+    [cell configureWithText:@"Fetching results" andBackgroundColor:nil];
     return cell;
 }
 

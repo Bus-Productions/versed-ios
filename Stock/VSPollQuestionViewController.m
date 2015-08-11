@@ -87,14 +87,6 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
     
-    UILabel* title = (UILabel*)[cell.contentView viewWithTag:1];
-    [title setText:@"viewpoints"];
-    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:32.0f]];
-    
-    UILabel* byline = (UILabel*)[cell.contentView viewWithTag:2];
-    [byline setText:[NSString stringWithFormat:@"A question from %@", @"your company."]];
-    [byline setFont:[UIFont fontWithName:@"SourceSansPro-LightIt" size:18.0f]];
-    
     return cell;
 }
 
@@ -141,7 +133,7 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
         return 62.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
-        return 40.0f + [self heightForText:[[self.poll poll] pollQuestion] width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
+        return 40.0f + [self heightForText:[[self.poll poll] pollQuestion] width:(self.view.bounds.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     }
     return 100.0f;
 }

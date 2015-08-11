@@ -197,7 +197,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView requestingCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"requestingCell" forIndexPath:indexPath];
-    [cell configureWithText:@"Requesting quiz data"];
+    [cell configureWithText:@"Requesting quiz data" andBackgroundColor:nil];
     return cell;
 }
 

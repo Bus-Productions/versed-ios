@@ -171,7 +171,7 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
     
-    [cell configureWithText:@"Sorry there are no daily articles at this time!"];
+    [cell configureWithText:@"Sorry there are no daily articles at this time!" andBackgroundColor:nil];
     
     return cell;
 }

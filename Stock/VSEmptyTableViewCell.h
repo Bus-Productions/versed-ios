@@ -10,7 +10,7 @@
 
 @interface VSEmptyTableViewCell : UITableViewCell
 
-- (void) configureWithText:(NSString*)text;
+- (void) configureWithText:(NSString*)text andBackgroundColor:(UIColor*)bgColor;
 - (void) configureWithTextsInArray:(NSArray*)array;
 
 @end
