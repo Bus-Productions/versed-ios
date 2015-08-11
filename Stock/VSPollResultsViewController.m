@@ -10,7 +10,7 @@
 #import "VSPollResultsTableViewCell.h"
 #import "VSPieChartTableViewCell.h"
 
-#define COLORS = [[NSArray alloc] initWithObjects:PNRed, PNGreen, PNBlue, PNLightBlue, PNLightGreen, PNYellow, PNPinkDark, PNBlack, nil];
+#define COLORS = [[NSArray alloc] initWithObjects:PN1, PN2, PN3, PN4, PNRed, PNGreen, PNBlue, PNLightBlue, PNLightGreen, PNYellow, PNPinkDark, PNBlack, nil];
 
 
 @interface VSPollResultsViewController ()
@@ -47,7 +47,7 @@
 
 - (void) setupColors
 {
-   colors = [[NSArray alloc] initWithObjects:PNRed, PNGreen, PNBlue, PNLightBlue, PNLightGreen, PNYellow, PNPinkDark, PNBlack, nil];
+    colors = [[NSArray alloc] initWithObjects:[UIColor colorWithRed:0.0f/255.0 green:136.0 / 255.0 blue:88.0 / 255.0 alpha:1.0], [UIColor colorWithRed:29.0 / 255.0 green:171.0 / 255.0 blue:79.0 / 255.0 alpha:1.0], [UIColor colorWithRed:102.0 / 255.0 green:102.0 / 255.0 blue:102.0 / 255.0 alpha:1.0], [UIColor colorWithRed:153.0 / 255.0 green:153.0 / 255.0 blue:153.0 / 255.0 alpha:1.0], PNRed, PNGreen, PNBlue, PNLightBlue, PNLightGreen, PNYellow, PNPinkDark, PNBlack, nil];
 }
 
 - (void) exit

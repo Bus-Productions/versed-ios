@@ -42,6 +42,7 @@
 		28793F311B29E9D900E2998F /* burgermenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 28793F2E1B29E9D900E2998F /* burgermenu.png */; };
 		28793F321B29E9D900E2998F /* burgermenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28793F2F1B29E9D900E2998F /* burgermenu@2x.png */; };
 		28793F331B29E9D900E2998F /* burgermenu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28793F301B29E9D900E2998F /* burgermenu@3x.png */; };
+		288A747F1B79BC3500F6A618 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 288A747E1B79BC3500F6A618 /* 4.png */; };
 		28A533C01ACF688A0049B3F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A533BF1ACF688A0049B3F7 /* main.m */; };
 		28A533C31ACF688A0049B3F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A533C21ACF688A0049B3F7 /* AppDelegate.m */; };
 		28A533C91ACF688A0049B3F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A533C71ACF688A0049B3F7 /* Main.storyboard */; };
@@ -181,6 +182,7 @@
 		28793F2E1B29E9D900E2998F /* burgermenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burgermenu.png; sourceTree = "<group>"; };
 		28793F2F1B29E9D900E2998F /* burgermenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burgermenu@2x.png"; sourceTree = "<group>"; };
 		28793F301B29E9D900E2998F /* burgermenu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burgermenu@3x.png"; sourceTree = "<group>"; };
+		288A747E1B79BC3500F6A618 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		28A533BA1ACF688A0049B3F7 /* Versed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Versed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A533BE1ACF688A0049B3F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28A533BF1ACF688A0049B3F7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				28204A2D1B45AFBA000D592C /* 1.png */,
 				28204A2E1B45AFBA000D592C /* 2.png */,
 				28204A2F1B45AFBA000D592C /* 3.png */,
+				288A747E1B79BC3500F6A618 /* 4.png */,
 				287684EF1B2ABFE20076AB24 /* quiz_splash.png */,
 				28793F0E1B28908D00E2998F /* login_warm_background.png */,
 			);
@@ -924,6 +927,7 @@
 				28A533CB1ACF688A0049B3F7 /* Images.xcassets in Resources */,
 				283A44971B2A93BD003012A7 /* talkbox.png in Resources */,
 				28793F331B29E9D900E2998F /* burgermenu@3x.png in Resources */,
+				288A747F1B79BC3500F6A618 /* 4.png in Resources */,
 				28793F2B1B29E52C00E2998F /* settingsbutton.png in Resources */,
 				28793F271B2898E200E2998F /* SourceSansPro-Semibold.otf in Resources */,
 				7620FCAE1B74FB980013FD92 /* Versed_Final_Logo_Black.png in Resources */,
