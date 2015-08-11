@@ -167,7 +167,7 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
 
-    [cell configureWithText:@"Viewpoints appear after certain resources are consumed and give you the chance to tell us what you think. \n\nRead more, give us your opinion, and come back here to see the results." andBackgroundColor:[UIColor clearColor]];
+    [cell configureWithText:@"You'll be asked for your viewpoint on different issues as you explore tracks. \n\nView more resources, share your opinion and come back here to see the results." andBackgroundColor:[UIColor clearColor]];
     
     return cell;
 }
