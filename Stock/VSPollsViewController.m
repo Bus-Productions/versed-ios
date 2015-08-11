@@ -97,6 +97,12 @@
 - (void) handlePollsResponse:(NSDictionary *)responseObject
 {
     self.polls = [[[responseObject objectForKey:@"polls"] cleanArray] mutableCopy];
+    NSMutableArray *enumeratingArray = [self.polls copy];
+    for (NSDictionary *poll in enumeratingArray) {
+        if (![poll userAnswer]) {
+            [self.polls removeObject:poll];
+        }
+    }
     if (NULL_TO_NIL(self.polls)) {
         [self.polls saveLocalWithKey:@"polls" success:^(id responseObject){
             [self.tableView reloadData];
@@ -161,7 +167,7 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
 
-    [cell configureWithText:@"Sorry there are no viewpoints at this time!"];
+    [cell configureWithText:@"Viewpoints appear after certain resources are consumed and give you the chance to tell us what you think. \n\nRead more, give us your opinion, and come back here to see the results." andBackgroundColor:[UIColor clearColor]];
     
     return cell;
 }
@@ -203,7 +209,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
-        return 100.0f;
+        return 150.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {

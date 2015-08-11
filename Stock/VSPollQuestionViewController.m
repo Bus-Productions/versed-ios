@@ -133,7 +133,7 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
         return 62.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
-        return 40.0f + [self heightForText:[[self.poll poll] pollQuestion] width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
+        return 40.0f + [self heightForText:[[self.poll poll] pollQuestion] width:(self.view.bounds.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     }
     return 100.0f;
 }

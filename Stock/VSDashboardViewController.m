@@ -122,7 +122,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView emptyCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
-    [cell configureWithText:@"Nobody is on the leaderboard"];
+    [cell configureWithText:@"Nobody is on the leaderboard" andBackgroundColor:nil];
     return cell;
 }
 

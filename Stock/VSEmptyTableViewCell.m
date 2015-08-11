@@ -20,11 +20,15 @@
     // Configure the view for the selected state
 }
 
-- (void) configureWithText:(NSString*)text
+- (void) configureWithText:(NSString*)text andBackgroundColor:(UIColor*)bgColor
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:text];
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    if (bgColor) {
+        [self setBackgroundColor:bgColor];
+        [lbl setBackgroundColor:bgColor];
+    }
 }
 
 - (void) configureWithTextsInArray:(NSArray*)array

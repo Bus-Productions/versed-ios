@@ -4248,15 +4248,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Buq-cm-vFL">
-                                                    <rect key="frame" x="8" y="19" width="584" height="21"/>
+                                                    <rect key="frame" x="25" y="19" width="550" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Buq-cm-vFL" firstAttribute="trailing" secondItem="Gqb-N4-V4A" secondAttribute="trailingMargin" id="7pV-fN-fCK"/>
-                                                <constraint firstItem="Buq-cm-vFL" firstAttribute="leading" secondItem="Gqb-N4-V4A" secondAttribute="leadingMargin" id="88c-ZK-uN8"/>
+                                                <constraint firstItem="Buq-cm-vFL" firstAttribute="trailing" secondItem="Gqb-N4-V4A" secondAttribute="trailingMargin" constant="-17" id="7pV-fN-fCK"/>
+                                                <constraint firstItem="Buq-cm-vFL" firstAttribute="leading" secondItem="Gqb-N4-V4A" secondAttribute="leadingMargin" constant="17" id="88c-ZK-uN8"/>
                                                 <constraint firstItem="Buq-cm-vFL" firstAttribute="top" secondItem="Gqb-N4-V4A" secondAttribute="topMargin" constant="3" id="8e8-rx-zXD"/>
                                                 <constraint firstItem="Buq-cm-vFL" firstAttribute="top" secondItem="Gqb-N4-V4A" secondAttribute="topMargin" constant="3" id="8yi-eF-cEW"/>
                                                 <constraint firstItem="Buq-cm-vFL" firstAttribute="trailing" secondItem="Gqb-N4-V4A" secondAttribute="trailingMargin" id="aGy-J5-prc"/>
