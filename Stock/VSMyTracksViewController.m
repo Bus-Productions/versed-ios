@@ -166,13 +166,14 @@
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES]; 
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"tracks"]) {
         NSMutableDictionary *track = [[self.myTracks objectAtIndex:indexPath.row] mutableCopy];
-        return 205.0f + [self heightForText:[track objectForKey:@"description"] width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+        return 175.0f + [self heightForText:[track objectForKey:@"description"] width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:15.0f]];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
         return 400.0f;
     }

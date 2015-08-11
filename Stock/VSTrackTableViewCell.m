@@ -62,7 +62,7 @@
     
     UILabel* subTitle = (UILabel*)[baseView viewWithTag:3];
     [subTitle setText:[NSString stringWithFormat:@"%@ resources · %@", [track numberResources], [track estimatedTime]]];
-    [subTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    [subTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:15.0f]];
     [subTitle setTextColor:[UIColor whiteColor]];
     
     subTitle.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -101,8 +101,7 @@
         [readView setHidden:YES];
     }
     
-    UIBezierPath *maskPath;
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:headlineImage.bounds
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:headlineImage.bounds
                                      byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
                                            cornerRadii:CGSizeMake(4.0, 4.0)];
     
@@ -110,7 +109,7 @@
     maskLayer.frame = self.bounds;
     maskLayer.path = maskPath.CGPath;
     headlineImage.layer.mask = maskLayer;
-
+    
     baseView.layer.cornerRadius = 4.0; 
     baseView.layer.shadowColor = [UIColor blackColor].CGColor;
     baseView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);

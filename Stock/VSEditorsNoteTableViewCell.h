@@ -12,10 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *detailContainerView;
 @property (strong, nonatomic) NSMutableDictionary *track;
-@property (strong, nonatomic) NSMutableArray *myTrackIDs;
 
-- (void) configure;
-- (IBAction)saveToMyTracks:(id)sender;
+- (void) configureAndHide:(BOOL)hide;
 - (void) contract;
 - (void) expand; 
 @end

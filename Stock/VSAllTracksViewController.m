@@ -32,7 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self shouldSwitchToMyTracks];
 
     [self setupData];
     
@@ -54,26 +53,6 @@
     [super viewWillAppear:animated];
     [self reloadScreen];
 }
-
-- (void) shouldSwitchToMyTracks
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *myTracks = [defaults objectForKey:@"myTracks"];
-    NSNumber *isInitialLogin = [defaults objectForKey:@"isInitialLogin"];
-    if (myTracks.count > 0 && [isInitialLogin boolValue]) {
-        [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"isInitialLogin"];
-        [defaults synchronize];
-        UINavigationController *nc = [[UINavigationController alloc] init];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        VSMyTracksViewController *vc = (VSMyTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"myTracksViewController"];
-        nc = [storyboard instantiateViewControllerWithIdentifier:@"myTracksNavigationController"];
-        [nc setViewControllers:@[vc] animated:NO];
-        
-        [self.revealViewController setFrontViewController:nc];
-        [self.revealViewController revealToggleAnimated:YES];
-    }
-}
-
 
 # pragma mark - Setup
 
@@ -250,7 +229,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableDictionary *track = [[[[[self.categoriesWithTracks objectAtIndex:selectedIndex] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row] mutableCopy];
-    return 205.0f + [self heightForText:[track objectForKey:@"description"] width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    return 175.0f + [self heightForText:[track objectForKey:@"description"] width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:15.0f]];
     //return 276.0f;
 }
 
@@ -282,6 +261,7 @@
     [vc setTrack:[[[[self.categoriesWithTracks objectAtIndex:selectedIndex] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row]];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:vc animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES]; 
 }
 
 

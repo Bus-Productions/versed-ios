@@ -18,6 +18,7 @@
 @synthesize bottomButton;
 @synthesize topLabel;
 @synthesize bottomLabel;
+@synthesize orLabel;
 
 
 - (void) viewWillAppear:(BOOL)animated
@@ -45,23 +46,26 @@
     
     [self.bottomLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
     
-    //[[self.topButton layer] setBorderWidth:1.0f];
-    //[[self.topButton layer] setBorderColor:[UIColor whiteColor].CGColor];
-    [self.topButton setBackgroundColor:[UIColor whiteColor]];
-    [[self.topButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:22.0f]];
-    //[[self.topButton titleLabel] setTextColor:[UIColor whiteColor]];
-    //[self.topButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.topButton.layer setCornerRadius:8.0f];
+    [[self.topButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    [self.topButton.layer setCornerRadius:4.0f];
     [self.topButton setClipsToBounds:YES];
     
-    //[[self.bottomButton layer] setBorderWidth:1.0f];
-    //[[self.bottomButton layer] setBorderColor:[UIColor whiteColor].CGColor];
-    [self.bottomButton setBackgroundColor:[UIColor whiteColor]];
-    [[self.bottomButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:22.0f]];
-    //[[self.bottomButton titleLabel] setTextColor:[UIColor whiteColor]];
-    //[self.bottomButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.bottomButton.layer setCornerRadius:8.0f];
+    [[self.bottomButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    [self.bottomButton.layer setCornerRadius:4.0f];
     [self.bottomButton setClipsToBounds:YES];
+    
+    [self.orLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    
+    if (self.view.frame.size.height < 500.0) { //4s & iPad
+        self.logoToTopConstraint.constant = 0;
+    } else if (self.view.frame.size.height < 510.0) { //5s
+        self.logoToTopConstraint.constant = 25;
+    } else { //6 & 6+
+        self.logoToTopConstraint.constant = 60;
+        self.logoHeightConstraint.constant = 80;
+    }
+    NSLog(@"height = %f", self.view.frame.size.height);
+    
 }
 
 

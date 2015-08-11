@@ -13,7 +13,7 @@
 
 @implementation VSEditorsNoteTableViewCell
 
-@synthesize track, myTrackIDs;
+@synthesize track;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -25,76 +25,37 @@
     // Configure the view for the selected state
 }
 
-- (void) configure
+- (void) configureAndHide:(BOOL)hide
 {
     [self setBackgroundColor:[UIColor clearColor]];
     [self.detailContainerView setBackgroundColor:[UIColor clearColor]];
-    [self.detailContainerView setHidden:NO];
-
+    [self.detailContainerView setHidden:hide];
+    NSString *arrow = hide ? @"\u25B8" : @"\u25BC";
+    
     UILabel *title = (UILabel*)[self.contentView viewWithTag:1];
-    [title setText:@"Editor's Note \u25B4"];
+    [title setText:[NSString stringWithFormat:@"%@ Introduction", arrow]];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
+    [title setTextColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
     
     UILabel *note = (UILabel*)[self.contentView viewWithTag:3];
     [note setText:[self.track editorsNote]];
     [note setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
-    
-    UIButton *saveButton = (UIButton*)[self.contentView viewWithTag:5];
-    [saveButton setTitle:[self saveToMyTracksButtonTitle] forState:UIControlStateNormal];
-    [saveButton setBackgroundColor:[UIColor colorWithRed:0.925f green:0.925f blue:0.925f alpha:1.0f]];
-    [saveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [[saveButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
 }
 
 
 # pragma mark actions
 
-- (IBAction)saveToMyTracks:(id)sender {
-    [self switchSaveToTracksText:(UIButton*)sender];
-    [self updateMyTrack];
-}
-
-- (void) updateMyTrack
-{
-    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@/update_my_tracks.json", [[[LXSession thisSession] user] ID]] withMethod:@"POST" withParamaters:@{@"track_id": [self.track ID]} authType:@"none"
-                           success:^(id responseObject){
-                               [[[(NSArray*)[responseObject objectForKey:@"my_tracks"] cleanArray] mutableCopy] saveLocalWithKey:@"myTracks"];
-                               [[NSNotificationCenter defaultCenter] postNotificationName:@"updatedMyTracks" object:nil userInfo:responseObject];
-                           } failure:^(NSError* error) {
-                           }
-     ];
-}
-
-- (void) switchSaveToTracksText:(UIButton*)btn
-{
-    if ([btn.currentTitle isEqualToString:SAVE_TO_MY_TRACKS_TEXT]) {
-        [btn setTitle:REMOVE_FROM_MY_TRACKS_TEXT forState:UIControlStateNormal];
-    } else {
-        [btn setTitle:SAVE_TO_MY_TRACKS_TEXT forState:UIControlStateNormal];
-    }
-}
-
-- (NSString*) saveToMyTracksButtonTitle
-{
-    NSMutableArray *myTracksIDs = [[NSMutableArray alloc] init];
-    [myTracksIDs addObjectsFromArray:[[[NSUserDefaults standardUserDefaults] objectForKey:@"myTracks"] pluckIDs]];
-    if (myTracksIDs && myTracksIDs.count > 0 && [myTracksIDs containsObject:[track ID]]) {
-        return REMOVE_FROM_MY_TRACKS_TEXT;
-    }
-    return SAVE_TO_MY_TRACKS_TEXT;
-}
-
 - (void) contract
 {
     UILabel *title = (UILabel*)[self.contentView viewWithTag:1];
-    [title setText:@"Editor's Note \u25BC"];
+    [title setText:@"\u25B8 Introduction"];
     self.detailContainerView.hidden = YES;
 }
 
 - (void) expand
 {
     UILabel *title = (UILabel*)[self.contentView viewWithTag:1];
-    [title setText:@"Editor's Note \u25B4"];
+    [title setText:@"\u25BC Introduction"];
     self.detailContainerView.hidden = NO;
 }
 

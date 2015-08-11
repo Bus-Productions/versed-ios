@@ -120,7 +120,15 @@
 
 - (void) setupEditorsNote
 {
-    [expandedCells addObject:@"editorsNote"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *tracksSeen = [[NSMutableArray alloc] initWithArray:[[defaults objectForKey:@"tracksSeen"] mutableCopy]];
+    NSLog(@"tracksSeen = %@", tracksSeen);
+    if (![tracksSeen containsObject:[self.track ID]]) {
+        [expandedCells addObject:@"editorsNote"];
+        [tracksSeen addObject:[self.track ID]];
+        [defaults setObject:tracksSeen forKey:@"tracksSeen"];
+        [defaults synchronize];
+    }
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
 }
@@ -220,8 +228,7 @@
     VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"editorsNoteCell"];
     
     [cell setTrack:self.track];
-    [cell setMyTrackIDs:myTracksIDs];
-    [cell configure];
+    [cell configureAndHide:![expandedCells containsObject:@"editorsNote"]];
     
     return cell;
 }
@@ -262,9 +269,9 @@
         return 117.0f + [self heightForText:[[[self.track resources] objectAtIndex:indexPath.row] objectForKey:@"description"] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
         return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
-        float heightOfTitle = 16.0f + [self heightForText:@"Editor's Note" width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
+        float heightOfTitle = 16.0f + [self heightForText:@"Introduction" width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
         if ([expandedCells containsObject:@"editorsNote"]) {
-            return 20.0f + [self heightForText:[self.track editorsNote] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]] + heightOfTitle  + 30.0f;
+            return 20.0f + [self heightForText:[self.track editorsNote] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]] + heightOfTitle;
         } else {
             return heightOfTitle;
         }
@@ -350,7 +357,8 @@
     VSCompletedTrackViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"completedTrackViewController"];
     [vc setUsersCompleted:completedPeople];
     [vc setTrack:self.track];
-    [vc setMyTracksIDs:myTracksIDs]; 
+    [vc setMyTracksIDs:myTracksIDs];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -361,6 +369,7 @@
     [vc setTrack:self.track];
     [vc setAllMessages:messages]; 
     [vc setMyTracksIDs:myTracksIDs];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

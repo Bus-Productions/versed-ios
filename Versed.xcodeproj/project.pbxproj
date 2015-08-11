@@ -128,6 +128,7 @@
 		76F0D5981B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D5971B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m */; };
 		76F0D59B1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D59A1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m */; };
 		76F6370E1B29F2EF004B0A1A /* VSContactUsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F6370D1B29F2EF004B0A1A /* VSContactUsButton.m */; };
+		76FB4B441B79088700949067 /* viewpoints_720.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FB4B431B79088700949067 /* viewpoints_720.png */; };
 		B9793DD86EF509AA8FD8F674 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F455122FD9049861339E9F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -348,6 +349,7 @@
 		76F0D59A1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCongratsFeedbackTableViewCell.m; sourceTree = "<group>"; };
 		76F6370C1B29F2EF004B0A1A /* VSContactUsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSContactUsButton.h; sourceTree = "<group>"; };
 		76F6370D1B29F2EF004B0A1A /* VSContactUsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSContactUsButton.m; sourceTree = "<group>"; };
+		76FB4B431B79088700949067 /* viewpoints_720.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = viewpoints_720.png; sourceTree = "<group>"; };
 		832108382003574B881C950B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A3F455122FD9049861339E9F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -401,6 +403,7 @@
 		28793F061B288E0900E2998F /* Logos */ = {
 			isa = PBXGroup;
 			children = (
+				76FB4B431B79088700949067 /* viewpoints_720.png */,
 				7620FCAC1B74FB980013FD92 /* Versed_Final_Logo_Black.png */,
 				7620FCAD1B74FB980013FD92 /* versed_today.png */,
 				28A8F10C1B42DE63007BD774 /* versed_daily.png */,
@@ -906,6 +909,7 @@
 				282129631B60487B00B99850 /* dark_v.png in Resources */,
 				28793F251B2898E200E2998F /* SourceSansPro-LightIt.otf in Resources */,
 				28793F201B2898E200E2998F /* SourceSansPro-BoldIt.otf in Resources */,
+				76FB4B441B79088700949067 /* viewpoints_720.png in Resources */,
 				28793F1F1B2898E200E2998F /* SourceSansPro-Bold.otf in Resources */,
 				28793F1D1B2898DC00E2998F /* SourceSansPro-Black.otf in Resources */,
 				28A5340C1AD0A64F0049B3F7 /* MobileLogin.storyboard in Resources */,
