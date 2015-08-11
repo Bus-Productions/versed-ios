@@ -31,7 +31,8 @@
 @synthesize track, tableView, sections;
 @synthesize bottomToolbarView;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setupData];
     [self setupBottomView];

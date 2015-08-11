@@ -44,6 +44,10 @@
 #define PNTwitterColor  [UIColor colorWithRed:0.0 / 255.0 green:171.0 / 255.0 blue:243.0 / 255.0 alpha:1.0]
 #define PNWeiboColor    [UIColor colorWithRed:250.0 / 255.0 green:0.0 / 255.0 blue:33.0 / 255.0 alpha:1.0]
 #define PNiOSGreenColor [UIColor colorWithRed:98.0 / 255.0 green:247.0 / 255.0 blue:77.0 / 255.0 alpha:1.0]
+#define PN1 [UIColor colorWithRed:0.0f/255.0 green:136.0 / 255.0 blue:88.0 / 255.0 alpha:1.0]
+#define PN2 [UIColor colorWithRed:29.0 / 255.0 green:171.0 / 255.0 blue:79.0 / 255.0 alpha:1.0]
+#define PN3 [UIColor colorWithRed:102.0 / 255.0 green:102.0 / 255.0 blue:102.0 / 255.0 alpha:1.0]
+#define PN4 [UIColor colorWithRed:153.0 / 255.0 green:153.0 / 255.0 blue:153.0 / 255.0 alpha:1.0]
 
 
 @interface PNColor : NSObject
