@@ -87,14 +87,6 @@
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
     
-    UILabel* title = (UILabel*)[cell.contentView viewWithTag:1];
-    [title setText:@"viewpoints"];
-    [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:32.0f]];
-    
-    UILabel* byline = (UILabel*)[cell.contentView viewWithTag:2];
-    [byline setText:[NSString stringWithFormat:@"A question from %@", @"your company."]];
-    [byline setFont:[UIFont fontWithName:@"SourceSansPro-LightIt" size:18.0f]];
-    
     return cell;
 }
 

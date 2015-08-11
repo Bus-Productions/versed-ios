@@ -151,7 +151,7 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
     
-    [cell configureWithTextsInArray:@[[NSString stringWithFormat:@"%@, you haven't saved any learning tracks.", [[[LXSession thisSession] user] firstName]], @"Saving learning tracks lets you easily come back later, and find out when new resources are added."]];
+    [cell configureWithTextsInArray:@[[NSString stringWithFormat:@"%@, you haven't saved any tracks.", [[[LXSession thisSession] user] firstName]], @"Saving tracks lets you easily come back later, and find out when new resources are added."]];
     
     return cell;
 }
