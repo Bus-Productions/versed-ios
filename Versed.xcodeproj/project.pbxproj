@@ -67,6 +67,7 @@
 		760829691B1641EB0053E29F /* VSDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829681B1641EA0053E29F /* VSDashboardViewController.m */; };
 		7608296C1B16466F0053E29F /* VSLeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7608296B1B16466F0053E29F /* VSLeaderTableViewCell.m */; };
 		760829721B1791EC0053E29F /* VSForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760829711B1791EC0053E29F /* VSForgotPasswordViewController.m */; };
+		760C323E1B7BD724006B1290 /* VSPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C323D1B7BD724006B1290 /* VSPurchaseViewController.m */; };
 		760CFD3C1B25CD5400A9C875 /* VSMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 760CFD3B1B25CD5400A9C875 /* VSMessagesViewController.m */; };
 		760CFD401B25D5BC00A9C875 /* VSMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760CFD3F1B25D5BC00A9C875 /* VSMessageTableViewCell.m */; };
 		760F5D501B0B78E50038FF1A /* VSEmptyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 760F5D4F1B0B78E50038FF1A /* VSEmptyTableViewCell.m */; };
@@ -86,7 +87,6 @@
 		764060DE1B279472004FA5CC /* VSProfileSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060DD1B279472004FA5CC /* VSProfileSettingsTableViewCell.m */; };
 		7664081E1B1E1383006272E8 /* VSCompletedTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */; };
 		766408211B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */; };
-		766408241B1E1AE0006272E8 /* VSSaveToMyTracksButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */; };
 		766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408261B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m */; };
 		7664082A1B1E5B20006272E8 /* VSPollsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408291B1E5B20006272E8 /* VSPollsTableViewCell.m */; };
 		7664082D1B1E5CAB006272E8 /* VSPollQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7664082C1B1E5CAB006272E8 /* VSPollQuestionViewController.m */; };
@@ -229,6 +229,8 @@
 		7608296B1B16466F0053E29F /* VSLeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSLeaderTableViewCell.m; sourceTree = "<group>"; };
 		760829701B1791EC0053E29F /* VSForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSForgotPasswordViewController.h; sourceTree = "<group>"; };
 		760829711B1791EC0053E29F /* VSForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSForgotPasswordViewController.m; sourceTree = "<group>"; };
+		760C323C1B7BD724006B1290 /* VSPurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPurchaseViewController.h; sourceTree = "<group>"; };
+		760C323D1B7BD724006B1290 /* VSPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSPurchaseViewController.m; sourceTree = "<group>"; };
 		760CFD3A1B25CD5400A9C875 /* VSMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSMessagesViewController.h; sourceTree = "<group>"; };
 		760CFD3B1B25CD5400A9C875 /* VSMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSMessagesViewController.m; sourceTree = "<group>"; };
 		760CFD3E1B25D5BC00A9C875 /* VSMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSMessageTableViewCell.h; sourceTree = "<group>"; };
@@ -265,8 +267,6 @@
 		7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCompletedTrackViewController.m; sourceTree = "<group>"; };
 		7664081F1B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUsersCompletedTrackTableViewCell.h; sourceTree = "<group>"; };
 		766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUsersCompletedTrackTableViewCell.m; sourceTree = "<group>"; };
-		766408221B1E1AE0006272E8 /* VSSaveToMyTracksButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSaveToMyTracksButton.h; sourceTree = "<group>"; };
-		766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSaveToMyTracksButton.m; sourceTree = "<group>"; };
 		766408251B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCompletedTrackTitleTableViewCell.h; sourceTree = "<group>"; };
 		766408261B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCompletedTrackTitleTableViewCell.m; sourceTree = "<group>"; };
 		766408281B1E5B20006272E8 /* VSPollsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPollsTableViewCell.h; sourceTree = "<group>"; };
@@ -604,6 +604,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		760C323B1B7BD701006B1290 /* Completed/Leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				7664081C1B1E1383006272E8 /* VSCompletedTrackViewController.h */,
+				7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */,
+				76F0D5901B28D31400F54C56 /* VSCongratsViewController.h */,
+				76F0D5911B28D31500F54C56 /* VSCongratsViewController.m */,
+			);
+			name = Completed/Leaderboard;
+			sourceTree = "<group>";
+		};
+		760C323F1B7BD72A006B1290 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				760C323C1B7BD724006B1290 /* VSPurchaseViewController.h */,
+				760C323D1B7BD724006B1290 /* VSPurchaseViewController.m */,
+			);
+			name = Purchase;
+			sourceTree = "<group>";
+		};
 		760CFD3D1B25CD7000A9C875 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,13 +652,9 @@
 			children = (
 				7666FC311B0693CC00051C93 /* VSTrackViewController.h */,
 				7666FC321B0693CC00051C93 /* VSTrackViewController.m */,
-				7664081C1B1E1383006272E8 /* VSCompletedTrackViewController.h */,
-				7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */,
-				766408221B1E1AE0006272E8 /* VSSaveToMyTracksButton.h */,
-				766408231B1E1AE0006272E8 /* VSSaveToMyTracksButton.m */,
-				76F0D5901B28D31400F54C56 /* VSCongratsViewController.h */,
-				76F0D5911B28D31500F54C56 /* VSCongratsViewController.m */,
+				760C323B1B7BD701006B1290 /* Completed/Leaderboard */,
 				760CFD3D1B25CD7000A9C875 /* Messages */,
+				760C323F1B7BD72A006B1290 /* Purchase */,
 				76A21E1C1B35A0DB00B7C40D /* VSResourceViewController.h */,
 				76A21E1D1B35A0DB00B7C40D /* VSResourceViewController.m */,
 			);
@@ -1030,7 +1046,6 @@
 				76BC95661B4AFD7D006785F9 /* VSIntroViewController.m in Sources */,
 				7666FC301B068B2300051C93 /* LXArrayObjects.m in Sources */,
 				76A21E1E1B35A0DB00B7C40D /* VSResourceViewController.m in Sources */,
-				766408241B1E1AE0006272E8 /* VSSaveToMyTracksButton.m in Sources */,
 				76DEE7201B29E29B00323EA0 /* VSFaqTitleTableViewCell.m in Sources */,
 				28A533EE1ACF69850049B3F7 /* LXServer.m in Sources */,
 				7664083A1B1E81A1006272E8 /* VSPollResultsTableViewCell.m in Sources */,
@@ -1056,6 +1071,7 @@
 				76698DFE1B55600E0031BA21 /* VSWeaknessesTableViewCell.m in Sources */,
 				760829691B1641EB0053E29F /* VSDashboardViewController.m in Sources */,
 				28A533FB1ACF699A0049B3F7 /* NSNumber+Helpers.m in Sources */,
+				760C323E1B7BD724006B1290 /* VSPurchaseViewController.m in Sources */,
 				760CFD3C1B25CD5400A9C875 /* VSMessagesViewController.m in Sources */,
 				76698E011B55760D0031BA21 /* VSShowResultsTableViewCell.m in Sources */,
 				768419E61B3853660029118D /* VSLoginViewController.m in Sources */,

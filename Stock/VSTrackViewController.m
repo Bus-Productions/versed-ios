@@ -19,6 +19,7 @@
 #import "VSTrackTitleTableViewCell.h"
 #import "VSResourceViewController.h"
 #import "VSEditorsNoteTableViewCell.h"
+#import "VSPurchaseViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -236,16 +237,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [self createResourceUserPairAtIndexPath:indexPath];
-        });
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
-        [webViewController setTrack:self.track];
-        [self.navigationController pushViewController:webViewController animated:YES];
+        if ([[LXSession thisSession] shouldPromptToBuy]) {
+            [self showPurchaseScreen];
+        } else {
+            [self showResourceAtIndexPath:indexPath];
+        }
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         if ([expandedCells containsObject:@"editorsNote"]) {
@@ -372,7 +368,27 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void) showPurchaseScreen
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSPurchaseViewController *vc = (VSPurchaseViewController*)[storyboard instantiateViewControllerWithIdentifier:@"purchaseViewController"];
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
 
+- (void) showResourceAtIndexPath:(NSIndexPath*)indexPath
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self createResourceUserPairAtIndexPath:indexPath];
+    });
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
+    [webViewController setTrack:self.track];
+    [self.navigationController pushViewController:webViewController animated:YES];
+
+}
 
 - (void) handleNotification:(NSNotification*)notification
 {
@@ -400,5 +416,6 @@
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [av show];
 }
+
 
 @end

@@ -9,6 +9,7 @@
 #import "LXSession.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
+#define FREE_RESOURCE_LIMIT 3
 
 static LXSession* thisSession = nil;
 
@@ -202,6 +203,58 @@ static LXSession* thisSession = nil;
     
     UIRemoteNotificationType types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
     return (types & UIRemoteNotificationTypeAlert);
+}
+
+- (BOOL) shouldPromptToBuy
+{
+    if ([[[LXSession thisSession] user] free]) {
+        return [self didUpdateConsumedResources];
+    }
+    return NO;
+}
+
+- (BOOL) didUpdateConsumedResources
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"consumedResourceCount"]) {
+        if ([[[defaults objectForKey:@"consumedResourceCount"] objectForKey:@"dateConsumed"] isEqualToString:[self getDateString]]) {
+            NSNumber *resourceCount = [self incrementConsumedResourcesWithDefaults:defaults];
+            return [resourceCount intValue] > FREE_RESOURCE_LIMIT;
+        } else {
+            [self resetConsumedResourcesWithDefaults:defaults];
+            return NO;
+        }
+    } else {
+        [self resetConsumedResourcesWithDefaults:defaults];
+        return NO;
+    }
+}
+
+- (NSNumber*) incrementConsumedResourcesWithDefaults:(NSUserDefaults*)defaults
+{
+    NSNumber *newCount = [NSNumber numberWithInt:[[[defaults objectForKey:@"consumedResourceCount"] objectForKey:@"numberConsumed"] intValue] + 1];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:[self getDateString] forKey:@"dateConsumed"];
+    [dict setObject:newCount forKey:@"numberConsumed"];
+    [defaults setObject:dict forKey:@"consumedResourceCount"];
+    [defaults synchronize];
+    return newCount;
+}
+
+- (void) resetConsumedResourcesWithDefaults:(NSUserDefaults*)defaults
+{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:[self getDateString] forKey:@"dateConsumed"];
+    [dict setObject:[NSNumber numberWithInt:1] forKey:@"numberConsumed"];
+    [defaults setObject:dict forKey:@"consumedResourceCount"];
+    [defaults synchronize];
+}
+
+- (NSString*) getDateString
+{
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    return [dateFormatter stringFromDate:[NSDate date]];
 }
 
 @end
