@@ -38,5 +38,7 @@
 - (NSString*) dayOfWeek;
 - (NSInteger) dayOfWeekIndex;
 
++ (NSString*) currentDateAsString;
+
 
 @end

@@ -37,8 +37,4 @@
 
 // notifications
 + (BOOL) areNotificationsEnabled;
-
-// custom
-- (BOOL) shouldPromptToBuy;
-
 @end

@@ -20,7 +20,7 @@
 {
     [self setInitialLoginTimestamp];
     [self setStyle];
-    [self setShouldRotate:NO]; 
+    [self setShouldRotate:NO];
     
     if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live] && [[[LXSession thisSession] user] name] && [[[[LXSession thisSession] user] name] length] > 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){

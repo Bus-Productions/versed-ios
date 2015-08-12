@@ -44,6 +44,12 @@
     return [formatter stringFromDate:self];
 }
 
++ (NSString*) currentDateAsString
+{
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    return [dateFormatter stringFromDate:[NSDate date]];
+}
 
 
 + (NSString*) timeAgoInWords:(double)relativeTimestamp
