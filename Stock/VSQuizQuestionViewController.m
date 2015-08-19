@@ -28,7 +28,7 @@
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupTimer];
-    
+    [self setupNextButton];
     [self showOrHideNextBar];
     
 //    NSLog(@"question: %@", self.question);
@@ -68,6 +68,12 @@
                                                 userInfo: nil repeats:YES];
     remainingTime = 25;
 }
+
+- (void) setupNextButton
+{
+    self.nextButton.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Bold" size:18.0f];
+}
+
 
 #pragma mark - Table view data source
 
@@ -132,7 +138,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView nextCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSButtonTableViewCell *cell = (VSButtonTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"nextCell" forIndexPath:indexPath];
-    [cell configureWithText:@"Next" andColor:nil];
+    [cell configureWithText:@"Next Question" andColor:nil];
     return cell;
 }
 
@@ -148,7 +154,10 @@
     
     UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
     [questionLabel setText:[NSString stringWithFormat:@"%lu/%lu",  (unsigned long)self.questionsCompleted, (unsigned long)self.totalQuestions]];
-
+    
+    [timerLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:24.0f]];
+    [pointsLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:24.0f]];
+    [questionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:24.0f]];
     return cell;
 }
 
@@ -241,6 +250,7 @@
             UILabel *lbl = (UILabel*)[chosenCell.contentView viewWithTag:1];
             [lbl setBackgroundColor:[UIColor grayColor]];
             [lbl setTextColor:[UIColor whiteColor]];
+            [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
         }
     } else {
         [self showAlertWithText:@"You ran out of time!"];
@@ -248,7 +258,8 @@
     UILabel *correctLbl = (UILabel*)[correctCell.contentView viewWithTag:1];
     [correctLbl setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
     [correctLbl setTextColor:[UIColor whiteColor]];
-
+    [correctLbl setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    
     successCallback(nil);
     
     if (NULL_TO_NIL(indexPath) && chosenCell) {

@@ -1867,6 +1867,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iF9-jZ-gRe">
+                                <rect key="frame" x="-9" y="544" width="618" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRM-q8-VpB">
+                                        <rect key="frame" x="0.0" y="0.0" width="618" height="56"/>
+                                        <color key="backgroundColor" red="0.070588235289999995" green="0.47450980390000003" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <state key="normal" title="Next Question">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextAction:" destination="T7I-QJ-GUk" eventType="touchUpInside" id="r8p-ry-mD4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="pRM-q8-VpB" firstAttribute="leading" secondItem="iF9-jZ-gRe" secondAttribute="leading" id="0yI-5X-4Qj"/>
+                                    <constraint firstAttribute="bottom" secondItem="pRM-q8-VpB" secondAttribute="bottom" id="4PV-X9-D10"/>
+                                    <constraint firstAttribute="height" constant="56" id="KjH-sc-TEd"/>
+                                    <constraint firstAttribute="trailing" secondItem="pRM-q8-VpB" secondAttribute="trailing" id="tNK-0S-wFd"/>
+                                    <constraint firstItem="pRM-q8-VpB" firstAttribute="top" secondItem="iF9-jZ-gRe" secondAttribute="top" id="vFE-HO-oHs"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Nit-Xg-8Dx">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2047,55 +2072,22 @@
                                     <outlet property="delegate" destination="T7I-QJ-GUk" id="r26-4S-X7N"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iF9-jZ-gRe">
-                                <rect key="frame" x="-9" y="544" width="618" height="56"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRM-q8-VpB">
-                                        <rect key="frame" x="0.0" y="0.0" width="618" height="56"/>
-                                        <color key="backgroundColor" red="0.070588235289999995" green="0.47450980390000003" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="sKz-Hq-8bT"/>
-                                        </constraints>
-                                        <state key="normal" title="Next">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="nextAction:" destination="T7I-QJ-GUk" eventType="touchUpInside" id="r8p-ry-mD4"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="pRM-q8-VpB" firstAttribute="leading" secondItem="iF9-jZ-gRe" secondAttribute="leading" id="0yI-5X-4Qj"/>
-                                    <constraint firstAttribute="bottom" secondItem="pRM-q8-VpB" secondAttribute="bottom" id="4PV-X9-D10"/>
-                                    <constraint firstAttribute="trailing" secondItem="pRM-q8-VpB" secondAttribute="trailing" id="tNK-0S-wFd"/>
-                                    <constraint firstItem="pRM-q8-VpB" firstAttribute="top" secondItem="iF9-jZ-gRe" secondAttribute="top" id="vFE-HO-oHs"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Nit-Xg-8Dx" secondAttribute="trailing" id="NiF-eI-hPe"/>
                             <constraint firstItem="Nit-Xg-8Dx" firstAttribute="leading" secondItem="0mP-Rw-4Kc" secondAttribute="leading" id="Tn3-9v-TLX"/>
-                            <constraint firstItem="Nit-Xg-8Dx" firstAttribute="bottom" secondItem="yQ1-lN-ujq" secondAttribute="top" id="WcW-H9-u1Y"/>
                             <constraint firstItem="iF9-jZ-gRe" firstAttribute="top" secondItem="Nit-Xg-8Dx" secondAttribute="bottom" id="YnJ-r1-lE1"/>
                             <constraint firstItem="yQ1-lN-ujq" firstAttribute="top" secondItem="iF9-jZ-gRe" secondAttribute="bottom" id="aXk-Ts-vgX"/>
-                            <constraint firstItem="yQ1-lN-ujq" firstAttribute="top" secondItem="iF9-jZ-gRe" secondAttribute="bottom" id="eLs-op-B3I"/>
                             <constraint firstItem="iF9-jZ-gRe" firstAttribute="leading" secondItem="0mP-Rw-4Kc" secondAttribute="leadingMargin" constant="-25" id="oh5-yV-7L7"/>
                             <constraint firstItem="Nit-Xg-8Dx" firstAttribute="top" secondItem="0mP-Rw-4Kc" secondAttribute="top" id="qKy-V2-b6Q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iF9-jZ-gRe" secondAttribute="trailing" constant="-25" id="v9Q-8C-yly"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="WcW-H9-u1Y"/>
-                                <exclude reference="eLs-op-B3I"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="nextButton" destination="pRM-q8-VpB" id="Cfx-FJ-hOz"/>
                         <outlet property="nextContainer" destination="iF9-jZ-gRe" id="86x-3U-cc7"/>
+                        <outlet property="nextContainerHeightConstraint" destination="KjH-sc-TEd" id="quk-or-Fi8"/>
                         <outlet property="tableView" destination="Nit-Xg-8Dx" id="VJy-1K-WPd"/>
                     </connections>
                 </viewController>

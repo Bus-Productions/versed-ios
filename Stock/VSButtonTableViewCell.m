@@ -28,6 +28,6 @@
     if (color) {
         [lbl setBackgroundColor:color];
     }
-    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f]];
+    [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:18.0f]];
 }
 @end
