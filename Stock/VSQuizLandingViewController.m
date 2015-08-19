@@ -79,7 +79,7 @@
 
 - (void) setupAppearance
 {
-    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", @"1.png", @"2.png", @"3.png", nil];
+    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", @"1.png", @"2.png", @"3.png", @"4.png", nil];
     [self.backgroundImageView setImage:[UIImage imageNamed:[backgroundImages randomArrayItem]]];
 }
 

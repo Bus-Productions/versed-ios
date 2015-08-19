@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoToTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoHeightConstraint;
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
 - (IBAction)topAction:(id)sender;
 - (IBAction)bottomAction:(id)sender;
 

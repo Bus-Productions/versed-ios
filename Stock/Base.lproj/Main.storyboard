@@ -451,6 +451,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="6Oy-hi-iHn"/>
                     <connections>
+                        <outlet property="backgroundImageView" destination="aMS-XI-esk" id="Fgg-gL-cxc"/>
                         <outlet property="bottomButton" destination="22l-5z-P8a" id="EZA-G2-IQP"/>
                         <outlet property="bottomLabel" destination="adB-cW-Qnv" id="3R1-3b-pxd"/>
                         <outlet property="logoHeightConstraint" destination="XGn-nw-FJx" id="xGM-MZ-7dC"/>
