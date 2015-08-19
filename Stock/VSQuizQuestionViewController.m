@@ -207,7 +207,7 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
         return 62.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
-        return 40.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-32.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:22.0f]];
+        return 40.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-32.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:17.0f]];
     }
     return 100.0f;
 }
@@ -258,7 +258,6 @@
     UILabel *correctLbl = (UILabel*)[correctCell.contentView viewWithTag:1];
     [correctLbl setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
     [correctLbl setTextColor:[UIColor whiteColor]];
-    correctLbl.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f];
     
     successCallback(nil);
     
