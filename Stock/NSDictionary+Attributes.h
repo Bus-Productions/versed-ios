@@ -77,6 +77,8 @@
 - (BOOL) paid;
 - (BOOL) free;
 - (BOOL) atResourceLimit;
+- (NSMutableDictionary *) company;
+- (BOOL) shouldShowLeaderboard;
 
 // track user pairs
 - (NSMutableArray *) trackUserPairs;
