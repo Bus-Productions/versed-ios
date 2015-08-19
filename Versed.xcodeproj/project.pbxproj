@@ -86,6 +86,7 @@
 		764060D81B274BFC004FA5CC /* VSProfileProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060D71B274BFC004FA5CC /* VSProfileProgressTableViewCell.m */; };
 		764060DB1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060DA1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m */; };
 		764060DE1B279472004FA5CC /* VSProfileSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060DD1B279472004FA5CC /* VSProfileSettingsTableViewCell.m */; };
+		764666F61B82076900320F7C /* LXNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 764666F51B82076900320F7C /* LXNotifications.m */; };
 		7664081E1B1E1383006272E8 /* VSCompletedTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */; };
 		766408211B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */; };
 		766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408261B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m */; };
@@ -266,6 +267,8 @@
 		764060DA1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSProfileTopicsTableViewCell.m; sourceTree = "<group>"; };
 		764060DC1B279472004FA5CC /* VSProfileSettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSProfileSettingsTableViewCell.h; sourceTree = "<group>"; };
 		764060DD1B279472004FA5CC /* VSProfileSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSProfileSettingsTableViewCell.m; sourceTree = "<group>"; };
+		764666F41B82076900320F7C /* LXNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNotifications.h; sourceTree = "<group>"; };
+		764666F51B82076900320F7C /* LXNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNotifications.m; sourceTree = "<group>"; };
 		7664081C1B1E1383006272E8 /* VSCompletedTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCompletedTrackViewController.h; sourceTree = "<group>"; };
 		7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCompletedTrackViewController.m; sourceTree = "<group>"; };
 		7664081F1B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUsersCompletedTrackTableViewCell.h; sourceTree = "<group>"; };
@@ -539,6 +542,8 @@
 				28A533ED1ACF69850049B3F7 /* LXSession.m */,
 				760C32401B7BE375006B1290 /* LXPurchase.h */,
 				760C32411B7BE375006B1290 /* LXPurchase.m */,
+				764666F41B82076900320F7C /* LXNotifications.h */,
+				764666F51B82076900320F7C /* LXNotifications.m */,
 				28A533EA1ACF69850049B3F7 /* LXServer.h */,
 				28A533EB1ACF69850049B3F7 /* LXServer.m */,
 				28A534021ACF6A440049B3F7 /* LXObjects.h */,
@@ -1032,6 +1037,7 @@
 				7666FC3C1B0A8EA700051C93 /* VSDailyArticlesViewController.m in Sources */,
 				768419E91B387C9E0029118D /* VSFinalStepSignupViewController.m in Sources */,
 				760829661B14C2920053E29F /* VSTokenViewController.m in Sources */,
+				764666F61B82076900320F7C /* LXNotifications.m in Sources */,
 				76F6370E1B29F2EF004B0A1A /* VSContactUsButton.m in Sources */,
 				7636ED891B0E6AB500BD4E1A /* VSNoMissesQuizTableViewCell.m in Sources */,
 				764060D41B2745D0004FA5CC /* VSProfileViewController.m in Sources */,

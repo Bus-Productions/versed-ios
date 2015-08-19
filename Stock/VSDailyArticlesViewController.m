@@ -191,11 +191,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
-        if ([[LXPurchase thisPurchase] shouldPromptToBuy]) {
-            [self showPurchaseScreen];
-        } else {
+//        if ([[LXPurchase thisPurchase] shouldPromptToBuy]) {
+//            [self showPurchaseScreen];
+//        } else {
             [self showResourceAtIndexPath:indexPath];
-        }
+//        }
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES]; 
 }

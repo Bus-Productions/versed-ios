@@ -123,7 +123,6 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *tracksSeen = [[NSMutableArray alloc] initWithArray:[[defaults objectForKey:@"tracksSeen"] mutableCopy]];
-    NSLog(@"tracksSeen = %@", tracksSeen);
     if (![tracksSeen containsObject:[self.track ID]]) {
         [expandedCells addObject:@"editorsNote"];
         [tracksSeen addObject:[self.track ID]];
@@ -237,11 +236,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
-        if ([[LXPurchase thisPurchase] shouldPromptToBuy]) {
-            [self showPurchaseScreen];
-        } else {
+//        if ([[LXPurchase thisPurchase] shouldPromptToBuy]) {
+//            [self showPurchaseScreen];
+//        } else {
             [self showResourceAtIndexPath:indexPath];
-        }
+//        }
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         if ([expandedCells containsObject:@"editorsNote"]) {

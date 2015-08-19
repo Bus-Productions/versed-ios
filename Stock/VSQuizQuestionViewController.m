@@ -66,7 +66,7 @@
                                                   target: self
                                                 selector:@selector(onTick:)
                                                 userInfo: nil repeats:YES];
-    remainingTime = 20;
+    remainingTime = 25;
 }
 
 #pragma mark - Table view data source
@@ -328,8 +328,10 @@
 {
     if (alreadyAnswered) {
         self.nextContainerHeightConstraint.constant = 56;
+        [self.nextButton setHidden:NO];
     } else {
         self.nextContainerHeightConstraint.constant = 0;
+        [self.nextButton setHidden:YES]; 
     }
 }
 

@@ -29,5 +29,7 @@
 #import "NSArray+Attributes.h"
 #import "SGImageCache.h"
 #import "PNChart.h"
+#import "LXNotifications.h"
+#import "AppDelegate.h"
 
 #endif

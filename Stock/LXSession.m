@@ -189,20 +189,7 @@ static LXSession* thisSession = nil;
 }
 
 
-# pragma mark - Push Notifications
-+ (BOOL) areNotificationsEnabled
-{
-    if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]){
-        UIUserNotificationSettings *noticationSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-        if (!noticationSettings || (noticationSettings.types == UIUserNotificationTypeNone)) {
-            return NO;
-        }
-        return YES;
-    }
-    
-    UIRemoteNotificationType types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-    return (types & UIRemoteNotificationTypeAlert);
-}
+
 
 
 @end
