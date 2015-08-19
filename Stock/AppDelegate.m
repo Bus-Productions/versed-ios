@@ -20,7 +20,7 @@
 {
     [self setInitialLoginTimestamp];
     [self setStyle];
-    [self setShouldRotate:NO]; 
+    [self setShouldRotate:NO];
     
     if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live] && [[[LXSession thisSession] user] name] && [[[[LXSession thisSession] user] name] length] > 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
@@ -71,7 +71,7 @@
 - (void) setStyle
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
     [[UINavigationBar appearance] setTranslucent:NO];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -114,9 +114,8 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; 
     [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"initialLogin"];
     [defaults synchronize];
@@ -133,5 +132,32 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+
+# pragma mark - Notifications
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [[LXNotifications thisNotification] updateDeviceToken:deviceToken success:^(id responseObject) {
+                NSLog(@"My token is: %@", deviceToken);
+            } failure:^(NSError *error){
+                NSLog(@"Didn't successfully submit device token: %@", deviceToken);
+            }
+        ];
+    });
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+    NSLog(@"Failed to get token, error: %@", error);
+}
+
+- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"userInfo = %@", userInfo);
+}
+
 
 @end

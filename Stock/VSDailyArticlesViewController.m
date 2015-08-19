@@ -9,6 +9,7 @@
 #import "VSDailyArticlesViewController.h"
 #import "VSResourceTableViewCell.h"
 #import "VSEmptyTableViewCell.h"
+#import "VSPurchaseViewController.h"
 #import "VSResourceViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
@@ -190,16 +191,13 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [self createResourceUserPairAtIndexPath:indexPath];
-        });
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
-        [webViewController setResource:[self.articles objectAtIndex:indexPath.row]];
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self.navigationController pushViewController:webViewController animated:YES];
+//        if ([[LXPurchase thisPurchase] shouldPromptToBuy]) {
+//            [self showPurchaseScreen];
+//        } else {
+            [self showResourceAtIndexPath:indexPath];
+//        }
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES]; 
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -242,4 +240,27 @@
     }failure:nil];
 }
 
+
+# pragma mark - Actions
+
+- (void) showResourceAtIndexPath:(NSIndexPath*)indexPath
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self createResourceUserPairAtIndexPath:indexPath];
+    });
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
+    [webViewController setResource:[self.articles objectAtIndex:indexPath.row]];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationController pushViewController:webViewController animated:YES];
+}
+
+
+- (void) showPurchaseScreen
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSPurchaseViewController *vc = (VSPurchaseViewController*)[storyboard instantiateViewControllerWithIdentifier:@"purchaseViewController"];
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
 @end

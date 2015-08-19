@@ -157,6 +157,21 @@
     return [self objectForKey:@"email"];
 }
 
+- (NSString*) tier
+{
+    return [self objectForKey:@"tier"];
+}
+
+- (BOOL) paid
+{
+    return [[self tier] isEqualToString:@"paid"];
+}
+
+- (BOOL) free
+{
+    return [[self tier] isEqualToString:@"free"];
+}
+
 - (NSString*) name
 {
     return [self objectForKey:@"name"];

@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock/NSDictionary+Attributes.m"
-            timestampString = "459009618.701889"
+            timestampString = "461101391.575582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "-quizQuestionID"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stock/VSDailyArticlesViewController.m"
-            timestampString = "460064913.377083"
+            timestampString = "461103382.709198"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "@implementation VSDailyArticlesViewController"
             landmarkType = "3">
             <Locations>

@@ -14,6 +14,7 @@
 #import "LXSession.h"
 #import "LXServer.h"
 #import "LXObjects.h"
+#import "LXPurchase.h"
 #import "NSDictionary+Attributes.h"
 #import "NSMutableArray+Attributes.h"
 #import "UIImage+Helpers.h"
@@ -28,5 +29,7 @@
 #import "NSArray+Attributes.h"
 #import "SGImageCache.h"
 #import "PNChart.h"
+#import "LXNotifications.h"
+#import "AppDelegate.h"
 
 #endif

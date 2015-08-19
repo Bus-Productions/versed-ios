@@ -19,6 +19,7 @@
 #import "VSTrackTitleTableViewCell.h"
 #import "VSResourceViewController.h"
 #import "VSEditorsNoteTableViewCell.h"
+#import "VSPurchaseViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
@@ -122,7 +123,6 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *tracksSeen = [[NSMutableArray alloc] initWithArray:[[defaults objectForKey:@"tracksSeen"] mutableCopy]];
-    NSLog(@"tracksSeen = %@", tracksSeen);
     if (![tracksSeen containsObject:[self.track ID]]) {
         [expandedCells addObject:@"editorsNote"];
         [tracksSeen addObject:[self.track ID]];
@@ -236,16 +236,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [self createResourceUserPairAtIndexPath:indexPath];
-        });
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
-        [webViewController setTrack:self.track];
-        [self.navigationController pushViewController:webViewController animated:YES];
+//        if ([[LXPurchase thisPurchase] shouldPromptToBuy]) {
+//            [self showPurchaseScreen];
+//        } else {
+            [self showResourceAtIndexPath:indexPath];
+//        }
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         VSEditorsNoteTableViewCell *cell = (VSEditorsNoteTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         if ([expandedCells containsObject:@"editorsNote"]) {
@@ -267,7 +262,6 @@
         return 146.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
         return 117.0f + [self heightForText:[[[self.track resources] objectAtIndex:indexPath.row] objectForKey:@"description"] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
-        return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         float heightOfTitle = 16.0f + [self heightForText:@"Introduction" width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
         if ([expandedCells containsObject:@"editorsNote"]) {
@@ -373,7 +367,27 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void) showPurchaseScreen
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSPurchaseViewController *vc = (VSPurchaseViewController*)[storyboard instantiateViewControllerWithIdentifier:@"purchaseViewController"];
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
 
+- (void) showResourceAtIndexPath:(NSIndexPath*)indexPath
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self createResourceUserPairAtIndexPath:indexPath];
+    });
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSResourceViewController *webViewController = (VSResourceViewController*)[storyboard instantiateViewControllerWithIdentifier:@"resourceViewController"];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [webViewController setResource:[[self.track resources] objectAtIndex:indexPath.row]];
+    [webViewController setTrack:self.track];
+    [self.navigationController pushViewController:webViewController animated:YES];
+
+}
 
 - (void) handleNotification:(NSNotification*)notification
 {
@@ -401,5 +415,6 @@
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     [av show];
 }
+
 
 @end

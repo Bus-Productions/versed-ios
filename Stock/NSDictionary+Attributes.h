@@ -73,7 +73,10 @@
 - (void) incrementQuizzesTaken; 
 - (NSString*) quizzesTaken;
 - (NSString*) pointsToNextLevel;
-
+- (NSString*) tier;
+- (BOOL) paid;
+- (BOOL) free;
+- (BOOL) atResourceLimit;
 
 // track user pairs
 - (NSMutableArray *) trackUserPairs;

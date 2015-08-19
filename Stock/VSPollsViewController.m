@@ -120,11 +120,10 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     self.sections = [[NSMutableArray alloc] init];
-    [self.sections addObject:@"header"];
-    
     if (self.polls.count < 1) {
         [self.sections addObject:@"empty"];
     } else {
+        [self.sections addObject:@"header"];
         [self.sections addObject:@"polls"];
     }
     return self.sections.count;
@@ -166,8 +165,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView emptyCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
-
-    [cell configureWithText:@"You'll be asked for your viewpoint on different issues as you explore tracks. \n\nView more resources, share your opinion and come back here to see the results." andBackgroundColor:[UIColor clearColor]];
+    
+    [cell configureWithTextsInArray:@[[NSString stringWithFormat:@"%@, you don't have access to any viewpoints.", [[[LXSession thisSession] user] firstName]], @"You'll be asked for your viewpoint on different issues as you explore tracks. \n\nView more resources, share your opinion and come back here to see the results."]];
     
     return cell;
 }
@@ -209,7 +208,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"empty"]) {
-        return 150.0f;
+        return 400.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"polls"]) {
         return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
