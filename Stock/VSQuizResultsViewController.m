@@ -164,8 +164,12 @@
     [button addTarget:self action:@selector(reviewQuiz:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton* showLeaderboard = (UIButton*)[cell.contentView viewWithTag:8];
-    [showLeaderboard removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-    [showLeaderboard addTarget:self action:@selector(showLeaderboard:) forControlEvents:UIControlEventTouchUpInside];
+    if ([[[[LXSession thisSession] user] company] shouldShowLeaderboard]) {
+        [showLeaderboard removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [showLeaderboard addTarget:self action:@selector(showLeaderboard:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [showLeaderboard setHidden:YES]; 
+    }
 
     return cell;
 }
@@ -213,8 +217,6 @@
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:16.0f]];
     return cell;
 }
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView noMissesCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -274,7 +276,13 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
         return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"reviewQuiz"]) {
-        return 236.0f;
+        NSLog(@"*******************");
+        NSLog(@"user = %@", [[LXSession thisSession] user]);
+        if ([[[[LXSession thisSession] user] company] shouldShowLeaderboard]) {
+            return 236.0f;
+        } else {
+            return 236.0f - 20.0f - 46.0f; //20.0f for spacing, 46.0f for button
+        }
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"weaknesses"]) {
         return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"noWeaknesses"]) {

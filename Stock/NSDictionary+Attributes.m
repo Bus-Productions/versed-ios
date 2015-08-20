@@ -284,6 +284,19 @@
     return nil;
 }
 
+- (NSMutableDictionary *) company
+{
+    if (NULL_TO_NIL([self objectForKey:@"company"])) {
+        return [[self objectForKey:@"company"] mutableCopy];
+    }
+    return nil;
+}
+
+- (BOOL) shouldShowLeaderboard
+{
+    return [[NSString stringWithFormat:@"%@", [self objectForKey:@"leaderboard"]] isEqualToString:@"1"];
+}
+
 - (NSString*) percentage
 {
     return [NSString stringWithFormat:@"%.00f%%", [[self objectForKey:@"percentage"] floatValue]];

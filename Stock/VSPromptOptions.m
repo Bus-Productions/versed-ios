@@ -26,6 +26,7 @@
     [super viewWillAppear:animated];
     
     [self setupViews];
+    [self setupAppearance]; 
     
     [self.bottomButton setTitle:@"Get Versed" forState:UIControlStateNormal];
     [self.topButton setTitle:@"Test Your Knowledge" forState:UIControlStateNormal];
@@ -68,6 +69,11 @@
     
 }
 
+- (void) setupAppearance
+{
+    NSArray *backgroundImages = [NSArray arrayWithObjects:@"quiz_splash.png", @"1.png", @"2.png", @"3.png", @"4.png", nil];
+    [self.backgroundImageView setImage:[UIImage imageNamed:[backgroundImages randomArrayItem]]];
+}
 
 - (void)didReceiveMemoryWarning
 {
