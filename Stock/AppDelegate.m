@@ -137,27 +137,27 @@
 
 # pragma mark - Notifications
 
-- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [[LXNotifications thisNotification] updateDeviceToken:deviceToken success:^(id responseObject) {
-                NSLog(@"My token is: %@", deviceToken);
-            } failure:^(NSError *error){
-                NSLog(@"Didn't successfully submit device token: %@", deviceToken);
-            }
-        ];
-    });
-}
-
-- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
-{
-    NSLog(@"Failed to get token, error: %@", error);
-}
-
-- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    NSLog(@"userInfo = %@", userInfo);
-}
+//- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+//{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [[LXNotifications thisNotification] updateDeviceToken:deviceToken success:^(id responseObject) {
+//                NSLog(@"My token is: %@", deviceToken);
+//            } failure:^(NSError *error){
+//                NSLog(@"Didn't successfully submit device token: %@", deviceToken);
+//            }
+//        ];
+//    });
+//}
+//
+//- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+//{
+//    NSLog(@"Failed to get token, error: %@", error);
+//}
+//
+//- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//    NSLog(@"userInfo = %@", userInfo);
+//}
 
 
 @end
