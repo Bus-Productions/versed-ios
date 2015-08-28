@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <StoreKit/StoreKit.h>
 
-@interface VSPurchaseViewController : UIViewController
+@interface VSPurchaseViewController : UIViewController <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
-@property (weak, nonatomic) IBOutlet UIButton *purchaseButton;
-
+- (IBAction)restore;
+- (IBAction)purchaseTapped:(id)sender;
 @end

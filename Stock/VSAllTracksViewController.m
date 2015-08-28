@@ -40,6 +40,7 @@
     [self setupSidebar];
     [self setupMenu];
     [self setupNotifications];
+    [[LXNotifications thisNotification] askForDeviceToken];
 }
 
 - (void)didReceiveMemoryWarning
@@ -229,7 +230,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableDictionary *track = [[[[[self.categoriesWithTracks objectAtIndex:selectedIndex] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row] mutableCopy];
-    return 165.0f + [self heightForText:[track objectForKey:@"description"] width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:15.0f]];
+    return 175.0f + [self heightForText:[[track objectForKey:@"editors_note"] truncated:240] width:(self.view.frame.size.width-40.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
     //return 276.0f;
 }
 

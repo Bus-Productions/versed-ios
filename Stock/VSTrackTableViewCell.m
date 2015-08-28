@@ -74,7 +74,7 @@
     UILabel* description = (UILabel*)[baseView viewWithTag:4];
     [description setTextColor:[UIColor grayColor]];
     [description setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
-    [description setText:[track objectForKey:@"description"]];
+    [description setText:[[track objectForKey:@"editors_note"] truncated:240]];
     
     UILabel* numberOfPeople = (UILabel*)[baseView viewWithTag:7];
     [numberOfPeople setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:12.0f]];

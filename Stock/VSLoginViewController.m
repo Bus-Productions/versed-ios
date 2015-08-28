@@ -146,21 +146,26 @@
         [[LXServer shared] requestPath:@"/login.json" withMethod:@"POST" withParamaters:@{@"user": @{@"email": self.emailField.text, @"password": self.passwordField.text} } authType:@"user"
                       success:^(id responseObject){
                           NSMutableDictionary *u = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
+                          NSLog(@"response = %@", responseObject);
+                          NSLog(@"u = %@", u);
                           if (u) {
                               [LXSession storeLocalUserKey:[u localKey]];
                               [[LXSession thisSession] setCachedUser:u];
-                              [u saveLocal:^(id responseObject){
-                                  if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
-                                      [self.emailField resignFirstResponder];
-                                      [self.passwordField resignFirstResponder];
-                                      AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-                                      [appDelegate setRootStoryboard:@"Main"];
-                                  } else {
-                                      UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-                                      VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
-                                      [self.navigationController presentViewController:vc animated:YES completion:nil];
-                                  }
-                              }failure:nil];
+                              [u saveLocal];
+                              if (u && [u live]) {
+                                  [self.emailField resignFirstResponder];
+                                  [self.passwordField resignFirstResponder];
+                                  AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                                  [appDelegate setRootStoryboard:@"Main"];
+                              } else if(u && [u unconfirmed]) {
+                                  UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
+                                  VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
+                                  [self.navigationController presentViewController:vc animated:YES completion:nil];
+                              } else if (u && [u deleted]) {
+                                  [self.emailField resignFirstResponder];
+                                  [self.passwordField resignFirstResponder];
+                                  [self showAlertWithText:@"It looks like your account has been deleted. Contact your company!"];
+                              }
                           }
                           [self hideHUD];
                       }failure:^(NSError* error) {

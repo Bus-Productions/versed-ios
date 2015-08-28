@@ -30,20 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.signingUpUser = [NSMutableDictionary create:@"user"];
-    if ([[[LXSession thisSession] user] unconfirmed]) {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-        VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
-        [self.navigationController presentViewController:vc animated:YES completion:nil];
-    } else if ([[[LXSession thisSession] user] live] && ![[[LXSession thisSession] user] name]) {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-        VSFinalStepSignupViewController* vc = (VSFinalStepSignupViewController*)[storyboard instantiateViewControllerWithIdentifier:@"finalStepSignupViewController"];
-        [self.navigationController presentViewController:vc animated:YES completion:nil];
-    } else {
-        [LXSession storeLocalUserKey:[self.signingUpUser localKey]];
-    }
-    
     [self setupGestureRecognizer];
     [self setupNavigationBar];
     [self setupTextFieldAppearances];
@@ -61,6 +47,23 @@
 {
     [super viewWillDisappear:animated];
     [self dismissKeyboard];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    self.signingUpUser = [NSMutableDictionary create:@"user"];
+    if ([[[LXSession thisSession] user] unconfirmed]) {
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
+        VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
+        [self.navigationController presentViewController:vc animated:YES completion:nil];
+    } else if ([[[LXSession thisSession] user] live] && ![[[LXSession thisSession] user] name]) {
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
+        VSFinalStepSignupViewController* vc = (VSFinalStepSignupViewController*)[storyboard instantiateViewControllerWithIdentifier:@"finalStepSignupViewController"];
+        [self.navigationController presentViewController:vc animated:YES completion:nil];
+    } else {
+        [LXSession storeLocalUserKey:[self.signingUpUser localKey]];
+    }
+
 }
 
 
@@ -162,19 +165,22 @@
         [self.signingUpUser setObject:self.emailField.text forKey:@"email"];
         
         [self showHUDWithMessage:@"Registering..."];
-        
+        [self.signingUpUser removeObjectForKey:@"password"];
+        [self.signingUpUser removeObjectForKey:@"password_confirmation"]; 
         [self.signingUpUser saveRemote:^(id responseObject){
             if ([responseObject objectForKey:@"user"]) {
                 self.signingUpUser = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
                 [[LXSession thisSession] setUser:self.signingUpUser];
-                [self.signingUpUser saveLocal];
-            }
-            if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
-                [self loginAction:nil];
-            } else {
-                UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-                VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
-                [self.navigationController presentViewController:vc animated:YES completion:nil];
+                [self.signingUpUser saveLocal:nil failure:nil];
+                if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live]) {
+                    [self loginAction:nil];
+                } else if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] unconfirmed]) {
+                    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
+                    VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
+                    [self.navigationController presentViewController:vc animated:YES completion:nil];
+                } else if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] deleted]) {
+                    [self showAlertWithText:@"Your account has been deleted. Contact your company!"];
+                }
             }
             [self hideHUD];
         }failure:^(NSError *error) {

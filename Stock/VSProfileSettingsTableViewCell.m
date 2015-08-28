@@ -28,17 +28,14 @@
     UILabel* nameLabel = (UILabel*)[self.contentView viewWithTag:1];
     [nameLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
     
-    UILabel* emailLabel = (UILabel*)[self.contentView viewWithTag:2];
-    [emailLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
-    
     UILabel* passwordLabel = (UILabel*)[self.contentView viewWithTag:3];
     [passwordLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
     
+    UILabel* version = (UILabel*)[self.contentView viewWithTag:5];
+    [version setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:14.0f]];
+    
     UITextField *name = (UITextField*)[self viewWithTag:4];
     [self setupTextFieldAppearance:name];
-    
-    UITextField *email = (UITextField*)[self viewWithTag:5];
-    [self setupTextFieldAppearance:email];
     
     UITextField *password = (UITextField*)[self viewWithTag:6];
     [self setupTextFieldAppearance:password];
@@ -50,10 +47,12 @@
     NSMutableDictionary *user = [[LXSession thisSession] user];
     
     [name setText:[user name]];
-    [email setText:[user email]];
     
     [password setText:@""]; 
     [password setPlaceholder:@"Change Password"];
+    
+    [version setText:[NSString stringWithFormat:@"Version %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]]];
+
     
     [self setupButtonAppearance:submitButton];
 }

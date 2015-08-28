@@ -21,6 +21,7 @@
 - (NSString*) status; 
 - (BOOL) live;
 - (BOOL) unconfirmed;
+- (BOOL) deleted;
 - (NSString*) headline;
 - (NSString*) keyForTrack;
 - (NSMutableArray*) resources;

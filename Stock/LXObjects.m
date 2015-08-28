@@ -174,6 +174,7 @@
 - (void) saveRemote:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback
 {
     //SEND TO SERVER
+    NSLog(@"quiz = %@", [self requestMethod]);
     [[LXServer shared] requestPath:[self requestPath] withMethod:[self requestMethod] withParamaters:[self parameterReady] authType:[self authTypeForRequest]
                            success:^(id responseObject) {
                                if (successCallback) {
