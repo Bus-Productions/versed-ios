@@ -74,7 +74,6 @@
 }
 
 
-
 #pragma mark - SWRevealViewController Delegate Methods
 
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
@@ -170,7 +169,7 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"progress"]) {
         return 180.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"settings"]) {
-        return 250.0f;
+        return 175.0f;
     }
     return 160.0f;
 }
@@ -187,10 +186,9 @@
 
 - (IBAction)updateSettingsAction:(id)sender {
     NSString *name = [((UITextField*)[[sender superview] viewWithTag:4]) text];
-    NSString *email = [((UITextField*)[[sender superview] viewWithTag:5]) text];
     NSString *password = [((UITextField*)[[sender superview] viewWithTag:6]) text];
     [self showHUDWithMessage:@"Saving"];
-    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@.json", [[[LXSession thisSession] user] ID]] withMethod:@"PUT" withParamaters:@{@"user": @{@"name": name, @"email": email, @"password": password}} authType:@"none" success:^(id responseObject){
+    [[LXServer shared] requestPath:[NSString stringWithFormat:@"/users/%@.json", [[[LXSession thisSession] user] ID]] withMethod:@"PUT" withParamaters:@{@"user": @{@"name": name, @"password": password}} authType:@"none" success:^(id responseObject){
         [self hideHUD]; 
         [self showHUDWithMessage:@"Saved!"];
         [hud hide:YES afterDelay:1.0];

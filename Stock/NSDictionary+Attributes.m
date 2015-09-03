@@ -107,6 +107,11 @@
     return [[self status] isEqualToString:@"unconfirmed"];
 }
 
+- (BOOL) deleted
+{
+    return [[self status] isEqualToString:@"deleted"];
+}
+
 - (NSString*) headline
 {
     return [self objectForKey:@"headline"];

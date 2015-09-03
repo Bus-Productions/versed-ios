@@ -116,6 +116,7 @@
 		76BC95601B4AFC1C006785F9 /* VSInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC955F1B4AFC1C006785F9 /* VSInitialViewController.m */; };
 		76BC95631B4AFCC7006785F9 /* VSOnboardingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC95621B4AFCC7006785F9 /* VSOnboardingPageViewController.m */; };
 		76BC95661B4AFD7D006785F9 /* VSIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC95651B4AFD7D006785F9 /* VSIntroViewController.m */; };
+		76D83DAA1B90D19F00715402 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D83DA91B90D19F00715402 /* StoreKit.framework */; };
 		76DB3F271B0D2428004EE88A /* VSQuizResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */; };
 		76DB3F2D1B0D3D8B004EE88A /* VSReviewQuizTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2C1B0D3D8B004EE88A /* VSReviewQuizTableViewCell.m */; };
 		76DB3F301B0D4058004EE88A /* NSMutableArray+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2F1B0D4058004EE88A /* NSMutableArray+Attributes.m */; };
@@ -327,6 +328,7 @@
 		76BC95621B4AFCC7006785F9 /* VSOnboardingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSOnboardingPageViewController.m; sourceTree = "<group>"; };
 		76BC95641B4AFD7D006785F9 /* VSIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSIntroViewController.h; sourceTree = "<group>"; };
 		76BC95651B4AFD7D006785F9 /* VSIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSIntroViewController.m; sourceTree = "<group>"; };
+		76D83DA91B90D19F00715402 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		76DB3F251B0D2428004EE88A /* VSQuizResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizResultsViewController.h; sourceTree = "<group>"; };
 		76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizResultsViewController.m; sourceTree = "<group>"; };
 		76DB3F2B1B0D3D8B004EE88A /* VSReviewQuizTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSReviewQuizTableViewCell.h; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9793DD86EF509AA8FD8F674 /* libPods.a in Frameworks */,
+				76D83DAA1B90D19F00715402 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +603,7 @@
 		3BD7EADEBCAD2B0EA301051B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76D83DA91B90D19F00715402 /* StoreKit.framework */,
 				A3F455122FD9049861339E9F /* libPods.a */,
 			);
 			name = Frameworks;
@@ -886,6 +890,11 @@
 					28A533B91ACF688A0049B3F7 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = L26XB9LA5L;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					28A533D21ACF688A0049B3F7 = {
 						CreatedOnToolsVersion = 6.2;
