@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <StoreKit/StoreKit.h>
 
-@interface VSPurchaseViewController : UIViewController <SKProductsRequestDelegate, SKPaymentTransactionObserver>
+@interface VSPurchaseViewController : UIViewController// <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
 - (IBAction)restore;
 - (IBAction)purchaseTapped:(id)sender;
