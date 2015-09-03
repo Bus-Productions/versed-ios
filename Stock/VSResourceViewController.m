@@ -27,7 +27,9 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.webView stopLoading];
+    webViewFinishedLoading = true;
+    [self performSelectorOnMainThread:@selector(stopTimer) withObject:nil waitUntilDone:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -40,7 +42,8 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [self stopTimer]; 
+    [self stopTimer];
+    [self.webView loadHTMLString:@"<html></html>" baseURL:nil];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -66,6 +69,9 @@
 {
     self.webView.scrollView.delegate = self;
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: [resource url]] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 15.0];
+
+    [self.webView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
     [self.webView loadRequest: request];
 }
 
