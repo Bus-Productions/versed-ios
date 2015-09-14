@@ -12,7 +12,6 @@
 
 - (NSString*) truncated:(int)length
 {
-    NSLog(@"length = %lu", (unsigned long)[self length]);
     return length < [self length] ? [NSString stringWithFormat:@"%@ [...]", [self substringWithRange:NSMakeRange(0, length)]] : self;
 }
 

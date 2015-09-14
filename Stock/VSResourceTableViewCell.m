@@ -39,8 +39,6 @@
     [subtitle setTextColor:[UIColor grayColor]];
     
     UILabel* descriptionLabel = (UILabel*)[baseView viewWithTag:3];
-    NSLog(@"paywall = %@", [resource objectForKey:@"paywall"]);
-    NSLog(@"class = %@", [[resource objectForKey:@"paywall"] class]);
     [descriptionLabel setText:[NSString stringWithFormat:@"%@ %@", [resource objectForKey:@"description"], NULL_TO_NIL([resource objectForKey:@"paywall"]) && [[resource objectForKey:@"paywall"] boolValue] == YES ? [resource objectForKey:@"paywall"] : @""]];
     [descriptionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
     [descriptionLabel setTextColor:[UIColor grayColor]];

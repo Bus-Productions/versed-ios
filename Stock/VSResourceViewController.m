@@ -22,7 +22,6 @@
     [super viewDidLoad];
     [self setupNavigationBar];
     [self setupWebView];
-    [self setupGestures];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,16 +72,6 @@
     [self.webView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
     [self.webView loadRequest: request];
-}
-
-- (void) setupGestures
-{
-    UITapGestureRecognizer *singleFingerTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(handleSingleTap:)];
-    singleFingerTap.numberOfTapsRequired = 1;
-    singleFingerTap.delegate = self;
-    [self.webView addGestureRecognizer:singleFingerTap];
 }
 
 # pragma mark - Actions
