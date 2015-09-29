@@ -150,7 +150,7 @@
 
 - (NSString *) errorMessage
 {
-    if (!self.emailField.text || self.emailField.text.length < 1)
+    if (!self.emailField.text || self.emailField.text.length < 1 || [self.emailField.text rangeOfString:@"@"].location != NSNotFound)
         return @"Your must enter your email!";
     
     return nil;
