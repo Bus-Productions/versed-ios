@@ -85,8 +85,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView headerCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
-    
+    VSButtonTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
+    imageViewHeight = [cell configureHeight];
     return cell;
 }
 
@@ -129,7 +129,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
-        return 150.0f;
+        return 20.0f + imageViewHeight;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"answers"]) {
         return 62.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SWRevealViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
 
@@ -21,7 +22,7 @@
     [self setInitialLoginTimestamp];
     [self setStyle];
     [self setShouldRotate:NO];
-    
+
     if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] live] && [[[LXSession thisSession] user] name] && [[[[LXSession thisSession] user] name] length] > 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [[LXServer shared] requestPath:[NSString stringWithFormat:@"users/%@.json", [[[LXSession thisSession] user] ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
@@ -37,7 +38,7 @@
     } else {
         [self setRootStoryboard:@"MobileLogin"];
     }
-    
+
     return YES;
 }
 

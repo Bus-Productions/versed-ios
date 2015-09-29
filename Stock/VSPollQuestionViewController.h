@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface VSPollQuestionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+{
+    CGFloat imageViewHeight;
+}
 @property (strong, nonatomic) NSMutableDictionary *poll; 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *sections; 
 @property (nonatomic) BOOL hideRightBarButton;
-
 @end

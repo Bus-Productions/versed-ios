@@ -30,4 +30,16 @@
     }
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:18.0f]];
 }
+
+- (CGFloat) configureHeight
+{
+    if ([[UIScreen mainScreen] bounds].size.height < 500.0) { //4s & iPad
+        self.imageViewHeight.constant = 40;
+    } else if ([[UIScreen mainScreen] bounds].size.height < 510.0) { //5s
+        self.imageViewHeight.constant = 45;
+    } else { //6 & 6+
+        self.imageViewHeight.constant = 80;
+    }
+    return self.imageViewHeight.constant;
+}
 @end

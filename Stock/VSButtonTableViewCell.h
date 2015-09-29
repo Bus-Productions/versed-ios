@@ -10,6 +10,8 @@
 
 @interface VSButtonTableViewCell : UITableViewCell
 
-- (void) configureWithText:(NSString*)text andColor:(UIColor*)color; 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeight;
 
+- (void) configureWithText:(NSString*)text andColor:(UIColor*)color; 
+- (CGFloat) configureHeight;
 @end

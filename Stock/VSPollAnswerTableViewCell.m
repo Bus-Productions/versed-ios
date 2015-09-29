@@ -23,9 +23,11 @@
 - (void) configureWithPollAnswer:(NSMutableDictionary*)pollAnswer
 {
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
-    [lbl setText:[pollAnswer answerText]];
+    [lbl setText:[NSString stringWithFormat:@" %@ ", [pollAnswer answerText]]];
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     [lbl setTextColor:[UIColor blackColor]];
+    lbl.adjustsFontSizeToFitWidth = YES;
+    lbl.minimumScaleFactor = 0.2;
 }
 
 @end
