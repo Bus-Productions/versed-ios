@@ -13,6 +13,7 @@
     MBProgressHUD* hud;
 }
 
+@property (strong, nonatomic) NSString *emailText; 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 

@@ -26,6 +26,7 @@
     [self setupTextFieldAppearances];
     [self setupButtonAppearances];
     [self setupInfoLabel];
+    [self prepopulateFields];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -54,6 +55,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void) prepopulateFields
+{
+    if ([[LXSession thisSession] user] && [[[LXSession thisSession] user] name] && [[[LXSession thisSession] user] name].length > 0) {
+        [self.nameField setText:[[[LXSession thisSession] user] name]]; 
+    }
 }
 
 - (void) setupInfoLabel

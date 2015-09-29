@@ -276,8 +276,6 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"missedQuestions"]) {
         return 100.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"reviewQuiz"]) {
-        NSLog(@"*******************");
-        NSLog(@"user = %@", [[LXSession thisSession] user]);
         if ([[[[LXSession thisSession] user] company] shouldShowLeaderboard]) {
             return 236.0f;
         } else {

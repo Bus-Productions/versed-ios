@@ -145,12 +145,12 @@
 
 - (BOOL) inputsVerified
 {
-    return self.emailField && self.emailField.text.length > 0;
+    return self.emailField && self.emailField.text.length > 0 && [self.emailField.text rangeOfString:@"@"].location != NSNotFound;
 }
 
 - (NSString *) errorMessage
 {
-    if (!self.emailField.text || self.emailField.text.length < 1 || [self.emailField.text rangeOfString:@"@"].location != NSNotFound)
+    if (!self.emailField.text || self.emailField.text.length < 1 || [self.emailField.text rangeOfString:@"@"].location == NSNotFound)
         return @"Your must enter your email!";
     
     return nil;
@@ -197,6 +197,9 @@
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
     VSLoginViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+    if (self.emailField.text && self.emailField.text.length > 0) {
+        [vc setEmailText:self.emailField.text];
+    }
     [self.navigationController pushViewController:vc animated:YES];
 }
 

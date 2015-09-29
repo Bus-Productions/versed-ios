@@ -24,6 +24,7 @@
 @synthesize signInButton;
 @synthesize forgotPasswordButton;
 @synthesize createAccountButton;
+@synthesize emailText;
 
 - (void)viewDidLoad
 {
@@ -79,6 +80,10 @@
     
     [self setTintForField:self.emailField withPlaceholder:@"Company Email"];
     [self setTintForField:self.passwordField withPlaceholder:@"Password"];
+    
+    if (self.emailText && self.emailText.length > 0) {
+        [self.emailField setText:self.emailText];
+    }
 }
 
 - (void) addBottomBorderToField:(UITextField*)field
@@ -146,8 +151,6 @@
         [[LXServer shared] requestPath:@"/login.json" withMethod:@"POST" withParamaters:@{@"user": @{@"email": self.emailField.text, @"password": self.passwordField.text} } authType:@"user"
                       success:^(id responseObject){
                           NSMutableDictionary *u = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
-                          NSLog(@"response = %@", responseObject);
-                          NSLog(@"u = %@", u);
                           if (u) {
                               [LXSession storeLocalUserKey:[u localKey]];
                               [[LXSession thisSession] setCachedUser:u];
