@@ -56,7 +56,7 @@
                                                                       attribute:NSLayoutAttributeLeading
                                                                       relatedBy:0
                                                                          toItem:self.view
-                                                                      attribute:NSLayoutAttributeLeft
+                                                                      attribute:NSLayoutAttributeLeading
                                                                      multiplier:1.0
                                                                        constant:0];
     [self.view addConstraint:leftConstraint];
@@ -65,7 +65,7 @@
                                                                        attribute:NSLayoutAttributeTrailing
                                                                        relatedBy:0
                                                                           toItem:self.view
-                                                                       attribute:NSLayoutAttributeRight
+                                                                       attribute:NSLayoutAttributeTrailing
                                                                       multiplier:1.0
                                                                         constant:0];
     [self.view addConstraint:rightConstraint];

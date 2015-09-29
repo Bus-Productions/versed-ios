@@ -200,6 +200,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (IBAction)privacyPolicyAction:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://versed-app.herokuapp.com/privacy"]];
+}
+
 
 # pragma mark - Alert
 
@@ -219,16 +223,7 @@
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField.tag < 4) {
-        NSInteger nextTag = textField.tag + 1;
-        for (UITextField* field in [self.view subviews]) {
-            if ([field isKindOfClass:[UITextField class]] && [field tag] == nextTag) {
-                [field becomeFirstResponder];
-            }
-        }
-    } else {
-        [self signupAction:textField];
-    }
+    [self signupAction:textField];
     return NO;
 }
 
