@@ -207,6 +207,10 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://versed-app.herokuapp.com/privacy"]];
 }
 
+- (IBAction)tocAction:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://versed-app.herokuapp.com/toc"]];
+}
+
 
 # pragma mark - Alert
 

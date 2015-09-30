@@ -25,5 +25,6 @@
 - (IBAction)signupAction:(id)sender;
 - (IBAction)loginAction:(id)sender;
 - (IBAction)privacyPolicyAction:(id)sender;
+- (IBAction)tocAction:(id)sender;
 
 @end
