@@ -208,7 +208,7 @@
 }
 
 - (IBAction)tocAction:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://versed-app.herokuapp.com/toc"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://versed-app.herokuapp.com/terms"]];
 }
 
 
