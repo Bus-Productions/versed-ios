@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SWRevealViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface AppDelegate ()
 
@@ -19,6 +20,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    
+    NSError *setCategoryError = nil;
+    BOOL success = [audioSession setCategory:AVAudioSessionCategoryPlayback error:&setCategoryError];
+    if (!success) { /* handle the error condition */ }
+    
+    NSError *activationError = nil;
+    success = [audioSession setActive:YES error:&activationError];
+    if (!success) { /* handle the error condition */ }
+    
     [self setInitialLoginTimestamp];
     [self setStyle];
     [self setShouldRotate:NO];
@@ -38,7 +49,6 @@
     } else {
         [self setRootStoryboard:@"MobileLogin"];
     }
-
     return YES;
 }
 
