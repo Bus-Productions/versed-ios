@@ -30,6 +30,8 @@
     success = [audioSession setActive:YES error:&activationError];
     if (!success) { /* handle the error condition */ }
     
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
     [self setInitialLoginTimestamp];
     [self setStyle];
     [self setShouldRotate:NO];
