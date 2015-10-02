@@ -27,6 +27,7 @@
 #define FAQ_IDENTIFIER @"faq"
 #define POLLS_IDENTIFIER @"polls"
 #define CONTACT_US_IDENTIFIER @"contactUs"
+#define PARTNERS_IDENTIFIER @"partners"
 
 
 @interface VSSidebarViewController ()
@@ -69,6 +70,7 @@
     [self.menuOptions addObject:POLLS_IDENTIFIER];
     
     self.bottomOptions = [[NSMutableArray alloc] init];
+    [self.bottomOptions addObject:PARTNERS_IDENTIFIER];
     [self.bottomOptions addObject:FAQ_IDENTIFIER];
 }
 
@@ -169,6 +171,10 @@
         if ([[self.bottomOptions objectAtIndex:indexPath.row] isEqualToString:FAQ_IDENTIFIER]) {
             vc = (VSFaqCategoryViewController*)[storyboard instantiateViewControllerWithIdentifier:@"faqCategoryViewController"];
             nc = [storyboard instantiateViewControllerWithIdentifier:@"faqNavigationController"];
+        } else if ([[self.bottomOptions objectAtIndex:indexPath.row] isEqualToString:PARTNERS_IDENTIFIER]) {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [self showAlertWithText:@"Coming Soon!"];
+            return;
         }
     }
     
@@ -184,10 +190,9 @@
         if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
             return 80.0f;
         }
-    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"bottom"]) {
-        if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:PROFILE_IDENTIFIER]) {
-            return 70.0f;
-        }
+    }
+    if ([[UIScreen mainScreen] bounds].size.height < 500.0) { //4s & iPad
+        return 42.0f;
     }
     return 52.0f;
 }
@@ -197,7 +202,8 @@
     if ([[self.sections objectAtIndex:section] isEqualToString:@"mainMenu"]) {
         return 0.0;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"bottom"]) {
-        return self.tableView.frame.size.height - 80.0f - (52.0*(self.menuOptions.count-1)) - (70.0*self.bottomOptions.count) - 20.0f; //20.0f for status bar, 80.0f for profile, 52.0 for basic cells
+        float cellHeight = [[UIScreen mainScreen] bounds].size.height < 500.0 ? 42.0f : 52.0f;
+        return self.tableView.frame.size.height - 80.0f - (cellHeight*(self.menuOptions.count-1)) - (cellHeight*self.bottomOptions.count) - 20.0f; //20.0f for status bar, 80.0f for profile, 52.0 for basic cells, 42.0f for ipad/4s
     }
     return 0.0;
 }
@@ -225,5 +231,13 @@
 
 -(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
     [self.revealViewController revealToggle:nil];
+}
+
+# pragma mark - Alert
+
+- (void) showAlertWithText:(NSString*)text
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:nil message:text delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    [av show];
 }
 @end
