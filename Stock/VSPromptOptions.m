@@ -63,8 +63,8 @@
     
     if (self.view.frame.size.height < 500.0) { //4s & iPad
         self.logoToTopConstraint.constant = 0;
-    } else if (self.view.frame.size.height < 510.0) { //5s
-        self.logoToTopConstraint.constant = 25;
+    } else if (self.view.frame.size.height < 530.0) { //5s
+        self.logoToTopConstraint.constant = 10;
     } else { //6 & 6+
         self.logoToTopConstraint.constant = 60;
         self.logoHeightConstraint.constant = 80;

@@ -265,7 +265,7 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         float heightOfTitle = 16.0f + [self heightForText:@"Introduction" width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
         if ([expandedCells containsObject:@"editorsNote"]) {
-            return 20.0f + [self heightForText:[self.track editorsNote] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]] + heightOfTitle;
+            return [self heightForText:[self.track editorsNote] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]] + heightOfTitle;
         } else {
             return heightOfTitle;
         }
