@@ -204,7 +204,7 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
     UILabel* lbl = (UILabel*)[cell.contentView viewWithTag:1];
-    [lbl setText:@"None, yet."];
+    [lbl setText:@"You aced it! Take more quizzes to discover which tracks you should focus on to become 'Fully Versed.'"];
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     return cell;
 }
