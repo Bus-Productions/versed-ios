@@ -35,6 +35,11 @@
     [self setupTextFieldAppearances];
     [self setupButtonAppearances];
     [self setupInfoLabel];
+    if ([[[LXSession thisSession] user] unconfirmed]) {
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
+        VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
+        [self.navigationController presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,18 +57,13 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     self.signingUpUser = [NSMutableDictionary create:@"user"];
-    if ([[[LXSession thisSession] user] unconfirmed]) {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
-        VSTokenViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"tokenViewController"];
-        [self.navigationController presentViewController:vc animated:YES completion:nil];
-    } else if ([[[LXSession thisSession] user] live] && ![[[LXSession thisSession] user] name]) {
+    if ([[[LXSession thisSession] user] live] && ![[[LXSession thisSession] user] name]) {
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"MobileLogin" bundle:[NSBundle mainBundle]];
         VSFinalStepSignupViewController* vc = (VSFinalStepSignupViewController*)[storyboard instantiateViewControllerWithIdentifier:@"finalStepSignupViewController"];
         [self.navigationController presentViewController:vc animated:YES completion:nil];
     } else {
         [LXSession storeLocalUserKey:[self.signingUpUser localKey]];
     }
-
 }
 
 
