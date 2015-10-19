@@ -48,6 +48,12 @@
     [self setupMissedQuestions:^(id responseObject){
         [self.tableView reloadData];
     }failure:nil];
+    [self performSelector:@selector(reloadScreen) withObject:nil afterDelay:0.5];
+}
+
+- (void) reloadScreen
+{
+    [self.tableView reloadData];
 }
 
 - (void) setupSidebar
