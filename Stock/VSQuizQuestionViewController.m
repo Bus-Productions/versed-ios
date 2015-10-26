@@ -11,8 +11,10 @@
 #import "VSQuizQuestionTableViewCell.h"
 #import "VSQuizAnswerTableViewCell.h"
 #import "VSButtonTableViewCell.h"
+#import "PNChart.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
+static int QUESTION_TIME = 25;
 
 @interface VSQuizQuestionViewController ()
 
@@ -66,7 +68,7 @@
                                                   target: self
                                                 selector:@selector(onTick:)
                                                 userInfo: nil repeats:YES];
-    remainingTime = 25;
+    remainingTime = QUESTION_TIME;
 }
 
 - (void) setupNextButton
@@ -146,19 +148,36 @@
 {
     UITableViewCell *cell = (UITableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
     
-    UILabel* timerLabel = (UILabel*)[cell.contentView viewWithTag:1];
-    [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
+    UILabel* pointsLabel = (UILabel*)[cell.contentView viewWithTag:1];
+    [pointsLabel setText:[NSString stringWithFormat:@"+%li", (long)[self pointsForRound]]];
     
-    UILabel* pointsLabel = (UILabel*)[cell.contentView viewWithTag:2];
-    [pointsLabel setText:[NSString stringWithFormat:@"%li", (long)[self pointsForRound]]];
+    UILabel* timerLabel = (UILabel*)[cell.contentView viewWithTag:2];
+    [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
     
     UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
     [questionLabel setText:[NSString stringWithFormat:@"%lu/%lu",  (unsigned long)self.questionsCompleted, (unsigned long)self.totalQuestions]];
     
-    CGFloat fontSize = 22.0f;
+    UIView *grayBackground = (UIView*)[cell viewWithTag:4];
+    [grayBackground setBackgroundColor:PNGrey];
+    
+    CGFloat fontSize = 28.0f;
+    
+    CGFloat chartWidth = self.view.frame.size.width/3.0;
+    CGFloat chartHeight = chartWidth;
+    
+    PNCircleChart * circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0 - chartWidth/2.0, cell.frame.size.height/2.0 - chartHeight/2.0, chartWidth, chartHeight) total:[NSNumber numberWithInt:QUESTION_TIME] current:[NSNumber numberWithInt:0] clockwise:YES shadow:YES shadowColor:PNGrey displayCountingLabel:NO overrideLineWidth:[NSNumber numberWithInt:12]];
+    circleChart.backgroundColor = [UIColor clearColor];
+    [circleChart setStrokeColor:PNGreen];
+    [circleChart strokeChart];
+    [circleChart setTag:5];
+    [cell addSubview:circleChart];
 
+    UILabel* timerTitle = (UILabel*)[cell.contentView viewWithTag:10];
+    UILabel* questionTitle = (UILabel*)[cell.contentView viewWithTag:11];
+    [timerTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
+    [questionTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
     [timerLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:fontSize]];
-    [pointsLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:fontSize]];
+    [pointsLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:44.0f]];
     [questionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:fontSize]];
     return cell;
 }
@@ -215,7 +234,7 @@
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
         return 62.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
-        return 20.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-32.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:17.0f]];
+        return 20.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-32.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:22.0f]];
     }
     return 100.0f;
 }
@@ -269,68 +288,75 @@
     
     successCallback(nil);
     
-    if (NULL_TO_NIL(indexPath) && chosenCell) {
-        if ([indexPath isEqual:[self indexPathOfCorrectAnswer]]) {
-            [self animateTopCell:YES];
-        } else {
-            [self animateTopCell:NO];
-        }
-    }
+//    if (NULL_TO_NIL(indexPath) && chosenCell) {
+//        if ([indexPath isEqual:[self indexPathOfCorrectAnswer]]) {
+//            [self animateTopCell:YES];
+//        } else {
+//            [self animateTopCell:NO];
+//        }
+//    }
     
     [self showOrHideNextBar];
 }
-
-- (void) animateTopCell:(BOOL)correct
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    
-    UIImageView* headerBackground = (UIImageView*)[cell.contentView viewWithTag:21];
-    [headerBackground setImage:[UIImage imageNamed:@"question_header_transparent.png"]];
-    [headerBackground setBackgroundColor:[UIColor clearColor]];
-    
-    UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:22];
-    [questionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
-    [questionLabel setTextColor:[UIColor whiteColor]];
-    
-    [questionLabel setAlpha:1.0f];
-    
-    if (correct) {
-        [questionLabel setText:[NSString stringWithFormat:@"+%@", [self.question pointsForQuestion]]];
-        [questionLabel setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
-    } else {
-        [questionLabel setText:@"+0"];
-        [questionLabel setBackgroundColor:[UIColor redColor]];
-    }
-    
-    UILabel* curLabel = (UILabel*)[cell.contentView viewWithTag:2];
-    
-    [curLabel setAlpha:0];
-    
-    [self performSelector:@selector(hideTopCellAnimation) withObject:nil afterDelay:1.0f];
-}
-
-- (void) hideTopCellAnimation
-{
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    
-    UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:22];
-    UILabel* curLabel = (UILabel*)[cell.contentView viewWithTag:2];
-    
-    [UIView animateWithDuration:2.0f
-                     animations:^(void){
-                         [questionLabel setAlpha:0.0f];
-                     }
-                     completion:^(BOOL finished){
-                         [curLabel setAlpha:1.0f];
-                     }
-     ];
-}
+//
+//- (void) animateTopCell:(BOOL)correct
+//{
+//    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    
+//    UIImageView* headerBackground = (UIImageView*)[cell.contentView viewWithTag:21];
+//    [headerBackground setImage:[UIImage imageNamed:@"question_header_transparent.png"]];
+//    [headerBackground setBackgroundColor:[UIColor clearColor]];
+//    
+//    UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:22];
+//    [questionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
+//    [questionLabel setTextColor:[UIColor whiteColor]];
+//    
+//    [questionLabel setAlpha:1.0f];
+//    
+//    if (correct) {
+//        [questionLabel setText:[NSString stringWithFormat:@"+%@", [self.question pointsForQuestion]]];
+//        [questionLabel setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
+//    } else {
+//        [questionLabel setText:@"+0"];
+//        [questionLabel setBackgroundColor:[UIColor redColor]];
+//    }
+//    
+//    UILabel* curLabel = (UILabel*)[cell.contentView viewWithTag:2];
+//    
+//    [curLabel setAlpha:0];
+//    
+//    [self performSelector:@selector(hideTopCellAnimation) withObject:nil afterDelay:1.0f];
+//}
+//
+//- (void) hideTopCellAnimation
+//{
+//    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    
+//    UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:22];
+//    UILabel* curLabel = (UILabel*)[cell.contentView viewWithTag:2];
+//    
+//    [UIView animateWithDuration:2.0f
+//                     animations:^(void){
+//                         [questionLabel setAlpha:0.0f];
+//                     }
+//                     completion:^(BOOL finished){
+//                         [curLabel setAlpha:1.0f];
+//                     }
+//     ];
+//}
 
 - (NSIndexPath*) questionIndexPath
 {
     NSInteger questionSectionIndex = [self.sections indexOfObject:@"question"];
     NSInteger firstRowIndex = 0;
     return [NSIndexPath indexPathForRow:firstRowIndex inSection:questionSectionIndex];
+}
+
+- (NSIndexPath*) headerIndexPath
+{
+    NSInteger headerSectionIndex = [self.sections indexOfObject:@"header"];
+    NSInteger firstRowIndex = 0;
+    return [NSIndexPath indexPathForRow:firstRowIndex inSection:headerSectionIndex];
 }
 
 - (NSIndexPath*) timerIndexPath
@@ -375,8 +401,12 @@
     } else {
         remainingTime = remainingTime - 1;
         UITableViewCell *cell = (UITableViewCell*)[self.tableView cellForRowAtIndexPath:[self timerIndexPath]];
-        UILabel *timerLabel = (UILabel*)[cell.contentView viewWithTag:1];
+        UILabel *timerLabel = (UILabel*)[cell.contentView viewWithTag:2];
         [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
+        UITableViewCell *headerCell = (UITableViewCell*)[self.tableView cellForRowAtIndexPath:[self headerIndexPath]];
+        PNCircleChart *chart = [headerCell viewWithTag:5];
+        [chart setCurrent:[NSNumber numberWithInt:(QUESTION_TIME - remainingTime)]];
+        [chart strokeChart];
     }
 }
 

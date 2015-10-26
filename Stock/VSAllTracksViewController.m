@@ -175,7 +175,7 @@
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
     
-    selectedIndex == 0 ? @"All Tracks" : [self.navigationController.navigationBar.topItem setTitle:[[[self.categoriesWithTracks objectAtIndex:selectedIndex] objectForKey:@"category"] categoryName]];
+    selectedIndex == 0 ? [self.navigationController.navigationBar.topItem setTitle:@"All Tracks"] : [self.navigationController.navigationBar.topItem setTitle:[[[self.categoriesWithTracks objectAtIndex:selectedIndex] objectForKey:@"category"] categoryName]];
 }
 
 

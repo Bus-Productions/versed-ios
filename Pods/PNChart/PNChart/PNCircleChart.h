@@ -20,6 +20,7 @@ typedef NS_ENUM (NSUInteger, PNChartFormatType) {
 
 @interface PNCircleChart : UIView
 
+- (void)strokeChartStartingAt:(id)beginning;
 - (void)strokeChart;
 - (void)growChartByAmount:(NSNumber *)growAmount;
 - (void)updateChartByCurrent:(NSNumber *)current;

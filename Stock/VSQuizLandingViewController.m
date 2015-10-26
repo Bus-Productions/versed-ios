@@ -16,6 +16,8 @@
 #import "VSDashboardViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
+static int QUESTION_TIME = 25;
+
 
 @interface VSQuizLandingViewController ()
 
@@ -211,7 +213,7 @@
     
     UILabel *lbl = (UILabel*)[cell.contentView viewWithTag:2];
     if (self.quizQuestions && self.quizQuestions.count > 0) {
-        [lbl setText:[NSString stringWithFormat:@"This %lu-question quiz is a pulse check on the forces and trends shaping business. You have 25 seconds for each question. Get ready - it's time to test your knowledge!", self.quizQuestions.count]];
+        [lbl setText:[NSString stringWithFormat:@"This %lu-question quiz is a pulse check on the forces and trends shaping business. You have %d seconds for each question. Get ready - it's time to test your knowledge!", self.quizQuestions.count, QUESTION_TIME]];
     } else if (isRequesting) {
         [lbl setText:@""];
     } else {
