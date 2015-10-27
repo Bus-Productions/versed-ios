@@ -44,4 +44,21 @@
     return temporaryInnerArray;
 }
 
+- (NSString*) quizPercentageCorrect
+{
+    if (self.count == 0)
+        return @"0%";
+    
+    int correct = 0;
+    for (NSDictionary *qr in self) {
+        if ([qr quizResultIsCorrect]) {
+            correct = correct + 1;
+        }
+    }
+    NSNumber *total = [NSNumber numberWithInt:self.count];
+    NSNumber *correctCount = [NSNumber numberWithInt:correct];
+    float avg = ([correctCount floatValue]/[total floatValue])*100.0;
+    return [NSString stringWithFormat:@"%d%%", (int)roundf(avg)];
+}
+
 @end

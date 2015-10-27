@@ -22,7 +22,7 @@
 
 - (void) configureWithAnswer:(NSMutableDictionary *)answer
 {
-    UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
+    UILabel *lbl = (UILabel*)[self.contentView viewWithTag:2];
     [lbl setText:[answer answerText]];
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
 }

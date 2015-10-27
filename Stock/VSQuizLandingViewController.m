@@ -31,9 +31,7 @@ static int QUESTION_TIME = 25;
 {
     [super viewDidLoad];
     [self setupSidebar];
-    [self setupAppearance]; 
-    [self setupData];
-    [self reloadScreen];
+    [self setupAppearance];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,7 +43,8 @@ static int QUESTION_TIME = 25;
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated]; 
-    [self.tableView reloadData];
+    [self setupData];
+    [self reloadScreen];
 }
 
 # pragma mark - Setup
@@ -71,12 +70,6 @@ static int QUESTION_TIME = 25;
     self.quizResults = [[NSMutableArray alloc] init];
     self.quiz = [[NSMutableDictionary alloc] init];
     self.totalPoints = 0;
-    
-    NSString *buttonText = self.quizResults.count > 0 ? @"Continue Quiz" : @"Start Quiz";
-    UIButton *action = (UIButton*)[self.startQuizView viewWithTag:2];
-    [action setTitle:buttonText forState:UIControlStateNormal];
-    action.titleLabel.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f];
-    
 }
 
 - (void) setupAppearance
@@ -110,6 +103,7 @@ static int QUESTION_TIME = 25;
 - (void) reloadScreen
 {
     isRequesting = YES;
+    [self.tableView reloadData]; 
     [[LXServer shared] requestPath:@"/quizzes/live.json" withMethod:@"GET" withParamaters:nil authType:@"none" success:^(id responseObject){
         self.quizResults = [[NSMutableArray alloc] init];
         self.totalPoints = 0;
@@ -185,7 +179,7 @@ static int QUESTION_TIME = 25;
     
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
     NSDate *now = [NSDate date];
-    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
+    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], (self.quiz && [self.quiz quizName]) ? [self.quiz quizName] : @"Quiz"]];
 //    [title setText:@"You've currently answered all the questions!"];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
     
@@ -208,7 +202,7 @@ static int QUESTION_TIME = 25;
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"explanationCell" forIndexPath:indexPath];
     UILabel *title = (UILabel*)[cell.contentView viewWithTag:1];
     NSDate *now = [NSDate date];
-    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], [self.quiz quizName]]];
+    [title setText:[NSString stringWithFormat:@"%@ %@", [now formattedDateStringWithFormat:@"MMMM d"], (self.quiz && [self.quiz quizName]) ? [self.quiz quizName] : @"Quiz"]];
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:24.0f]];
     
     UILabel *lbl = (UILabel*)[cell.contentView viewWithTag:2];

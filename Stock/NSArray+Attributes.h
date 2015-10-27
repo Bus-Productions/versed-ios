@@ -12,4 +12,6 @@
 
 - (NSMutableArray*) cleanArray;
 
+- (NSString *) quizPercentageCorrect;
+
 @end

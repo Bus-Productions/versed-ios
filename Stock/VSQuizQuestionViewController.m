@@ -148,11 +148,11 @@ static int QUESTION_TIME = 25;
 {
     UITableViewCell *cell = (UITableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"headerCell" forIndexPath:indexPath];
     
-    UILabel* pointsLabel = (UILabel*)[cell.contentView viewWithTag:1];
-    [pointsLabel setText:[NSString stringWithFormat:@"+%li", (long)[self pointsForRound]]];
-    
-    UILabel* timerLabel = (UILabel*)[cell.contentView viewWithTag:2];
+    UILabel* timerLabel = (UILabel*)[cell.contentView viewWithTag:1];
     [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
+    
+    UILabel* percentageLabel = (UILabel*)[cell.contentView viewWithTag:2];
+    [percentageLabel setText:[self.quizResults quizPercentageCorrect]];
     
     UILabel* questionLabel = (UILabel*)[cell.contentView viewWithTag:3];
     [questionLabel setText:[NSString stringWithFormat:@"%lu/%lu",  (unsigned long)self.questionsCompleted, (unsigned long)self.totalQuestions]];
@@ -160,7 +160,7 @@ static int QUESTION_TIME = 25;
     UIView *grayBackground = (UIView*)[cell viewWithTag:4];
     [grayBackground setBackgroundColor:PNGrey];
     
-    CGFloat fontSize = 28.0f;
+    CGFloat fontSize = 26.0f;
     
     CGFloat chartWidth = self.view.frame.size.width/3.0;
     CGFloat chartHeight = chartWidth;
@@ -172,12 +172,12 @@ static int QUESTION_TIME = 25;
     [circleChart setTag:5];
     [cell addSubview:circleChart];
 
-    UILabel* timerTitle = (UILabel*)[cell.contentView viewWithTag:10];
+    UILabel* percentageTitle = (UILabel*)[cell.contentView viewWithTag:10];
     UILabel* questionTitle = (UILabel*)[cell.contentView viewWithTag:11];
-    [timerTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
+    [percentageTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
     [questionTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]];
-    [timerLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:fontSize]];
-    [pointsLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:44.0f]];
+    [timerLabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:fontSize]];
+    [percentageLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:fontSize]];
     [questionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:fontSize]];
     return cell;
 }
@@ -223,7 +223,7 @@ static int QUESTION_TIME = 25;
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
         if ([[UIScreen mainScreen] bounds].size.height < 500.0) { //4s & iPad
-           return 120.0f;
+           return 110.0f;
         } else if ([[UIScreen mainScreen] bounds].size.height < 570.0) { //5s
             return 115.0f;
         } else { //6 & 6+
@@ -234,7 +234,7 @@ static int QUESTION_TIME = 25;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
         return 62.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"question"]) {
-        return 20.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-32.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:22.0f]];
+        return 20.0f + [self heightForText:[self.question questionText] width:(self.view.frame.size.width-32.0f) font:[UIFont fontWithName:@"SourceSansPro-Light" size:18.0f]];
     }
     return 100.0f;
 }
@@ -269,22 +269,29 @@ static int QUESTION_TIME = 25;
 - (void) updateViewWithAnswerAtIndexPath:(NSIndexPath*)indexPath success:(void (^)(id responseObject))successCallback failure:(void (^)(NSError* error))failureCallback
 {
     alreadyAnswered = YES;
-    UITableViewCell *correctCell = [self.tableView cellForRowAtIndexPath:[self indexPathOfCorrectAnswer]];
-    UITableViewCell *chosenCell;
+    VSQuizAnswerTableViewCell *correctCell = (VSQuizAnswerTableViewCell*)[self.tableView cellForRowAtIndexPath:[self indexPathOfCorrectAnswer]];
+    VSQuizAnswerTableViewCell *chosenCell;
     if (NULL_TO_NIL(indexPath)) {
-        chosenCell = [self.tableView cellForRowAtIndexPath:indexPath];
+        chosenCell = (VSQuizAnswerTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
         if (![chosenCell isEqual:correctCell]) {
-            UILabel *lbl = (UILabel*)[chosenCell.contentView viewWithTag:1];
-            [lbl setBackgroundColor:[UIColor grayColor]];
+            UIView *backgroundView = [(UIView*)chosenCell.contentView viewWithTag:1];
+            [backgroundView setBackgroundColor:[UIColor grayColor]];
+            UILabel *lbl = (UILabel*)[chosenCell.contentView viewWithTag:2];
             [lbl setTextColor:[UIColor whiteColor]];
-            lbl.font = [UIFont fontWithName:@"SourceSansPro-Regular" size:18.0f];
+            UIImageView *chosenImgView = (UIImageView*)[chosenCell.contentView viewWithTag:3];
+            [chosenImgView setImage:[UIImage imageNamed:@"wrong_checkbox.png"]];
         }
     } else {
         [self showAlertWithText:@"You ran out of time!"];
     }
-    UILabel *correctLbl = (UILabel*)[correctCell.contentView viewWithTag:1];
-    [correctLbl setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
+    UIView *correctView = (UIView*)[correctCell.contentView viewWithTag:1];
+    [correctView setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
+    
+    UILabel *correctLbl = (UILabel*)[correctCell.contentView viewWithTag:2];
     [correctLbl setTextColor:[UIColor whiteColor]];
+    
+    UIImageView *correctImgView = (UIImageView*)[correctCell.contentView viewWithTag:3];
+    [correctImgView setImage:[UIImage imageNamed:@"correct_checkbox.png"]];
     
     successCallback(nil);
     
@@ -400,8 +407,8 @@ static int QUESTION_TIME = 25;
         [timer invalidate];
     } else {
         remainingTime = remainingTime - 1;
-        UITableViewCell *cell = (UITableViewCell*)[self.tableView cellForRowAtIndexPath:[self timerIndexPath]];
-        UILabel *timerLabel = (UILabel*)[cell.contentView viewWithTag:2];
+        UITableViewCell *timerCell = (UITableViewCell*)[self.tableView cellForRowAtIndexPath:[self timerIndexPath]];
+        UILabel *timerLabel = (UILabel*)[timerCell.contentView viewWithTag:1];
         [timerLabel setText:[NSString stringWithFormat:@"00:%@", remainingTime > 9 ? [NSString stringWithFormat:@"%d", remainingTime] : [NSString stringWithFormat:@"0%d",remainingTime]]];
         UITableViewCell *headerCell = (UITableViewCell*)[self.tableView cellForRowAtIndexPath:[self headerIndexPath]];
         PNCircleChart *chart = [headerCell viewWithTag:5];

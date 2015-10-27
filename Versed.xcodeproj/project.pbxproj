@@ -116,6 +116,9 @@
 		76BC95601B4AFC1C006785F9 /* VSInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC955F1B4AFC1C006785F9 /* VSInitialViewController.m */; };
 		76BC95631B4AFCC7006785F9 /* VSOnboardingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC95621B4AFCC7006785F9 /* VSOnboardingPageViewController.m */; };
 		76BC95661B4AFD7D006785F9 /* VSIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC95651B4AFD7D006785F9 /* VSIntroViewController.m */; };
+		76D0CEFE1BE006480043473D /* correct_checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 76D0CEFB1BE006480043473D /* correct_checkbox.png */; };
+		76D0CEFF1BE006480043473D /* empty_checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 76D0CEFC1BE006480043473D /* empty_checkbox.png */; };
+		76D0CF001BE006480043473D /* wrong_checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 76D0CEFD1BE006480043473D /* wrong_checkbox.png */; };
 		76DB3F271B0D2428004EE88A /* VSQuizResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */; };
 		76DB3F2D1B0D3D8B004EE88A /* VSReviewQuizTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2C1B0D3D8B004EE88A /* VSReviewQuizTableViewCell.m */; };
 		76DB3F301B0D4058004EE88A /* NSMutableArray+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DB3F2F1B0D4058004EE88A /* NSMutableArray+Attributes.m */; };
@@ -327,6 +330,9 @@
 		76BC95621B4AFCC7006785F9 /* VSOnboardingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSOnboardingPageViewController.m; sourceTree = "<group>"; };
 		76BC95641B4AFD7D006785F9 /* VSIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSIntroViewController.h; sourceTree = "<group>"; };
 		76BC95651B4AFD7D006785F9 /* VSIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSIntroViewController.m; sourceTree = "<group>"; };
+		76D0CEFB1BE006480043473D /* correct_checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = correct_checkbox.png; sourceTree = "<group>"; };
+		76D0CEFC1BE006480043473D /* empty_checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_checkbox.png; sourceTree = "<group>"; };
+		76D0CEFD1BE006480043473D /* wrong_checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrong_checkbox.png; sourceTree = "<group>"; };
 		76DB3F251B0D2428004EE88A /* VSQuizResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuizResultsViewController.h; sourceTree = "<group>"; };
 		76DB3F261B0D2428004EE88A /* VSQuizResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuizResultsViewController.m; sourceTree = "<group>"; };
 		76DB3F2B1B0D3D8B004EE88A /* VSReviewQuizTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSReviewQuizTableViewCell.h; sourceTree = "<group>"; };
@@ -384,6 +390,9 @@
 		283A448E1B2A5CF1003012A7 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				76D0CEFB1BE006480043473D /* correct_checkbox.png */,
+				76D0CEFC1BE006480043473D /* empty_checkbox.png */,
+				76D0CEFD1BE006480043473D /* wrong_checkbox.png */,
 				282CEA021B5579980076BE38 /* question_header_transparent.png */,
 				282129601B60441E00B99850 /* talkbox_black.png */,
 				28204A331B45C7B4000D592C /* green_check.png */,
@@ -945,11 +954,14 @@
 				283A44961B2A93BD003012A7 /* checkmark.png in Resources */,
 				282129631B60487B00B99850 /* dark_v.png in Resources */,
 				28793F251B2898E200E2998F /* SourceSansPro-LightIt.otf in Resources */,
+				76D0CEFE1BE006480043473D /* correct_checkbox.png in Resources */,
 				28793F201B2898E200E2998F /* SourceSansPro-BoldIt.otf in Resources */,
+				76D0CEFF1BE006480043473D /* empty_checkbox.png in Resources */,
 				76FB4B441B79088700949067 /* viewpoints_720.png in Resources */,
 				28793F1F1B2898E200E2998F /* SourceSansPro-Bold.otf in Resources */,
 				28793F1D1B2898DC00E2998F /* SourceSansPro-Black.otf in Resources */,
 				28A5340C1AD0A64F0049B3F7 /* MobileLogin.storyboard in Resources */,
+				76D0CF001BE006480043473D /* wrong_checkbox.png in Resources */,
 				28793F241B2898E200E2998F /* SourceSansPro-Light.otf in Resources */,
 				287684F01B2ABFE20076AB24 /* quiz_splash.png in Resources */,
 				28793F231B2898E200E2998F /* SourceSansPro-It.otf in Resources */,
