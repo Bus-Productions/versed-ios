@@ -702,6 +702,13 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pag-qj-NLf">
+                                <rect key="frame" x="20" y="526" width="560" height="20"/>
+                                <color key="backgroundColor" red="0.08235294118" green="0.40784313729999999" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="u7m-nL-Lhs"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Articles sourced..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEe-Ij-dX7">
                                 <rect key="frame" x="45" y="302" width="510" height="21"/>
                                 <constraints>
@@ -723,9 +730,12 @@
                             <constraint firstItem="zEe-Ij-dX7" firstAttribute="width" secondItem="CUq-vq-MdG" secondAttribute="width" id="4I8-Bn-LT0"/>
                             <constraint firstItem="HdH-vH-wl5" firstAttribute="width" secondItem="Ffp-vO-fcN" secondAttribute="width" id="4NN-Jv-Urq"/>
                             <constraint firstItem="HdH-vH-wl5" firstAttribute="top" secondItem="Ffp-vO-fcN" secondAttribute="bottom" constant="5" id="BIo-1Y-fC1"/>
+                            <constraint firstItem="yJZ-gb-ivw" firstAttribute="top" secondItem="Pag-qj-NLf" secondAttribute="bottom" constant="10" id="ISH-W5-c8c"/>
                             <constraint firstItem="HdH-vH-wl5" firstAttribute="leading" secondItem="Ffp-vO-fcN" secondAttribute="leading" id="V6s-qj-TjV"/>
                             <constraint firstItem="zEe-Ij-dX7" firstAttribute="leading" secondItem="CUq-vq-MdG" secondAttribute="leading" id="Zgk-r8-yC4"/>
                             <constraint firstItem="CUq-vq-MdG" firstAttribute="leading" secondItem="HdH-vH-wl5" secondAttribute="leading" id="bRd-gc-c9O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pag-qj-NLf" secondAttribute="trailing" id="dQL-rO-MRs"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Pag-qj-NLf" secondAttribute="leading" id="khU-gu-qWB"/>
                             <constraint firstItem="zEe-Ij-dX7" firstAttribute="top" secondItem="CUq-vq-MdG" secondAttribute="bottom" constant="20" id="nIE-Wd-KnS"/>
                             <constraint firstItem="Ffp-vO-fcN" firstAttribute="leading" secondItem="1RL-JF-jtx" secondAttribute="leadingMargin" constant="25" id="rPC-WC-X6B"/>
                             <constraint firstItem="CUq-vq-MdG" firstAttribute="top" secondItem="HdH-vH-wl5" secondAttribute="bottom" constant="20" id="rVH-dP-Mcn"/>
@@ -740,6 +750,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="bottomView" destination="Pag-qj-NLf" id="FX6-hs-rN4"/>
                         <outlet property="companyTitleLabel" destination="HdH-vH-wl5" id="b8q-P7-OUe"/>
                         <outlet property="disclaimerLabel" destination="zEe-Ij-dX7" id="zOX-7I-UcO"/>
                         <outlet property="linkLabel" destination="CUq-vq-MdG" id="v6Z-CG-zmc"/>

@@ -18,6 +18,7 @@
     [super viewDidLoad];
     [self setupSidebar];
     [self setupText];
+    [self setupBottomView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +73,10 @@
     [self.disclaimerLabel setFont:disclaimerFont];
 }
 
+- (void) setupBottomView
+{
+    [self.bottomView setBackgroundColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]]; 
+}
 
 #pragma mark - SWRevealViewController Delegate Methods
 

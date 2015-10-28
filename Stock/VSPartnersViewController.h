@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *companyTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *linkLabel;
 @property (weak, nonatomic) IBOutlet UILabel *disclaimerLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *slideButton;
 
 @end
