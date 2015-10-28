@@ -34,6 +34,8 @@
 - (NSString*) resourceDate;
 - (CGFloat) alphaForImage;
 - (NSString*) editorsNote;
+- (NSString*) updatedAtFormatted;
+- (NSString*) completionDateFormatted;
 
 // quizzes
 - (NSMutableDictionary*) quiz;

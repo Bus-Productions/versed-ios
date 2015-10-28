@@ -21,7 +21,7 @@
 - (NSString*) timeAgoInWords;
 
 - (NSString*) timeAgoActual;
-
+- (NSString*) timeAgoActualWithFormat:(NSString*)format;
 
 + (NSInteger) currentYearInteger;
 + (NSInteger) currentMonthInteger;

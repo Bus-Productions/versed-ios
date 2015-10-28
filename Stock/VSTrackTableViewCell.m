@@ -10,6 +10,7 @@
 
 #define SAVE_TO_MY_TRACKS_TEXT @"Save to my tracks"
 #define REMOVE_FROM_MY_TRACKS_TEXT @"Remove from my tracks"
+#define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
 @implementation VSTrackTableViewCell
 
@@ -61,8 +62,8 @@
     title.layer.masksToBounds = NO;
     
     UILabel* subTitle = (UILabel*)[baseView viewWithTag:3];
-    [subTitle setText:[NSString stringWithFormat:@"%@ resources · %@", [track numberResources], [track estimatedTime]]];
-    [subTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:15.0f]];
+    [subTitle setText:[NSString stringWithFormat:@"%@ resources · %@ · %@", [track numberResources], [track estimatedTime], [track updatedAtFormatted]]];
+    [subTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:11.0f]];
     [subTitle setTextColor:[UIColor whiteColor]];
     
     subTitle.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -94,16 +95,27 @@
     [baseView setAlpha:[self.track alphaForImage]];
     [headlineImage setAlpha:[self.track alphaForImage]];
     
-    UIImageView* readView = (UIImageView*)[baseView viewWithTag:43];
+    UIView* readView = (UIView*)[baseView viewWithTag:43];
+    UILabel* completedLabel = (UILabel*)[readView viewWithTag:44];
+    [completedLabel setText:[NSString stringWithFormat:@"Completed on %@", [self.track completionDateFormatted]]];
+    [completedLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:11.0f]];
     if ([self.track completed]) {
+        UIBezierPath *completedViewMaskPath = [UIBezierPath bezierPathWithRoundedRect:readView.bounds
+                                                                    byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
+                                                                          cornerRadii:CGSizeMake(3.0, 3.0)];
+        CAShapeLayer *completedViewMaskLayer = [[CAShapeLayer alloc] init];
+        completedViewMaskLayer.frame = self.bounds;
+        completedViewMaskLayer.path = completedViewMaskPath.CGPath;
+        readView.layer.mask = completedViewMaskLayer;
         [readView setHidden:NO];
     } else {
         [readView setHidden:YES];
     }
+    NSLog(@"track = %@", self.track);
     
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:headlineImage.bounds
                                      byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
-                                           cornerRadii:CGSizeMake(4.0, 4.0)];
+                                           cornerRadii:CGSizeMake(3.0, 3.0)];
     
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.bounds;
@@ -115,7 +127,6 @@
     baseView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
     baseView.layer.shadowOpacity = 0.2f;
     baseView.layer.shadowPath = [UIBezierPath bezierPathWithRect:baseView.bounds].CGPath;
-
 }
 
 

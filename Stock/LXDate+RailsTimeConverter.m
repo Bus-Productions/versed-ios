@@ -81,7 +81,12 @@
 
 - (NSString*) timeAgoActual
 {
-    return [self formattedDateStringWithFormat:@"MMMM d, yyyy"];
+    return [self timeAgoActualWithFormat:@"MMMM d, yyyy"];
+}
+
+- (NSString*) timeAgoActualWithFormat:(NSString*)format
+{
+    return [self formattedDateStringWithFormat:format];
 }
 
 + (NSInteger) currentYearInteger

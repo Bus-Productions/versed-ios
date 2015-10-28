@@ -380,6 +380,16 @@
     return [NSString stringWithFormat:@"%@ minutes", [self objectForKey:@"estimated_time"]];
 }
 
+- (NSString*) updatedAtFormatted
+{
+    return [NSString stringWithFormat:@"Updated %@", [[NSDate dateFromString:[self objectForKey:@"updated_at"]] timeAgoActualWithFormat:@"MMM. d, yyyy"]];
+}
+
+- (NSString*) completionDateFormatted
+{
+    return NULL_TO_NIL([self objectForKey:@"completion_date"]) ? [NSString stringWithFormat:@"%@", [[NSDate dateFromString:[self objectForKey:@"completion_date"]] timeAgoActualWithFormat:@"MMM. d, yyyy"]] : @"";
+}
+
 - (NSString*) numberResources
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"number_resources"]];
@@ -459,7 +469,7 @@
 
 - (CGFloat) alphaForImage
 {
-    return [self completed] ? 0.7f : 1.0f;
+    return [self completed] ? 1.0f : 1.0f;
 }
 
 @end
