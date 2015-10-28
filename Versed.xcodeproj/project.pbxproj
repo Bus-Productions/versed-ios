@@ -87,6 +87,8 @@
 		764060DB1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060DA1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m */; };
 		764060DE1B279472004FA5CC /* VSProfileSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 764060DD1B279472004FA5CC /* VSProfileSettingsTableViewCell.m */; };
 		764666F61B82076900320F7C /* LXNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 764666F51B82076900320F7C /* LXNotifications.m */; };
+		765F7ED91BE1167200D276AB /* VSPartnersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 765F7ED81BE1167200D276AB /* VSPartnersViewController.m */; };
+		765F7EDB1BE119BB00D276AB /* financial_times.png in Resources */ = {isa = PBXBuildFile; fileRef = 765F7EDA1BE119BB00D276AB /* financial_times.png */; };
 		7664081E1B1E1383006272E8 /* VSCompletedTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */; };
 		766408211B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408201B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.m */; };
 		766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766408261B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m */; };
@@ -272,6 +274,9 @@
 		764060DD1B279472004FA5CC /* VSProfileSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSProfileSettingsTableViewCell.m; sourceTree = "<group>"; };
 		764666F41B82076900320F7C /* LXNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNotifications.h; sourceTree = "<group>"; };
 		764666F51B82076900320F7C /* LXNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNotifications.m; sourceTree = "<group>"; };
+		765F7ED71BE1167200D276AB /* VSPartnersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPartnersViewController.h; sourceTree = "<group>"; };
+		765F7ED81BE1167200D276AB /* VSPartnersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSPartnersViewController.m; sourceTree = "<group>"; };
+		765F7EDA1BE119BB00D276AB /* financial_times.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = financial_times.png; sourceTree = "<group>"; };
 		7664081C1B1E1383006272E8 /* VSCompletedTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCompletedTrackViewController.h; sourceTree = "<group>"; };
 		7664081D1B1E1383006272E8 /* VSCompletedTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCompletedTrackViewController.m; sourceTree = "<group>"; };
 		7664081F1B1E146C006272E8 /* VSUsersCompletedTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUsersCompletedTrackTableViewCell.h; sourceTree = "<group>"; };
@@ -390,6 +395,7 @@
 		283A448E1B2A5CF1003012A7 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				765F7EDA1BE119BB00D276AB /* financial_times.png */,
 				76D0CF031BE017760043473D /* wrong_checkbox.png */,
 				76D0CF011BE0169F0043473D /* correct_checkbox.png */,
 				76D0CEFC1BE006480043473D /* empty_checkbox.png */,
@@ -661,6 +667,7 @@
 				7664082E1B1E5CB5006272E8 /* Polls */,
 				7636ED921B0E7DDE00BD4E1A /* Daily Articles */,
 				764060D51B2745E3004FA5CC /* Profile */,
+				765F7ED61BE1165200D276AB /* Partners */,
 				76DEE71D1B29D5B400323EA0 /* FAQ */,
 			);
 			name = "Menu Options";
@@ -731,6 +738,15 @@
 				764060D31B2745D0004FA5CC /* VSProfileViewController.m */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		765F7ED61BE1165200D276AB /* Partners */ = {
+			isa = PBXGroup;
+			children = (
+				765F7ED71BE1167200D276AB /* VSPartnersViewController.h */,
+				765F7ED81BE1167200D276AB /* VSPartnersViewController.m */,
+			);
+			name = Partners;
 			sourceTree = "<group>";
 		};
 		7664082E1B1E5CB5006272E8 /* Polls */ = {
@@ -948,6 +964,7 @@
 				28A8F10D1B42DE63007BD774 /* versed_daily.png in Resources */,
 				283A44991B2A9B3D003012A7 /* black_logo_sans.png in Resources */,
 				28204A301B45AFBA000D592C /* 1.png in Resources */,
+				765F7EDB1BE119BB00D276AB /* financial_times.png in Resources */,
 				28793F221B2898E200E2998F /* SourceSansPro-ExtraLightIt.otf in Resources */,
 				282129611B60441E00B99850 /* talkbox_black.png in Resources */,
 				28793F1E1B2898DE00E2998F /* SourceSansPro-BlackIt.otf in Resources */,
@@ -1046,6 +1063,7 @@
 				764060DE1B279472004FA5CC /* VSProfileSettingsTableViewCell.m in Sources */,
 				766408271B1E3558006272E8 /* VSCompletedTrackTitleTableViewCell.m in Sources */,
 				768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */,
+				765F7ED91BE1167200D276AB /* VSPartnersViewController.m in Sources */,
 				76A2CB6A1B5973CA008F00F8 /* VSPollsViewController.m in Sources */,
 				76BC95601B4AFC1C006785F9 /* VSInitialViewController.m in Sources */,
 				768CE0931B03EF5000E1E2E6 /* VSMyTracksViewController.m in Sources */,

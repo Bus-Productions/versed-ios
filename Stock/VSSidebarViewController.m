@@ -17,6 +17,7 @@
 #import "VSProfileTableViewCell.h"
 #import "VSFaqCategoryViewController.h"
 #import "VSPollsViewController.h"
+#import "VSPartnersViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define ALL_TRACKS_IDENTIFIER @"allTracks"
@@ -172,9 +173,8 @@
             vc = (VSFaqCategoryViewController*)[storyboard instantiateViewControllerWithIdentifier:@"faqCategoryViewController"];
             nc = [storyboard instantiateViewControllerWithIdentifier:@"faqNavigationController"];
         } else if ([[self.bottomOptions objectAtIndex:indexPath.row] isEqualToString:PARTNERS_IDENTIFIER]) {
-            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-            [self showAlertWithText:@"Coming Soon!"];
-            return;
+            vc = (VSPartnersViewController*)[storyboard instantiateViewControllerWithIdentifier:@"partnersViewController"];
+            nc = [storyboard instantiateViewControllerWithIdentifier:@"partnersNavigationController"];
         }
     }
     
