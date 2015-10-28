@@ -21,7 +21,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define ALL_TRACKS_IDENTIFIER @"allTracks"
-#define MY_TRACKS_IDENTIFIER @"myTracks"
 #define QUIZ_IDENTIFIER @"quiz"
 #define PROFILE_IDENTIFIER @"profile"
 #define DAILY_ARTICLES_IDENTIFIER @"dailyArticles"
@@ -65,7 +64,6 @@
     self.menuOptions = [[NSMutableArray alloc] init];
     [self.menuOptions addObject:PROFILE_IDENTIFIER];
     [self.menuOptions addObject:ALL_TRACKS_IDENTIFIER];
-    [self.menuOptions addObject:MY_TRACKS_IDENTIFIER];
     [self.menuOptions addObject:DAILY_ARTICLES_IDENTIFIER];
     [self.menuOptions addObject:QUIZ_IDENTIFIER];
     [self.menuOptions addObject:POLLS_IDENTIFIER];
@@ -152,9 +150,6 @@
         if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:ALL_TRACKS_IDENTIFIER]) {
             vc = (VSAllTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
             nc = [storyboard instantiateViewControllerWithIdentifier:@"mainNavigationController"];
-        } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:MY_TRACKS_IDENTIFIER]) {
-            vc = (VSMyTracksViewController*)[storyboard instantiateViewControllerWithIdentifier:@"myTracksViewController"];
-            nc = [storyboard instantiateViewControllerWithIdentifier:@"myTracksNavigationController"];
         } else if ([[self.menuOptions objectAtIndex:indexPath.row] isEqualToString:QUIZ_IDENTIFIER]) {
             vc = (VSQuizLandingViewController*)[storyboard instantiateViewControllerWithIdentifier:@"quizLandingViewController"];
             nc = [storyboard instantiateViewControllerWithIdentifier:@"quizQuestionsNavigationViewController"];

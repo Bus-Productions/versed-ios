@@ -159,31 +159,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myTracks" rowHeight="54" id="eIz-Je-V2O">
-                                        <rect key="frame" x="0.0" y="174" width="600" height="54"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eIz-Je-V2O" id="eqE-H6-u0k">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Tracks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsZ-1p-vm8">
-                                                    <rect key="frame" x="8" y="8" width="584" height="38"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gsZ-1p-vm8" firstAttribute="top" secondItem="eqE-H6-u0k" secondAttribute="topMargin" id="3wQ-6s-Yax"/>
-                                                <constraint firstItem="gsZ-1p-vm8" firstAttribute="trailing" secondItem="eqE-H6-u0k" secondAttribute="trailingMargin" id="G22-QT-PWj"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="gsZ-1p-vm8" secondAttribute="bottom" id="jZg-fr-m9T"/>
-                                                <constraint firstItem="gsZ-1p-vm8" firstAttribute="leading" secondItem="eqE-H6-u0k" secondAttribute="leadingMargin" id="xdH-xc-CxE"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allTracks" rowHeight="56" id="IPQ-n5-Sa2">
-                                        <rect key="frame" x="0.0" y="228" width="600" height="56"/>
+                                        <rect key="frame" x="0.0" y="174" width="600" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IPQ-n5-Sa2" id="jKg-o9-ilP">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
@@ -206,7 +183,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="polls" rowHeight="60" id="VSh-lX-qUH" userLabel="polls">
-                                        <rect key="frame" x="0.0" y="284" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="230" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VSh-lX-qUH" id="HKS-5G-uMq">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
@@ -229,7 +206,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="partners" rowHeight="60" id="EJf-WB-Uar">
-                                        <rect key="frame" x="0.0" y="344" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="290" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EJf-WB-Uar" id="yMh-O6-hIs">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
@@ -269,7 +246,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="faq" rowHeight="60" id="lxK-vs-7u7">
-                                        <rect key="frame" x="0.0" y="404" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="350" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lxK-vs-7u7" id="wHq-jI-SKN">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
