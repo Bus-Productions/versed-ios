@@ -167,7 +167,7 @@ static int QUESTION_TIME = 25;
     
     PNCircleChart * circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.0 - chartWidth/2.0, cell.frame.size.height/2.0 - chartHeight/2.0, chartWidth, chartHeight) total:[NSNumber numberWithInt:QUESTION_TIME] current:[NSNumber numberWithInt:0] clockwise:YES shadow:YES shadowColor:PNGrey displayCountingLabel:NO overrideLineWidth:[NSNumber numberWithInt:12]];
     circleChart.backgroundColor = [UIColor clearColor];
-    [circleChart setStrokeColor:PNGreen];
+    [circleChart setStrokeColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
     [circleChart strokeChart];
     [circleChart setTag:5];
     [cell addSubview:circleChart];

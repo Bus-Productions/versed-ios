@@ -3837,19 +3837,19 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view alpha="0.69999999999999996" tag="43" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohO-xe-hga">
-                                                            <rect key="frame" x="0.0" y="-3" width="592" height="30"/>
+                                                            <rect key="frame" x="0.0" y="-3" width="592" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="44" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwj-kb-JOf">
-                                                                    <rect key="frame" x="30" y="0.0" width="562" height="30"/>
+                                                                    <rect key="frame" x="40" y="0.0" width="552" height="40"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_check.png" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-s0-ahu">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="LLJ-M7-J67"/>
-                                                                        <constraint firstAttribute="width" constant="30" id="OwF-bj-FB2"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="LLJ-M7-J67"/>
+                                                                        <constraint firstAttribute="width" constant="40" id="OwF-bj-FB2"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -3857,7 +3857,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="xwj-kb-JOf" secondAttribute="trailing" id="9gJ-hl-WMQ"/>
                                                                 <constraint firstItem="xwj-kb-JOf" firstAttribute="top" secondItem="ohO-xe-hga" secondAttribute="top" id="ZHz-Ei-lyt"/>
-                                                                <constraint firstAttribute="height" constant="30" id="ZS6-Fd-MX5"/>
+                                                                <constraint firstAttribute="height" constant="40" id="ZS6-Fd-MX5"/>
                                                                 <constraint firstItem="hhe-s0-ahu" firstAttribute="top" secondItem="ohO-xe-hga" secondAttribute="top" id="aKO-yh-EL6"/>
                                                                 <constraint firstItem="hhe-s0-ahu" firstAttribute="leading" secondItem="ohO-xe-hga" secondAttribute="leading" id="etL-bb-e2X"/>
                                                                 <constraint firstAttribute="bottom" secondItem="xwj-kb-JOf" secondAttribute="bottom" id="fMi-7r-N8a"/>

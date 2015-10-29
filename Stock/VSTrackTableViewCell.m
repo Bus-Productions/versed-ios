@@ -98,7 +98,7 @@
     UIView* readView = (UIView*)[baseView viewWithTag:43];
     UILabel* completedLabel = (UILabel*)[readView viewWithTag:44];
     [completedLabel setText:[NSString stringWithFormat:@"Completed on %@", [self.track completionDateFormatted]]];
-    [completedLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:11.0f]];
+    [completedLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:15.0f]];
     if ([self.track completed]) {
         UIBezierPath *completedViewMaskPath = [UIBezierPath bezierPathWithRoundedRect:readView.bounds
                                                                     byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
