@@ -261,7 +261,8 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
         return 146.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
-        return 117.0f + [self heightForText:[[[self.track resources] objectAtIndex:indexPath.row] objectForKey:@"description"] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
+        NSMutableDictionary *res = [[self.track resources] objectAtIndex:indexPath.row];
+        return 117.0f + ([completedResources containsObject:[NSNumber numberWithInt:[[res ID] intValue]]] ? -10.0 : [self heightForText:[res objectForKey:@"description"] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]]);
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         float heightOfTitle = 16.0f + [self heightForText:@"Introduction" width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Bold" size:13.0f]];
         if ([expandedCells containsObject:@"editorsNote"]) {

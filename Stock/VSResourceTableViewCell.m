@@ -43,45 +43,51 @@
     [descriptionLabel setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
     [descriptionLabel setTextColor:[UIColor grayColor]];
     
+    UILabel* horizontalLineLabel = (UILabel*)[baseView viewWithTag:99];
+    
     UIImageView* sourceView = (UIImageView*)[baseView viewWithTag:82];
-    if ([resource mediaURL]) {
-        if ([SGImageCache haveImageForURL:[resource mediaURL]]) {
-            [sourceView setImage:[SGImageCache imageForURL:[resource mediaURL]]];
-        } else if (![sourceView.image isEqual:[SGImageCache imageForURL:[resource mediaURL]]]) {
-            sourceView.image = nil;
-            [sourceView setAlpha:0.0f];
-            [SGImageCache getImageForURL:[resource mediaURL]].then(^(UIImage* image) {
-                if (image) {
-                    sourceView.image = image;
-                }
-                [UIView animateWithDuration:1.0f animations:^(void){
-                    [sourceView setAlpha:1.0f];
-                }];
-            });
-        }
-    }
     
-    UIImageView* readImage = (UIImageView*) [baseView viewWithTag:83];
-    [readImage setImage:[UIImage imageNamed:@"green_check.png"]];
     if ([completedResources containsObject:[resource ID]]) {
-        [readImage setHidden:NO];
-        [baseView setAlpha:0.7f];
-        [sourceView setAlpha:0.7f];
+        [horizontalLineLabel setHidden:YES];
+        [sourceView setImage:[UIImage imageNamed:@"checkmark_gray.png"]];
+        [baseView setBackgroundColor:[UIColor colorWithRed:221/255.0 green:221/255.0 blue:221/255.0 alpha:0.3]];
+        [title setTextColor:[UIColor grayColor]];
+        baseView.layer.shadowPath = nil;
+        [descriptionLabel setHidden:YES];
+        self.descriptionLabelHeightConstraint.constant = 0;
     } else {
-        [readImage setHidden:YES];
-        [baseView setAlpha:1.0f];
+        [horizontalLineLabel setHidden:NO]; 
+        [baseView setBackgroundColor:[UIColor whiteColor]];
+        if ([resource mediaURL]) {
+            if ([SGImageCache haveImageForURL:[resource mediaURL]]) {
+                [sourceView setImage:[SGImageCache imageForURL:[resource mediaURL]]];
+            } else if (![sourceView.image isEqual:[SGImageCache imageForURL:[resource mediaURL]]]) {
+                sourceView.image = nil;
+                [sourceView setAlpha:0.0f];
+                [SGImageCache getImageForURL:[resource mediaURL]].then(^(UIImage* image) {
+                    if (image) {
+                        sourceView.image = image;
+                    }
+                    [UIView animateWithDuration:1.0f animations:^(void){
+                        [sourceView setAlpha:1.0f];
+                    }];
+                });
+            }
+        }
+        [descriptionLabel setHidden:NO];
+        [title setTextColor:[UIColor blackColor]];
+        self.descriptionLabelHeightConstraint.constant = [self heightForText:[self.resource description] width:baseView.frame.size.width-30.0f font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
         [sourceView setAlpha:1.0f];
+        baseView.layer.cornerRadius = 4.0;
+        baseView.layer.shadowColor = [UIColor blackColor].CGColor;
+        baseView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+        baseView.layer.shadowOpacity = 0.2f;
+        baseView.layer.shadowPath = [UIBezierPath bezierPathWithRect:baseView.bounds].CGPath;
     }
-    
-    baseView.layer.cornerRadius = 4.0;
-    baseView.layer.shadowColor = [UIColor blackColor].CGColor;
-    baseView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
-    baseView.layer.shadowOpacity = 0.2f;
-    baseView.layer.shadowPath = [UIBezierPath bezierPathWithRect:baseView.bounds].CGPath;
 }
 
 
-+ (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font
 {
     if (!text || [text length] == 0) {
         return 0.0f;
@@ -94,11 +100,6 @@
     return rect.size.height;
 }
 
-- (CGFloat) heightForRow
-{
-    UILabel* title = (UILabel*)[(UIView*)[self.contentView viewWithTag:10] viewWithTag:1];
-    return [VSResourceTableViewCell heightForText:[self.resource headline] width:title.frame.size.width font:title.font] + 100.0f;
-}
 
 
 @end

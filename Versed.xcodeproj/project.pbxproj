@@ -136,6 +136,7 @@
 		76F0D5981B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D5971B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m */; };
 		76F0D59B1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F0D59A1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m */; };
 		76F6370E1B29F2EF004B0A1A /* VSContactUsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F6370D1B29F2EF004B0A1A /* VSContactUsButton.m */; };
+		76F7E4AC1BE3D2BD00C6B07B /* checkmark_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 76F7E4AB1BE3D2BD00C6B07B /* checkmark_gray.png */; };
 		76FB4B441B79088700949067 /* viewpoints_720.png in Resources */ = {isa = PBXBuildFile; fileRef = 76FB4B431B79088700949067 /* viewpoints_720.png */; };
 		B9793DD86EF509AA8FD8F674 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F455122FD9049861339E9F /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -368,6 +369,7 @@
 		76F0D59A1B28E1C100F54C56 /* VSCongratsFeedbackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCongratsFeedbackTableViewCell.m; sourceTree = "<group>"; };
 		76F6370C1B29F2EF004B0A1A /* VSContactUsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSContactUsButton.h; sourceTree = "<group>"; };
 		76F6370D1B29F2EF004B0A1A /* VSContactUsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSContactUsButton.m; sourceTree = "<group>"; };
+		76F7E4AB1BE3D2BD00C6B07B /* checkmark_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark_gray.png; sourceTree = "<group>"; };
 		76FB4B431B79088700949067 /* viewpoints_720.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = viewpoints_720.png; sourceTree = "<group>"; };
 		832108382003574B881C950B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A3F455122FD9049861339E9F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -395,6 +397,7 @@
 		283A448E1B2A5CF1003012A7 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				76F7E4AB1BE3D2BD00C6B07B /* checkmark_gray.png */,
 				765F7EDA1BE119BB00D276AB /* financial_times.png */,
 				76D0CF031BE017760043473D /* wrong_checkbox.png */,
 				76D0CF011BE0169F0043473D /* correct_checkbox.png */,
@@ -996,6 +999,7 @@
 				7620FCAE1B74FB980013FD92 /* Versed_Final_Logo_Black.png in Resources */,
 				28793F0C1B288FEA00E2998F /* white_logo_sans.png in Resources */,
 				28793F281B2898E200E2998F /* SourceSansPro-SemiboldIt.otf in Resources */,
+				76F7E4AC1BE3D2BD00C6B07B /* checkmark_gray.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

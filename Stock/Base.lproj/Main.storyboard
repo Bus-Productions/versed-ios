@@ -1401,7 +1401,7 @@
                                                         <constraint firstAttribute="height" constant="2" id="2z0-mv-MDz"/>
                                                     </constraints>
                                                     <color key="progressTintColor" red="0.08235294118" green="0.40784313729999999" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="trackTintColor" red="0.9108952548" green="0.90034221969999995" blue="0.91731770830000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="trackTintColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                 </progressView>
                                             </subviews>
                                             <constraints>
@@ -4120,18 +4120,13 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWB-mc-Jvi">
                                                             <rect key="frame" x="8" y="86" width="584" height="43"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="43" id="XPa-R1-e8D"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" id="IAC-w3-UNp"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="default">
-                                                                <mask key="constraints">
-                                                                    <exclude reference="XPa-R1-e8D"/>
-                                                                </mask>
-                                                            </variation>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qun-B1-3qQ">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="99" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qun-B1-3qQ">
                                                             <rect key="frame" x="8" y="90" width="576" height="1"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -4166,20 +4161,12 @@
                                                                 <constraint firstAttribute="width" secondItem="cdc-SI-jdl" secondAttribute="height" multiplier="1:1" id="eWN-8i-OsJ"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" tag="83" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Chi-aD-yhw">
-                                                            <rect key="frame" x="544" y="46" width="40" height="39"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Chi-aD-yhw" secondAttribute="height" multiplier="40:39" id="2k2-f0-Oek"/>
-                                                            </constraints>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="Chi-aD-yhw" firstAttribute="top" secondItem="cdc-SI-jdl" secondAttribute="bottom" constant="-2" id="0Hz-DJ-CnT"/>
                                                         <constraint firstItem="u4f-6N-C13" firstAttribute="top" secondItem="0tZ-hn-4LD" secondAttribute="bottom" id="1Y8-l9-fUu"/>
                                                         <constraint firstItem="qun-B1-3qQ" firstAttribute="leading" secondItem="R4B-cU-1P4" secondAttribute="leading" constant="8" id="1q0-rR-Gfi"/>
                                                         <constraint firstItem="0tZ-hn-4LD" firstAttribute="leading" secondItem="R4B-cU-1P4" secondAttribute="leading" constant="8" id="2oh-fy-gC8"/>
-                                                        <constraint firstItem="cdc-SI-jdl" firstAttribute="trailing" secondItem="Chi-aD-yhw" secondAttribute="trailing" id="5my-J8-DwG"/>
                                                         <constraint firstAttribute="trailing" secondItem="qun-B1-3qQ" secondAttribute="trailing" constant="8" id="6Cn-qZ-3ab"/>
                                                         <constraint firstItem="u4f-6N-C13" firstAttribute="leading" secondItem="R4B-cU-1P4" secondAttribute="leading" constant="8" id="7Dd-eN-1d3"/>
                                                         <constraint firstAttribute="trailing" secondItem="0tZ-hn-4LD" secondAttribute="trailing" constant="8" id="JFh-Kl-gg2"/>
@@ -4190,7 +4177,6 @@
                                                         <constraint firstItem="mWB-mc-Jvi" firstAttribute="leading" secondItem="R4B-cU-1P4" secondAttribute="leading" constant="8" id="VMu-iz-bi6"/>
                                                         <constraint firstItem="qun-B1-3qQ" firstAttribute="top" secondItem="u4f-6N-C13" secondAttribute="bottom" constant="5" id="WZ9-Ki-USF"/>
                                                         <constraint firstAttribute="bottom" secondItem="mWB-mc-Jvi" secondAttribute="bottom" constant="8" id="YJ0-tV-nyD"/>
-                                                        <constraint firstItem="cdc-SI-jdl" firstAttribute="leading" secondItem="Chi-aD-yhw" secondAttribute="leading" id="ZMS-4h-mQK"/>
                                                         <constraint firstItem="mWB-mc-Jvi" firstAttribute="top" secondItem="qun-B1-3qQ" secondAttribute="bottom" constant="5" id="dEk-nz-cFm"/>
                                                         <constraint firstAttribute="trailing" secondItem="cdc-SI-jdl" secondAttribute="trailing" constant="8" id="gjl-5z-D6z"/>
                                                         <constraint firstItem="cdc-SI-jdl" firstAttribute="leading" secondItem="0tZ-hn-4LD" secondAttribute="trailing" constant="8" id="qCI-7Q-KXq"/>
@@ -4210,6 +4196,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="descriptionLabelHeightConstraint" destination="IAC-w3-UNp" id="98l-BG-nfH"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DEW-L3-vWE" customClass="VSPollsTableViewCell">
                                         <rect key="frame" x="0.0" y="142" width="600" height="44"/>
@@ -4317,7 +4306,7 @@
                                                             </variation>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.5772191010996921" green="1" blue="0.54290363646747053" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" id="6O5-di-4uC"/>
                                                         <constraint firstItem="gkW-aE-8ab" firstAttribute="leading" secondItem="otI-wj-LqJ" secondAttribute="leading" constant="8" id="FRb-W0-CZY"/>

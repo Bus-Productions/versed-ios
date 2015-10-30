@@ -14,8 +14,8 @@
 
 - (void) configureWithResource:r andCompletedResources:completedResources;
 
-+ (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font;
+- (CGFloat) heightForText:(NSString*)text width:(CGFloat)width font:(UIFont*)font;
 
-- (CGFloat) heightForRow;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *descriptionLabelHeightConstraint;
 
 @end
