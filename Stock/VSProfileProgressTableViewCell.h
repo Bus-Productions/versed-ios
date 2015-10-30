@@ -11,5 +11,6 @@
 @interface VSProfileProgressTableViewCell : UITableViewCell
 
 - (void) configure;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *progressViewHeightConstraint;
 
 @end

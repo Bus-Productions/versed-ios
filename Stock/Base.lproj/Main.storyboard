@@ -1397,6 +1397,11 @@
                                                 </label>
                                                 <progressView opaque="NO" tag="3" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rKJ-ab-s6X">
                                                     <rect key="frame" x="30" y="129" width="540" height="2"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="2" id="2z0-mv-MDz"/>
+                                                    </constraints>
+                                                    <color key="progressTintColor" red="0.08235294118" green="0.40784313729999999" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="trackTintColor" red="0.9108952548" green="0.90034221969999995" blue="0.91731770830000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </progressView>
                                             </subviews>
                                             <constraints>
@@ -1427,6 +1432,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="progressViewHeightConstraint" destination="2z0-mv-MDz" id="8SA-3R-PEv"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="topicsCell" rowHeight="160" id="P3x-Ol-1bp" customClass="VSProfileTopicsTableViewCell">
                                         <rect key="frame" x="0.0" y="444" width="600" height="160"/>

@@ -115,7 +115,7 @@
         [self.minutesRemainingInTrackLabel setText:[NSString stringWithFormat:@"%@ minutes remaining", [track minutesRemaining]]];
         [self.minutesRemainingInTrackLabel setFont:[UIFont fontWithName:@"SourceSansPro-LightIt" size:12.0f]];
         [self.minutesRemainingInTrackLabel setTextColor:[UIColor whiteColor]];
-        if (progressBar.progress < 0.45) {
+        if (progressBar.progress < 0.44) {
             self.minutesRemainingLeadingConstraint.constant = progressBar.progress*progressBar.frame.size.width + 6;
             [self.minutesRemainingInTrackLabel setTextColor:[UIColor grayColor]];
         } else {
