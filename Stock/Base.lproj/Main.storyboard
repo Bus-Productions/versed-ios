@@ -3772,9 +3772,9 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_check.png" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-s0-ahu">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="LLJ-M7-J67"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="LLJ-M7-J67"/>
                                                                         <constraint firstAttribute="width" constant="40" id="OwF-bj-FB2"/>
                                                                     </constraints>
                                                                 </imageView>
@@ -3793,8 +3793,8 @@
                                                         <view tag="55" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epf-WG-uUO" userLabel="BottomView">
                                                             <rect key="frame" x="8" y="243" width="576" height="31"/>
                                                             <subviews>
-                                                                <progressView opaque="NO" tag="66" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xNl-6k-dsR">
-                                                                    <rect key="frame" x="0.0" y="8" width="474" height="15"/>
+                                                                <progressView opaque="NO" tag="66" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xNl-6k-dsR">
+                                                                    <rect key="frame" x="0.0" y="8" width="474" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="15" id="6tM-ES-eNf"/>
                                                                     </constraints>
@@ -3802,7 +3802,7 @@
                                                                     <color key="trackTintColor" red="0.9108952548" green="0.90034221969999995" blue="0.91731770830000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </progressView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAC-Uv-R2D">
-                                                                    <rect key="frame" x="499" y="3.5" width="77" height="24"/>
+                                                                    <rect key="frame" x="489" y="3.5" width="77" height="24"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="24" id="7pw-oM-Zu1"/>
                                                                     </constraints>
@@ -3814,13 +3814,13 @@
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yjr-gS-ved">
-                                                                    <rect key="frame" x="527" y="3.5" width="49" height="24"/>
+                                                                    <rect key="frame" x="517" y="3.5" width="49" height="24"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="talkbox_black.png" translatesAutoresizingMaskIntoConstraints="NO" id="64g-eH-eDm">
-                                                                    <rect key="frame" x="499" y="3.5" width="24" height="24"/>
+                                                                    <rect key="frame" x="489" y="3.5" width="24" height="24"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="64g-eH-eDm" secondAttribute="height" multiplier="1:1" id="QVi-ez-WxV"/>
                                                                     </constraints>
@@ -3835,13 +3835,13 @@
                                                             <color key="backgroundColor" red="0.46931303006438174" green="0.19874509554051378" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="IAC-Uv-R2D" firstAttribute="centerY" secondItem="xNl-6k-dsR" secondAttribute="centerY" id="3MJ-XV-tDD"/>
-                                                                <constraint firstAttribute="trailing" secondItem="IAC-Uv-R2D" secondAttribute="trailing" id="8Mq-tj-5bP"/>
+                                                                <constraint firstAttribute="trailing" secondItem="IAC-Uv-R2D" secondAttribute="trailing" constant="10" id="8Mq-tj-5bP"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="9Vq-Bd-Na4"/>
                                                                 <constraint firstItem="Yjr-gS-ved" firstAttribute="top" secondItem="IAC-Uv-R2D" secondAttribute="top" id="Bxh-HU-Coh"/>
                                                                 <constraint firstItem="64g-eH-eDm" firstAttribute="leading" secondItem="IAC-Uv-R2D" secondAttribute="leading" id="PnJ-vK-Uvq"/>
                                                                 <constraint firstItem="IAC-Uv-R2D" firstAttribute="top" secondItem="64g-eH-eDm" secondAttribute="top" id="Rlw-aA-RCF"/>
                                                                 <constraint firstItem="Yjr-gS-ved" firstAttribute="trailing" secondItem="IAC-Uv-R2D" secondAttribute="trailing" id="SSG-K2-efg"/>
-                                                                <constraint firstItem="IAC-Uv-R2D" firstAttribute="leading" secondItem="xNl-6k-dsR" secondAttribute="trailing" constant="25" id="TG0-JV-XsS"/>
+                                                                <constraint firstItem="IAC-Uv-R2D" firstAttribute="leading" secondItem="xNl-6k-dsR" secondAttribute="trailing" constant="15" id="TG0-JV-XsS"/>
                                                                 <constraint firstItem="fYU-q9-GtB" firstAttribute="leading" secondItem="epf-WG-uUO" secondAttribute="leading" constant="8" id="W7C-Iv-15h"/>
                                                                 <constraint firstItem="64g-eH-eDm" firstAttribute="height" secondItem="IAC-Uv-R2D" secondAttribute="height" id="iGI-nf-ves"/>
                                                                 <constraint firstItem="xNl-6k-dsR" firstAttribute="centerY" secondItem="epf-WG-uUO" secondAttribute="centerY" id="kYe-Di-xeN"/>
@@ -3849,7 +3849,7 @@
                                                                 <constraint firstItem="Yjr-gS-ved" firstAttribute="height" secondItem="IAC-Uv-R2D" secondAttribute="height" id="m6c-fj-fok"/>
                                                                 <constraint firstItem="xNl-6k-dsR" firstAttribute="leading" secondItem="epf-WG-uUO" secondAttribute="leading" id="mlp-QY-cS3"/>
                                                                 <constraint firstItem="fYU-q9-GtB" firstAttribute="centerY" secondItem="xNl-6k-dsR" secondAttribute="centerY" id="t3o-Us-33d"/>
-                                                                <constraint firstItem="IAC-Uv-R2D" firstAttribute="leading" secondItem="fYU-q9-GtB" secondAttribute="trailing" constant="25" id="y37-Lk-Uda"/>
+                                                                <constraint firstItem="IAC-Uv-R2D" firstAttribute="leading" secondItem="fYU-q9-GtB" secondAttribute="trailing" constant="15" id="y37-Lk-Uda"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a47-JE-84b">
