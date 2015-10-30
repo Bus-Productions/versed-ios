@@ -132,6 +132,16 @@
     return [self objectForKey:@"resources"] ? [[self objectForKey:@"resources"] mutableCopy] : [[NSMutableArray alloc] init];;
 }
 
+- (NSString*) numberResourcesRead
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"number_resources_read"]];
+}
+
+- (NSString*) minutesRemaining
+{
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"minutes_remaining"]];
+}
+
 - (NSMutableArray*) questionAnswers
 {
     return [[self objectForKey:@"quiz_answers"] mutableCopy];
@@ -377,7 +387,7 @@
 
 - (NSString*) estimatedTime
 {
-    return [NSString stringWithFormat:@"%@ minutes", [self objectForKey:@"estimated_time"]];
+    return [NSString stringWithFormat:@"%@", [self objectForKey:@"estimated_time"]];
 }
 
 - (NSString*) updatedAtFormatted

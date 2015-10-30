@@ -12,6 +12,9 @@
 
 @property (strong, nonatomic) NSMutableDictionary* track;
 @property (strong, nonatomic) UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *minutesRemainingInTrackLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *minutesRemainingLeadingConstraint;
 
 - (void) configureWithTrack:(NSMutableDictionary*)t andIndexPath:(NSIndexPath*)indexPath;
 

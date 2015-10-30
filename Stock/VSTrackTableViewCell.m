@@ -62,7 +62,7 @@
     title.layer.masksToBounds = NO;
     
     UILabel* subTitle = (UILabel*)[baseView viewWithTag:3];
-    [subTitle setText:[NSString stringWithFormat:@"%@ resources · %@ · %@", [track numberResources], [track estimatedTime], [track updatedAtFormatted]]];
+    [subTitle setText:[NSString stringWithFormat:@"%@ resources · %@ minutes · %@", [track numberResources], [track estimatedTime], [track updatedAtFormatted]]];
     [subTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:11.0f]];
     [subTitle setTextColor:[UIColor whiteColor]];
     
@@ -77,20 +77,17 @@
     [description setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
     [description setText:[[track objectForKey:@"editors_note"] truncated:230]];
     
-    UILabel* numberOfPeople = (UILabel*)[baseView viewWithTag:7];
-    [numberOfPeople setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:12.0f]];
+    UIView* bottomView = (UIView*) [self.contentView viewWithTag:55];
+    [bottomView setBackgroundColor:[UIColor clearColor]];
+    
+    UILabel* numberOfPeople = (UILabel*)[bottomView viewWithTag:7];
+    [numberOfPeople setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:20.0f]];
     if ([track objectForKey:@"people_discussing"] && [[track objectForKey:@"people_discussing"] count] > 0) {
         //NSLog(@"%@", [track objectForKey:@"completed_in_company"]);
         [numberOfPeople setText:[NSString stringWithFormat:@"%lu", (unsigned long)[[track objectForKey:@"people_discussing"] count]]];
     } else {
         [numberOfPeople setText:@"0"];
     }
-    
-    self.saveButton = (UIButton*)[baseView viewWithTag:5];
-    [self.saveButton setTitle:[self saveToMyTracksButtonTitle] forState:UIControlStateNormal];
-    [self.saveButton setBackgroundColor:[UIColor colorWithRed:0.925f green:0.925f blue:0.925f alpha:1.0f]];
-    [self.saveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [[self.saveButton titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]];
     
     [baseView setAlpha:[self.track alphaForImage]];
     [headlineImage setAlpha:[self.track alphaForImage]];
@@ -99,6 +96,7 @@
     UILabel* completedLabel = (UILabel*)[readView viewWithTag:44];
     [completedLabel setText:[NSString stringWithFormat:@"Completed on %@", [self.track completionDateFormatted]]];
     [completedLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:15.0f]];
+    
     if ([self.track completed]) {
         UIBezierPath *completedViewMaskPath = [UIBezierPath bezierPathWithRoundedRect:readView.bounds
                                                                     byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
@@ -108,10 +106,26 @@
         completedViewMaskLayer.path = completedViewMaskPath.CGPath;
         readView.layer.mask = completedViewMaskLayer;
         [readView setHidden:NO];
+        [bottomView setHidden:YES];
+        self.bottomViewHeightConstraint.constant = 0; 
     } else {
+        UIProgressView *progressBar = (UIProgressView*)[bottomView viewWithTag:66];
+        progressBar.progress = ([[track estimatedTime] floatValue] - [[track minutesRemaining] floatValue])/([[track estimatedTime] floatValue] < 1.0 ? 1.0 : [[track estimatedTime] floatValue]);
+    
+        [self.minutesRemainingInTrackLabel setText:[NSString stringWithFormat:@"%@ minutes remaining", [track minutesRemaining]]];
+        [self.minutesRemainingInTrackLabel setFont:[UIFont fontWithName:@"SourceSansPro-LightIt" size:12.0f]];
+        [self.minutesRemainingInTrackLabel setTextColor:[UIColor whiteColor]];
+        if (progressBar.progress < 0.4) {
+            self.minutesRemainingLeadingConstraint.constant = progressBar.progress*progressBar.frame.size.width + 6;
+            [self.minutesRemainingInTrackLabel setTextColor:[UIColor grayColor]];
+        } else {
+            self.minutesRemainingLeadingConstraint.constant = 4;
+            [self.minutesRemainingInTrackLabel setTextColor:[UIColor whiteColor]];
+        }
         [readView setHidden:YES];
+        [bottomView setHidden:NO]; 
+        self.bottomViewHeightConstraint.constant = 25;
     }
-    NSLog(@"track = %@", self.track);
     
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:headlineImage.bounds
                                      byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)

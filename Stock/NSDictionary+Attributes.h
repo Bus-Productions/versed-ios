@@ -36,6 +36,8 @@
 - (NSString*) editorsNote;
 - (NSString*) updatedAtFormatted;
 - (NSString*) completionDateFormatted;
+- (NSString*) numberResourcesRead;
+- (NSString*) minutesRemaining;
 
 // quizzes
 - (NSMutableDictionary*) quiz;

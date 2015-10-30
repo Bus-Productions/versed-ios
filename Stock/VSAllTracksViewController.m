@@ -230,7 +230,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableDictionary *track = [[[[[self.categoriesWithTracks objectAtIndex:selectedIndex] objectForKey:@"category"] objectForKey:@"tracks"] objectAtIndex:indexPath.row] mutableCopy];
-    return 180.0f + [self heightForText:[[track objectForKey:@"editors_note"] truncated:230] width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
+    return 155.0f + ([track completed] ? 0.0 : 25.0) + [self heightForText:[[track objectForKey:@"editors_note"] truncated:230] width:(self.view.frame.size.width-16.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:14.0f]];
     //return 276.0f;
 }
 
