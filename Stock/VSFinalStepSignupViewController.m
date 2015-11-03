@@ -68,7 +68,8 @@
 {
     [self.infoLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:13.0f]];
     //[self.infoLabel setText:@"*Only certain companies are able to use Versed.\nBy tapping Create Account, you agree to the\nTerms and Conditions and Privacy Policy."];
-    [self.infoLabel setText:@"*Only certain companies are able to use Versed."];
+//    [self.infoLabel setText:@"*Only certain companies are able to use Versed."];
+    [self.infoLabel setText:@""];
 }
 
 - (void) setupButtonAppearances

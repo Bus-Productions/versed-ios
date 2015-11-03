@@ -168,6 +168,9 @@
         [self.signingUpUser removeObjectForKey:@"password"];
         [self.signingUpUser removeObjectForKey:@"password_confirmation"]; 
         [self.signingUpUser saveRemote:^(id responseObject){
+            NSLog(@"****");
+            NSLog(@"%@", responseObject);
+            NSLog(@"****");
             if ([responseObject objectForKey:@"user"]) {
                 self.signingUpUser = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
                 [[LXSession thisSession] setUser:self.signingUpUser];
