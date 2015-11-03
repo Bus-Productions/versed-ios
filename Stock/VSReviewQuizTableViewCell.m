@@ -24,7 +24,8 @@
 - (void) configureWithQuizResults:(NSMutableArray*)quizResults andPointsThatRound:(NSInteger)pts
 {
     UILabel *recentQuizResultLabel = (UILabel*)[self viewWithTag:1];
-    [recentQuizResultLabel setText:[NSString stringWithFormat:@"%d of %lu", [quizResults numberQuizResultsCorrect], (unsigned long)[quizResults count]]];
+    int numCorrect = [quizResults numberQuizResultsCorrect];
+    [recentQuizResultLabel setText:[NSString stringWithFormat:@"%d of %lu", numCorrect, (unsigned long)[quizResults count]]];
     [recentQuizResultLabel setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:40.0f]];
     [recentQuizResultLabel setTextColor:[UIColor whiteColor]];
     
@@ -61,6 +62,15 @@
     UIButton* showLeaderboard = (UIButton*)[self.contentView viewWithTag:8];
     if (showLeaderboard) {
         [[showLeaderboard titleLabel] setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16.0f]];
+    }
+    
+    UILabel *pointsNote = (UILabel*)[self viewWithTag:55];
+    if ([[NSNumber numberWithLong:pts] integerValue] != [[NSNumber numberWithInt:numCorrect] integerValue]) {
+        [pointsNote setText:@"You can only earn points for questions you haven't seen before!"];
+        [pointsNote setFont:[UIFont fontWithName:@"SourceSansPro-LightIt" size:10.0f]];
+        [pointsNote setTextColor:[UIColor whiteColor]];
+    } else {
+        [pointsNote setHidden:YES];
     }
 }
 

@@ -385,9 +385,19 @@
     return [[self objectForKey:@"weaknesses"] mutableCopy];
 }
 
+- (NSMutableArray*) deepDives
+{
+    return [[self objectForKey:@"longforms"] mutableCopy];
+}
+
 - (NSString*) estimatedTime
 {
     return [NSString stringWithFormat:@"%@", [self objectForKey:@"estimated_time"]];
+}
+
+- (NSString*) source
+{
+    return [self objectForKey:@"source"];
 }
 
 - (NSString*) updatedAtFormatted

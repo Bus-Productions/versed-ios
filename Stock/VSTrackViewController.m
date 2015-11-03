@@ -19,6 +19,8 @@
 #import "VSTrackTitleTableViewCell.h"
 #import "VSResourceViewController.h"
 #import "VSEditorsNoteTableViewCell.h"
+#import "VSButtonTableViewCell.h"
+#import "VSDeepDiveViewController.h"
 #import "VSPurchaseViewController.h"
 
 #define NULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
@@ -174,6 +176,7 @@
     if ([self.track resources] && [[self.track resources] count] > 0) {
         [self.sections addObject:@"editorsNote"];
         [self.sections addObject:@"resources"];
+        [self.sections addObject:@"learnMore"];
     }
     
     return self.sections.count;
@@ -186,6 +189,8 @@
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"header"]) {
         return 1;
     } else if ([[self.sections objectAtIndex:section] isEqualToString:@"editorsNote"]) {
+        return 1;
+    } else if ([[self.sections objectAtIndex:section] isEqualToString:@"learnMore"]) {
         return 1;
     }
     return 0;
@@ -200,6 +205,8 @@
         return [self tableView:self.tableView headerCellForRowAtIndexPath:indexPath];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"editorsNote"]) {
         return [self tableView:self.tableView editorsNoteCellForRowAtIndexPath:indexPath];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"learnMore"]) {
+        return [self tableView:self.tableView learnMoreCellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -233,6 +240,14 @@
     return cell;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView learnMoreCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VSButtonTableViewCell *cell = (VSButtonTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:@"learnMoreCell"];
+    [cell configureWithText:@"Learn More" andColor:[UIColor clearColor] andBorder:YES andTextColor:[UIColor colorWithRed:0 green:0.5333 blue:0.345 alpha:1.0]];
+    return cell;
+}
+
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"resources"]) {
@@ -252,6 +267,8 @@
         }
         [self.tableView beginUpdates];
         [self.tableView endUpdates];
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"learnMore"]) {
+        [self showDeepDiveScreen];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -270,6 +287,8 @@
         } else {
             return heightOfTitle;
         }
+    } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"learnMore"]) {
+        return 80.0f;
     }
     return 100.0f;
 }
@@ -405,6 +424,15 @@
     } else {
         [[[NSMutableArray alloc] init] destroyLocalWithKey:@"myTracks"];
     }
+}
+
+- (void) showDeepDiveScreen
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    VSDeepDiveViewController *vc = (VSDeepDiveViewController*)[storyboard instantiateViewControllerWithIdentifier:@"deepDiveViewController"];
+    [vc setTrack:self.track];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

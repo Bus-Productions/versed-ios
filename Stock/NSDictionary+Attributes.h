@@ -38,6 +38,8 @@
 - (NSString*) completionDateFormatted;
 - (NSString*) numberResourcesRead;
 - (NSString*) minutesRemaining;
+- (NSMutableArray*) deepDives;
+- (NSString*) source;
 
 // quizzes
 - (NSMutableDictionary*) quiz;

@@ -23,10 +23,22 @@
 
 - (void) configureWithText:(NSString*)text andColor:(UIColor*)color
 {
+    [self configureWithText:text andColor:color andBorder:NO andTextColor:nil];
+}
+
+- (void) configureWithText:(NSString*)text andColor:(UIColor*)color andBorder:(BOOL)border andTextColor:(UIColor*)textColor
+{
     UILabel *lbl = (UILabel*)[self.contentView viewWithTag:1];
     [lbl setText:text];
     if (color) {
         [lbl setBackgroundColor:color];
+    }
+    if (border) {
+        lbl.layer.borderColor = textColor.CGColor;
+        lbl.layer.borderWidth = 2.0;
+    }
+    if (textColor) {
+        [lbl setTextColor:textColor];
     }
     [lbl setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:18.0f]];
 }

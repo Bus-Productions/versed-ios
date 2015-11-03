@@ -20,5 +20,6 @@
 
 @property (strong, nonatomic) IBOutlet UIScrollView *horizontalMenu;
 @property (strong, nonatomic) NSMutableArray* menuButtons;
+@property (strong, nonatomic) NSMutableArray* sections; 
 
 @end

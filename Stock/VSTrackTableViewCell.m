@@ -62,7 +62,7 @@
     title.layer.masksToBounds = NO;
     
     UILabel* subTitle = (UILabel*)[baseView viewWithTag:3];
-    [subTitle setText:[NSString stringWithFormat:@"%@ resources · %@ minutes · %@", [track numberResources], [track estimatedTime], [track updatedAtFormatted]]];
+    [subTitle setText:[NSString stringWithFormat:@"%@ resources · %@ min · %@", [track numberResources], [track estimatedTime], [track updatedAtFormatted]]];
     [subTitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:11.0f]];
     [subTitle setTextColor:[UIColor whiteColor]];
     
@@ -112,7 +112,7 @@
         UIProgressView *progressBar = (UIProgressView*)[bottomView viewWithTag:66];
         progressBar.progress = ([[track estimatedTime] floatValue] - [[track minutesRemaining] floatValue])/([[track estimatedTime] floatValue] < 1.0 ? 1.0 : [[track estimatedTime] floatValue]);
     
-        [self.minutesRemainingInTrackLabel setText:[NSString stringWithFormat:@"%@ minutes remaining", [track minutesRemaining]]];
+        [self.minutesRemainingInTrackLabel setText:[NSString stringWithFormat:@"%@ min remaining", [track minutesRemaining]]];
         [self.minutesRemainingInTrackLabel setFont:[UIFont fontWithName:@"SourceSansPro-LightIt" size:12.0f]];
         [self.minutesRemainingInTrackLabel setTextColor:[UIColor whiteColor]];
         if (progressBar.progress < 0.44) {

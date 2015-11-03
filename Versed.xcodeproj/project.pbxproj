@@ -106,6 +106,9 @@
 		76698DFE1B55600E0031BA21 /* VSWeaknessesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76698DFD1B55600E0031BA21 /* VSWeaknessesTableViewCell.m */; };
 		76698E011B55760D0031BA21 /* VSShowResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76698E001B55760D0031BA21 /* VSShowResultsTableViewCell.m */; };
 		76698E041B5581AD0031BA21 /* VSReviewQuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76698E031B5581AD0031BA21 /* VSReviewQuizViewController.m */; };
+		766CBC351BE7C93B0026BE19 /* VSDeepDiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 766CBC341BE7C93B0026BE19 /* VSDeepDiveViewController.m */; };
+		766CBC381BE7CA500026BE19 /* VSDeepDiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766CBC371BE7CA500026BE19 /* VSDeepDiveTableViewCell.m */; };
+		766CBC3E1BE7DB3E0026BE19 /* VSDeepDiveTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 766CBC3D1BE7DB3E0026BE19 /* VSDeepDiveTitleTableViewCell.m */; };
 		768419E61B3853660029118D /* VSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768419E51B3853660029118D /* VSLoginViewController.m */; };
 		768419E91B387C9E0029118D /* VSFinalStepSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768419E81B387C9E0029118D /* VSFinalStepSignupViewController.m */; };
 		768CE0711B025A9800E1E2E6 /* VSSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 768CE0701B025A9800E1E2E6 /* VSSignupViewController.m */; };
@@ -312,6 +315,12 @@
 		76698E001B55760D0031BA21 /* VSShowResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSShowResultsTableViewCell.m; sourceTree = "<group>"; };
 		76698E021B5581AD0031BA21 /* VSReviewQuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSReviewQuizViewController.h; sourceTree = "<group>"; };
 		76698E031B5581AD0031BA21 /* VSReviewQuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSReviewQuizViewController.m; sourceTree = "<group>"; };
+		766CBC331BE7C93B0026BE19 /* VSDeepDiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSDeepDiveViewController.h; sourceTree = "<group>"; };
+		766CBC341BE7C93B0026BE19 /* VSDeepDiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDeepDiveViewController.m; sourceTree = "<group>"; };
+		766CBC361BE7CA500026BE19 /* VSDeepDiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSDeepDiveTableViewCell.h; sourceTree = "<group>"; };
+		766CBC371BE7CA500026BE19 /* VSDeepDiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDeepDiveTableViewCell.m; sourceTree = "<group>"; };
+		766CBC3C1BE7DB3E0026BE19 /* VSDeepDiveTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSDeepDiveTitleTableViewCell.h; sourceTree = "<group>"; };
+		766CBC3D1BE7DB3E0026BE19 /* VSDeepDiveTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDeepDiveTitleTableViewCell.m; sourceTree = "<group>"; };
 		768419E51B3853660029118D /* VSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSLoginViewController.m; sourceTree = "<group>"; };
 		768419E71B387C9E0029118D /* VSFinalStepSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSFinalStepSignupViewController.h; sourceTree = "<group>"; };
 		768419E81B387C9E0029118D /* VSFinalStepSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSFinalStepSignupViewController.m; sourceTree = "<group>"; };
@@ -686,6 +695,8 @@
 				760C323F1B7BD72A006B1290 /* Purchase */,
 				76A21E1C1B35A0DB00B7C40D /* VSResourceViewController.h */,
 				76A21E1D1B35A0DB00B7C40D /* VSResourceViewController.m */,
+				766CBC331BE7C93B0026BE19 /* VSDeepDiveViewController.h */,
+				766CBC341BE7C93B0026BE19 /* VSDeepDiveViewController.m */,
 			);
 			name = Track;
 			sourceTree = "<group>";
@@ -832,6 +843,10 @@
 				7634C1161B6AA96C0030C84B /* VSPieChartTableViewCell.m */,
 				76EB2F071B710928008C3840 /* VSEditorsNoteTableViewCell.h */,
 				76EB2F081B710928008C3840 /* VSEditorsNoteTableViewCell.m */,
+				766CBC361BE7CA500026BE19 /* VSDeepDiveTableViewCell.h */,
+				766CBC371BE7CA500026BE19 /* VSDeepDiveTableViewCell.m */,
+				766CBC3C1BE7DB3E0026BE19 /* VSDeepDiveTitleTableViewCell.h */,
+				766CBC3D1BE7DB3E0026BE19 /* VSDeepDiveTitleTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -1113,6 +1128,7 @@
 				76F0D5921B28D31500F54C56 /* VSCongratsViewController.m in Sources */,
 				764060DB1B2773D7004FA5CC /* VSProfileTopicsTableViewCell.m in Sources */,
 				28A534001ACF69AF0049B3F7 /* UIImage+Helpers.m in Sources */,
+				766CBC3E1BE7DB3E0026BE19 /* VSDeepDiveTitleTableViewCell.m in Sources */,
 				760F5D531B0B7AA80038FF1A /* VSQuizQuestionTableViewCell.m in Sources */,
 				768CE0901B03EF1900E1E2E6 /* VSAllTracksViewController.m in Sources */,
 				76F0D5981B28E02A00F54C56 /* VSCongratsTracksTableViewCell.m in Sources */,
@@ -1121,10 +1137,12 @@
 				76EB2F091B710928008C3840 /* VSEditorsNoteTableViewCell.m in Sources */,
 				766408341B1E74AE006272E8 /* VSPollAnswerTableViewCell.m in Sources */,
 				7608296C1B16466F0053E29F /* VSLeaderTableViewCell.m in Sources */,
+				766CBC351BE7C93B0026BE19 /* VSDeepDiveViewController.m in Sources */,
 				760C32421B7BE375006B1290 /* LXPurchase.m in Sources */,
 				76698DFE1B55600E0031BA21 /* VSWeaknessesTableViewCell.m in Sources */,
 				760829691B1641EB0053E29F /* VSDashboardViewController.m in Sources */,
 				28A533FB1ACF699A0049B3F7 /* NSNumber+Helpers.m in Sources */,
+				766CBC381BE7CA500026BE19 /* VSDeepDiveTableViewCell.m in Sources */,
 				760C323E1B7BD724006B1290 /* VSPurchaseViewController.m in Sources */,
 				760CFD3C1B25CD5400A9C875 /* VSMessagesViewController.m in Sources */,
 				76698E011B55760D0031BA21 /* VSShowResultsTableViewCell.m in Sources */,

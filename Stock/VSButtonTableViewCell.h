@@ -12,6 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeight;
 
-- (void) configureWithText:(NSString*)text andColor:(UIColor*)color; 
+- (void) configureWithText:(NSString*)text andColor:(UIColor*)color;
+- (void) configureWithText:(NSString*)text andColor:(UIColor*)color andBorder:(BOOL)border andTextColor:(UIColor*)textColor;
+
 - (CGFloat) configureHeight;
 @end
