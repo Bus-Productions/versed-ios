@@ -56,48 +56,48 @@
     
     if ([method.uppercaseString isEqualToString:@"GET"]) {
         [self GET:path parameters:params success:^(NSURLSessionDataTask* task, id responseObject) {
-            //NSLog(@"%@", responseObject);
+            NSLog(@"***%@", responseObject);
             if (successCallback)
                 successCallback(responseObject);
             [[UIApplication sharedApplication] endBackgroundTask:bgt];
         } failure:^(NSURLSessionDataTask* task, NSError* error) {
-            NSLog(@"ERROR! %@", [error localizedDescription]);
+            NSLog(@"ERROR! %@", error);
             if (failureCallback)
                 failureCallback(error);
             [[UIApplication sharedApplication] endBackgroundTask:bgt];
         }];
     } else if ([method.uppercaseString isEqualToString:@"POST"]) {
         [self POST:path parameters:params constructingBodyWithBlock:block success:^(NSURLSessionDataTask* task, id responseObject) {
-            //NSLog(@"%@", responseObject);
+            NSLog(@"***%@", responseObject);
             if (successCallback)
                 successCallback(responseObject);
             [[UIApplication sharedApplication] endBackgroundTask:bgt];
         } failure:^(NSURLSessionDataTask* task, NSError* error) {
-            NSLog(@"ERROR! %@", [error localizedDescription]);
+            NSLog(@"ERROR! %@", error);
             if (failureCallback)
                 failureCallback(error);
             [[UIApplication sharedApplication] endBackgroundTask:bgt];
         }];
     } else if ([method.uppercaseString isEqualToString:@"PUT"]) {
         [self PUT:path parameters:params success:^(NSURLSessionDataTask* task, id responseObject) {
-            //NSLog(@"%@", responseObject);
+            NSLog(@"***%@", responseObject);
             if (successCallback)
                 successCallback(responseObject);
             [[UIApplication sharedApplication] endBackgroundTask:bgt];
         } failure:^(NSURLSessionDataTask* task, NSError* error) {
-            NSLog(@"ERROR! %@", [error localizedDescription]);
+            NSLog(@"ERROR! %@", error);
             if (failureCallback)
                 failureCallback(error);
             [[UIApplication sharedApplication] endBackgroundTask:bgt];
         }];
     } else if ([method.uppercaseString isEqualToString:@"DELETE"]) {
         [self DELETE:path parameters:params success:^(NSURLSessionDataTask* task, id responseObject) {
-            //NSLog(@"%@", responseObject);
+            NSLog(@"***%@", responseObject);
             if (successCallback)
                 successCallback(responseObject);
             [[UIApplication sharedApplication] endBackgroundTask:bgt];
         } failure:^(NSURLSessionDataTask* task, NSError* error) {
-            NSLog(@"ERROR! %@", [error localizedDescription]);
+            NSLog(@"ERROR! %@", error);
             if (failureCallback)
                 failureCallback(error);
             [[UIApplication sharedApplication] endBackgroundTask:bgt];

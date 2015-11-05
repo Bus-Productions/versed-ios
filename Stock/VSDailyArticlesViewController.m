@@ -204,7 +204,8 @@
     if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"header"]) {
         return 130.0f;
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"articles"]) {
-        return 150.0f; //[(VSResourceTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath] heightForRow];
+        NSMutableDictionary *res = [self.articles objectAtIndex:indexPath.row];
+        return 117.0f + ([completedResources containsObject:[NSNumber numberWithInt:[[res ID] intValue]]] ? -10.0 : [self heightForText:[res objectForKey:@"description"] width:(self.view.frame.size.width-30.0f) font:[UIFont fontWithName:@"SourceSansPro-Regular" size:13.0f]]);
     }
     return 80.0f;
 }
