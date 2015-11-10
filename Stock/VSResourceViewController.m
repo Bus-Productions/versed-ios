@@ -26,9 +26,15 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    NSLog(@"*********************");
     [self.webView stopLoading];
     webViewFinishedLoading = true;
     [self performSelectorOnMainThread:@selector(stopTimer) withObject:nil waitUntilDone:YES];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"Error : %@",error);
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -36,6 +42,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate setShouldRotate:YES];
+    NSLog(@"$$$$$$$$$$$$$$$$$$$$$");
+    NSLog(@"%@", [[self resource] url]);
+
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -67,7 +76,7 @@
 - (void) setupWebView
 {
     self.webView.scrollView.delegate = self;
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: [resource url]] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 15.0];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: [[resource url] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 15.0];
 
     [self.webView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     

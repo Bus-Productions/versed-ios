@@ -131,5 +131,68 @@
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stock/VSQuizQuestionViewController.m"
+            timestampString = "468433439.535722"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__66-[VSQuizQuestionViewController tableView:didSelectRowAtIndexPath:]_block_invoke156"
+                  moduleName = "Versed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/McArthur/Desktop/apps/versed-ios/Stock/VSQuizQuestionViewController.m"
+                  timestampString = "468433439.583343"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "206"
+                  endingLineNumber = "206"
+                  offsetFromSymbolStart = "256">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_163"
+                  moduleName = "Versed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/McArthur/Desktop/apps/versed-ios/Stock/VSQuizQuestionViewController.m"
+                  timestampString = "468433439.583567"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_164"
+                  moduleName = "Versed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/McArthur/Desktop/apps/versed-ios/Stock/VSQuizQuestionViewController.m"
+                  timestampString = "468433439.583677"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

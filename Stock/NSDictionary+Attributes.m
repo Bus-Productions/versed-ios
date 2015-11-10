@@ -84,7 +84,7 @@
 
 - (NSString*) url
 {
-    return [self objectForKey:@"url"];
+    return (NSString*)[self objectForKey:@"url"];
 }
 
 - (NSString*) mediaURL

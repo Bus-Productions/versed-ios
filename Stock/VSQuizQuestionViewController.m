@@ -202,6 +202,7 @@ static int QUESTION_TIME = 25;
         [self.delegate createQuizResultWithQuestion:self.question andAnswer:[[self.question questionAnswers] objectAtIndex:indexPath.row] success:^(id responseObject){
             requesting = NO;
             self.quizResults = [responseObject objectForKey:@"quiz_results"];
+            NSLog(@"****** %lu", (unsigned long)self.quizResults.count);
             [self.tableView reloadData];
         } failure:nil];
     } else if ([[self.sections objectAtIndex:indexPath.section] isEqualToString:@"next"]) {
