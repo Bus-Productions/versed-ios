@@ -192,13 +192,23 @@
     return [self objectForKey:@"name"];
 }
 
+- (NSString*) nameOrYou
+{
+    return [self objectForKey:@"name"] ? [self objectForKey:@"name"] : @"You";
+}
+
+- (NSString*) nameOrYour
+{
+    return [self objectForKey:@"name"] ? [self objectForKey:@"name"] : @"You";
+}
+
 - (NSString*) firstName
 {
     if ([self name]) {
         NSCharacterSet *delimiterCharacterSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
         return [[[self name] componentsSeparatedByCharactersInSet:delimiterCharacterSet] firstObject];
     }
-    return @"";
+    return nil;
 }
 
 - (NSString*) totalQuizzes

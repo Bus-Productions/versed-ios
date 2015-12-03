@@ -166,7 +166,7 @@
 {
     VSEmptyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
     
-    [cell configureWithTextsInArray:@[[NSString stringWithFormat:@"%@, you don't have access to any viewpoints.", [[[LXSession thisSession] user] firstName]], @"You'll be asked for your viewpoint on different issues as you explore tracks. \n\nView more resources, share your opinion and come back here to see the results."]];
+    [cell configureWithTextsInArray:@[[NSString stringWithFormat:@"%@ou don't have access to any viewpoints.", [[[LXSession thisSession] user] firstName] ? [NSString stringWithFormat:@"%@, y", [[[LXSession thisSession] user] firstName]] : @"Y"], @"You'll be asked for your viewpoint on different issues as you explore tracks. \n\nView more resources, share your opinion and come back here to see the results."]];
     
     return cell;
 }

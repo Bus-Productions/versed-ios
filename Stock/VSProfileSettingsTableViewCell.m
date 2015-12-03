@@ -36,7 +36,8 @@
     
     UITextField *name = (UITextField*)[self viewWithTag:4];
     [self setupTextFieldAppearance:name];
-    
+    name.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Name" attributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5], NSFontAttributeName: [UIFont fontWithName:@"SourceSansPro-Regular" size:16.0f]}];
+
     UITextField *password = (UITextField*)[self viewWithTag:6];
     [self setupTextFieldAppearance:password];
     
@@ -46,7 +47,7 @@
     
     NSMutableDictionary *user = [[LXSession thisSession] user];
     
-    [name setText:[user name]];
+    [name setText:[user name] ? [user name] : @""];
     
     [password setText:@""]; 
     [password setPlaceholder:@"Change Password"];

@@ -86,6 +86,8 @@
 - (BOOL) atResourceLimit;
 - (NSMutableDictionary *) company;
 - (BOOL) shouldShowLeaderboard;
+- (NSString*) nameOrYour;
+- (NSString*) nameOrYou; 
 
 // track user pairs
 - (NSMutableArray *) trackUserPairs;

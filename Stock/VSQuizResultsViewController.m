@@ -243,12 +243,12 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"wellDoneCell" forIndexPath:indexPath];
     
     UILabel* topLabel = (UILabel*)[cell.contentView viewWithTag:1];
-    NSString *topLabelText = [NSString stringWithFormat:@"Well done, %@!", [[[LXSession thisSession] user] firstName]];
+    NSString *topLabelText = [NSString stringWithFormat:@"Well done%@!", [[[LXSession thisSession] user] firstName] ? [NSString stringWithFormat:@", %@", [[[LXSession thisSession] user] firstName]] : @""];
     NSString *bottomLabelText = [NSString stringWithFormat:@"You are steadily getting versed on key topics."];
     float qrCount = self.quizResults.count;
 
     if (([self.quizResults numberQuizResultsCorrect]/((self.quizResults && qrCount > 0) ? qrCount : 10)) <= 0.5) {
-        topLabelText = [NSString stringWithFormat:@"Don't get discouraged, %@!", [[[LXSession thisSession] user] firstName]];
+        topLabelText = [NSString stringWithFormat:@"Don't get discouraged%@!", [[[LXSession thisSession] user] firstName] ? [NSString stringWithFormat:@", %@", [[[LXSession thisSession] user] firstName]] : @""];
         bottomLabelText = [NSString stringWithFormat:@"Check out the tracks below to get versed on key topics."];
     }
     [topLabel setText:topLabelText];

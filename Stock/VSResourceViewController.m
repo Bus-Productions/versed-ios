@@ -26,7 +26,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    NSLog(@"*********************");
     [self.webView stopLoading];
     webViewFinishedLoading = true;
     [self performSelectorOnMainThread:@selector(stopTimer) withObject:nil waitUntilDone:YES];
@@ -42,9 +41,6 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate setShouldRotate:YES];
-    NSLog(@"$$$$$$$$$$$$$$$$$$$$$");
-    NSLog(@"%@", [[self resource] url]);
-
 }
 
 - (void) viewWillDisappear:(BOOL)animated

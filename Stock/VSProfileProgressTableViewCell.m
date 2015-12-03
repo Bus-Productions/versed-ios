@@ -25,7 +25,7 @@
 {
     NSMutableDictionary *user = [[LXSession thisSession] user];
     UILabel *name = (UILabel*)[self viewWithTag:1];
-    [name setText:[NSString stringWithFormat:@"%@'s Progress", [user firstName]]];
+    [name setText:[NSString stringWithFormat:@"%@ Progress", [user firstName] ? [NSString stringWithFormat:@"%@'s", [user firstName]] : @"Your"]];
     [name setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:28.0f]];
     
     UILabel *tracksCompleted = (UILabel*)[self viewWithTag:2];

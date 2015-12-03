@@ -211,6 +211,34 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://versed-app.herokuapp.com/terms"]];
 }
 
+- (IBAction)skipSignupAction:(id)sender {
+    [self showHUDWithMessage:@"Generating account..."];
+    [self.signingUpUser setObject:@"temp" forKey:@"status"];
+    NSLog(@"before request = %@", [[LXSession thisSession] user]);
+
+    [[LXServer shared] requestPath:@"users/create_temp.json" withMethod:@"POST" withParamaters:@{@"user": self.signingUpUser} authType:@"none" success:^(id responseObject){
+        if ([responseObject objectForKey:@"user"]) {
+            self.signingUpUser = [[[responseObject cleanDictionary] objectForKey:@"user"] mutableCopy];
+            [[LXSession thisSession] setUser:self.signingUpUser success:^(id responseObject){
+                NSLog(@"after request = %@", [[LXSession thisSession] user]);
+                AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                [appDelegate setRootStoryboard:@"Main"];
+                [self hideHUD];
+            }failure:^(NSError *error){
+                [self hideHUD];
+                [self showAlertWithText:@"There was a problem with your sign in. Try again!" andTitle:@"Sorry!"];
+            }];
+            [self.signingUpUser saveLocal:nil failure:nil];
+        } else {
+            [self hideHUD];
+            [self showAlertWithText:@"There was a problem with your sign in. Try again!" andTitle:@"Sorry!"];
+        }
+    }failure:^(NSError *error){
+        [self hideHUD];
+        [self showAlertWithText:@"There was a problem with your sign in. Try again!" andTitle:@"Sorry!"];
+    }];
+}
+
 
 # pragma mark - Alert
 

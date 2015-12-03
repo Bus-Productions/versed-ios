@@ -23,7 +23,7 @@
 - (void) configureWithTrack:(NSMutableDictionary*)track
 {
     UILabel *congrats = (UILabel*)[self viewWithTag:1];
-    [congrats setText:[NSString stringWithFormat:@"Nice work!\nWay to go, %@!", [[[LXSession thisSession] user] firstName]]];
+    [congrats setText:[NSString stringWithFormat:@"Nice work!\nWay to go%@!", [[[LXSession thisSession] user] firstName] ? [NSString stringWithFormat:@"%@%@", @", ", [[[LXSession thisSession] user] firstName]] : @""]];
     [congrats setTextColor:[UIColor whiteColor]];
     [congrats setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:32.0f]];
 

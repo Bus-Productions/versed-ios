@@ -23,7 +23,7 @@
 - (void) configure
 {
     UILabel *name = (UILabel*)[self viewWithTag:1];
-    [name setText:[[[LXSession thisSession] user] name]];
+    [name setText:[[[LXSession thisSession] user] name] ? [[[LXSession thisSession] user] name] : @"Profile"];
     [name setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:20.0f]];
     [name setTextColor:[UIColor whiteColor]];
     

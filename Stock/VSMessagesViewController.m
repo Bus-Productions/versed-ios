@@ -374,21 +374,25 @@
 
 - (void) addAction:(id)sender
 {
-    NSMutableDictionary *mess = [NSMutableDictionary create:@"message"];
-    [mess setObject:self.composeTextView.text forKey:@"message_text"];
-    [mess setObject:[self.track ID] forKey:@"track_id"];
-    [mess setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
-    [self.allMessages addObject:mess];
-    [self.tableView reloadData];
-    [self updateConstraintsForTextView:self.composeTextView];
-    [self clearTextField:YES];
-    [mess saveRemote:^(id responseObject){
-        self.allMessages = [[responseObject objectForKey:@"messages"] mutableCopy];
+    if ([[[LXSession thisSession] user] live] && [[[LXSession thisSession] user] name] && [[[[LXSession thisSession] user] name] length] > 0) {
+        NSMutableDictionary *mess = [NSMutableDictionary create:@"message"];
+        [mess setObject:self.composeTextView.text forKey:@"message_text"];
+        [mess setObject:[self.track ID] forKey:@"track_id"];
+        [mess setObject:[[[LXSession thisSession] user] ID] forKey:@"user_id"];
+        [self.allMessages addObject:mess];
         [self.tableView reloadData];
         [self updateConstraintsForTextView:self.composeTextView];
-    }failure:^(NSError *error){
-        [self showAlertWithText:@"Your message did not get sent!"];
-    }];
+        [self clearTextField:YES];
+        [mess saveRemote:^(id responseObject){
+            self.allMessages = [[responseObject objectForKey:@"messages"] mutableCopy];
+            [self.tableView reloadData];
+            [self updateConstraintsForTextView:self.composeTextView];
+        }failure:^(NSError *error){
+            [self showAlertWithText:@"Your message did not get sent!"];
+        }];
+    } else {
+        [self showAlertWithText:@"You must sign up to send a message! Go to your profile and logout. Then go through the signup process."];
+    }
 }
 
 # pragma mark - Alert

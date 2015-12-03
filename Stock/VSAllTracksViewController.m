@@ -41,6 +41,11 @@
     [self setupMenu];
     [self setupNotifications];
     [[LXNotifications thisNotification] askForDeviceToken];
+    NSLog(@"all tracks = %@", [[LXSession thisSession] user]);
+    //to assign last_login for users who have signed up the first time.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [[LXServer shared] requestPath:[NSString stringWithFormat:@"users/%@.json", [[[LXSession thisSession] user] ID]] withMethod:@"GET" withParamaters:nil authType:@"none" success:nil failure:nil];
+    });
 }
 
 - (void)didReceiveMemoryWarning
