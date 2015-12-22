@@ -62,7 +62,7 @@
 
 - (void) setupSidebar
 {
-    [self setTitle:@"VersedToday"];
+    [self setTitle:@"Versed Today"];
     
     SWRevealViewController *revealViewController = self.revealViewController;
     [revealViewController setDelegate:self]; 

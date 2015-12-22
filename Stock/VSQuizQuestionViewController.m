@@ -59,7 +59,8 @@ static int QUESTION_TIME = 25;
 
 - (void) setupNavigationBar
 {
-    [self.navigationItem setTitle:[NSString stringWithFormat:@"Question %lu of %lu", (unsigned long)questionsCompleted, (unsigned long)totalQuestions]];
+//    [self.navigationItem setTitle:[NSString stringWithFormat:@"Question %lu of %lu", (unsigned long)questionsCompleted, (unsigned long)totalQuestions]];
+    [self.navigationItem setTitle:@"Quiz"];
 }
 
 - (void) setupTimer

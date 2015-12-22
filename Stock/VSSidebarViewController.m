@@ -64,8 +64,8 @@
     self.menuOptions = [[NSMutableArray alloc] init];
     [self.menuOptions addObject:PROFILE_IDENTIFIER];
     [self.menuOptions addObject:ALL_TRACKS_IDENTIFIER];
-    [self.menuOptions addObject:DAILY_ARTICLES_IDENTIFIER];
     [self.menuOptions addObject:QUIZ_IDENTIFIER];
+    [self.menuOptions addObject:DAILY_ARTICLES_IDENTIFIER];
     [self.menuOptions addObject:POLLS_IDENTIFIER];
     
     self.bottomOptions = [[NSMutableArray alloc] init];

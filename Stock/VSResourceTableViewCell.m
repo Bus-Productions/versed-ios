@@ -34,7 +34,7 @@
     [title setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:20.0f]];
     
     UILabel* subtitle = (UILabel*)[baseView viewWithTag:2];
-    [subtitle setText:[NSString stringWithFormat:@"%@ · %@ · %@ · %@ min", [resource objectForKey:@"source"], [resource resourceDate], [resource resourceType], [resource estimatedTime]]];
+    [subtitle setText:[NSString stringWithFormat:@"%@ · %@ · %@ · %@ min.", [resource objectForKey:@"source"], [resource resourceDate], [resource resourceType], [resource estimatedTime]]];
     [subtitle setFont:[UIFont fontWithName:@"SourceSansPro-Regular" size:12.0f]];
     [subtitle setTextColor:[UIColor grayColor]];
     
