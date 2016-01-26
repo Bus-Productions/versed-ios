@@ -152,6 +152,8 @@
 {
     NSError *serializationError = nil;
     NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
+    [request setValue:@"b33n21FfM03k5M0f8hs9fMSLgs8s7df92" forHTTPHeaderField:@"X-Api-Key"];
+
     if (serializationError) {
         if (failure) {
 #pragma clang diagnostic push
